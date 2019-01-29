@@ -2,7 +2,7 @@
 Group 7 Yellow(bots)
 
 [![Build Status](http://build.raknoel.no/job/RoboRally/badge/icon)](http://build.raknoel.no/job/RoboRally/)
-[![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/testReport)
+[![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/lastCompletedBuild/testReport/)
 [![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/cobertura/)
 
 ## Deloppgave 1: Organiser teamet
@@ -43,7 +43,7 @@ Group 7 Yellow(bots)
 
 ### Deloppgave 2: Oversikt over forventet produkt
 ##### Kort beskrivelse
-Målet for applikasjonen er et fungerende robotrally spill, programmert i Java. Vi vil implementere alle de grunnleggende funksjonalitetene, samt prøve oss på multiplayer, hvis vi har tid til det. 
+Målet for applikasjonen er et fungerende roborally spill, programmert i Java. Vi vil implementere alle de grunnleggende funksjonalitetene, samt prøve oss på multiplayer, hvis vi har tid til det. 
 
 #### Liste over krav
 
