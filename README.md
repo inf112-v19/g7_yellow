@@ -4,7 +4,7 @@ Group 7 Yellow(bots)
 [![Build Status](http://build.raknoel.no/job/RoboRally-Master/1/badge/icon)](http://build.raknoel.no/job/RoboRally-Master/1/)
 ![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally-Master.svg)
 
-## Deloppgave 1 � Organiser teamet
+## Deloppgave 1: Organiser teamet
 ### Gruppenavn
 * Yellowbots
 
@@ -42,14 +42,14 @@ Group 7 Yellow(bots)
 
 ### Deloppgave 2: Oversikt over forventet produkt
 ##### Kort beskrivelse
-Målet for applikasjonen er et fungerende robotrally spill, programmert i Java. Vi vil implementere alle de grunnleggende funksjonalitetene, samt pr�ve oss p� multiplayer, hvis vi har tid til det. 
+Målet for applikasjonen er et fungerende robotrally spill, programmert i Java. Vi vil implementere alle de grunnleggende funksjonalitetene, samt prøve oss på multiplayer, hvis vi har tid til det. 
 
 #### Liste over krav
 
 ##### Liste over krav i første innlevering
 *	Et brett (grid)
 
-*	En spiller p� brettet
+*	En spiller på brettet
 
 *	Grunnleggende bevegelse (fram, tilbake, rotere)
 
