@@ -2,7 +2,7 @@
 Group 7 Yellow(bots)
 
 [![Build Status](http://build.raknoel.no/job/RoboRally/badge/icon)](http://build.raknoel.no/job/RoboRally/)
-![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally.svg)
+[![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/cobertura/)
 
 ## Deloppgave 1: Organiser teamet
 ### Gruppenavn
