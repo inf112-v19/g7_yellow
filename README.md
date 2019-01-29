@@ -1,14 +1,14 @@
 # g7_yellow
 Group 7 Yellow
 
-Deloppgave 1 – Organiser teamet
-Gruppenavn
-•	Yellowbots
-•	Yellow submarine
-Gruppeleder
-•	Oskar
-Kundekontakt 
-•	Hein
+## Deloppgave 1 – Organiser teamet
+### Gruppenavn
+* Yellowbots
+
+### Gruppeleder
+* Oskar
+###Kundekontakt 
+* Hein
 
 Kompetanser
 Erik
