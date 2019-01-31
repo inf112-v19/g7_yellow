@@ -4,6 +4,7 @@ Group 7 Yellow(bots)
 [![Build Status](http://build.raknoel.no/job/RoboRally/badge/icon)](http://build.raknoel.no/job/RoboRally/)
 [![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/lastCompletedBuild/testReport/)
 [![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/cobertura/)
+[![Known Vulnerabilities](https://snyk.io/test/github/inf112-v19/YellowBots/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/inf112-v19/YellowBots?targetFile=pom.xml)
 
 ## Deloppgave 1: Organiser teamet
 ### Gruppenavn
