@@ -8,7 +8,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/inf112-v19/YellowBots/badge.svg?style=flat-square&targetFile=pom.xml)](https://snyk.io/test/github/inf112-v19/YellowBots?targetFile=pom.xml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/84a8bbe98cb344748204171a5b003e6d?style=flat-square)](https://www.codacy.com/app/YellowBots/YellowBots?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=inf112-v19/YellowBots&amp;utm_campaign=Badge_Grade)
 
-![Github Repo size](https://img.shields.io/github/repo-size/inf112-v19/YellowBots.svg?style=flat-square&icon=GitHub)
+![Github Repo size](https://img.shields.io/github/repo-size/inf112-v19/YellowBots.svg?style=flat-square&logo=GitHub)
 
 [![Java Version](https://img.shields.io/badge/Java_Version-8-blue.svg?style=for-the-badge&logo=Java)](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
