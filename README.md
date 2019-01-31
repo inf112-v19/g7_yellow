@@ -1,6 +1,6 @@
 # YellowBots
 
-###Status
+### Status
 [![Build Status](http://build.raknoel.no/job/RoboRally/badge/icon)](http://build.raknoel.no/job/RoboRally/)
 [![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/lastCompletedBuild/testReport/)
 [![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/cobertura/)
