@@ -1,11 +1,12 @@
 # YellowBots
-Group 7 Yellow(bots)
 
+###Status
 [![Build Status](http://build.raknoel.no/job/RoboRally/badge/icon)](http://build.raknoel.no/job/RoboRally/)
 [![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/lastCompletedBuild/testReport/)
 [![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally.svg)](http://build.raknoel.no/job/RoboRally/cobertura/)
+
 [![Known Vulnerabilities](https://snyk.io/test/github/inf112-v19/YellowBots/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/inf112-v19/YellowBots?targetFile=pom.xml)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/76d2615d7f70456cb4a41dad71c901a7)](https://www.codacy.com/app/YellowBots/YellowBots?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=inf112-v19/YellowBots&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/84a8bbe98cb344748204171a5b003e6d)](https://www.codacy.com/app/YellowBots/YellowBots?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=inf112-v19/YellowBots&amp;utm_campaign=Badge_Grade)
 
 ## Deloppgave 1: Organiser teamet
 ### Gruppenavn
