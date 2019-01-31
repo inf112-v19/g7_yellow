@@ -1,9 +1,9 @@
 # YellowBots
 
 ### Status
-[![Build Status](https://img.shields.io/jenkins/s/http/build.raknoel.no/job/RoboRally.svg?style=flat-square)](http://build.raknoel.no/job/RoboRally/)
-[![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg?style=flat-square)](http://build.raknoel.no/job/RoboRally/lastCompletedBuild/testReport/)
-[![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally.svg?style=flat-square)](http://build.raknoel.no/job/RoboRally/cobertura/)
+[![Build Status](https://img.shields.io/jenkins/s/http/build.raknoel.no/job/RoboRally.svg?style=flat-square&logo=jenkins)](http://build.raknoel.no/job/RoboRally/)
+[![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg?style=flat-square&logo=verizon)](http://build.raknoel.no/job/RoboRally/lastCompletedBuild/testReport/)
+[![Coverage](https://img.shields.io/jenkins/c/http/build.raknoel.no/job/RoboRally.svg?style=flat-square&logo=#FFC107)](http://build.raknoel.no/job/RoboRally/cobertura/)
 
 [![Known Vulnerabilities](https://snyk.io/test/github/inf112-v19/YellowBots/badge.svg?style=flat-square&targetFile=pom.xml)](https://snyk.io/test/github/inf112-v19/YellowBots?targetFile=pom.xml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/84a8bbe98cb344748204171a5b003e6d?style=flat-square)](https://www.codacy.com/app/YellowBots/YellowBots?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=inf112-v19/YellowBots&amp;utm_campaign=Badge_Grade)
