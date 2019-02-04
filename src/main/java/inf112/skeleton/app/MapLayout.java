@@ -57,17 +57,17 @@ public class MapLayout implements ApplicationListener {
 
     @Override
     public void pause() {
-
+        //Empty for now
     }
 
     @Override
     public void resume() {
-
+        //Empty for now
     }
 
     @Override
     public void resize(int i, int i1) {
-
+        //Empty for now
     }
 
     /**
