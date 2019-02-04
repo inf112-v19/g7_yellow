@@ -14,13 +14,13 @@
 
 ## Deloppgave 1: Organiser teamet
 ### Gruppenavn
-* Yellowbots
+  * Yellowbots
 
 ### Gruppeleder
-* Oskar
+  * Oskar
 
 ### Kundekontakt 
-* Hein
+  * Hein
 
 #### Kompetanser
 ##### Erik
