@@ -1,6 +1,6 @@
 # YellowBots
 
-### Status
+## Status
 [![Build Status](https://img.shields.io/jenkins/s/http/build.raknoel.no/job/RoboRally.svg?style=flat-square&logo=buffer)](http://build.raknoel.no/job/RoboRally/)
 [![Build Health](https://img.shields.io/badge/dynamic/json.svg?label=Build%20Health&url=http%3A%2F%2Fbuild.raknoel.no%2Fjob%2FRoboRally%2Fapi%2Fjson&query=%24.healthReport%5B1%5D.score&colorB=blue&style=flat-square&logo=twoo&suffix=%)](http://build.raknoel.no/job/RoboRally/)
 [![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg?style=flat-square&logo=jekyll)](http://build.raknoel.no/job/RoboRally/lastCompletedBuild/testReport/)
@@ -49,7 +49,7 @@
   * Slack
 
 ### Deloppgave 2: Oversikt over forventet produkt
-##### Kort beskrivelse
+#### Kort beskrivelse
 Målet for applikasjonen er et fungerende roborally spill, programmert i Java. Vi vil implementere alle de grunnleggende funksjonalitetene, samt prøve oss på multiplayer, hvis vi har tid til det. 
 
 #### Krav
