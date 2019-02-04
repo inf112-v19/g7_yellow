@@ -26,7 +26,8 @@ public class HelloWorld implements ApplicationListener {
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        //Color is done in RGB with float values from 0 --> 1. No idea what the last digit is
+        Gdx.gl.glClearColor(0.5F, 0.6F, 0.3F, 1F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
