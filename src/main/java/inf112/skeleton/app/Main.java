@@ -11,6 +11,7 @@ public class Main {
         cfg.width = 480;
         cfg.height = 320;
 
-        new LwjglApplication(new HelloWorld(), cfg);
+        //new LwjglApplication(new HelloWorld(), cfg);
+        new LwjglApplication(new MapLayout(480, 320, 20), cfg);
     }
 }
