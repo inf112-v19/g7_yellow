@@ -18,4 +18,14 @@ public class player {
 
 
 
+    /**
+     *
+     * @param dir
+     * @param dist - max dist er 3
+     */
+    public void move(int dir, int dist){
+
+    }
+
+
 }
