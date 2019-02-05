@@ -1,4 +1,4 @@
-# YellowBots
+﻿# YellowBots
 
 ## Status
 [![Build Status](https://img.shields.io/jenkins/s/http/build.raknoel.no/job/RoboRally.svg?style=flat-square&logo=buffer)](http://build.raknoel.no/job/RoboRally/)
@@ -61,4 +61,14 @@ Målet for applikasjonen er et fungerende roborally spill, programmert i Java. V
   * Brikker i brettet
 
 ### Deloppgave 3: Prosess for laget
-Begynner med kanban, og henter inn metodikker fra XP eller scrum hvis vi merker at vi trenger mer struktur. 
+Begynner med kanban, og henter inn metodikker fra XP eller scrum hvis vi merker at vi trenger mer struktur.  
+Vi møtes en gang i uken i sammenheng med gruppetime, og vil se det litt an om vi trenger mer. Litt
+vanskelig å si allerede, da vi ikke har jobbet noe særlig med prosjektet.  
+Begynner med relativt åpen kommunikasjon, der alle kan komme med input, og bli enige. Deretter kommer vi nok til å bygge opp
+litt mer strukturerte møter, der gruppeleder har litt mer kontroll.  
+Når vi fordeler arbeidsoppgaver deler vi det slik at alle er komfortable med det de skal jobbe med. 
+Når vi arbeider sammen, kommer vi til å diskutere hvordan vi skal løse problemer og skrive klasser,
+slik at det blir tett samarbeid.  
+Vi tenker forøvrig ikke å ha parprogrammering, men vil se det an.
+Angående oppfølging av arbeid, vil vi se på hverandres kode for å sjekke at det er ok, samt at gruppeleder
+vil også ha en litt større rolle her.
