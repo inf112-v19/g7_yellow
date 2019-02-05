@@ -11,6 +11,6 @@ public class Main {
         cfg.width = 480;
         cfg.height = 320;
 
-        new LwjglApplication(new MapLayout(480, 320, 20), cfg);
+        new LwjglApplication(new inf112.roborally.app.MapLayout(480, 320, 20), cfg);
     }
 }
