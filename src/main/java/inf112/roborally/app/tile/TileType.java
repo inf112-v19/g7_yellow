@@ -4,6 +4,9 @@ public enum TileType {
     WALL,
     CORNER,
     STOP_WALL,
+    LASER_1,
+    LASER_2,
+    LASER_3,
     HOLE,
     WRENCH,
     YELLOW_CONVEYOR_STRAIGHT,
@@ -18,5 +21,12 @@ public enum TileType {
     BLUE_CONVEYOR_2_IN_1_OUT_RIGHT,
     BLUE_CONVEYOR_2_IN_1_OUT_LEFT,
     BLUE_CONVEYOR_2_IN_1_OUT_UP,
-
+    DOCK_1,
+    DOCK_2,
+    DOCK_3,
+    DOCK_4,
+    DOCK_5,
+    DOCK_6,
+    DOCK_7,
+    DOCK_8,
 }
