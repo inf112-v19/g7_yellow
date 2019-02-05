@@ -10,7 +10,7 @@
 [![Codacy Coverage](https://api.codacy.com/project/badge/Coverage/84a8bbe98cb344748204171a5b003e6d)](https://www.codacy.com/app/YellowBots/YellowBots?utm_source=github.com&utm_medium=referral&utm_content=inf112-v19/YellowBots&utm_campaign=Badge_Coverage)
 
 ![Github Repo size](https://img.shields.io/github/repo-size/inf112-v19/YellowBots.svg?style=flat-square&logo=GitHub)
-[![Java Version](https://img.shields.io/badge/Java_Version-8-blue.svg?style=flat-square&logo=Java)](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+[![Java Version](https://img.shields.io/badge/Java_Version-11-blue.svg?style=flat-square&logo=Java)](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 ## Deloppgave 1: Organiser teamet
 ### Gruppenavn
