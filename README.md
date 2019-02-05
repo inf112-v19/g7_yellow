@@ -72,4 +72,3 @@ slik at det blir tett samarbeid.
 Vi tenker forøvrig ikke å ha parprogrammering, men vil se det an.
 Angående oppfølging av arbeid, vil vi se på hverandres kode for å sjekke at det er ok, samt at gruppeleder
 vil også ha en litt større rolle her.
-
