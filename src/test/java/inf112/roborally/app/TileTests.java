@@ -7,8 +7,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Checks for making sure the Tiles work as expected
+ */
 public class TileTests {
-    // Checks if the Tile object keeps its initialized TileType
+    /**
+     * Does the Tile object keeps its initialized TileType?
+     */
     @Test
     public void doesTileStick()
     {
@@ -16,7 +21,9 @@ public class TileTests {
         assertTrue(t.getType()==TileType.WALL);
     }
 
-    // Checks if the Tile object keeps its initialized Dir
+    /**
+     * Does the Tile object keeps its initialized dir?
+     */
     @Test
     public void doesDirStick()
     {
