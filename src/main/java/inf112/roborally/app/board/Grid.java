@@ -8,19 +8,22 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Grid implements Iterable<LinkedList<IBoardTile>>{
+public class Grid implements Iterable<LinkedList<IBoardTile>> {
 
-    private int width, height;
+    private final int BOARD_WIDTH;
+    private final int BOARD_HEIGHT;
     private LinkedList<IBoardTile>[] tiles;
 
+    @SuppressWarnings("unchecked")
     public Grid(int width, int height) {
-        tiles = new LinkedList[width*height];
-        this.width = width;
-        this.height = height;
+        tiles = new LinkedList[width * height];
+        this.BOARD_WIDTH = width;
+        this.BOARD_HEIGHT = height;
     }
 
     /**
      * Add new tile at position x,y. Will replace old tile if any.
+     *
      * @param p
      * @param tile
      * @throws OutsideGridException
@@ -36,14 +39,14 @@ public class Grid implements Iterable<LinkedList<IBoardTile>>{
      * @param p
      * @return
      */
-    public LinkedList<IBoardTile> getTiles(Vector2 p) throws OutsideGridException{
+    public LinkedList<IBoardTile> getTiles(Vector2 p) throws OutsideGridException {
         if (isInsideGrid(p))
             throw new OutsideGridException(p, "Outside of map!");
 
-        if (tiles[((int)p.y * width) + (int) p.x] == null)
-            tiles[((int)p.y * width) + (int) p.x] = new LinkedList<>();
+        if (tiles[((int) p.y * BOARD_WIDTH) + (int) p.x] == null)
+            tiles[((int) p.y * BOARD_WIDTH) + (int) p.x] = new LinkedList<>();
 
-        return tiles[((int)p.y * width) + (int) p.x];
+        return tiles[((int) p.y * BOARD_WIDTH) + (int) p.x];
     }
 
     /**
@@ -58,8 +61,16 @@ public class Grid implements Iterable<LinkedList<IBoardTile>>{
         tilesAtPos.remove(tile);
     }
 
+    public int getBOARD_HEIGHT() {
+        return BOARD_HEIGHT;
+    }
+
+    public int getBOARD_WIDTH() {
+        return BOARD_WIDTH;
+    }
+
     private boolean isInsideGrid(Vector2 p) {
-        return p.x > width || p.x < 0 || p.y > height || p.y < 0;
+        return p.x > BOARD_WIDTH || p.x < 0 || p.y > BOARD_HEIGHT || p.y < 0;
     }
 
     @Override
