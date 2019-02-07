@@ -2,7 +2,7 @@ package inf112.roborally.app.player;
 
 import java.awt.*;
 
-public class player {
+public class Player {
 
     private int id;
     private int posX;
@@ -10,7 +10,7 @@ public class player {
     private int health;
     private int direction;
 
-    public player(int id, Point pos){
+    public Player(int id, Point pos){
         this.id = id;
         this.posX = pos.x;
         this.posY = pos.y;
