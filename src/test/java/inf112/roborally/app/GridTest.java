@@ -3,6 +3,7 @@ package inf112.roborally.app;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Grid;
 import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.tile.Robot;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -55,5 +56,40 @@ public class GridTest {
                 } catch (OutsideGridException e) {
                     //This is a success so continue
                 }
+    }
+
+    /**
+     * Test if the getWidth function returns expected size
+     */
+    @Test
+    public void getWidth(){
+        assertEquals(grid.getBOARD_WIDTH(), 100);
+    }
+
+    /**
+     * Test if the getWidth function returns expected size
+     */
+    @Test
+    public void getHeight(){
+        assertEquals(grid.getBOARD_HEIGHT(), 100);
+    }
+
+    @Test
+    public void addTile_getTile_equal() throws OutsideGridException{
+        var myRobot = new Robot();
+        var pos = new Vector2(50,50);
+        grid.addTile(pos, myRobot);
+
+        assertTrue(grid.getTiles(pos).contains(myRobot));
+    }
+
+    @Test
+    public void addTile_removeTile() throws OutsideGridException{
+        var myRobot = new Robot();
+        var pos = new Vector2(50,50);
+        grid.addTile(pos, myRobot);
+        grid.removeTile(pos, myRobot);
+
+        assertFalse(grid.getTiles(pos).contains(myRobot));
     }
 }
