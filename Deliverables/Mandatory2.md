@@ -62,6 +62,8 @@ vil også ha en litt større rolle her.
 ### Annet
 Klasse-diagram ble også ønsket innlevert. Dette kan enkelt genereres med IntelliJ eller tegnes med verktøy som 
 [draw.io](https://www.draw.io). Velger her å bruke intelliJ da dette er mye raskere og automatisk genererte vil
-minke sansynligheten for menneskelig feil. Se bilde under.
+minke sansynligheten for menneskelig feil. 
+
+IntelliJ bruker yFiles som igjen følger UML-konvensjoner. Disse finner her [wikipedia.org/wiki/Class_diagram](https://en.wikipedia.org/wiki/Class_diagram#Instance-level_relationships)
 
 ![Klasse-diagram](ClassDiagram20190207.png "Klasse-diagram per 07/02/2019")
