@@ -15,7 +15,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-    <argLine>-Xmx500M</argLine>
+    <argLine></argLine>
     <jacoco.report.ut>${project.build.directory}/jacoco-ut.exec</jacoco.report.ut>
     <jacoco.report.it>${project.build.directory}/jacoco-it.exec</jacoco.report.it>
   </properties>
@@ -81,7 +81,7 @@
           <version>2.22.0</version>
           <configuration>
             <argLine>
-              ${argLine} --illegal-access=permit
+              @{argLine} --illegal-access=permit
             </argLine>
           </configuration>
         </plugin>
