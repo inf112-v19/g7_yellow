@@ -2,17 +2,17 @@ package inf112.roborally.app.tile;
 
 public class Tile {
     TileType t;
-    int dir;
+    int deg;
 
     public Tile(TileType t, int dir) {
         this.t = t;
-        this.dir = dir;
+        this.deg = dir;
     }
 
     public TileType getType(){
         return this.t;
     }
     public int getDir(){
-        return this.dir;
+        return this.deg;
     }
 }
