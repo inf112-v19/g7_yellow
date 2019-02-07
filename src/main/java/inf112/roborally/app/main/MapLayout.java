@@ -54,7 +54,6 @@ public class MapLayout implements ApplicationListener {
         //Draw grid before sprites
         drawGrid();
         drawPlayer();
-
         //Draw sprites?
         batch.begin();
         batch.end();

@@ -13,9 +13,14 @@ public class InputManager {
     }
 
     public void checkForInput() {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.W)) {
-            player.move(1,1);
-        }
-    }
 
+        if(Gdx.input.isKeyJustPressed(Input.Keys.W))
+            player.move(1,1);
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.S))
+            player.move(-1,1);
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.D))
+            player.rotate(1,1);
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.A))
+            player.rotate(-1,1);
+    }
 }
