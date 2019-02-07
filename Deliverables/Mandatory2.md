@@ -77,6 +77,6 @@ Det brukes også ikoner med bokstaver og tegn i programmet. Disse listes her
   * m = funksjon
   * p = egenskaper (feltvariabler meg get() funksjon)
 
-I tillegg brukes hengelås-rød på private, hengelås-grønn på public og ingenting på klasse-private.
+I tillegg brukes hengelås-rød på private, hengelås-grønn på public og ingenting på pakke-private.
 
 ![Klasse-diagram](ClassDiagram20190207.png "Klasse-diagram per 07/02/2019")
