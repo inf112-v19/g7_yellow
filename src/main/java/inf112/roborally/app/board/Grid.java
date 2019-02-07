@@ -4,15 +4,17 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.tile.IBoardTile;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Grid {
+public class Grid implements Iterable<LinkedList<IBoardTile>>{
 
     private int width, height;
-    private LinkedList<IBoardTile>[][] tiles;
+    private LinkedList<IBoardTile>[] tiles;
 
     public Grid(int width, int height) {
-        tiles = new LinkedList[width][height];
+        tiles = new LinkedList[width*height];
         this.width = width;
         this.height = height;
     }
@@ -38,10 +40,10 @@ public class Grid {
         if (isInsideGrid(p))
             throw new OutsideGridException(p, "Outside of map!");
 
-        if (tiles[(int) p.x][(int) p.y] == null)
-            tiles[(int) p.x][(int) p.y] = new LinkedList<>();
+        if (tiles[((int)p.y * width) + (int) p.x] == null)
+            tiles[((int)p.y * width) + (int) p.x] = new LinkedList<>();
 
-        return tiles[(int) p.x][(int) p.y];
+        return tiles[((int)p.y * width) + (int) p.x];
     }
 
     /**
@@ -60,5 +62,8 @@ public class Grid {
         return p.x > width || p.x < 0 || p.y > height || p.y < 0;
     }
 
-
+    @Override
+    public Iterator<LinkedList<IBoardTile>> iterator() {
+        return Arrays.asList(tiles).iterator();
+    }
 }
