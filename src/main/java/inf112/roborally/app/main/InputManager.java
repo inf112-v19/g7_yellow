@@ -4,23 +4,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import inf112.roborally.app.player.Player;
 
-public class InputManager {
+class InputManager {
 
-    Player player;
+    private Player player;
 
-    public InputManager(Player player) {
+    InputManager(Player player) {
         this.player = player;
     }
 
-    public void checkForInput() {
+    void checkForInput() {
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.W))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP))
             player.move(1,1);
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.S))
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
             player.move(-1,1);
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.D))
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.D) || Gdx.input.isKeyJustPressed(Input.Keys.RIGHT))
             player.rotate(1,1);
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.A))
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.A) || Gdx.input.isKeyJustPressed(Input.Keys.LEFT))
             player.rotate(-1,1);
     }
 }
