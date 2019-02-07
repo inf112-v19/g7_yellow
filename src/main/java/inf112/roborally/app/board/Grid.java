@@ -1,12 +1,16 @@
 package inf112.roborally.app.board;
 
+import inf112.roborally.app.tile.Tile;
+
 public class Grid {
 
     private int width, height;
-    private int[][] tiles; //TODO: current type is int, waiting for Tile class to be made
+    private Tile[][] tiles; //TODO: current type is int, waiting for Tile class to be made
 
     public Grid(int width, int height) {
-        tiles = new int[width][height];
+        tiles = new Tile[width][height];
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -15,7 +19,9 @@ public class Grid {
      * @param y position y
      * @param tile The tile to be added
      */
-    public void addTile(int x, int y, int tile) {
+    public void addTile(int x, int y, Tile tile) {
+        if (x > width || x < 0 || y > height || y < 0)
+            throw new IllegalArgumentException("Outside of map!");
         tiles[x][y] = tile;
     }
 
@@ -25,7 +31,9 @@ public class Grid {
      * @param y position y
      * @return
      */
-    public int getTile(int x, int y) {
+    public Tile getTile(int x, int y) {
+        if (x > width || x < 0 || y > height || y < 0)
+            throw new IllegalArgumentException("Outside of map!");
         return tiles[x][y];
     }
 
@@ -36,9 +44,11 @@ public class Grid {
      * @param y position y
      * @return The removed tile
      */
-    public int removeTile(int x, int y, int tile) {
-        int tileToRemove = getTile(x,y);
-        tiles[x][y] = 0; //TODO: replace with null when Tile is created
+    public Tile removeTile(int x, int y, Tile tile) {
+        if (x > width || x < 0 || y > height || y < 0)
+            throw new IllegalArgumentException("Outside of map!");
+        Tile tileToRemove = getTile(x,y);
+        tiles[x][y] = null; //TODO: replace with null when Tile is created
         return tileToRemove;
     }
 }

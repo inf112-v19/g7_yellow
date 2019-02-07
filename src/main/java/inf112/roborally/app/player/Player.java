@@ -1,5 +1,7 @@
 package inf112.roborally.app.player;
 
+import com.badlogic.gdx.math.Vector2;
+
 import java.awt.*;
 
 public class Player {
@@ -25,6 +27,10 @@ public class Player {
      */
     public void move(int dir, int dist){
 
+    }
+
+    public Vector2 getPos() {
+        return new Vector2(posX,posY);
     }
 
 

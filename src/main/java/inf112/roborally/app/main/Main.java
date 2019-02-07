@@ -5,12 +5,20 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 
 public class Main {
+
+    public static final int GRID_WIDTH  = 12;
+    public static final int GRID_HEIGHT = 12;
+    public static final int GRID_SIZE   = 24;
+
+    public static final int WINDOW_WIDTH  = 480;
+    public static final int WINDOW_HEIGHT = 320;
+
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "RoboRally";
-        cfg.width = 480;
-        cfg.height = 320;
+        cfg.width = WINDOW_WIDTH;
+        cfg.height = WINDOW_HEIGHT;
 
-        new LwjglApplication(new MapLayout(480, 320, 20), cfg);
+        new LwjglApplication(new MapLayout(WINDOW_WIDTH, WINDOW_HEIGHT), cfg);
     }
 }
