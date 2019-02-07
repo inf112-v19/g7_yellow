@@ -80,19 +80,6 @@ public class MapLayout implements ApplicationListener {
         //Empty for now
     }
 
-    /**
-     * Will draw the grid in grey colors using the draw method
-     */
-    /**
-    private void drawGrid(){
-        //Draw grid first then sprites
-        for (int xp = 0; xp < width; xp += gridSize)
-            drawALine(xp, 0, xp, height);
-        for (int yp = 0; yp < height; yp += gridSize)
-            drawALine(0, yp, width, yp);
-    }
-     */
-
     private void drawGrid() {
         for(int x = 0; x < Main.GRID_WIDTH; x++) {
             for(int y = 0; y < Main.GRID_HEIGHT; y++) {
@@ -116,17 +103,4 @@ public class MapLayout implements ApplicationListener {
         render.end();
     }
 
-    /**
-     * Will draw a single line given the coordinates
-     * @param x1 starting coordinate x
-     * @param y1 starting coordinate y
-     * @param x2 ending coordinate x
-     * @param y2 ending coordinate y
-     */
-     private void drawALine(int x1, int y1, int x2, int y2) {
-        render.begin(ShapeRenderer.ShapeType.Line);
-        render.setColor(0F, 0F, 0F, 0F); //GREY
-        render.line(x1, y1, x2, y2);
-        render.end();
-    }
 }
