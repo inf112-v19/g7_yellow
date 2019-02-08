@@ -58,3 +58,25 @@ slik at det blir tett samarbeid.
 Vi tenker forøvrig ikke å ha parprogrammering, men vil se det an.
 Angående oppfølging av arbeid, vil vi se på hverandres kode for å sjekke at det er ok, samt at gruppeleder
 vil også ha en litt større rolle her.
+
+### Annet
+Klasse-diagram ble også ønsket innlevert. Dette kan enkelt genereres med IntelliJ eller tegnes med verktøy som 
+[draw.io](https://www.draw.io). Velger her å bruke intelliJ da dette er mye raskere og automatisk genererte vil
+minke sansynligheten for menneskelig feil. Her velger vi også å utelate test-filer, ubrukte klasser,
+ samt kontrakter fra java-biblioteket.
+
+IntelliJ bruker yFiles som igjen følger UML-konvensjoner. Disse finner her [wikipedia.org/wiki/Class_diagram](https://en.wikipedia.org/wiki/Class_diagram#Instance-level_relationships).
+Det brukes også ikoner med bokstaver og tegn i programmet. Disse listes her
+
+  * Lyn = Exception
+  * C
+    * Full sirkel = Klasse
+    * Delvis sirkel = Abstrakt klasse
+  * I = Interface
+  * f = feltvariabel
+  * m = funksjon
+  * p = egenskaper (feltvariabler meg get() funksjon)
+
+I tillegg brukes hengelås-rød på private, hengelås-grønn på public og ingenting på pakke-private.
+
+![Klasse-diagram](ClassDiagram20190207.png "Klasse-diagram per 07/02/2019")
