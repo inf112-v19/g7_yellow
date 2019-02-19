@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class PlayerTest
 {
 
-    Player originalPlayer = new Player(1, new Vector2(1, 1));
+    private Player originalPlayer = new Player(1, new Vector2(1, 1), 0);
 
     /**
      * Does the player start facing upwards?

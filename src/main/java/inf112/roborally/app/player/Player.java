@@ -6,13 +6,14 @@ public class Player {
 
     private int id;
     private int x, y;
-    private int health;
+    private int damage;
     private int rotation; //Using degrees
 
-    public Player(int id, Vector2 pos){
+    public Player(int id, Vector2 pos, int damage){
         this.id = id;
         this.x = (int) pos.x;
         this.y = (int) pos.y;
+        this.damage = damage;
         rotation = 90;
     }
 
@@ -36,6 +37,7 @@ public class Player {
                 y -= dist * dir;
                 break;
         }
+
     }
 
     /**
@@ -62,5 +64,20 @@ public class Player {
      */
     public int getRotation() {
         return rotation;
+    }
+
+    /**
+     *
+     * @return the players damage
+     */
+    public int getDamage() {
+        return damage;
+    }
+
+    /**
+     * damage
+     */
+    public void takenDamage(int damage){
+        this.damage += damage;
     }
 }
