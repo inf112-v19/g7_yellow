@@ -21,7 +21,7 @@ public class Floor implements IBoardTile {
     @Override
     public Sprite getSprite() {
         SpriteBatch b = new SpriteBatch();
-        Texture img = new Texture("../../../FloorTile.png");
+        Texture img = new Texture("../../../../FloorTile.png");
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(16,16);
         return tileSprite;

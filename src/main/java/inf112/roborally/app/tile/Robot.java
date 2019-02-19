@@ -1,5 +1,6 @@
 package inf112.roborally.app.tile;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.player.Player;
 
 /**
@@ -14,6 +15,11 @@ public class Robot extends AbstractCollidableTile {
     @Override
     public int getRenderPriority() {
         return 0;
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return null;
     }
 
     @Override
