@@ -21,6 +21,6 @@ public class Main {
         cfg.width = WINDOW_WIDTH;
         cfg.height = WINDOW_HEIGHT;
 
-        new LwjglApplication(new MapLayout(WINDOW_WIDTH, WINDOW_HEIGHT), cfg);
+        new LwjglApplication(new MapLayout(GRID_WIDTH, GRID_HEIGHT), cfg);
     }
 }

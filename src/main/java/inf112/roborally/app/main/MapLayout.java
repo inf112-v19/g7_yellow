@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.Floor;
 
 /**
  * Class used to render the Maps layout
@@ -28,21 +27,10 @@ public class MapLayout implements ApplicationListener {
     MapLayout(int width, int height){
 
         board = new Board(width, height);
+        board.loadMap("map1.txt");
 
         players = new Player[1];
         players[0] = new Player(1, new Vector2(5,5), 0);
-
-        //Fill map
-        try {
-            for(int x = 0; x < Main.GRID_WIDTH; x++) {
-                for(int y = 0; y < Main.GRID_HEIGHT; y++) {
-                    board.getGrid().addTile(new Vector2(x,y), new Floor());
-                }
-            }
-            board.getGrid().addTile(new Vector2(0,0), new Floor());
-        } catch(OutsideGridException e) {
-            e.printStackTrace();
-        }
 
         inputManager = new InputManager(players[0]); //silly stuff
     }
@@ -61,15 +49,17 @@ public class MapLayout implements ApplicationListener {
         Gdx.gl.glClearColor(0F, 0F, 0F, 0F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //Draw sprites?
+        //just a simple grid
         renderer.drawGrid();
 
+        //drawing the board
         try {
             renderer.drawBoard();
         } catch(OutsideGridException e) {
             e.printStackTrace();
         }
 
+        //draw players
         renderer.drawPlayer();
     }
 
