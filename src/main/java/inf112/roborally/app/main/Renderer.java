@@ -1,5 +1,6 @@
 package inf112.roborally.app.main;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -17,12 +18,18 @@ public class Renderer {
     private SpriteBatch batch;
     private Board board;
     private Player[] players;
+    Texture playerTexture;
+    Sprite playerSprite;
 
     public Renderer(Board board, Player[] players) {
         this.players = players;
         this.board   = board;
         render       = new ShapeRenderer();
         batch        = new SpriteBatch();
+
+        //TODO: Player textures are in the Robot classes, so this is just temporary.
+        playerTexture = new Texture("Tank1.png");
+        playerSprite = new Sprite(playerTexture);
     }
 
     /**
@@ -47,14 +54,28 @@ public class Renderer {
     }
 
     public void drawPlayer() {
+        batch.begin();
+
         for(Player p : players) {
             int x = (int) p.getPos().x;
             int y = (int) p.getPos().y;
+            int rotation = p.getRotation();
+
+
+            playerSprite.setPosition(x*Main.TILE_SIZE, y*Main.TILE_SIZE);
+            playerSprite.setOriginCenter();
+            playerSprite.setRotation(rotation);
+            playerSprite.draw(batch);
+
+            /**
+            batch.end();
             render.begin(ShapeRenderer.ShapeType.Filled);
             render.setColor(0.5f,0.5f,0.5f, 1f);
             render.rect(x*Main.TILE_SIZE, y * Main.TILE_SIZE, Main.TILE_SIZE, Main.TILE_SIZE);
             render.end();
+             */
         }
+        batch.end();
     }
 
     public void drawGrid() {
