@@ -26,15 +26,8 @@ public class MapLayout implements ApplicationListener {
     private Player[] players;
     private InputManager inputManager;
 
-    Texture texture;
-
-
     MapLayout(int width, int height){
-        try {
-            texture = new Texture("resources/FloorTile.png");
-        } catch(NullPointerException e) {
-            System.out.println("couldnt find dile");
-        }
+
         board = new Board(width, height);
         players = new Player[1];
         players[0] = new Player(1, new Vector2(5,5));
@@ -63,7 +56,7 @@ public class MapLayout implements ApplicationListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Draw sprites?
-        //renderer.drawGrid();
+        renderer.drawGrid();
 
         try {
             renderer.drawBoard();
@@ -71,6 +64,7 @@ public class MapLayout implements ApplicationListener {
             e.printStackTrace();
         }
 
+        renderer.drawPlayer();
     }
 
     @Override

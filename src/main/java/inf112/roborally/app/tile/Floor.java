@@ -3,6 +3,7 @@ package inf112.roborally.app.tile;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import inf112.roborally.app.main.Main;
 
 /**
  * Tile class for Floor
@@ -21,9 +22,9 @@ public class Floor implements IBoardTile {
     @Override
     public Sprite getSprite() {
         SpriteBatch b = new SpriteBatch();
-        Texture img = new Texture("../../../../FloorTile.png");
+        Texture img = new Texture("FloorTile.png");
         Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(16,16);
+        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
     }
 }

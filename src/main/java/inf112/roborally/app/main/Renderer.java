@@ -37,7 +37,8 @@ public class Renderer {
                 if(tiles == null) continue;
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
-                    s.setPosition(x*Main.GRID_SIZE, y*Main.GRID_SIZE);
+                    s.setCenter(0,0);
+                    s.setPosition(x*Main.TILE_SIZE, y*Main.TILE_SIZE);
                     s.draw(batch);
                 }
             }
@@ -45,13 +46,13 @@ public class Renderer {
         batch.end();
     }
 
-    private void drawPlayer() {
+    public void drawPlayer() {
         for(Player p : players) {
             int x = (int) p.getPos().x;
             int y = (int) p.getPos().y;
             render.begin(ShapeRenderer.ShapeType.Filled);
             render.setColor(0.5f,0.5f,0.5f, 1f);
-            render.rect(x*Main.GRID_SIZE, y * Main.GRID_SIZE, Main.GRID_SIZE, Main.GRID_SIZE);
+            render.rect(x*Main.TILE_SIZE, y * Main.TILE_SIZE, Main.TILE_SIZE, Main.TILE_SIZE);
             render.end();
         }
     }
@@ -59,7 +60,7 @@ public class Renderer {
     public void drawGrid() {
         for(int x = 0; x < Main.GRID_WIDTH; x++) {
             for(int y = 0; y < Main.GRID_HEIGHT; y++) {
-                drawRect(x*Main.GRID_SIZE, y * Main.GRID_SIZE, Main.GRID_SIZE);
+                drawRect(x*Main.TILE_SIZE, y * Main.TILE_SIZE, Main.TILE_SIZE);
             }
         }
     }

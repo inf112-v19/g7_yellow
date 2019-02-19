@@ -10,7 +10,7 @@ public class Main {
 
     static final int GRID_WIDTH  = 12;
     static final int GRID_HEIGHT = 12;
-    static final int GRID_SIZE   = 24;
+    public static final int TILE_SIZE = 24;
 
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
