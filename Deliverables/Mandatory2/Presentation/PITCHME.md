@@ -31,7 +31,7 @@ Note:
 
 ---
 
-### 
+### Hvor fantastisk fungerer vi?
 Note:
 - Helt utmerket
 - Litt tregt i starten
