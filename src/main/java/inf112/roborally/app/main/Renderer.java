@@ -9,7 +9,7 @@ import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
-
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class Renderer {
@@ -42,7 +42,10 @@ public class Renderer {
         for(int x = 0; x < board.getWidth(); x++) {
             for(int y = 0; y < board.getHeight(); y++) {
                 LinkedList<IBoardTile> tiles = board.getGrid().getTiles(new Vector2(x,y));
-                if(tiles == null) continue;
+                if(tiles == null || tiles.size() == 0) continue;
+
+                Collections.sort(tiles);
+
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
                     s.setCenter(0,0);

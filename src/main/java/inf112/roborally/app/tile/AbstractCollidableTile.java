@@ -13,4 +13,11 @@ public abstract class AbstractCollidableTile implements IBoardTile {
     public void execute(Player[] player) {
         //This is used to perform a method on the players that hit it
     }
+
+    @Override
+    public int compareTo(IBoardTile o) {
+        if (getRenderPriority() < o.getRenderPriority()) return -1;
+        else if (getRenderPriority() > o.getRenderPriority()) return 1;
+        return 0;
+    }
 }

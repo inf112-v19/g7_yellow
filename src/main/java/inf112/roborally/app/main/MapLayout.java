@@ -3,7 +3,6 @@ package inf112.roborally.app.main;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
@@ -34,7 +33,8 @@ public class MapLayout implements ApplicationListener {
         players[0] = new Player(1, new Vector2(5,5), 0);
 
         try {
-            board.getGrid().addTile(new Vector2(0,0), new Floor());
+            board.getGrid().addTile(new Vector2(0,0), new Floor(1));
+            board.getGrid().addTile(new Vector2(0,0), new Floor(0));
         } catch(OutsideGridException e) {
             e.printStackTrace();
         }

@@ -16,6 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
+
         cfg.title = "RoboRally";
         cfg.width = WINDOW_WIDTH;
         cfg.height = WINDOW_HEIGHT;
