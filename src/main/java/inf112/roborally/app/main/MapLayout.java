@@ -54,7 +54,7 @@ public class MapLayout implements ApplicationListener {
         inputManager.checkForInput();
 
         //Clear and set background
-        Gdx.gl.glClearColor(1F, 1F, 1F, 1F);
+        Gdx.gl.glClearColor(0F, 0F, 0F, 0F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Draw sprites?
