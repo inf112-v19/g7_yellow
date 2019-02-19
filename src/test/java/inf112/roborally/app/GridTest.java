@@ -36,8 +36,8 @@ public class GridTest {
      */
     @Test
     public void getTiles_NeverNull() throws OutsideGridException {
-        for (int y = 0; y < grid.getBOARD_HEIGHT(); y++)
-            for (int x = 0; x < grid.getBOARD_WIDTH(); x++)
+        for (int y = 0; y < grid.getBoardHeight(); y++)
+            for (int x = 0; x < grid.getBoardWidth(); x++)
                 assertNotNull(grid.getTiles(new Vector2(x, y)));
     }
 
@@ -48,8 +48,8 @@ public class GridTest {
     @Test
     public void getTiles_OutsideGridFails() {
         var runs = 100;
-        for (int i1 = 0, x = grid.getBOARD_WIDTH() + 1; i1 < runs; x++, i1++)
-            for (int i2 = 0, y = grid.getBOARD_HEIGHT() + 1; i2 < runs; y++, i2++)
+        for (int i1 = 0, x = grid.getBoardWidth() + 1; i1 < runs; x++, i1++)
+            for (int i2 = 0, y = grid.getBoardHeight() + 1; i2 < runs; y++, i2++)
                 try {
                     var cell = grid.getTiles(new Vector2(x, y));
                     fail("Should not succeed in getting something outside");
@@ -63,7 +63,7 @@ public class GridTest {
      */
     @Test
     public void getWidth(){
-        assertEquals(grid.getBOARD_WIDTH(), 100);
+        assertEquals(grid.getBoardWidth(), 100);
     }
 
     /**
@@ -71,7 +71,7 @@ public class GridTest {
      */
     @Test
     public void getHeight(){
-        assertEquals(grid.getBOARD_HEIGHT(), 100);
+        assertEquals(grid.getBoardHeight(), 100);
     }
 
     @Test

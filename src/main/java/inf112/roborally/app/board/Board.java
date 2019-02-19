@@ -2,7 +2,7 @@ package inf112.roborally.app.board;
 
 public class Board {
 
-    Grid grid;
+    private Grid grid;
     private int width, height;
 
     public Board(int width, int height) {

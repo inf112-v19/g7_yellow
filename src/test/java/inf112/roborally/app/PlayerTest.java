@@ -5,7 +5,6 @@ import inf112.roborally.app.player.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Does player work?
