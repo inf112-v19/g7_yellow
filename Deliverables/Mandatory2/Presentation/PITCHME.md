@@ -22,6 +22,7 @@ Note:
 ---
 
 ### ...
+Note:
 - Problemer? Nei vi ser bare løsninger
 - Bytte til Java 11
   - Flere grunner til dette
@@ -30,7 +31,8 @@ Note:
 
 ---
 
-### Hvor fantastisk fungerer vi?
+### 
+Note:
 - Helt utmerket
 - Litt tregt i starten
   - Vanskelig å vite hvor en skal starte
@@ -43,6 +45,7 @@ Note:
 ---
 
 ### Fremdrift
+Note:
 - Jobber med grafikk og rendering
 - Prioriterer god struktur og god abstahering
   - Lettere å jobbe i team
