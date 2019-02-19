@@ -58,7 +58,7 @@ public class Player {
      */
     public void push(int rotation) {
         switch (rotation){
-            case(0) :
+            case(0):
                 x += 1;
                 break;
             case(90):
