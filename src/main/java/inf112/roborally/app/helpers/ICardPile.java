@@ -20,4 +20,10 @@ public interface ICardPile<E> {
      * @return A card from the pile
      */
     E pop();
+
+    /**
+     * public method to check if bag is empty
+     * @return true or false
+     */
+    boolean isEmpty();
 }
