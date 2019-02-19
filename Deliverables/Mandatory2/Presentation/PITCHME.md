@@ -33,11 +33,16 @@ Note:
   - Influensa-sesong enda ikke nådd topp. Kanskje uke 12
 - Får til møter utenom gruppetimer
 - Planer og avtaler overholdes
+- Mangler litt på hjemme-arbeid
 
 ---
 
 ### Fremdrift
-- 
+- Jobber med grafikk og rendering
+- Prioriterer god struktur og god abstahering
+  - Lettere å jobbe i team
+  - Lettere å gjøre multiplayer senere
+- Test coverage > 60%
 
 ---
 
