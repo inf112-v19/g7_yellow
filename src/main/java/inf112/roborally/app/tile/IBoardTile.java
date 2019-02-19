@@ -1,6 +1,6 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  * Master interface of all tiles to be placed on the board
@@ -16,5 +16,6 @@ public interface IBoardTile {
      * @return Integer value. The lower the value the sooner to draw on map
      */
     int getRenderPriority();
+    Sprite getSprite();
 
 }
