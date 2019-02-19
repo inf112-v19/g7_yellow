@@ -21,9 +21,16 @@ public class Board {
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
         File file;
+        BufferedReader br;
         try {
             file = new File("maps\\" + map);
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            try {
+                br = new BufferedReader(new FileReader(file));
+            } catch(IOException e) {
+                e.printStackTrace();
+                loadDefaultMap();
+                return;
+            }
 
             int stackSize = 3;
             int count = 0;
@@ -42,8 +49,8 @@ public class Board {
                         break;
                 }
 
-                x = Math.floorMod((int)Math.floor(count/3), width);
-                y = (height - 1) - (int) Math.floor(count/(width*stackSize));
+                x = Math.floorMod((int)Math.floor((float) count/3), width);
+                y = (height - 1) - (int) Math.floor((float) count/(width*stackSize));
 
                 if (currentTile == null) continue;
                 try {
@@ -52,6 +59,22 @@ public class Board {
             }
         }
         catch(IOError | IOException e) { e.printStackTrace(); }
+    }
+
+    /**
+     * Default to this if map can't be found/loaded
+     */
+    private void loadDefaultMap() {
+        for(int x = 0; x < width; x++) {
+            for(int y = 0; y < height; y++) {
+                try {
+                    grid.addTile(new Vector2(x,y), new Floor());
+                } catch(OutsideGridException e) {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        }
     }
 
     public Grid getGrid() {
