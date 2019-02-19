@@ -5,12 +5,14 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 
 public class Main {
-    private static final int WINDOW_WIDTH  = 480;
-    private static final int WINDOW_HEIGHT = 320;
 
     static final int GRID_WIDTH  = 12;
     static final int GRID_HEIGHT = 12;
-    public static final int TILE_SIZE = 24;
+    public static final int TILE_SIZE = 50;
+
+    private static int WINDOW_WIDTH  = GRID_WIDTH * TILE_SIZE;
+    private static int WINDOW_HEIGHT = GRID_HEIGHT * TILE_SIZE;
+
 
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
