@@ -9,9 +9,18 @@ package inf112.roborally.app.helpers;
  */
 public abstract class AbstractCardPile<E> implements ICardPile<E> {
 
+    private Node<E> head;
+    private int size; // size of bag
+
+    private static class Node<E> {
+        private E item;
+        Node<E> next;
+    }
+    
+
     @Override
     public void add(E card) {
-        
+
     }
 
     @Override
