@@ -11,7 +11,7 @@ import inf112.roborally.app.main.Main;
  * @version 1.0
  * @since 07.02.19
  */
-public class Floor implements IBoardTile {
+public class Floor extends AbstractTile {
 
     @Override
     public int getRenderPriority() {
@@ -24,12 +24,5 @@ public class Floor implements IBoardTile {
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
-    }
-
-    @Override
-    public int compareTo(IBoardTile o) {
-        if (getRenderPriority() < o.getRenderPriority()) return -1;
-        else if (getRenderPriority() > o.getRenderPriority()) return 1;
-        return 0;
     }
 }

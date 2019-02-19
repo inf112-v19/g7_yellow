@@ -32,15 +32,18 @@ public class MapLayout implements ApplicationListener {
         players = new Player[1];
         players[0] = new Player(1, new Vector2(5,5), 0);
 
+        //Fill map
         try {
-            board.getGrid().addTile(new Vector2(0,0), new Floor());
-            board.getGrid().addTile(new Vector2(0,0), new Floor());
+            for(int x = 0; x < Main.GRID_WIDTH; x++) {
+                for(int y = 0; y < Main.GRID_HEIGHT; y++) {
+                    board.getGrid().addTile(new Vector2(x,y), new Floor());
+                }
+            }
         } catch(OutsideGridException e) {
             e.printStackTrace();
         }
 
         inputManager = new InputManager(players[0]); //silly stuff
-
     }
 
     @Override
