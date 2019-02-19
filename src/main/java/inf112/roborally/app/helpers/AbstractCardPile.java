@@ -22,8 +22,10 @@ public abstract class AbstractCardPile<E> implements ICardPile<E> {
         size = 0;
     }
 
-
-
+    @Override
+    public boolean isEmpty() {
+        return head == null;
+    }
 
     @Override
     public void add(E card) {

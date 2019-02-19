@@ -26,4 +26,10 @@ public interface ICardPile<E> {
      * @return true or false
      */
     boolean isEmpty();
+
+    /**
+     * public method to get size of bag
+     * @return number of cards in bag
+     */
+    int size();
 }
