@@ -29,8 +29,9 @@ public class MapLayout implements ApplicationListener {
     MapLayout(int width, int height){
 
         board = new Board(width, height);
+
         players = new Player[1];
-        players[0] = new Player(1, new Vector2(5,5));
+        players[0] = new Player(1, new Vector2(5,5), 0);
 
         try {
             board.getGrid().addTile(new Vector2(0,0), new Floor());
@@ -39,6 +40,7 @@ public class MapLayout implements ApplicationListener {
         }
 
         inputManager = new InputManager(players[0]); //silly stuff
+
     }
 
     @Override
