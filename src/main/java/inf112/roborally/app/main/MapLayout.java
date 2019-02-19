@@ -34,7 +34,6 @@ public class MapLayout implements ApplicationListener {
 
         try {
             board.getGrid().addTile(new Vector2(0,0), new Floor());
-            board.getGrid().addTile(new Vector2(0,0), new Floor());
         } catch(OutsideGridException e) {
             e.printStackTrace();
         }

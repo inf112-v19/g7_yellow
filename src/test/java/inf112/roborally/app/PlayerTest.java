@@ -82,6 +82,17 @@ public class PlayerTest
     }
 
     /**
+     * Does the player get pushed properly
+     */
+    @Test
+    public void isPlayerPushable()
+    {
+        Player testPlayer = originalPlayer;
+        testPlayer.push(270);
+        assertEquals(new Vector2(1,0), testPlayer.getPos());
+    }
+
+    /**
      * Final test to make sure a bunch of movements work
      */
     @Test
