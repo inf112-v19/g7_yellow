@@ -28,7 +28,18 @@ public abstract class AbstractCardPile<E> implements ICardPile<E> {
     }
 
     @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
     public void add(E card) {
+        Node<E> oldFirst = head;
+        head = new Node<E>();
+        head.item = card;
+        head.next = oldFirst;
+        size++;
+
 
     }
 
