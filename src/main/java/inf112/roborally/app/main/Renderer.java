@@ -92,7 +92,7 @@ public class Renderer {
 
     private void drawRect(int x1, int x2, int size) {
         render.begin(ShapeRenderer.ShapeType.Line);
-        render.setColor(0F, 0F, 0F, 0F); //GREY
+        render.setColor(1F, 0F, 1F, 1F); //GREY
         render.rect(x1, x2, size, size);
         render.end();
     }
