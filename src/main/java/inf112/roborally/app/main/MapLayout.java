@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
 
@@ -23,6 +24,7 @@ public class MapLayout implements ApplicationListener {
     private Board board;
     private Player[] players;
     private InputManager inputManager;
+    private EditorInput editorInput;
 
     MapLayout(int width, int height){
 
@@ -32,7 +34,8 @@ public class MapLayout implements ApplicationListener {
         players = new Player[1];
         players[0] = new Player(1, new Vector2(5,5), 0);
 
-        inputManager = new InputManager(players[0]); //silly stuff
+        inputManager = new InputManager(players[0]);
+        editorInput = new EditorInput(board);
     }
 
     @Override
@@ -42,8 +45,13 @@ public class MapLayout implements ApplicationListener {
 
     @Override
     public void render() {
-
         inputManager.checkForInput();
+        //editorInput messes with grid, and needs to throw OutsideGridExcepetions
+        try {
+            editorInput.checkForInput();
+        } catch(OutsideGridException e) {
+            e.printStackTrace();
+        }
 
         //Clear and set background
         Gdx.gl.glClearColor(0F, 0F, 0F, 0F);
@@ -60,7 +68,11 @@ public class MapLayout implements ApplicationListener {
         }
 
         //draw players
-        renderer.drawPlayer();
+        if(Main.gameState == GameState.PLAYING)
+            renderer.drawPlayer();
+        //Draw editor UI if in editor mode
+        else if (Main.gameState == GameState.EDITOR)
+            renderer.drawEditorUI();
     }
 
     @Override
