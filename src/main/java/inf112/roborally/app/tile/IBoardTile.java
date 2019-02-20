@@ -18,4 +18,10 @@ public interface IBoardTile extends Comparable<IBoardTile> {
     int getRenderPriority();
     Sprite getSprite();
 
+    /**
+     * Each tile has a symbol tied to it, used for loading and saving maps.
+     * @return The char representing the tile.
+     */
+    char getSymbol();
+
 }

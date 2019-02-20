@@ -12,6 +12,8 @@ import java.io.InputStream;
 
 public class Board {
 
+    public static int MAX_TILE_STACK = 3;
+
     private Grid grid;
     private int width, height;
 
@@ -25,7 +27,6 @@ public class Board {
         try {
             InputStream in = getClass().getResourceAsStream("maps/" + map);
 
-            int stackSize = 3;
             int count = 0;
             int x, y, r;
             while ((r = in.read()) != -1) {
@@ -43,7 +44,7 @@ public class Board {
                 }
 
                 x = Math.floorMod((int) Math.floor((float) count / 3), width);
-                y = (height - 1) - (int) Math.floor((float) count / (width * stackSize));
+                y = (height - 1) - (int) Math.floor((float) count / (width * MAX_TILE_STACK));
 
                 if (currentTile == null) continue;
                 try {
@@ -61,6 +62,7 @@ public class Board {
      * Default to this if map can't be found/loaded
      */
     public void loadDefaultMap() {
+        grid = new Grid(width,height);
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
                 try {

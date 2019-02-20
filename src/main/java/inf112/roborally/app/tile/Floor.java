@@ -25,4 +25,9 @@ public class Floor extends AbstractTile {
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
     }
+
+    @Override
+    public char getSymbol() {
+        return 'F';
+    }
 }

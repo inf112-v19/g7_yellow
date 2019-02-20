@@ -84,6 +84,7 @@ public class EditorInput {
             if(Main.gameState != GameState.EDITOR) {
                 enterEditorMode();
             } else {
+                MapIO.saveMap(grid, "testMap0");
                 exitEditorMode();
             }
         }
