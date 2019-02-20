@@ -73,7 +73,7 @@ public class MapLayout implements ApplicationListener {
         //Draw editor UI if in editor mode
         else if (Main.gameState == GameState.EDITOR)
             renderer.drawEditorUI();
-    }
+        }
 
     @Override
     public void dispose() {
