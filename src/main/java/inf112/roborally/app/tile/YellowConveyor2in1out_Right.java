@@ -7,7 +7,7 @@ import inf112.roborally.app.player.Player;
 
 public class YellowConveyor2in1out_Right extends AbstractFunctionTile {
 
-    private int rotation=0;
+    private int rotation=90;
 
     @Override
     public int getRenderPriority() {
@@ -33,6 +33,9 @@ public class YellowConveyor2in1out_Right extends AbstractFunctionTile {
 
     @Override
     public void execute(Player[] player) {
-        //This should move, but no action against other player
+
+        // Does game logic handle the rotation at the start of the turn?
+
+        player[0].push(rotation);
     }
 }

@@ -101,4 +101,9 @@ public class Player {
     public void takenDamage(int damage){
         this.damage += damage;
     }
+
+    /**
+     * For the Repair tile to easily reset a player's damage
+     */
+    public void resetDamage() { this.damage = 0; }
 }

@@ -5,18 +5,16 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 
-public class CornerWall extends AbstractCollidableTile {
-
-    private int rotation=90;
+public class RotateRightTile extends AbstractFunctionTile {
 
     @Override
     public int getRenderPriority() {
-        return 3;
+        return 2;
     }
 
     @Override
     public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "CornerWall.png");
+        Texture img = new Texture(SPRITE_PATH + "RotateRightTile.png");
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
@@ -27,12 +25,8 @@ public class CornerWall extends AbstractCollidableTile {
         return 'X';
     }
 
-    public void setRotation(int rotation){ this.rotation = rotation;}
-
-    public int getRotation(){ return rotation;}
-
     @Override
     public void execute(Player[] player) {
-
+        player[0].rotate(1,1);
     }
 }

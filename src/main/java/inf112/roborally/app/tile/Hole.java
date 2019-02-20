@@ -27,6 +27,6 @@ public class Hole extends AbstractCollidableTile {
 
     @Override
     public void execute(Player[] player) {
-        //This should move, but no action against other player
+        player[0].takenDamage(10);
     }
 }

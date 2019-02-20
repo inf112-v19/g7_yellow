@@ -7,7 +7,7 @@ import inf112.roborally.app.player.Player;
 
 public class Wall extends AbstractCollidableTile {
 
-    private int rotation=0;
+    private int rotation=90;
 
     @Override
     public int getRenderPriority() {

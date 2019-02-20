@@ -5,18 +5,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 
-public class CornerWall extends AbstractCollidableTile {
+public class YellowConveyor2in1out_Straight extends AbstractFunctionTile {
 
     private int rotation=90;
 
     @Override
     public int getRenderPriority() {
-        return 3;
+        return 2;
     }
 
     @Override
     public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "CornerWall.png");
+        Texture img = new Texture(SPRITE_PATH + "YellowConveyor2in1out_STRAIGHT.png");
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
@@ -34,5 +34,8 @@ public class CornerWall extends AbstractCollidableTile {
     @Override
     public void execute(Player[] player) {
 
+        // Does game logic handle the rotation at the start of the turn?
+
+        player[0].push(rotation);
     }
 }
