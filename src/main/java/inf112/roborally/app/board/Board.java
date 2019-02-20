@@ -7,6 +7,7 @@ import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
 
 import java.io.*;
+import java.net.URISyntaxException;
 
 public class Board {
 
@@ -23,7 +24,8 @@ public class Board {
         File file;
         BufferedReader br;
         try {
-            file = new File("maps\\" + map);
+            System.out.println(this.getClass().getResource("maps/" + map));
+            file = new File(this.getClass().getResource("maps/" + map).getPath());
             try {
                 br = new BufferedReader(new FileReader(file));
             } catch(IOException e) {
