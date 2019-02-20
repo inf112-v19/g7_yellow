@@ -20,12 +20,11 @@ public class EditorInput {
 
     public EditorInput(Board board) {
         this.board = board;
-        grid = board.getGrid();
     }
 
     public void checkForInput() throws OutsideGridException {
 
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.isTouched() && Main.gameState == GameState.EDITOR) {
             float x = Gdx.input.getX();
             float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
             Vector2 mouseVec = new Vector2(x,y);
@@ -95,14 +94,12 @@ public class EditorInput {
 
     private void enterEditorMode() {
         Main.gameState = GameState.EDITOR;
-        board.loadEmptyMap();
-        grid = board.getGrid();
+        grid = board.loadEmptyMap();
     }
 
     private void exitEditorMode() {
         Main.gameState = GameState.PLAYING;
-        board.loadMap("testMap0");
-        grid = board.getGrid();
+        board.loadMap("map1");
     }
 
     private boolean insideBounds(Vector2 boundsStartPos, Vector2 mousePos) {

@@ -24,6 +24,7 @@ public class Board {
     }
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
+        grid = new Grid(width, height);
         try {
             InputStream in = getClass().getResourceAsStream("maps/" + map + ".txt");
 
@@ -68,7 +69,7 @@ public class Board {
     /**
      * Default to this if map can't be found/loaded
      */
-    public void loadDefaultMap() {
+    public Grid loadDefaultMap() {
         grid = new Grid(width,height);
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
@@ -76,14 +77,16 @@ public class Board {
                     grid.addTile(new Vector2(x, y), new Floor());
                 } catch (OutsideGridException e) {
                     e.printStackTrace();
-                    return;
+                    return new Grid(width,height);
                 }
             }
         }
+        return grid;
     }
 
-    public void loadEmptyMap() {
+    public Grid loadEmptyMap() {
         grid = new Grid(width, height);
+        return grid;
     }
 
     public Grid getGrid() {
