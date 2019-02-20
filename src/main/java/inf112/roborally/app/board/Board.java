@@ -6,7 +6,9 @@ import inf112.roborally.app.tile.Floor;
 import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
 
-import java.io.*;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Board {
 
@@ -20,22 +22,13 @@ public class Board {
     }
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
-        File file;
-        BufferedReader br;
         try {
-            file = new File(this.getClass().getResource("maps/" + map).getPath());
-            try {
-                br = new BufferedReader(new FileReader(file));
-            } catch (IOException e) {
-                e.printStackTrace();
-                loadDefaultMap();
-                return;
-            }
+            InputStream in = getClass().getResourceAsStream("maps/" + map);
 
             int stackSize = 3;
             int count = 0;
             int x, y, r;
-            while ((r = br.read()) != -1) {
+            while ((r = in.read()) != -1) {
                 count++;
                 IBoardTile currentTile = null;
                 char ch = (char) r;
@@ -59,8 +52,8 @@ public class Board {
                     e.printStackTrace();
                 }
             }
-        } catch (IOError | IOException e) {
-            e.printStackTrace();
+        } catch (IOError | NullPointerException | IOException e) {
+            loadDefaultMap();
         }
     }
 
