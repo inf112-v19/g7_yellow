@@ -60,9 +60,9 @@ public class Board {
     /**
      * Default to this if map can't be found/loaded
      */
-    private void loadDefaultMap() {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+    public void loadDefaultMap() {
+        for(int x = 0; x < width; x++) {
+            for(int y = 0; y < height; y++) {
                 try {
                     grid.addTile(new Vector2(x, y), new Floor());
                 } catch (OutsideGridException e) {
@@ -71,6 +71,10 @@ public class Board {
                 }
             }
         }
+    }
+
+    public void loadEmptyMap() {
+        grid = new Grid(width, height);
     }
 
     public Grid getGrid() {
