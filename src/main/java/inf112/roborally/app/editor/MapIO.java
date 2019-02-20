@@ -55,4 +55,9 @@ public class MapIO {
         writer.close();
     }
 
+    public static Grid loadMap(String mapName) {
+
+        return new Grid(0,0);
+    }
+
 }

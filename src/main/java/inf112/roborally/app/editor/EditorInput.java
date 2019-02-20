@@ -98,7 +98,7 @@ public class EditorInput {
 
     private void exitEditorMode() {
         Main.gameState = GameState.PLAYING;
-        board.loadDefaultMap();
+        board.loadMap("testMap0.txt");
         grid = board.getGrid();
     }
 

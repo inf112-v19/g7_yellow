@@ -54,6 +54,7 @@ public class Board {
                 }
             }
         } catch (IOError | NullPointerException | IOException e) {
+            e.printStackTrace();
             loadDefaultMap();
         }
     }
