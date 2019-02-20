@@ -14,12 +14,12 @@ import inf112.roborally.app.tile.IBoardTile;
 
 public class EditorInput {
 
-    private Board board;
-    private Grid grid;
+    private static Board board;
+    private static Grid grid;
     private IBoardTile currentTile;
 
     public EditorInput(Board board) {
-        this.board = board;
+        EditorInput.board = board;
     }
 
     public void checkForInput() throws OutsideGridException {
@@ -80,26 +80,18 @@ public class EditorInput {
                 grid.addTile(gridVec, currentTile);
             }
         }
-
-        // Use left-ctrl + e to open and close editor mode.
-        if (Gdx.input.isKeyJustPressed(Input.Keys.E) && Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
-            if(Main.gameState != GameState.EDITOR) {
-                enterEditorMode();
-            } else {
-                MapIO.saveMap(grid, "testMap0");
-                exitEditorMode();
-            }
-        }
     }
 
-    private void enterEditorMode() {
+    public static void enterEditorMode() {
+        board.loadEmptyMap();
+        grid = board.getGrid();
         Main.gameState = GameState.EDITOR;
-        grid = board.loadEmptyMap();
     }
 
-    private void exitEditorMode() {
-        Main.gameState = GameState.PLAYING;
+    public static void exitEditorMode() {
+        board.saveMap(grid, "testMap0");
         board.loadMap("map1");
+        Main.gameState = GameState.PLAYING;
     }
 
     private boolean insideBounds(Vector2 boundsStartPos, Vector2 mousePos) {

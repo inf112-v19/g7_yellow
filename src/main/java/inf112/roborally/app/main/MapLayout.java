@@ -34,7 +34,7 @@ public class MapLayout implements ApplicationListener {
         players = new Player[1];
         players[0] = new Player(1, new Vector2(5,5), 0);
 
-        inputManager = new InputManager(players[0]);
+        inputManager = new InputManager(players[0], board);
         editorInput = new EditorInput(board);
     }
 
