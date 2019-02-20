@@ -15,7 +15,7 @@ public class Hole extends AbstractTile {
 
     @Override
     public Sprite getSprite() {
-        Texture img = new Texture("Hole.png");
+        Texture img = new Texture(SPRITE_PATH + "Hole.png");
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
