@@ -25,7 +25,7 @@ public class EditorInput {
 
     public void checkForInput() throws OutsideGridException {
 
-        if (Gdx.input.justTouched()) {
+        if (Gdx.input.isTouched()) {
             float x = Gdx.input.getX();
             float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
             Vector2 mouseVec = new Vector2(x,y);
@@ -38,7 +38,7 @@ public class EditorInput {
             //case, then switch currentTile to the desired tiles.
             //TODO: Make IButtons, so we can call Button.insideBounds() instead of manually checking.
             //TODO: Make EditorButtons that can return the tile we wanna get.
-            if (y > Main.WINDOW_HEIGHT - Main.TOP_MARGIN) {
+            if (y > Main.WINDOW_HEIGHT - Main.TOP_MARGIN - 1) {
                 if(insideBounds(new Vector2(0, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
                     currentTile = new Floor();
                     System.out.println("Floor is selected");
@@ -73,6 +73,9 @@ public class EditorInput {
                 if(grid.getTiles(gridVec).size() != 0)
                     if (grid.getTiles(gridVec).getFirst() instanceof Hole)
                         grid.removeTile(gridVec, grid.getTiles(gridVec).getFirst());
+                    else for (IBoardTile t : grid.getTiles(gridVec))
+                        if (t instanceof Floor)
+                            grid.getTiles(gridVec).remove(t);
 
                 //Add Floor
                 grid.addTile(gridVec, currentTile);
@@ -98,7 +101,7 @@ public class EditorInput {
 
     private void exitEditorMode() {
         Main.gameState = GameState.PLAYING;
-        board.loadMap("testMap0.txt");
+        board.loadMap("testMap0");
         grid = board.getGrid();
     }
 

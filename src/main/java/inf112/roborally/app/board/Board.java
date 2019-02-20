@@ -25,12 +25,11 @@ public class Board {
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
         try {
-            InputStream in = getClass().getResourceAsStream("maps/" + map);
+            InputStream in = getClass().getResourceAsStream("maps/" + map + ".txt");
 
             int count = 0;
             int x, y, r;
             while ((r = in.read()) != -1) {
-                count++;
                 IBoardTile currentTile = null;
                 char ch = (char) r;
 
@@ -41,12 +40,19 @@ public class Board {
                     case ('X'):
                         currentTile = new Hole();
                         break;
+                    case ('-'):
+                        count++;
+                        continue;
+                    default: //If newline or other character, reset loop
+                        continue;
                 }
 
                 x = Math.floorMod((int) Math.floor((float) count / 3), width);
-                y = (height - 1) - (int) Math.floor((float) count / (width * MAX_TILE_STACK));
+                y = (height-1) - (int) Math.floor((float) count / (height * MAX_TILE_STACK));
 
-                if (currentTile == null) continue;
+                System.out.println("x: " + x + ", y: " + y + ", : " + ch);
+                count++;
+
                 try {
                     grid.addTile(new Vector2(x, y), currentTile);
                 } catch (OutsideGridException e) {

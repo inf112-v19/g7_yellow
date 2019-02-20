@@ -7,9 +7,7 @@ import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.IBoardTile;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.LinkedList;
 
 public class MapIO {
@@ -55,9 +53,8 @@ public class MapIO {
         writer.close();
     }
 
-    public static Grid loadMap(String mapName) {
-
+    public static Grid loadMap(String map) {
+        //Wanna move loadMap from Board to MapIO, but having some issues trying.
         return new Grid(0,0);
     }
-
 }

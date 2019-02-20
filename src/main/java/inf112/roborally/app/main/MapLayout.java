@@ -29,7 +29,7 @@ public class MapLayout implements ApplicationListener {
     MapLayout(int width, int height){
 
         board = new Board(width, height);
-        board.loadMap("map1.txt");
+        board.loadMap("map1");
 
         players = new Player[1];
         players[0] = new Player(1, new Vector2(5,5), 0);
