@@ -49,7 +49,7 @@ public class SpriteLoader {
 
         System.out.println("loading textures");
 
-        Texture img2 = new Texture(SPRITE_PATH + "FloorTile.png");
+        Texture img2 = new Texture(SPRITE_PATH + "Floor.png");
         floorSprite = new Sprite(img2);
         floorSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
 
