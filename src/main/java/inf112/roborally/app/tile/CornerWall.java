@@ -3,24 +3,20 @@ package inf112.roborally.app.tile;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
+import inf112.roborally.app.player.Player;
 
-/**
- * Tile class for Floor
- *
- * @author RakNoel
- * @version 1.0
- * @since 07.02.19
- */
-public class Floor extends AbstractTile {
+public class CornerWall extends AbstractCollidableTile {
+
+    private int rotation=90;
 
     @Override
     public int getRenderPriority() {
-        return 0;
+        return 3;
     }
 
     @Override
     public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "FloorTile.png");
+        Texture img = new Texture(SPRITE_PATH + "CornerWall.png");
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
@@ -28,6 +24,15 @@ public class Floor extends AbstractTile {
 
     @Override
     public char getSymbol() {
-        return 'F';
+        return 'X';
+    }
+
+    public void setRotation(int rotation){ this.rotation = rotation;}
+
+    public int getRotation(){ return rotation;}
+
+    @Override
+    public void execute(Player[] player) {
+
     }
 }

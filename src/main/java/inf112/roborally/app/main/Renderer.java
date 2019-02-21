@@ -8,9 +8,15 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
+import inf112.roborally.app.tile.AbstractTile;
+import inf112.roborally.app.tile.Floor;
+import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Renderer {
 
@@ -28,7 +34,7 @@ public class Renderer {
         batch        = new SpriteBatch();
 
         //TODO: Player textures are in the Robot classes, so this is just temporary.
-        playerTexture = new Texture("Tank1.png");
+        playerTexture = new Texture("inf112/roborally/app/tile/Tank1.png");
         playerSprite = new Sprite(playerTexture);
         playerSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
     }
@@ -42,7 +48,10 @@ public class Renderer {
         for(int x = 0; x < board.getWidth(); x++) {
             for(int y = 0; y < board.getHeight(); y++) {
                 LinkedList<IBoardTile> tiles = board.getGrid().getTiles(new Vector2(x,y));
-                if(tiles == null) continue;
+                if(tiles == null || tiles.size() == 0) continue;
+
+                Collections.sort(tiles);
+
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
                     s.setCenter(0,0);
@@ -97,5 +106,23 @@ public class Renderer {
     public void dispose() {
         batch.dispose();
         render.dispose();
+    }
+
+    public void drawEditorUI() {
+        ArrayList<IBoardTile> tiles = new ArrayList<>();
+        tiles.add(new Floor()); tiles.add(new Hole());
+
+        batch.begin();
+
+        int x = 0, y = 0;
+        for (IBoardTile t : tiles) {
+            Sprite s = t.getSprite();
+            s.setCenter(0,0);
+            s.setPosition(Main.TILE_SIZE*x, Main.WINDOW_HEIGHT - Main.TILE_SIZE);
+            s.draw(batch);
+            x++;
+        }
+
+        batch.end();
     }
 }

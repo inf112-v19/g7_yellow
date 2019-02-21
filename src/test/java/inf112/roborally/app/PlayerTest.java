@@ -5,7 +5,6 @@ import inf112.roborally.app.player.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Does player work?
@@ -79,6 +78,17 @@ public class PlayerTest
         testPlayer.rotate(1, 1);
         testPlayer.move(1, 1);
         assertEquals(testPlayer.getPos(), new Vector2(2,1));
+    }
+
+    /**
+     * Does the player get pushed properly
+     */
+    @Test
+    public void isPlayerPushable()
+    {
+        Player testPlayer = originalPlayer;
+        testPlayer.push(270);
+        assertEquals(new Vector2(1,0), testPlayer.getPos());
     }
 
     /**

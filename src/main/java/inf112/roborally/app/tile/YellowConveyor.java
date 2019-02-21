@@ -5,23 +5,18 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 
-/**
- * The tile class for the robot
- *
- * @author RakNoel
- * @version 1.0
- * @since 07.02.19
- */
-public class Robot extends AbstractCollidableTile {
+public class YellowConveyor extends AbstractFunctionTile {
+
+    private int rotation=90;
 
     @Override
     public int getRenderPriority() {
-        return 0;
+        return 2;
     }
 
     @Override
     public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "Tank2.png");
+        Texture img = new Texture(SPRITE_PATH + "YellowConveyor.png");
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
@@ -29,12 +24,15 @@ public class Robot extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'R';
+        return 'X';
     }
+
+    public void setRotation(int rotation){ this.rotation = rotation;}
+
+    public int getRotation(){ return rotation;}
 
     @Override
     public void execute(Player[] player) {
-        //This should move, but no action against other player
+        player[0].push(rotation);
     }
-
 }

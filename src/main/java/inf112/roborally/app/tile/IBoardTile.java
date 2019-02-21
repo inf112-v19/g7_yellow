@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * @version 1.0
  * @since 07.02.19
  */
-public interface IBoardTile {
+public interface IBoardTile extends Comparable<IBoardTile> {
 
     /**
      * Method used to determine which order tiles should be rendered
@@ -17,5 +17,11 @@ public interface IBoardTile {
      */
     int getRenderPriority();
     Sprite getSprite();
+
+    /**
+     * Each tile has a symbol tied to it, used for loading and saving maps.
+     * @return The char representing the tile.
+     */
+    char getSymbol();
 
 }

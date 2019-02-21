@@ -53,6 +53,27 @@ public class Player {
     }
 
     /**
+     * Push the player
+     * @param rotation Given "direction" to push the player in
+     */
+    public void push(int rotation) {
+        switch (rotation){
+            case(0):
+                x += 1;
+                break;
+            case(90):
+                y += 1;
+                break;
+            case(180):
+                x -= 1;
+                break;
+            case(270):
+                y -= 1;
+                break;
+        }
+    }
+
+    /**
      * @return The players position
      */
     public Vector2 getPos() {
@@ -80,4 +101,9 @@ public class Player {
     public void takenDamage(int damage){
         this.damage += damage;
     }
+
+    /**
+     * For the Repair tile to easily reset a player's damage
+     */
+    public void resetDamage() { this.damage = 0; }
 }
