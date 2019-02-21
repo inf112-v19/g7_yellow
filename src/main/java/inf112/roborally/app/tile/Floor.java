@@ -13,18 +13,16 @@ import inf112.roborally.app.main.Main;
  */
 public class Floor extends AbstractTile {
 
+    public Floor() {
+        fetchSprite();
+    }
+
     @Override
     public int getRenderPriority() {
         return 0;
     }
 
-    @Override
-    public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "FloorTile.png");
-        Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-        return tileSprite;
-    }
+
 
     @Override
     public char getSymbol() {
