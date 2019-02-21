@@ -1,8 +1,7 @@
 package inf112.roborally.app.tile;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import inf112.roborally.app.main.Main;
+import inf112.roborally.app.main.SpriteLoader;
 
 public abstract class AbstractTile implements IBoardTile {
 
@@ -16,15 +15,8 @@ public abstract class AbstractTile implements IBoardTile {
         return 0;
     }
 
-    public Sprite fetchSprite() {
-        Texture img = new Texture(SPRITE_PATH + "FloorTile.png");
-        Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-        return tileSprite;
-    }
-
     @Override
     public Sprite getSprite() {
-        return sprite;
+        return SpriteLoader.fetchSprite(this);
     }
 }

@@ -6,40 +6,44 @@ import inf112.roborally.app.tile.Floor;
 import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
 
-import java.io.InputStream;
-
 public class SpriteLoader {
 
     final String SPRITE_PATH = this.getClass().getPackageName().replace('.', '/') + '/';
 
-    Sprite floorSprite;
-    Sprite holeSprite;
+    public static Sprite floorSprite;
+    public static Sprite holeSprite;
 
     public SpriteLoader() {
         loadSprites();
     }
 
+    public static Sprite fetchSprite(IBoardTile t) {
 
+        if        (t instanceof Hole) { return holeSprite; }
+        else if   (t instanceof Floor){ return floorSprite;}
+        else { //Default case. Just return the floorSprite for now.
+            return floorSprite;
+        }
+    }
 
     private void loadSprites() {
         //InputStream in = null;
         //foreach(??){
+
+        System.out.println("loading textures");
         Texture img = new Texture(SPRITE_PATH + "Hole.png");
-        floorSprite = new Sprite(img);
+        holeSprite = new Sprite(img);
+        holeSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+
+
+        System.out.println("loading textures");
+
+        Texture img2 = new Texture(SPRITE_PATH + "FloorTile.png");
+        floorSprite = new Sprite(img2);
         floorSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
 
-        Texture img2 = new Texture(SPRITE_PATH + "Floor.png");
-        floorSprite = new Sprite(img);
-        floorSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        System.out.println("loading textures");
+
         //}
-    }
-
-
-    public Sprite getSprite(IBoardTile t) {
-        if (t instanceof Hole) {
-            return holeSprite;
-        } else if (t instanceof Floor) {
-            return floorSprite;
-        }
     }
 }

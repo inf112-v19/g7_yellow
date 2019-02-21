@@ -26,8 +26,9 @@ public class MapLayout implements ApplicationListener {
     private InputManager inputManager;
     private EditorInput editorInput;
 
-    MapLayout(int width, int height){
+    SpriteLoader sl;
 
+    MapLayout(int width, int height){
         board = new Board(width, height);
         board.loadMap("map1");
 
@@ -41,6 +42,7 @@ public class MapLayout implements ApplicationListener {
     @Override
     public void create() {
         renderer = new Renderer(board, players);
+        sl = new SpriteLoader();
     }
 
     @Override
