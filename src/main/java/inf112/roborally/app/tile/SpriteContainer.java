@@ -11,13 +11,12 @@ public class SpriteContainer {
     private String spriteName;
     private Sprite sprite;
 
-    public SpriteContainer(Sprite sp, String spriteName){
+    public SpriteContainer(String path, String spriteName){
         this.spriteName = spriteName.substring(0, spriteName.length()-4);
 
-        sprite = sp;
-        //Texture img = new Texture(path + spriteName);
-        //sprite = new Sprite(img);
-        //sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        Texture img = new Texture(path + spriteName);
+        sprite = new Sprite(img);
+        sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
     }
 
     public Sprite getSprite() {
