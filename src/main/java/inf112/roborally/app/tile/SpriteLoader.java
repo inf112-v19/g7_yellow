@@ -34,7 +34,7 @@ public class SpriteLoader {
 
         FileHandle dirHandle;
 
-        dirHandle = Gdx.files.internal("src/main/resources/inf112/roborally/app/tile");
+        dirHandle = Gdx.files.internal(SPRITE_PATH);
 
         for (FileHandle entry: dirHandle.list()) {
             list.add(new SpriteContainer(SPRITE_PATH, entry.name()));
