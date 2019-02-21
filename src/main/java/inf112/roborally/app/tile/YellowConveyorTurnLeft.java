@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 
-public class YellowConveyorRight extends AbstractFunctionTile {
+public class YellowConveyorTurnLeft extends AbstractFunctionTile {
 
     private int rotation=90;
 
@@ -16,7 +16,7 @@ public class YellowConveyorRight extends AbstractFunctionTile {
 
     @Override
     public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "YellowConveyorTurnRight.png");
+        Texture img = new Texture(SPRITE_PATH + "YellowConveyorTurnLeft.png");
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;

@@ -16,7 +16,7 @@ public class YellowConveyor2in1out_Left extends AbstractFunctionTile {
 
     @Override
     public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "YellowConveyor2in1out_LEFT.png");
+        Texture img = new Texture(SPRITE_PATH + "YellowConveyor2in1out_Left.png");
         Sprite tileSprite = new Sprite(img);
         tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
         return tileSprite;
