@@ -1,7 +1,8 @@
-package inf112.roborally.app.main;
+package inf112.roborally.app.tile;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.Floor;
 import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;

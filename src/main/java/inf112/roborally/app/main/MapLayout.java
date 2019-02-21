@@ -8,6 +8,7 @@ import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
+import inf112.roborally.app.tile.SpriteLoader;
 
 /**
  * Class used to render the Maps layout
