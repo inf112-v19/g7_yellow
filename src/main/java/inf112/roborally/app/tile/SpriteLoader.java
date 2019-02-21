@@ -1,5 +1,7 @@
 package inf112.roborally.app.tile;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
@@ -30,6 +32,14 @@ public class SpriteLoader {
     private void loadSprites() {
         //InputStream in = null;
         //foreach(??){
+
+        FileHandle dirHandle;
+
+        dirHandle = Gdx.files.internal(SPRITE_PATH);
+
+        for (FileHandle entry: dirHandle.list()) {
+            System.out.println(entry.name());
+        }
 
         System.out.println("loading textures");
         Texture img = new Texture(SPRITE_PATH + "Hole.png");
