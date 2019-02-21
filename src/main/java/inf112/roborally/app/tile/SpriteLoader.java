@@ -24,7 +24,7 @@ public class SpriteLoader {
         Iterator<SpriteContainer> it = list.iterator();
         while(it.hasNext()){
             SpriteContainer sC = it.next();
-            System.out.println(sC.getName());
+            //System.out.println(sC.getName());
             if(t.toString().equals(sC.getName())) return sC.getSprite();
         }
         return MISSING_SPRITE;
@@ -37,7 +37,11 @@ public class SpriteLoader {
         dirHandle = Gdx.files.internal(SPRITE_PATH);
 
         for (FileHandle entry: dirHandle.list()) {
-            list.add(new SpriteContainer(SPRITE_PATH, entry.name()));
+            Texture texture = new Texture(entry);
+            System.out.println(texture);
+            Sprite sp = new Sprite(texture);
+            sp.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+            list.add(new SpriteContainer(sp, entry.name()));
         }
 
         Texture img = new Texture(SPRITE_PATH + "MISSING_SPRITE.png");
