@@ -18,4 +18,10 @@ public abstract class AbstractTile implements IBoardTile {
     public Sprite getSprite() {
         return SpriteLoader.fetchSprite(this);
     }
+
+
+    @Override
+    public String toString() {
+        return getClass().getName();
+    }
 }

@@ -5,33 +5,32 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.Floor;
-import inf112.roborally.app.tile.Hole;
-import inf112.roborally.app.tile.IBoardTile;
+
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class SpriteLoader {
 
     final String SPRITE_PATH = this.getClass().getPackageName().replace('.', '/') + '/';
+    private static Sprite MISSING_SPRITE;
 
-    public static Sprite floorSprite;
-    public static Sprite holeSprite;
+    private static LinkedList<SpriteContainer> list = new LinkedList<>();
 
     public SpriteLoader() {
         loadSprites();
     }
 
     public static Sprite fetchSprite(IBoardTile t) {
-
-        if        (t instanceof Hole) { return holeSprite; }
-        else if   (t instanceof Floor){ return floorSprite;}
-        else { //Default case. Just return the floorSprite for now.
-            return floorSprite;
+        Iterator<SpriteContainer> it = list.iterator();
+        while(it.hasNext()){
+            System.out.println("next");
+            SpriteContainer sC = it.next();
+            if(t.toString().equals(sC.toString())) return sC.getSprite();
         }
+        return MISSING_SPRITE;
     }
 
     private void loadSprites() {
-        //InputStream in = null;
-        //foreach(??){
 
         FileHandle dirHandle;
 
@@ -39,22 +38,11 @@ public class SpriteLoader {
 
         for (FileHandle entry: dirHandle.list()) {
             System.out.println(entry.name());
+            list.add(new SpriteContainer(SPRITE_PATH, entry.name()));
         }
 
-        System.out.println("loading textures");
-        Texture img = new Texture(SPRITE_PATH + "Hole.png");
-        holeSprite = new Sprite(img);
-        holeSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-
-
-        System.out.println("loading textures");
-
-        Texture img2 = new Texture(SPRITE_PATH + "Floor.png");
-        floorSprite = new Sprite(img2);
-        floorSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-
-        System.out.println("loading textures");
-
-        //}
+        Texture img = new Texture(SPRITE_PATH + "MISSING_SPRITE.png");
+        MISSING_SPRITE = new Sprite(img);
+        MISSING_SPRITE.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
     }
 }
