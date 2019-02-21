@@ -11,12 +11,12 @@ Note:
 - Hva har vi gjort så langt?
   - Teknisk
     - Fått opp et brett med "spiller"
-    - Masse gode tester
+    - Gode tester, 13 pr nå
     - Stabil byggeserver
+    - Implementerer tiles
   - Organisatorisk
-    - Gruppeleder og kontaktperson
-    - Begynt å fordele roller
-    - Fått god filstruktur
+    - Gruppeleder og kontaktperson (Oskar og Hein)
+    - Ikke fordelt roller
     - Oversikt over ferdigheter
   
 ---
@@ -24,6 +24,8 @@ Note:
 ### ...
 Note:
 - Problemer? Nei vi ser bare løsninger
+  - Manglende relevant erfaring
+  - Libgdx er mangelfult
 - Bytte til Java 11
   - Flere grunner til dette
   - Lambda og lokale variabler
@@ -36,7 +38,7 @@ Note:
 - Helt utmerket
 - Litt tregt i starten
   - Vanskelig å vite hvor en skal starte
-  - Konte-eksamener
+  - Tidlig-eksamener
   - Influensa-sesong enda ikke nådd topp. Kanskje uke 12
 - Får til møter utenom gruppetimer
 - Planer og avtaler overholdes
@@ -47,6 +49,9 @@ Note:
 ### Fremdrift
 Note:
 - Jobber med grafikk og rendering
+- Map-editor
+  - Tiles fordinker
+  - TXT-fil
 - Prioriterer god struktur og god abstahering
   - Lettere å jobbe i team
   - Lettere å gjøre multiplayer senere
