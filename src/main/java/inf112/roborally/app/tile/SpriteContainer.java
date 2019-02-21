@@ -23,8 +23,7 @@ public class SpriteContainer {
         return sprite;
     }
 
-    @Override
-    public String toString() {
-        return getClass().getName();
+    public String getName() {
+        return spriteName;
     }
 }

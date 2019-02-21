@@ -23,9 +23,8 @@ public class SpriteLoader {
     public static Sprite fetchSprite(IBoardTile t) {
         Iterator<SpriteContainer> it = list.iterator();
         while(it.hasNext()){
-            System.out.println("next");
             SpriteContainer sC = it.next();
-            if(t.toString().equals(sC.toString())) return sC.getSprite();
+            if(t.toString().equals(sC.getName())) return sC.getSprite();
         }
         return MISSING_SPRITE;
     }
@@ -34,10 +33,9 @@ public class SpriteLoader {
 
         FileHandle dirHandle;
 
-        dirHandle = Gdx.files.internal(SPRITE_PATH);
+        dirHandle = Gdx.files.internal("src/main/resources/inf112/roborally/app/tile");
 
         for (FileHandle entry: dirHandle.list()) {
-            System.out.println(entry.name());
             list.add(new SpriteContainer(SPRITE_PATH, entry.name()));
         }
 
