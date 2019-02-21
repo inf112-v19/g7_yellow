@@ -4,9 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public abstract class AbstractTile implements IBoardTile {
 
-    Sprite sprite;
-    final String SPRITE_PATH = this.getClass().getPackageName().replace('.', '/') + '/';
-
     @Override
     public int compareTo(IBoardTile o) {
         if      (getRenderPriority() < o.getRenderPriority()) return -1;
@@ -18,7 +15,6 @@ public abstract class AbstractTile implements IBoardTile {
     public Sprite getSprite() {
         return SpriteLoader.fetchSprite(this);
     }
-
 
     @Override
     public String toString() {

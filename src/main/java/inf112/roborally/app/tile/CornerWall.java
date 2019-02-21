@@ -13,7 +13,7 @@ public class CornerWall extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'C';
     }
 
     public void setRotation(int rotation){ this.rotation = rotation;}

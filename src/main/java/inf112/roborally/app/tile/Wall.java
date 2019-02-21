@@ -15,14 +15,6 @@ public class Wall extends AbstractCollidableTile {
     }
 
     @Override
-    public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "Wall.png");
-        Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-        return tileSprite;
-    }
-
-    @Override
     public char getSymbol() {
         return 'X';
     }

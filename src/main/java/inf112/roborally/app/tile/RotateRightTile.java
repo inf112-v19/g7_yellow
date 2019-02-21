@@ -13,14 +13,6 @@ public class RotateRightTile extends AbstractFunctionTile {
     }
 
     @Override
-    public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "RotateRightTile.png");
-        Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-        return tileSprite;
-    }
-
-    @Override
     public char getSymbol() {
         return 'X';
     }
