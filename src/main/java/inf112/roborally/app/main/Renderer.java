@@ -1,11 +1,13 @@
 package inf112.roborally.app.main;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.Floor;
@@ -123,6 +125,21 @@ public class Renderer {
             s.draw(batch);
             x++;
         }
+
+        //Show the tile you're about to draw
+
+        IBoardTile t = EditorInput.currentTile;
+        if (t == null) {
+            batch.end();
+            return;
+        }
+        Sprite s = new Sprite(t.getSprite().getTexture());
+        s.setAlpha(0.75f);
+        s.setOriginCenter();
+        s.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        s.setRotation(t.getRotation());
+        s.setPosition(Gdx.input.getX(), Main.WINDOW_HEIGHT - Gdx.input.getY() - (Main.TILE_SIZE / 2));
+        s.draw(batch);
 
         batch.end();
     }

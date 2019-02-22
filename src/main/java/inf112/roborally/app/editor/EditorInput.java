@@ -2,6 +2,7 @@ package inf112.roborally.app.editor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.board.Grid;
@@ -17,7 +18,9 @@ public class EditorInput {
 
     private static Board board;
     private static Grid grid;
-    private IBoardTile currentTile;
+    public static IBoardTile currentTile;
+    public static Vector2 gridVec;
+    public static Vector2 mouseVec;
     private int rotation = 90;
 
     public EditorInput(Board board) {
@@ -31,11 +34,10 @@ public class EditorInput {
         if (Gdx.input.isTouched()) {
             float x = Gdx.input.getX();
             float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
-            Vector2 mouseVec = new Vector2(x,y);
+            mouseVec = new Vector2(x,y);
 
             //The mouse position translated to the grid
             int gridX, gridY;
-            Vector2 gridVec;
 
             //If mouse is not on grid, check if an editor tile is selected. If that's the
             //case, then switch currentTile to the desired tiles.
@@ -59,7 +61,7 @@ public class EditorInput {
             gridX = (int) (x / Main.WINDOW_WIDTH * Main.GRID_WIDTH);
             gridY = (int) (y / (Main.WINDOW_HEIGHT - Main.TOP_MARGIN) * Main.GRID_HEIGHT);
             gridVec = new Vector2(gridX, gridY);
-            System.out.println(gridX + ", " + gridY);
+            if (grid.getTiles(gridVec) == null) return;
 
             if (currentTile == null) return;
 
@@ -95,13 +97,13 @@ public class EditorInput {
 
         if(currentTile == null) return;
         if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            rotation += 90;
-            if (rotation > 360) rotation = 0;
+            currentTile.setRotation(rotation += 90);
+            if (rotation > 360) rotation = 90;
             System.out.println("rotation is: " + rotation);
         }
         else if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             currentTile.setRotation(rotation -= 90);
-            if (rotation < 0) rotation = 360;
+            if (rotation < 0) rotation = 270;
             System.out.println("rotation is: " + rotation);
         }
     }
