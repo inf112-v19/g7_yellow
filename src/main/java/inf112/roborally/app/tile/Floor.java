@@ -10,6 +10,10 @@ package inf112.roborally.app.tile;
  */
 public class Floor extends AbstractTile {
 
+    public Floor(int r) {
+        super(r);
+    }
+
     @Override
     public int getRenderPriority() {
         return 0;

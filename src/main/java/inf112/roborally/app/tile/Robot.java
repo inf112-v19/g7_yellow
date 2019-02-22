@@ -14,6 +14,10 @@ import inf112.roborally.app.player.Player;
  */
 public class Robot extends AbstractCollidableTile {
 
+    public Robot(int r) {
+        super(r);
+    }
+
     @Override
     public int getRenderPriority() {
         return 0;

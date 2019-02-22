@@ -24,7 +24,6 @@ public class SpriteLoader {
         Iterator<SpriteContainer> it = list.iterator();
         while(it.hasNext()){
             SpriteContainer sC = it.next();
-            System.out.println(sC.getName());
             if(t.toString().equals(sC.getName())) return sC.getSprite();
         }
         return MISSING_SPRITE;

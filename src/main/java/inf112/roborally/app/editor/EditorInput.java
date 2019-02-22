@@ -25,7 +25,9 @@ public class EditorInput {
 
     public void checkForInput() throws OutsideGridException {
 
-        if (Gdx.input.isTouched() && Main.gameState == GameState.EDITOR) {
+        if (Main.gameState != GameState.EDITOR) return;
+
+        if (Gdx.input.isTouched()) {
             float x = Gdx.input.getX();
             float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
             Vector2 mouseVec = new Vector2(x,y);
@@ -40,10 +42,10 @@ public class EditorInput {
             //TODO: Make EditorButtons that can return the tile we wanna get.
             if (y > Main.WINDOW_HEIGHT - Main.TOP_MARGIN - 1) {
                 if(insideBounds(new Vector2(0, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Floor();
+                    currentTile = new Floor(90);
                     System.out.println("Floor is selected");
                 } else if(insideBounds(new Vector2(Main.TILE_SIZE, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Hole();
+                    currentTile = new Hole(180);
                     System.out.println("Hole is selected");
                 }
                 return;
@@ -81,6 +83,11 @@ public class EditorInput {
                 grid.addTile(gridVec, currentTile);
             }
         }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q))
+            rotation += 90;
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.E))
+            rotation -= 90;
     }
 
     public static void enterEditorMode() {

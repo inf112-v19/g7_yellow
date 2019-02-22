@@ -7,6 +7,10 @@ import inf112.roborally.app.player.Player;
 
 public class YellowConveyorTurnRight extends AbstractFunctionTile {
 
+    public YellowConveyorTurnRight(int r) {
+        super(r);
+    }
+
     @Override
     public int getRenderPriority() {
         return 2;

@@ -4,7 +4,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public abstract class AbstractTile implements IBoardTile {
 
-    protected int rotation = 90;
+    protected int rotation;
+
+    public AbstractTile(int r) {
+        rotation = r;
+    }
 
     @Override
     public int compareTo(IBoardTile o) {

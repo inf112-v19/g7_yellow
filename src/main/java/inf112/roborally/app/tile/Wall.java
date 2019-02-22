@@ -7,6 +7,9 @@ import inf112.roborally.app.player.Player;
 
 public class Wall extends AbstractCollidableTile {
 
+    public Wall(int r) {
+        super(r);
+    }
 
     @Override
     public int getRenderPriority() {

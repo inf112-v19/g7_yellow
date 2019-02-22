@@ -4,6 +4,10 @@ import inf112.roborally.app.player.Player;
 
 public class Hole extends AbstractCollidableTile {
 
+    public Hole(int r) {
+        super(r);
+    }
+
     @Override
     public int getRenderPriority() {
         return 1;
