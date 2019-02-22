@@ -7,7 +7,6 @@ import inf112.roborally.app.player.Player;
 
 public class Wall extends AbstractCollidableTile {
 
-    private int rotation=90;
 
     @Override
     public int getRenderPriority() {
@@ -18,10 +17,6 @@ public class Wall extends AbstractCollidableTile {
     public char getSymbol() {
         return 'X';
     }
-
-    public void setRotation(int rotation){ this.rotation = rotation;}
-
-    public int getRotation(){ return rotation;}
 
     @Override
     public void execute(Player[] player) {

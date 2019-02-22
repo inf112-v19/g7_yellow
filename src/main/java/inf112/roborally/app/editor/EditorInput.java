@@ -17,6 +17,7 @@ public class EditorInput {
     private static Board board;
     private static Grid grid;
     private IBoardTile currentTile;
+    private int rotation = 90;
 
     public EditorInput(Board board) {
         EditorInput.board = board;
