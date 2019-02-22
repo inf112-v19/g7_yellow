@@ -11,6 +11,7 @@ import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.Floor;
 import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.Wall;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -110,6 +111,7 @@ public class Renderer {
     public void drawEditorUI() {
         ArrayList<IBoardTile> tiles = new ArrayList<>();
         tiles.add(new Floor(90)); tiles.add(new Hole(90));
+        tiles.add(new Wall(0));
 
         batch.begin();
 

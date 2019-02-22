@@ -27,5 +27,6 @@ public interface IBoardTile extends Comparable<IBoardTile> {
     String toString();
 
     int getRotation();
+    void setRotation(int r);
 
 }

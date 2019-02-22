@@ -11,6 +11,7 @@ import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.Floor;
 import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.Wall;
 
 public class EditorInput {
 
@@ -42,11 +43,14 @@ public class EditorInput {
             //TODO: Make EditorButtons that can return the tile we wanna get.
             if (y > Main.WINDOW_HEIGHT - Main.TOP_MARGIN - 1) {
                 if(insideBounds(new Vector2(0, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Floor(90);
+                    currentTile = new Floor(rotation);
                     System.out.println("Floor is selected");
                 } else if(insideBounds(new Vector2(Main.TILE_SIZE, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Hole(180);
+                    currentTile = new Hole(rotation);
                     System.out.println("Hole is selected");
+                } else if (insideBounds(new Vector2(Main.TILE_SIZE*2, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
+                    currentTile = new Wall(rotation);
+                    System.out.println("Wall is selected");
                 }
                 return;
             }
@@ -66,7 +70,7 @@ public class EditorInput {
                     grid.removeTile(gridVec, grid.getTiles(gridVec).getFirst());
 
                 //Place tile in grid
-                grid.addTile(gridVec, currentTile);
+                grid.addTile(gridVec, new Hole(rotation));
             }
             else if (currentTile instanceof Floor) {
 
@@ -80,14 +84,26 @@ public class EditorInput {
                             grid.getTiles(gridVec).remove(t);
 
                 //Add Floor
-                grid.addTile(gridVec, currentTile);
+                grid.addTile(gridVec, new Floor(rotation));
+            }
+            else if (currentTile instanceof Wall) {
+                if(grid.getTiles(gridVec).size()<3) {
+                    grid.addTile(gridVec, new Wall(rotation));
+                }
             }
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Q))
+        if(currentTile == null) return;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             rotation += 90;
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.E))
-            rotation -= 90;
+            if (rotation > 360) rotation = 0;
+            System.out.println("rotation is: " + rotation);
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            currentTile.setRotation(rotation -= 90);
+            if (rotation < 0) rotation = 360;
+            System.out.println("rotation is: " + rotation);
+        }
     }
 
     public static void enterEditorMode() {
