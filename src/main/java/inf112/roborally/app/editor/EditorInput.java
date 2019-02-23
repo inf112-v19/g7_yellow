@@ -9,10 +9,9 @@ import inf112.roborally.app.board.Grid;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.Floor;
-import inf112.roborally.app.tile.Hole;
-import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.Wall;
+import inf112.roborally.app.tile.*;
+
+import java.lang.reflect.Constructor;
 
 public class EditorInput {
 
@@ -31,14 +30,18 @@ public class EditorInput {
 
         if (Main.gameState != GameState.EDITOR) return;
 
+        float x = Gdx.input.getX();
+        float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
+        mouseVec = new Vector2(x,y);
+        int gridX, gridY;
+
+        //Calculate the grid positions
+        gridX = (int) (x / Main.WINDOW_WIDTH * Main.GRID_WIDTH);
+        gridY = (int) (y / (Main.WINDOW_HEIGHT - Main.TOP_MARGIN) * Main.GRID_HEIGHT);
+        gridVec = new Vector2(gridX, gridY);
+        if(gridVec.x > (Main.GRID_WIDTH - 1) || gridVec.y > (Main.GRID_HEIGHT - 1)) gridVec = null;
+
         if (Gdx.input.isTouched()) {
-            float x = Gdx.input.getX();
-            float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
-            mouseVec = new Vector2(x,y);
-
-            //The mouse position translated to the grid
-            int gridX, gridY;
-
             //If mouse is not on grid, check if an editor tile is selected. If that's the
             //case, then switch currentTile to the desired tiles.
             //TODO: Make IButtons, so we can call Button.insideBounds() instead of manually checking.
@@ -57,14 +60,11 @@ public class EditorInput {
                 return;
             }
 
-            //Calculate the grid positions
-            gridX = (int) (x / Main.WINDOW_WIDTH * Main.GRID_WIDTH);
-            gridY = (int) (y / (Main.WINDOW_HEIGHT - Main.TOP_MARGIN) * Main.GRID_HEIGHT);
-            gridVec = new Vector2(gridX, gridY);
-            if (grid.getTiles(gridVec) == null) return;
 
+            if (grid.getTiles(gridVec) == null) return;
             if (currentTile == null) return;
 
+            //PLACE HOLE
             if (currentTile instanceof Hole) {
 
                 //Remove tiles if placing a hole
@@ -74,24 +74,28 @@ public class EditorInput {
                 //Place tile in grid
                 grid.addTile(gridVec, new Hole(rotation));
             }
-            else if (currentTile instanceof Floor) {
 
-                //Remove holes if placing other tiles. There is only one tile on a hole,
-                //so we just need to remove one, no need for while loop.
+            //PLACE FLOOR
+            else {
+                System.out.println("Any other tile");
+
                 if(grid.getTiles(gridVec).size() != 0)
+                    //Remove hole if any
                     if (grid.getTiles(gridVec).getFirst() instanceof Hole)
                         grid.removeTile(gridVec, grid.getTiles(gridVec).getFirst());
-                    else for (IBoardTile t : grid.getTiles(gridVec))
-                        if (t instanceof Floor)
-                            grid.getTiles(gridVec).remove(t);
+                    else for (IBoardTile t : grid.getTiles(gridVec)) {
+                        if (t.getClass().equals(currentTile.getClass())) {
+                            System.out.println("returning");
+                            return;
+                        }
+                    }
 
-                //Add Floor
-                grid.addTile(gridVec, new Floor(rotation));
-            }
-            else if (currentTile instanceof Wall) {
-                if(grid.getTiles(gridVec).size()<3) {
-                    grid.addTile(gridVec, new Wall(rotation));
-                }
+                    try {
+                        IBoardTile t = currentTile.getClass().getDeclaredConstructor(int.class).newInstance(rotation);
+                        System.out.println(t);
+                        grid.addTile(gridVec, t);
+                    } catch (Exception e) { e.printStackTrace(); }
+
             }
         }
 

@@ -29,7 +29,7 @@ class InputManager {
         }
 
         //Press L to load map
-        if(Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.L) && Main.gameState == GameState.PLAYING) {
             board.loadMap("testMap0");
         }
 

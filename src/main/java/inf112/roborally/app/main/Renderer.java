@@ -129,16 +129,17 @@ public class Renderer {
         //Show the tile you're about to draw
 
         IBoardTile t = EditorInput.currentTile;
-        if (t == null) {
+        Vector2 gridPos = EditorInput.gridVec;
+        if (t == null || gridPos == null) {
             batch.end();
             return;
         }
         Sprite s = new Sprite(t.getSprite().getTexture());
-        s.setAlpha(0.75f);
-        s.setOriginCenter();
+        s.setAlpha(0.7f);
+        s.setPosition(gridPos.x * Main.TILE_SIZE, gridPos.y * Main.TILE_SIZE);
         s.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        s.setOriginCenter();
         s.setRotation(t.getRotation());
-        s.setPosition(Gdx.input.getX(), Main.WINDOW_HEIGHT - Gdx.input.getY() - (Main.TILE_SIZE / 2));
         s.draw(batch);
 
         batch.end();
