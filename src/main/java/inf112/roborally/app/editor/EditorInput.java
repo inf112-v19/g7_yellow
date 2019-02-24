@@ -61,7 +61,7 @@ public class EditorInput {
             }
 
 
-            if (grid.getTiles(gridVec) == null) return;
+            if (gridVec == null) return;
             if (currentTile == null) return;
 
             //PLACE HOLE
@@ -119,8 +119,16 @@ public class EditorInput {
     }
 
     public static void exitEditorMode() {
-        board.saveMap(grid, "testMap0");
         board.loadMap("map1");
+        Main.gameState = GameState.PLAYING;
+    }
+
+    public static void saveMap(String name) {
+        board.saveMap(grid, name);
+    }
+
+    public static void loadMap(String name) {
+        board.loadMap(name);
         Main.gameState = GameState.PLAYING;
     }
 

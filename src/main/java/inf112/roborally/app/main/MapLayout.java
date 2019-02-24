@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.editor.Console;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
@@ -26,6 +27,7 @@ public class MapLayout implements ApplicationListener {
     private Player[] players;
     private InputManager inputManager;
     private EditorInput editorInput;
+    private Console console;
 
     SpriteLoader sl;
 
@@ -44,6 +46,7 @@ public class MapLayout implements ApplicationListener {
     public void create() {
         renderer = new Renderer(board, players);
         sl = new SpriteLoader();
+        console = new Console();
     }
 
     @Override
@@ -76,6 +79,8 @@ public class MapLayout implements ApplicationListener {
         //Draw editor UI if in editor mode
         else if (Main.gameState == GameState.EDITOR)
             renderer.drawEditorUI();
+
+        console.render(1);
         }
 
     @Override
