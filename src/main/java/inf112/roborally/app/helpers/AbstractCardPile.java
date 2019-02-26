@@ -1,6 +1,7 @@
 package inf112.roborally.app.helpers;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * TODO: Describe class
@@ -10,27 +11,29 @@ import java.util.LinkedList;
  * @since 19.02.19
  */
 public abstract class AbstractCardPile<E> implements ICardPile<E> {
-    private LinkedList<E> list = new LinkedList<>();
+    private LinkedList<E> list;
+    private int size;
 
-    @Override
-    public boolean isEmpty() {
-        return list.size() == 0;
-    }
+    public AbstractCardPile () {
+        size = 0;
+        list = new LinkedList<>();
 
-    @Override
-    public int size() {
-        return size;
     }
 
     @Override
     public void add(E card) {
-
-
+        list.add(card);
+        size++;
     }
 
     @Override
     public E pop() {
+        if(list.isEmpty()) {
+            throw new IllegalArgumentException("Cannot remove an empty list");
+        }
 
-        return null;
+        E elem = list.get(new Random().nextInt(list.size()));
+        return elem;
+
    }
 }
