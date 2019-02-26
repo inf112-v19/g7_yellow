@@ -1,5 +1,7 @@
 package inf112.roborally.app.helpers;
 
+import java.util.LinkedList;
+
 /**
  * TODO: Describe class
  *
@@ -8,23 +10,11 @@ package inf112.roborally.app.helpers;
  * @since 19.02.19
  */
 public abstract class AbstractCardPile<E> implements ICardPile<E> {
-
-    private Node<E> head;// beginning of bag
-    private int size; // size of bag
-
-    private static class Node<E> {
-        private E item;
-        Node<E> next;
-    }
-
-    public AbstractCardPile() {
-        head = null;
-        size = 0;
-    }
+    private LinkedList<E> list = new LinkedList<>();
 
     @Override
     public boolean isEmpty() {
-        return head == null;
+        return list.size() == 0;
     }
 
     @Override
@@ -34,17 +24,13 @@ public abstract class AbstractCardPile<E> implements ICardPile<E> {
 
     @Override
     public void add(E card) {
-        Node<E> oldFirst = head;
-        head = new Node<E>();
-        head.item = card;
-        head.next = oldFirst;
-        size++;
 
 
     }
 
     @Override
     public E pop() {
+
         return null;
-    }
+   }
 }
