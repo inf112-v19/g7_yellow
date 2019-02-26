@@ -29,10 +29,12 @@ public abstract class AbstractCardPile<E> implements ICardPile<E> {
     @Override
     public E pop() {
         if(list.isEmpty()) {
-            throw new IllegalArgumentException("Cannot remove an empty list");
+            throw new IllegalArgumentException("Cannot remove elements an empty list");
         }
 
         E elem = list.get(new Random().nextInt(list.size()));
+
+        list.remove(elem);
         return elem;
 
    }
