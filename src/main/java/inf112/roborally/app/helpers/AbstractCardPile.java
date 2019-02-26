@@ -35,6 +35,7 @@ public class AbstractCardPile<E> implements ICardPile<E> {
         E elem = list.get(new Random().nextInt(list.size()));
 
         list.remove(elem);
+        size--;
         return elem;
 
    }
