@@ -21,6 +21,7 @@ public class PlayerTest
     public void doesPlayerLookUp()
     {
         Player testPlayer = originalPlayer;
+        assertEquals(90, testPlayer.getRotation());
     }
 
     /**
