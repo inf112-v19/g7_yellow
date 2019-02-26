@@ -26,10 +26,25 @@ public class CardTest {
         for(int i = 0; i<10; i++) {
             pile.add(i);
         }
+        System.out.println("Old size: " + pile.size());
         pile.pop();
-        System.out.println(pile.toString());
+        System.out.println("Size after removing " + pile.size());
 
         assertEquals(9, pile.size());
+    }
+
+    @Test
+    public void doesItRemoveRandom() {
+        pile = new AbstractCardPile<Integer>();
+        for(int i = 0; i<10; i++) {
+            pile.add(i);
+        }
+        pile.print();
+
+        pile.pop();
+
+        System.out.println("\n Pile after popping: ");
+        pile.print();
     }
 }
 

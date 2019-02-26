@@ -43,4 +43,10 @@ public class AbstractCardPile<E> implements ICardPile<E> {
    public int size() {
         return size;
    }
+
+   public void print() {
+        for(E elem : list) {
+            System.out.print(elem + " ");
+        }
+   }
 }
