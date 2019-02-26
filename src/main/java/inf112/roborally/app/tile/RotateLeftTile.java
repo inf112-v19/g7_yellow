@@ -7,17 +7,13 @@ import inf112.roborally.app.player.Player;
 
 public class RotateLeftTile extends AbstractFunctionTile {
 
-    @Override
-    public int getRenderPriority() {
-        return 2;
+    public RotateLeftTile(int r) {
+        super(r);
     }
 
     @Override
-    public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "RotateLeftTile.png");
-        Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-        return tileSprite;
+    public int getRenderPriority() {
+        return 2;
     }
 
     @Override

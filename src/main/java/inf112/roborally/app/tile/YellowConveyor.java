@@ -7,7 +7,9 @@ import inf112.roborally.app.player.Player;
 
 public class YellowConveyor extends AbstractFunctionTile {
 
-    private int rotation=90;
+    public YellowConveyor(int r) {
+        super(r);
+    }
 
     @Override
     public int getRenderPriority() {
@@ -15,21 +17,9 @@ public class YellowConveyor extends AbstractFunctionTile {
     }
 
     @Override
-    public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "YellowConveyor.png");
-        Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-        return tileSprite;
-    }
-
-    @Override
     public char getSymbol() {
         return 'X';
     }
-
-    public void setRotation(int rotation){ this.rotation = rotation;}
-
-    public int getRotation(){ return rotation;}
 
     @Override
     public void execute(Player[] player) {

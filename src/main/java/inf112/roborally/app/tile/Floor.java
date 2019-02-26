@@ -1,8 +1,5 @@
 package inf112.roborally.app.tile;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import inf112.roborally.app.main.Main;
 
 /**
  * Tile class for Floor
@@ -13,17 +10,13 @@ import inf112.roborally.app.main.Main;
  */
 public class Floor extends AbstractTile {
 
-    @Override
-    public int getRenderPriority() {
-        return 0;
+    public Floor(int r) {
+        super(r);
     }
 
     @Override
-    public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "FloorTile.png");
-        Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-        return tileSprite;
+    public int getRenderPriority() {
+        return 0;
     }
 
     @Override

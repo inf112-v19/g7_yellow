@@ -3,6 +3,7 @@ package inf112.roborally.app.main;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.editor.Console;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.player.Player;
 
@@ -28,11 +29,7 @@ class InputManager {
                 player.rotate(-1,1);
         }
 
-        //Press L to load map
-        if(Gdx.input.isKeyJustPressed(Input.Keys.L)) {
-            board.loadMap("testMap0");
-        }
-
+        /*
         if (Gdx.input.isKeyJustPressed(Input.Keys.E) && Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
             if(Main.gameState != GameState.EDITOR) {
                 EditorInput.enterEditorMode();
@@ -40,6 +37,16 @@ class InputManager {
                 EditorInput.exitEditorMode();
             }
         }
+        */
 
+        // Enable/Disable console with TAB
+        if (Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {
+            Console.openCloseConsole();
+        }
+
+        // Exeute console input with ENTER
+        if (Console.getActive())
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
+                Console.execute();
     }
 }

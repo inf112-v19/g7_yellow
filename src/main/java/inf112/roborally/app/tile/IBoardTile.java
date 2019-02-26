@@ -24,4 +24,9 @@ public interface IBoardTile extends Comparable<IBoardTile> {
      */
     char getSymbol();
 
+    String toString();
+
+    int getRotation();
+    void setRotation(int r);
+
 }

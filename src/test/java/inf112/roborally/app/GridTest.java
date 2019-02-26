@@ -76,7 +76,7 @@ public class GridTest {
 
     @Test
     public void addTile_getTile_equal() throws OutsideGridException{
-        var myRobot = new Robot();
+        var myRobot = new Robot(90);
         var pos = new Vector2(50,50);
         grid.addTile(pos, myRobot);
 
@@ -85,7 +85,7 @@ public class GridTest {
 
     @Test
     public void addTile_removeTile() throws OutsideGridException{
-        var myRobot = new Robot();
+        var myRobot = new Robot(90);
         var pos = new Vector2(50,50);
         grid.addTile(pos, myRobot);
         grid.removeTile(pos, myRobot);

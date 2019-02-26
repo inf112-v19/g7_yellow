@@ -6,6 +6,7 @@ import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.Floor;
 import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.Wall;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -33,13 +34,30 @@ public class Board {
             while ((r = in.read()) != -1) {
                 IBoardTile currentTile;
                 char ch = (char) r;
+                String rotation = "";
+
+                if (Character.isLetter(ch) && (ch != '-')) {
+                    char temp = (char) in.read();
+                    while (Character.isDigit(temp)) {
+                        rotation += temp;
+                        temp = (char) in.read();
+                    }
+                }
+                int rot = 0;
+                if(rotation != "") {
+                    rot = Integer.parseInt(rotation);
+                    System.out.println(rot);
+                }
 
                 switch (ch) {
                     case ('F'):
-                        currentTile = new Floor();
+                        currentTile = new Floor(rot);
                         break;
                     case ('X'):
-                        currentTile = new Hole();
+                        currentTile = new Hole(rot);
+                        break;
+                    case ('W'):
+                        currentTile = new Wall(rot);
                         break;
                     case ('-'):
                         count++;
@@ -103,11 +121,15 @@ public class Board {
                 if (count > Board.MAX_TILE_STACK) count = Board.MAX_TILE_STACK;
 
                 for(int i = 0; i < Board.MAX_TILE_STACK; i++) {
-                    if(i < count)
+                    if(i < count) {
                         line += tiles.get(i).getSymbol();
+                        line += tiles.get(i).getRotation();
+                        line += ",";
+                    }
                     else
                         line += "-";
                 }
+                line += "|";
             }
             line += "\n";
             try {
@@ -131,7 +153,7 @@ public class Board {
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
                 try {
-                    grid.addTile(new Vector2(x, y), new Floor());
+                    grid.addTile(new Vector2(x, y), new Floor(90));
                 } catch (OutsideGridException e) {
                     e.printStackTrace();
                     return new Grid(width,height);

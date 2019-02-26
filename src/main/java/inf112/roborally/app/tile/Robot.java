@@ -14,17 +14,13 @@ import inf112.roborally.app.player.Player;
  */
 public class Robot extends AbstractCollidableTile {
 
-    @Override
-    public int getRenderPriority() {
-        return 0;
+    public Robot(int r) {
+        super(r);
     }
 
     @Override
-    public Sprite getSprite() {
-        Texture img = new Texture(SPRITE_PATH + "Tank2.png");
-        Sprite tileSprite = new Sprite(img);
-        tileSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-        return tileSprite;
+    public int getRenderPriority() {
+        return 0;
     }
 
     @Override

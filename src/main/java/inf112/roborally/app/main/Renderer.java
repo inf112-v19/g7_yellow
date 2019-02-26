@@ -1,22 +1,23 @@
 package inf112.roborally.app.main;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.AbstractTile;
 import inf112.roborally.app.tile.Floor;
 import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.Wall;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Renderer {
 
@@ -54,8 +55,9 @@ public class Renderer {
 
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
-                    s.setCenter(0,0);
                     s.setPosition(x*Main.TILE_SIZE, y*Main.TILE_SIZE);
+                    s.setOriginCenter(); //Rotate tiles around center
+                    s.setRotation(t.getRotation());
                     s.draw(batch);
                 }
             }
@@ -110,7 +112,8 @@ public class Renderer {
 
     public void drawEditorUI() {
         ArrayList<IBoardTile> tiles = new ArrayList<>();
-        tiles.add(new Floor()); tiles.add(new Hole());
+        tiles.add(new Floor(90)); tiles.add(new Hole(90));
+        tiles.add(new Wall(0));
 
         batch.begin();
 
@@ -122,6 +125,22 @@ public class Renderer {
             s.draw(batch);
             x++;
         }
+
+        //Show the tile you're about to draw
+
+        IBoardTile t = EditorInput.currentTile;
+        Vector2 gridPos = EditorInput.gridVec;
+        if (t == null || gridPos == null) {
+            batch.end();
+            return;
+        }
+        Sprite s = new Sprite(t.getSprite().getTexture());
+        s.setAlpha(0.7f);
+        s.setPosition(gridPos.x * Main.TILE_SIZE, gridPos.y * Main.TILE_SIZE);
+        s.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        s.setOriginCenter();
+        s.setRotation(t.getRotation());
+        s.draw(batch);
 
         batch.end();
     }
