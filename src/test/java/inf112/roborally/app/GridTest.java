@@ -92,4 +92,25 @@ public class GridTest {
 
         assertFalse(grid.getTiles(pos).contains(myRobot));
     }
+
+    /**
+     * test grid iterator is empty
+     */
+    @Test
+    public void hasNextEmpty(){
+        grid = new Grid(0,0);
+        assertFalse(grid.iterator().hasNext());
+    }
+
+    /**
+     * test grid iterator
+     */
+    @Test
+    public void hasNextTrue(){
+        grid = new Grid(2,2);
+        assertTrue(grid.iterator().hasNext());
+    }
+
+
+
 }
