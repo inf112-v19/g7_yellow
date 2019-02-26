@@ -11,12 +11,9 @@ public class SpriteContainer {
     private String spriteName;
     private Sprite sprite;
 
-    public SpriteContainer(String path, String spriteName){
+    public SpriteContainer(Sprite sprite, String spriteName){
         this.spriteName = spriteName.substring(0, spriteName.length()-4);
-
-        Texture img = new Texture(path + spriteName);
-        sprite = new Sprite(img);
-        sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        this.sprite = sprite;
     }
 
     public Sprite getSprite() {

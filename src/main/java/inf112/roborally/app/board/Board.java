@@ -100,7 +100,7 @@ public class Board {
         OutputStream out = null;
 
         try {
-            out = new FileOutputStream("inf112\\roborally\\app\\board\\maps\\" + map + ".txt");
+            out = new FileOutputStream("src\\main\\resources\\inf112\\roborally\\app\\board\\maps\\" + map + ".txt");
         } catch(FileNotFoundException e) {
             e.printStackTrace();
             return;
