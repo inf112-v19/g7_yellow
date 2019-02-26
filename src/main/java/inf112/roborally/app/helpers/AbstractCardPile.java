@@ -10,7 +10,7 @@ import java.util.Random;
  * @version 1.0
  * @since 19.02.19
  */
-public abstract class AbstractCardPile<E> implements ICardPile<E> {
+public class AbstractCardPile<E> implements ICardPile<E> {
     private LinkedList<E> list;
     private int size;
 
@@ -37,5 +37,9 @@ public abstract class AbstractCardPile<E> implements ICardPile<E> {
         list.remove(elem);
         return elem;
 
+   }
+
+   public int size() {
+        return size;
    }
 }

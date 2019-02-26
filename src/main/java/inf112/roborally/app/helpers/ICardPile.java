@@ -23,4 +23,10 @@ public interface ICardPile<E> {
      */
     E pop();
 
+    /**
+     * Public method to get size of the pile
+     *
+     * @return returns the size
+     */
+    int size();
 }
