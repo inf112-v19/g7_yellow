@@ -8,9 +8,9 @@ public class Main {
     private static final int WINDOW_WIDTH  = 480;
     private static final int WINDOW_HEIGHT = 320;
 
-    static final int GRID_WIDTH  = 12;
-    static final int GRID_HEIGHT = 12;
-    static final int GRID_SIZE   = 24;
+    public static final int GRID_WIDTH  = 12;
+    public static final int GRID_HEIGHT = 12;
+    public static final int GRID_SIZE   = 24;
 
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();

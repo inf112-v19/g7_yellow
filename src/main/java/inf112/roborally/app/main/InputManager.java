@@ -12,7 +12,7 @@ class InputManager {
         this.player = player;
     }
 
-    void checkForInput() {
+    public void checkForInput() {
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP))
             player.move(1,1);
