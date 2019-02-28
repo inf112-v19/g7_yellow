@@ -4,6 +4,9 @@
 # Log file
 *.log
 
+# Krita file
+*.kra
+
 # BlueJ files
 *.ctxt
 
