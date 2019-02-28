@@ -61,11 +61,11 @@ public class Grid implements Iterable<LinkedList<IBoardTile>> {
         tilesAtPos.remove(tile);
     }
 
-    public int getBOARD_HEIGHT() {
+    public int getBoardHeight() {
         return BOARD_HEIGHT;
     }
 
-    public int getBOARD_WIDTH() {
+    public int getBoardWidth() {
         return BOARD_WIDTH;
     }
 

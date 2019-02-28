@@ -1,5 +1,6 @@
 package inf112.roborally.app.tile;
 
+
 /**
  * Tile class for Floor
  *
@@ -7,10 +8,19 @@ package inf112.roborally.app.tile;
  * @version 1.0
  * @since 07.02.19
  */
-public class Floor implements IBoardTile {
+public class Floor extends AbstractTile {
+
+    public Floor(int r) {
+        super(r);
+    }
 
     @Override
     public int getRenderPriority() {
         return 0;
+    }
+
+    @Override
+    public char getSymbol() {
+        return 'F';
     }
 }

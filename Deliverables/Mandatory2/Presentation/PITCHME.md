@@ -17,6 +17,12 @@ Note:
   - Organisatorisk
     - Gruppeleder og kontaktperson (Oskar og Hein)
     - Ikke fordelt roller
+    - Masse gode tester
+    - Stabil byggeserver
+  - Organisatorisk
+    - Gruppeleder og kontaktperson
+    - Begynt å fordele roller
+    - Fått god filstruktur
     - Oversikt over ferdigheter
   
 ---

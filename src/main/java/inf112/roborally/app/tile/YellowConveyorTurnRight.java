@@ -5,32 +5,27 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 
-/**
- * The tile class for the robot
- *
- * @author RakNoel
- * @version 1.0
- * @since 07.02.19
- */
-public class Robot extends AbstractCollidableTile {
+public class YellowConveyorTurnRight extends AbstractFunctionTile {
 
-    public Robot(int r) {
+    public YellowConveyorTurnRight(int r) {
         super(r);
     }
 
     @Override
     public int getRenderPriority() {
-        return 0;
+        return 2;
     }
 
     @Override
     public char getSymbol() {
-        return 'R';
+        return 'X';
     }
 
     @Override
     public void execute(Player[] player) {
-        //This should move, but no action against other player
-    }
 
+        // Does game logic handle the rotation at the start of the turn?
+
+        player[0].push(rotation);
+    }
 }
