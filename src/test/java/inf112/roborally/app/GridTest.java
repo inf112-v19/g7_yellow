@@ -35,7 +35,7 @@ public class GridTest {
      * @throws OutsideGridException
      */
     @Test
-    public void getTiles_NeverNull() throws OutsideGridException {
+    public void getTilesNeverNull() throws OutsideGridException {
         for (int y = 0; y < grid.getBoardHeight(); y++)
             for (int x = 0; x < grid.getBoardWidth(); x++)
                 assertNotNull(grid.getTiles(new Vector2(x, y)));
@@ -92,4 +92,25 @@ public class GridTest {
 
         assertFalse(grid.getTiles(pos).contains(myRobot));
     }
+
+    /**
+     * test grid iterator is empty
+     */
+    @Test
+    public void hasNextEmpty(){
+        grid = new Grid(0,0);
+        assertFalse(grid.iterator().hasNext());
+    }
+
+    /**
+     * test grid iterator
+     */
+    @Test
+    public void hasNextTrue(){
+        grid = new Grid(2,2);
+        assertTrue(grid.iterator().hasNext());
+    }
+
+
+
 }
