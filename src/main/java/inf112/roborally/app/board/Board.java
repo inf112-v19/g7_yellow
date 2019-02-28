@@ -46,7 +46,6 @@ public class Board {
                 int rot = 0;
                 if(rotation != "") {
                     rot = Integer.parseInt(rotation);
-                    System.out.println(rot);
                 }
 
                 switch (ch) {

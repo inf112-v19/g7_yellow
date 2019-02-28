@@ -78,14 +78,6 @@ public class Renderer {
             playerSprite.setOriginCenter();
             playerSprite.setRotation(rotation);
             playerSprite.draw(batch);
-
-            /**
-            batch.end();
-            render.begin(ShapeRenderer.ShapeType.Filled);
-            render.setColor(0.5f,0.5f,0.5f, 1f);
-            render.rect(x*Main.TILE_SIZE, y * Main.TILE_SIZE, Main.TILE_SIZE, Main.TILE_SIZE);
-            render.end();
-             */
         }
         batch.end();
     }

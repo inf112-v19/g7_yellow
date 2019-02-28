@@ -77,22 +77,18 @@ public class EditorInput {
 
             //PLACE FLOOR
             else {
-                System.out.println("Any other tile");
-
                 if(grid.getTiles(gridVec).size() != 0)
                     //Remove hole if any
                     if (grid.getTiles(gridVec).getFirst() instanceof Hole)
                         grid.removeTile(gridVec, grid.getTiles(gridVec).getFirst());
                     else for (IBoardTile t : grid.getTiles(gridVec)) {
                         if (t.getClass().equals(currentTile.getClass())) {
-                            System.out.println("returning");
                             return;
                         }
                     }
 
                     try {
                         IBoardTile t = currentTile.getClass().getDeclaredConstructor(int.class).newInstance(rotation);
-                        System.out.println(t);
                         grid.addTile(gridVec, t);
                     } catch (Exception e) { e.printStackTrace(); }
 
