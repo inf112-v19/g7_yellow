@@ -19,7 +19,7 @@ public class RotateRightTile extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player[] player) {
-        player[0].rotate(1,1);
+    public void execute(Player player) {
+        player.rotate(1,1);
     }
 }

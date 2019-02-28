@@ -19,7 +19,7 @@ public class Hole extends AbstractCollidableTile {
     }
 
     @Override
-    public void execute(Player[] player) {
-        player[0].takenDamage(10);
+    public void execute(Player player) {
+        player.takenDamage(10);
     }
 }

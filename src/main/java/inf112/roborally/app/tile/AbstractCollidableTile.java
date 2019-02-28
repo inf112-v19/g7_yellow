@@ -15,7 +15,7 @@ public abstract class AbstractCollidableTile extends AbstractTile{
         super(r);
     }
 
-    public void execute(Player[] player) {
+    public void execute(Player player) {
         //This is used to perform a method on the players that hit it
     }
 }
