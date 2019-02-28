@@ -4,7 +4,6 @@ package inf112.roborally.app;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
-import inf112.roborally.app.tile.Hole;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
