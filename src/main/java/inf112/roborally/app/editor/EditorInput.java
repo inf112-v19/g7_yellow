@@ -45,10 +45,9 @@ public class EditorInput {
         gridVec = new Vector2(gridX, gridY);
         if(gridVec.x > (Main.GRID_WIDTH - 1) || gridVec.y > (Main.GRID_HEIGHT - 1))
             outsideBoardBounds = true;
-        if(x < 0 || x > Main.WINDOW_WIDTH || y > Main.WINDOW_HEIGHT - 1 && y < 0)
+        if(x < 0 || x > Main.WINDOW_WIDTH || y > Main.WINDOW_HEIGHT - 1 && y < 0) {
             return;
-
-        System.out.println("x: " + x + ", y: " + y);
+        }
 
         if (Gdx.input.isTouched()) {
             if(outsideBoardBounds) {
@@ -56,27 +55,8 @@ public class EditorInput {
                 if(TileIndex.indexToTile((int) gridVec.x) == null) return;
                 currentTile = TileIndex.indexToTile((int) gridVec.x);
                 currentTile.setRotation(rotation);
-            }
-
-            /*
-            //If mouse is not on grid, check if an editor tile is selected. If that's the
-            //case, then switch currentTile to the desired tiles.
-            //TODO: Make IButtons, so we can call Button.insideBounds() instead of manually checking.
-            //TODO: Make EditorButtons that can return the tile we wanna get.
-            if (y > Main.WINDOW_HEIGHT - Main.TOP_MARGIN - 1) {
-                if(insideBounds(new Vector2(0, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Floor(rotation);
-                    System.out.println("Floor is selected");
-                } else if(insideBounds(new Vector2(Main.TILE_SIZE, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Hole(rotation);
-                    System.out.println("Hole is selected");
-                } else if (insideBounds(new Vector2(Main.TILE_SIZE*2, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Wall(rotation);
-                    System.out.println("Wall is selected");
-                }
                 return;
             }
-            */
 
             if (outsideBoardBounds) gridVec = null;
             if (gridVec == null) return;

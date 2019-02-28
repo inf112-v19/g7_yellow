@@ -1,6 +1,5 @@
 package inf112.roborally.app.main;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -101,8 +100,10 @@ public class Renderer {
 
     public void drawEditorUI() {
         ArrayList<IBoardTile> tiles = new ArrayList<>();
-        tiles.add(new Floor(0)); tiles.add(new Hole(0));
-        tiles.add(new Wall(180)); tiles.add(new CornerWall(180));
+
+        for(int i = 0; i < TileIndex.values().length; i++) {
+            tiles.add(TileIndex.indexToTile(i));
+        }
 
         batch.begin();
 
