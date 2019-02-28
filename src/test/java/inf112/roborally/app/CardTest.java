@@ -35,16 +35,20 @@ public class CardTest {
 
     @Test
     public void doesItRemoveRandom() {
-        pile = new AbstractCardPile<Integer>();
-        for(int i = 0; i<10; i++) {
-            pile.add(i);
-        }
-        pile.print();
+       AbstractCardPile pile2 = new AbstractCardPile<String>();
+        pile2.add("Hei");
+        pile2.add("på");
+        pile2.add("deg");
+        pile2.add("din");
+        pile2.add("gamle");
+        pile2.add("ørn");
 
-        pile.pop();
+        pile2.print();
+
+        pile2.pop();
 
         System.out.println("\n Pile after popping: ");
-        pile.print();
+        pile2.print();
     }
 }
 
