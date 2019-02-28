@@ -10,10 +10,7 @@ import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.Floor;
-import inf112.roborally.app.tile.Hole;
-import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.Wall;
+import inf112.roborally.app.tile.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -104,16 +101,18 @@ public class Renderer {
 
     public void drawEditorUI() {
         ArrayList<IBoardTile> tiles = new ArrayList<>();
-        tiles.add(new Floor(90)); tiles.add(new Hole(90));
-        tiles.add(new Wall(0));
+        tiles.add(new Floor(0)); tiles.add(new Hole(0));
+        tiles.add(new Wall(180)); tiles.add(new CornerWall(180));
 
         batch.begin();
 
         int x = 0, y = 0;
         for (IBoardTile t : tiles) {
             Sprite s = t.getSprite();
-            s.setCenter(0,0);
-            s.setPosition(Main.TILE_SIZE*x, Main.WINDOW_HEIGHT - Main.TILE_SIZE);
+            s.setOriginCenter();
+            s.setRotation(180);
+            s.setPosition(Main.TILE_SIZE*x,
+                          Main.WINDOW_HEIGHT - Main.TILE_SIZE);
             s.draw(batch);
             x++;
         }

@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class RobotTest {
 
-    Robot robot = new Robot();
+    Robot robot = new Robot(0);
 
     @Test
     public void RenderPriorityZero(){

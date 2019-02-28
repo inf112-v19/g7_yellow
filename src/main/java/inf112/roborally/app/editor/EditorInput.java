@@ -15,6 +15,8 @@ import java.lang.reflect.Constructor;
 
 public class EditorInput {
 
+    public static float EDITOR_BUTTON_SPACING = 1.5f;
+
     private static Board board;
     private static Grid grid;
     public static IBoardTile currentTile;
@@ -32,16 +34,31 @@ public class EditorInput {
 
         float x = Gdx.input.getX();
         float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
-        mouseVec = new Vector2(x,y);
         int gridX, gridY;
+        mouseVec = new Vector2(x,y);
+        boolean outsideBoardBounds = false;
+        boolean outsideWindowBounds = false;
 
         //Calculate the grid positions
         gridX = (int) (x / Main.WINDOW_WIDTH * Main.GRID_WIDTH);
         gridY = (int) (y / (Main.WINDOW_HEIGHT - Main.TOP_MARGIN) * Main.GRID_HEIGHT);
         gridVec = new Vector2(gridX, gridY);
-        if(gridVec.x > (Main.GRID_WIDTH - 1) || gridVec.y > (Main.GRID_HEIGHT - 1)) gridVec = null;
+        if(gridVec.x > (Main.GRID_WIDTH - 1) || gridVec.y > (Main.GRID_HEIGHT - 1))
+            outsideBoardBounds = true;
+        if(x < 0 || x > Main.WINDOW_WIDTH || y > Main.WINDOW_HEIGHT - 1 && y < 0)
+            return;
+
+        System.out.println("x: " + x + ", y: " + y);
 
         if (Gdx.input.isTouched()) {
+            if(outsideBoardBounds) {
+                System.out.println(gridVec);
+                if(TileIndex.indexToTile((int) gridVec.x) == null) return;
+                currentTile = TileIndex.indexToTile((int) gridVec.x);
+                currentTile.setRotation(rotation);
+            }
+
+            /*
             //If mouse is not on grid, check if an editor tile is selected. If that's the
             //case, then switch currentTile to the desired tiles.
             //TODO: Make IButtons, so we can call Button.insideBounds() instead of manually checking.
@@ -59,8 +76,9 @@ public class EditorInput {
                 }
                 return;
             }
+            */
 
-
+            if (outsideBoardBounds) gridVec = null;
             if (gridVec == null) return;
             if (currentTile == null) return;
 

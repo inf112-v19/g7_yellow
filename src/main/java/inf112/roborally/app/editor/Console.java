@@ -28,7 +28,6 @@ public class Console implements Screen {
         font.getData().setScale(2);
         style.font = font;
         style.fontColor = Color.RED;
-
         console = new TextField("", style);
         console.setPosition(15, Main.WINDOW_HEIGHT - 100);
         console.setSize(Main.WINDOW_WIDTH - 50,100);
