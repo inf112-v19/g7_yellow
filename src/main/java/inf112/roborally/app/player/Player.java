@@ -35,10 +35,7 @@ public class Player {
      * @param dist 1 is default rotation. Use 2 for 180 turns
      */
     public void rotate(int dir, int dist) {
-        rotation += 90 * -dir * dist;
-        if (rotation < 0) rotation = 360 + rotation;
-        else if (rotation >= 360) rotation = 360 - rotation;
-        System.out.println("rotation: " + rotation);
+        rotation = Math.floorMod(rotation + (90 * -dir * dist), 360);
     }
 
     /**
