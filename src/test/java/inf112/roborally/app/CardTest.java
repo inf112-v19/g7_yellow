@@ -50,5 +50,27 @@ public class CardTest {
         System.out.println("\n Pile after popping: ");
         pile2.print();
     }
+
+    @Test
+    public void isSizeCorrect() {
+        pile = new AbstractCardPile<>();
+
+        for(int i = 0; i<10; i++) {
+            pile.add(i);
+        }
+
+        pile.print();
+        System.out.println();
+
+        for(int i = 0; i<3; i++) {
+            pile.pop();
+        }
+
+        pile.print();
+
+        assertEquals(7, pile.size());
+
+
+    }
 }
 
