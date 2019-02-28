@@ -35,7 +35,7 @@ public class GridTest {
      * @throws OutsideGridException
      */
     @Test
-    public void getTiles_NeverNull() throws OutsideGridException {
+    public void getTilesNeverNull() throws OutsideGridException {
         for (int y = 0; y < grid.getBoardHeight(); y++)
             for (int x = 0; x < grid.getBoardWidth(); x++)
                 assertNotNull(grid.getTiles(new Vector2(x, y)));
