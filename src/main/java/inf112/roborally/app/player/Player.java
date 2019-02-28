@@ -106,4 +106,12 @@ public class Player {
      * For the Repair tile to easily reset a player's damage
      */
     public void resetDamage() { this.damage = 0; }
+
+    /**
+     *
+     * @return players id
+     */
+    public int getID(){
+        return this.id;
+    }
 }
