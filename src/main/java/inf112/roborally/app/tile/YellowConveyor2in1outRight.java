@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 
-public class YellowConveyor2in1out_Straight extends AbstractFunctionTile {
+public class YellowConveyor2in1outRight extends AbstractFunctionTile {
 
-    public YellowConveyor2in1out_Straight(int r) {
+    public YellowConveyor2in1outRight(int r) {
         super(r);
     }
 
