@@ -44,7 +44,7 @@ public class Board {
                     }
                 }
                 int rot = 0;
-                if(rotation != "") {
+                if(!rotation.equals("")) {
                     rot = Integer.parseInt(rotation);
                 }
 
