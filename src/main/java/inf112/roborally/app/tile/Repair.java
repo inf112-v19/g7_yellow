@@ -19,7 +19,7 @@ public class Repair extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player[] player) {
-        player[0].resetDamage();
+    public void execute(Player player) {
+        player.resetDamage();
     }
 }

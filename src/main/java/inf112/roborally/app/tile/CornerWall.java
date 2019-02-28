@@ -20,7 +20,7 @@ public class CornerWall extends AbstractCollidableTile {
 
 
     @Override
-    public void execute(Player[] player) {
+    public void execute(Player player) {
 
     }
 }
