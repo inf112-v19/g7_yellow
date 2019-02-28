@@ -2,9 +2,9 @@ package inf112.roborally.app.tile;
 
 import inf112.roborally.app.player.Player;
 
-public class RotateLeftTile extends AbstractFunctionTile {
+public class RotateLeft extends AbstractFunctionTile {
 
-    public RotateLeftTile(int r) {
+    public RotateLeft(int r) {
         super(r);
     }
 
