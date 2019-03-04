@@ -2,9 +2,9 @@ package inf112.roborally.app.tile;
 
 import inf112.roborally.app.player.Player;
 
-public class CornerWall extends AbstractCollidableTile {
+public class Barricade extends AbstractCollidableTile {
 
-    public CornerWall(int r) {
+    public Barricade(int r) {
         super(r);
     }
 
@@ -15,13 +15,11 @@ public class CornerWall extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'C';
+        return 'W';
     }
-
 
     @Override
     public void execute(Player[] player) {
-        // TODO: Make this do what it's supposed to do
-
+        // TODO: Figure out what the barricade does and make that happen
     }
 }

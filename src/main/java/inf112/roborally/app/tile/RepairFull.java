@@ -2,14 +2,16 @@ package inf112.roborally.app.tile;
 
 import inf112.roborally.app.player.Player;
 
-public class Repair extends AbstractFunctionTile {
+public class RepairFull extends AbstractFunctionTile {
 
-    public Repair(int r) {
+    public RepairFull(int r) {
         super(r);
     }
 
     @Override
-    public int getRenderPriority() { return 2; }
+    public int getRenderPriority() {
+        return 2;
+    }
 
     @Override
     public char getSymbol() {

@@ -6,9 +6,9 @@ public class Dock extends AbstractFunctionTile {
 
     private final int id;
 
-    public Dock(int r) {
+    public Dock(int r, int id) {
         super(r);
-        id = r;
+        this.id = id;
     }
 
     public int getId(){
@@ -26,5 +26,7 @@ public class Dock extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player[] player) {  }
+    public void execute(Player[] player) {
+        // TODO: Make this do what it's supposed to, unless that's handled by game logic (probably smarter, huh)
+    }
 }
