@@ -1,15 +1,15 @@
-package inf112.roborally.app.tilesTest;
+package inf112.roborally.app.tiles;
 
 import inf112.roborally.app.tile.Floor;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class FloorTest {
     private Floor floor = new Floor(90);
 
     @Test
-    public void RenderPriorityTest(){
+    public void renderPriorityTest(){
         assertEquals(0, floor.getRenderPriority());
     }
 }

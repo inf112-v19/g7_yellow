@@ -13,11 +13,11 @@ import static org.junit.Assert.*;
 
 public class EditorTest {
 
-    Board board = new Board(12,12);
-    EditorInput editorInput = new EditorInput(board);
+    private Board board = new Board(12,12);
+    private EditorInput editorInput = new EditorInput(board);
 
     @Test
-    public void TestOpenCloseEditor() {
+    public void testOpenCloseEditor() {
         assertEquals(Main.gameState, GameState.PLAYING);
         EditorInput.enterEditorMode();
         assertEquals(Main.gameState, GameState.EDITOR);
@@ -26,7 +26,7 @@ public class EditorTest {
     }
 
     @Test
-    public void TestInsideBoundsButton() {
+    public void testInsideBoundsButton() {
         Vector2 buttonPos = new Vector2(0,0);
         Vector2 mousePosInside = new Vector2(1,1);
         Vector2 mousePosOutisde = new Vector2(50,50);
@@ -35,7 +35,7 @@ public class EditorTest {
     }
 
     @Test
-    public void TestLoadMapFromEditor() throws OutsideGridException {
+    public void testLoadMapFromEditor() throws OutsideGridException {
         EditorInput.loadMap("map1");
         assertEquals(board.getGrid().getTiles(new Vector2(0,0)).get(0).getClass()
                 , new Hole(90).getClass());

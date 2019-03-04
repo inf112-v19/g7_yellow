@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class ConsoleTest {
 
     @Test
-    public void TestConsoleCloseAndOpen() {
+    public void testConsoleCloseAndOpen() {
         assertFalse(Console.getActive());
     }
 }

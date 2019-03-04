@@ -1,8 +1,7 @@
-package inf112.roborally.app.tilesTest;
+package inf112.roborally.app.tiles;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.Floor;
 import inf112.roborally.app.tile.RotateLeft;
 import inf112.roborally.app.tile.RotateRight;
 import org.junit.Test;
@@ -15,13 +14,13 @@ public class RotateTest {
     private RotateLeft rL = new RotateLeft(90);
 
     @Test
-    public void RotateRightTest(){
+    public void rotateRightTest(){
         Player temp = p;
         rR.execute(temp);
         assertEquals(0, temp.getRotation());
     }
     @Test
-    public void RotateLeftTest(){
+    public void rotateLeftTest(){
         Player temp = p;
         rL.execute(temp);
         assertEquals(180, temp.getRotation());

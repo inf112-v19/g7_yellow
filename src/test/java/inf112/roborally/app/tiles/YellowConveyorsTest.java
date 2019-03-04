@@ -1,8 +1,13 @@
-package inf112.roborally.app.tilesTest;
+package inf112.roborally.app.tiles;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.*;
+import inf112.roborally.app.tile.YellowConveyor;
+import inf112.roborally.app.tile.YellowConveyor2in1outLeft;
+import inf112.roborally.app.tile.YellowConveyor2in1outRight;
+import inf112.roborally.app.tile.YellowConveyor2in1outStraight;
+import inf112.roborally.app.tile.YellowConveyorTurnLeft;
+import inf112.roborally.app.tile.YellowConveyorTurnRight;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -17,42 +22,42 @@ public class YellowConveyorsTest {
     private YellowConveyorTurnRight yCTR = new YellowConveyorTurnRight(90);
 
     @Test
-    public void YellowConveyorPush(){
+    public void yellowConveyorPush(){
         Player temp = p;
         yC.execute(temp);
         assertEquals(new Vector2(0,1), temp.getPos());
     }
 
     @Test
-    public void YellowConveyor2in1outLeftPush(){
+    public void yellowConveyor2in1outLeftPush(){
         Player temp = p;
         yC21L.execute(temp);
         assertEquals(new Vector2(0,1), temp.getPos());
     }
 
     @Test
-    public void YellowConveyor2in1outRightPush(){
+    public void yellowConveyor2in1outRightPush(){
         Player temp = p;
         yC21R.execute(temp);
         assertEquals(new Vector2(0,1), temp.getPos());
     }
 
     @Test
-    public void YellowConveyor2in1outStraightPush(){
+    public void yellowConveyor2in1outStraightPush(){
         Player temp = p;
         yC21S.execute(temp);
         assertEquals(new Vector2(0,1), temp.getPos());
     }
 
     @Test
-    public void YellowConveyorTurnLeftPush(){
+    public void yellowConveyorTurnLeftPush(){
         Player temp = p;
         yCTL.execute(temp);
         assertEquals(new Vector2(0,1), temp.getPos());
     }
 
     @Test
-    public void YellowConveyorTurnRightPush(){
+    public void yellowConveyorTurnRightPush(){
         Player temp = p;
         yCTR.execute(temp);
         assertEquals(new Vector2(0,1), temp.getPos());

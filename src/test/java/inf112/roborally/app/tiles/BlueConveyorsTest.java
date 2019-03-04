@@ -1,8 +1,13 @@
-package inf112.roborally.app.tilesTest;
+package inf112.roborally.app.tiles;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.*;
+import inf112.roborally.app.tile.BlueConveyor;
+import inf112.roborally.app.tile.BlueConveyor2in1outLeft;
+import inf112.roborally.app.tile.BlueConveyor2in1outRight;
+import inf112.roborally.app.tile.BlueConveyor2in1outStraight;
+import inf112.roborally.app.tile.BlueConveyorTurnLeft;
+import inf112.roborally.app.tile.BlueConveyorTurnRight;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -17,7 +22,7 @@ public class BlueConveyorsTest {
     private BlueConveyorTurnRight bCTR = new BlueConveyorTurnRight(90);
 
     @Test
-    public void BlueConveyorPush(){
+    public void blueConveyorPush(){
         Player temp = p;
         bC.execute(temp);
         bC.execute(temp);
@@ -25,7 +30,7 @@ public class BlueConveyorsTest {
     }
 
     @Test
-    public void BlueConveyor2in1outLeftPush(){
+    public void blueConveyor2in1outLeftPush(){
         Player temp = p;
         bC21L.execute(temp);
         bC21L.execute(temp);
@@ -33,7 +38,7 @@ public class BlueConveyorsTest {
     }
 
     @Test
-    public void BlueConveyor2in1outRightPush(){
+    public void blueConveyor2in1outRightPush(){
         Player temp = p;
         bC21R.execute(temp);
         bC21R.execute(temp);
@@ -41,7 +46,7 @@ public class BlueConveyorsTest {
     }
 
     @Test
-    public void BlueConveyor2in1outStraightPush(){
+    public void blueConveyor2in1outStraightPush(){
         Player temp = p;
         bC21S.execute(temp);
         bC21S.execute(temp);
@@ -49,7 +54,7 @@ public class BlueConveyorsTest {
     }
 
     @Test
-    public void BlueConveyorTurnLeftPush(){
+    public void blueConveyorTurnLeftPush(){
         Player temp = p;
         bCTL.execute(temp);
         bCTL.execute(temp);
@@ -57,7 +62,7 @@ public class BlueConveyorsTest {
     }
     
     @Test
-    public void BlueConveyorTurnRightPush(){
+    public void blueConveyorTurnRightPush(){
         Player temp = p;
         bCTR.execute(temp);
         bCTR.execute(temp);

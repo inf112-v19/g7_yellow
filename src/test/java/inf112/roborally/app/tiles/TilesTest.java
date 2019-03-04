@@ -1,4 +1,4 @@
-package inf112.roborally.app.tilesTest;
+package inf112.roborally.app.tiles;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
@@ -17,7 +17,7 @@ public class TilesTest {
      * Test getRenderPriority for Hole
      */
     @Test
-    public void RenderPriorityTestHole(){
+    public void renderPriorityTestHole(){
         assertEquals(1,hole.getRenderPriority());
     }
 
@@ -25,7 +25,7 @@ public class TilesTest {
      * test get symbol for Hole
      */
     @Test
-    public void GetSymbolTestHole(){
+    public void getSymbolTestHole(){
         assertEquals('X', hole.getSymbol());
     }
 
@@ -33,19 +33,19 @@ public class TilesTest {
      * Test execute on player
      */
     @Test
-    public void ExecuteTestHole(){
+    public void executeTestHole(){
         Player testPlayer = player;
         hole.execute(testPlayer);
         assertEquals(10,testPlayer.getDamage());
     }
 
     @Test
-    public void CornerWallPriorityTest(){
+    public void cornerWallPriorityTest(){
         assertEquals(3,cornerWall.getRenderPriority());
     }
 
     @Test
-    public void CornerWallSymbolTest(){
+    public void cornerWallSymbolTest(){
         assertEquals('C', cornerWall.getSymbol());
     }
 

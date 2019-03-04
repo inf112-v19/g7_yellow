@@ -18,44 +18,44 @@ public class BoardTest {
     private Board boardBig = new Board(12, 12);
 
     @Test
-    public void GetGridTest(){
+    public void getGridTest(){
         assertNotNull(board.getGrid());
     }
 
     @Test
-    public void HeightTestTrue(){
+    public void heightTestTrue(){
         assertEquals(1,board.getHeight());
     }
 
     @Test
-    public void HeightTestFalse(){
+    public void heightTestFalse(){
         assertNotEquals(2, board.getHeight());
     }
 
     @Test
-    public void WidthTestTrue(){
+    public void widthTestTrue(){
         assertEquals(1,board.getWidth());
     }
 
     @Test
-    public void WidthTestFalse(){
+    public void widthTestFalse(){
         assertNotEquals(2, board.getWidth());
     }
 
     @Test
-    public void TestLoadEmptyMapIsEmpty() throws OutsideGridException {
+    public void testLoadEmptyMapIsEmpty() throws OutsideGridException {
         board.loadEmptyMap();
         assertEquals(board.getGrid().getTiles(new Vector2(0,0)).size(), 0);
     }
 
     @Test
-    public void TestLoadDefaultMapWorks() throws OutsideGridException {
+    public void testLoadDefaultMapWorks() throws OutsideGridException {
         board.loadDefaultMap();
         assertNotEquals(board.getGrid().getTiles(new Vector2(0,0)).size(), 0);
     }
 
     @Test
-    public void TestLoadMap1Works() throws OutsideGridException {
+    public void testLoadMap1Works() throws OutsideGridException {
         boardBig.loadMap("map1");
         assertEquals(boardBig.getGrid().getTiles(new Vector2(0,0)).get(0).getClass(),
                 new Hole(90).getClass());
