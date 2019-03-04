@@ -1,4 +1,4 @@
-package inf112.roborally.app.tiles;
+package inf112.roborally.app.tile;
 
 import inf112.roborally.app.tile.Floor;
 import org.junit.Test;

@@ -6,7 +6,7 @@ public abstract class AbstractTile implements IBoardTile {
 
     protected int rotation;
 
-    public AbstractTile(int r) {
+    protected AbstractTile(int r) {
         rotation = r;
     }
 

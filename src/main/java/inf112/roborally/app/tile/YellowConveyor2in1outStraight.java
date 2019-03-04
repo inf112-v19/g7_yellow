@@ -4,7 +4,7 @@ import inf112.roborally.app.player.Player;
 
 public class YellowConveyor2in1outStraight extends AbstractFunctionTile {
 
-    public YellowConveyor2in1outStraight(int r) {
+    protected YellowConveyor2in1outStraight(int r) {
         super(r);
     }
 

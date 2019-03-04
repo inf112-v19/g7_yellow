@@ -1,4 +1,4 @@
-package inf112.roborally.app.tiles;
+package inf112.roborally.app.tile;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
@@ -48,10 +48,5 @@ public class TilesTest {
     public void cornerWallSymbolTest(){
         assertEquals('C', cornerWall.getSymbol());
     }
-
-
-
-
-
 
 }
