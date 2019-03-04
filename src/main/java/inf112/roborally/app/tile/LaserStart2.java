@@ -15,11 +15,12 @@ public class LaserStart2 extends AbstractFunctionTile {
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'D';
     }
 
     @Override
     public void execute(Player player) {
         // TODO: Make sure this does what it is supposed to do
+        player.takenDamage(2);
     }
 }

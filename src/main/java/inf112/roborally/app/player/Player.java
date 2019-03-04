@@ -89,7 +89,8 @@ public class Player {
      * damage
      */
     public void takenDamage(int damage){
-        this.damage += damage;
+        if(this.damage + damage > 0) this.damage += damage;
+        else this.damage = 0;
     }
 
     /**

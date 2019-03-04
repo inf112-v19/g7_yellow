@@ -13,12 +13,12 @@ public class Repair extends AbstractFunctionTile {
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'B';
     }
 
     @Override
     public void execute(Player player) {
         // TODO: Does this do the right thing?
-        player.resetDamage();
+        player.takenDamage(-2);
     }
 }

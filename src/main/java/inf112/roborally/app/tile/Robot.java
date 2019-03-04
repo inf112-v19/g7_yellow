@@ -17,7 +17,7 @@ public class Robot extends AbstractCollidableTile {
 
     @Override
     public int getRenderPriority() {
-        return 0;
+        return 2;
     }
 
     @Override
@@ -28,6 +28,9 @@ public class Robot extends AbstractCollidableTile {
     @Override
     public void execute(Player player) {
         // TODO: What do we put here?
+        // I'm just putting something temporary until we're able to actually use it or get rid of it
+        // This temporary is only to be able to test the method.
+        player.takenDamage(1);
     }
 
 }
