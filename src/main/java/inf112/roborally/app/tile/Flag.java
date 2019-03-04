@@ -13,20 +13,22 @@ public class Flag extends AbstractFunctionTile {
 
     @Override
     public int getRenderPriority() {
-        return 1;
+        return 3;
     }
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'f';
     }
 
     public int getId() {
         return this.id;
     }
 
+    /*
     @Override
     public void execute(Player player) {
         // TODO: This needs to do stuff unless its handled by the game logic
     }
+    */
 }
