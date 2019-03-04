@@ -26,7 +26,7 @@ public class Flag extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player[] player) {
+    public void execute(Player player) {
         // TODO: This needs to do stuff unless its handled by the game logic
     }
 }

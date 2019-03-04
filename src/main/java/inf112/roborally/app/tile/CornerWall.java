@@ -20,8 +20,8 @@ public class CornerWall extends AbstractCollidableTile {
 
 
     @Override
-    public void execute(Player[] player) {
-        // TODO: Make this do what it's supposed to do
+    public void execute(Player player) {
+            // TODO: Make this do what it's supposed to do
 
     }
 }

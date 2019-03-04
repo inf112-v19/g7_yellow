@@ -25,8 +25,8 @@ public class Renderer {
     private SpriteBatch batch;
     private Board board;
     private Player[] players;
-    Texture playerTexture;
-    Sprite playerSprite;
+    private Texture playerTexture;
+    private Sprite playerSprite;
 
     public Renderer(Board board, Player[] players) {
         this.players = players;

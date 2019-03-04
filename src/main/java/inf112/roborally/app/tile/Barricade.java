@@ -19,7 +19,7 @@ public class Barricade extends AbstractCollidableTile {
     }
 
     @Override
-    public void execute(Player[] player) {
+    public void execute(Player player) {
         // TODO: Figure out what the barricade does and make that happen
     }
 }

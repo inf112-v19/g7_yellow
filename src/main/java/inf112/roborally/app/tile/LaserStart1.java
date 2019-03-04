@@ -19,7 +19,7 @@ public class LaserStart1 extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player[] player) {
+    public void execute(Player player) {
         // TODO: Make sure this does what it is supposed to do
     }
 }

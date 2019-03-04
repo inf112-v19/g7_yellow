@@ -26,7 +26,7 @@ public class Dock extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player[] player) {
+    public void execute(Player player) {
         // TODO: Make this do what it's supposed to, unless that's handled by game logic (probably smarter, huh)
     }
 }

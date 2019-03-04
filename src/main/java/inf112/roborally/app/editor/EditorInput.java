@@ -128,7 +128,7 @@ public class EditorInput {
         Main.gameState = GameState.PLAYING;
     }
 
-    private boolean insideBounds(Vector2 boundsStartPos, Vector2 mousePos) {
+    public boolean insideBounds(Vector2 boundsStartPos, Vector2 mousePos) {
         return mousePos.x > boundsStartPos.x && mousePos.x < (boundsStartPos.x + Main.TILE_SIZE)
                 && mousePos.y > boundsStartPos.y && mousePos.y < boundsStartPos.y + Main.TILE_SIZE;
     }
