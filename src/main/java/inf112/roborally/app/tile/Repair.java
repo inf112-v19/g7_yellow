@@ -18,6 +18,7 @@ public class Repair extends AbstractFunctionTile {
 
     @Override
     public void execute(Player player) {
+        // TODO: Does this do the right thing?
         player.resetDamage();
     }
 }

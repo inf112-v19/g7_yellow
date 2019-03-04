@@ -20,6 +20,6 @@ public class Wall extends AbstractCollidableTile {
 
     @Override
     public void execute(Player player) {
-        //This should move, but no action against other player
+        // TODO: Yeah this should block the player trying to move into it or something
     }
 }
