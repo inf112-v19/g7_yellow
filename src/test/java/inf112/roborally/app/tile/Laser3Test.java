@@ -4,19 +4,18 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class RobotTest {
+public class Laser3Test {
 
-    private Robot r = new Robot(90);
+    private Laser3 l = new Laser3(0);
 
     @Test
     public void getRenderPriority() {
-        assertEquals(2, r.getRenderPriority());
+        assertEquals(100, l.getRenderPriority());
     }
 
     @Test
     public void getSymbol() {
-        assertEquals('R', r.getSymbol());
-
+        assertEquals('c', l.getSymbol());
     }
 
 }

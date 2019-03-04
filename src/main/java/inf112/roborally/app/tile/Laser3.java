@@ -10,16 +10,11 @@ public class Laser3 extends AbstractFunctionTile {
 
     @Override
     public int getRenderPriority() {
-        return 2;
+        return 100;
     }
 
     @Override
     public char getSymbol() {
-        return 'X';
-    }
-
-    @Override
-    public void execute(Player player) {
-        // TODO: Make sure this does what it is supposed to do
+        return 'c';
     }
 }
