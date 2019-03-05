@@ -52,8 +52,9 @@ public class EditorInput {
         if (Gdx.input.isTouched()) {
             if(outsideBoardBounds) {
                 System.out.println(gridVec);
-                if(TileIndex.indexToTile((int) gridVec.x) == null) return;
-                currentTile = TileIndex.indexToTile((int) gridVec.x);
+                int selectedTile = (int) (gridVec.x + ((13 - gridVec.y) * Main.GRID_WIDTH));
+                if(TileIndex.indexToTile((int) selectedTile) == null) return;
+                currentTile = TileIndex.indexToTile((int) selectedTile);
                 currentTile.setRotation(rotation);
                 return;
             }

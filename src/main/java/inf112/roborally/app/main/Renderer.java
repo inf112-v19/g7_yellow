@@ -111,11 +111,16 @@ public class Renderer {
         for (IBoardTile t : tiles) {
             Sprite s = t.getSprite();
             s.setOriginCenter();
-            s.setRotation(180);
+            s.setRotation(0);
             s.setPosition(Main.TILE_SIZE*x,
-                          Main.WINDOW_HEIGHT - Main.TILE_SIZE);
+                    (Main.WINDOW_HEIGHT - Main.TILE_SIZE) - Main.TILE_SIZE * y);
             s.draw(batch);
             x++;
+
+            if(x >= Main.GRID_WIDTH) {
+                x = 0;
+                y++;
+            }
         }
 
         //Show the tile you're about to draw
