@@ -19,7 +19,7 @@ public class YellowConveyor extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
-        player.push(rotation);
+    public void execute(Player[] player) {
+        player[0].push(rotation);
     }
 }

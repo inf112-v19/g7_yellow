@@ -19,10 +19,10 @@ public class YellowConveyorTurnLeft extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
+    public void execute(Player[] player) {
 
         // Does game logic handle the rotation at the start of the turn?
 
-        player.push(rotation);
+        player[0].push(rotation);
     }
 }
