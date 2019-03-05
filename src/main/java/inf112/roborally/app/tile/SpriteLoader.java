@@ -10,16 +10,14 @@ import java.util.LinkedList;
 
 public class SpriteLoader {
 
-    private final String SPRITE_PATH;
-    private final String RESOURCE_PATH;
+    private final String SPRITE_PATH = this.getClass().getPackageName().replace('.', '/') + '/';
+    private final String RESOURCE_PATH = "src/main/resources/";
     private static Sprite MISSING_SPRITE;
 
     private static LinkedList<SpriteContainer> list = new LinkedList<>();
 
     public SpriteLoader() {
         loadSprites();
-        SPRITE_PATH = this.getClass().getPackageName().replace('.', '/') + '/';
-        RESOURCE_PATH = "src/main/resources/";
     }
 
     /**
