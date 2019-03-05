@@ -2,9 +2,9 @@ package inf112.roborally.app.tile;
 
 import inf112.roborally.app.player.Player;
 
-public class YellowConveyor2in1out_Straight extends AbstractFunctionTile {
+public class BlueConveyor extends AbstractFunctionTile {
 
-    public YellowConveyor2in1out_Straight(int r) {
+    public BlueConveyor(int r) {
         super(r);
     }
 
@@ -20,9 +20,6 @@ public class YellowConveyor2in1out_Straight extends AbstractFunctionTile {
 
     @Override
     public void execute(Player player) {
-
-        // Does game logic handle the rotation at the start of the turn?
-
         player.push(rotation);
     }
 }

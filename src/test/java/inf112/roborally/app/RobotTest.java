@@ -11,7 +11,7 @@ public class RobotTest {
 
     @Test
     public void renderPriorityZero(){
-        assertEquals(0, robot.getRenderPriority());
+        assertEquals(2, robot.getRenderPriority());
     }
 
 }

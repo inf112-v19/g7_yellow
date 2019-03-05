@@ -147,4 +147,12 @@ public class PlayerTest
         testPlayer.resetDamage();
         assertEquals(0,testPlayer.getDamage());
     }
+
+    /**
+     * ID retained?
+     */
+    @Test
+    public void idRetained(){
+        assertEquals(1, originalPlayer.getID());
+    }
 }

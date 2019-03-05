@@ -13,13 +13,13 @@ import static org.junit.Assert.*;
 
 public class EditorTest {
 
-    Board board = new Board(12,12);
-    EditorInput editorInput = new EditorInput(board);
+    private Board board = new Board(12,12);
+    private EditorInput editorInput = new EditorInput(board);
 
     @Test
     public void testOpenCloseEditor() {
         assertEquals(Main.gameState, GameState.PLAYING);
-        EditorInput.enterEditorMode();
+        EditorInput.enterEditorMode(null);
         assertEquals(Main.gameState, GameState.EDITOR);
         EditorInput.exitEditorMode();
         assertEquals(Main.gameState, GameState.PLAYING);

@@ -9,17 +9,16 @@ public class Repair extends AbstractFunctionTile {
     }
 
     @Override
-    public int getRenderPriority() {
-        return 2;
-    }
+    public int getRenderPriority() { return 2; }
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'B';
     }
 
     @Override
     public void execute(Player player) {
-        player.resetDamage();
+        // TODO: Does this do the right thing?
+        player.takenDamage(-2);
     }
 }

@@ -2,22 +2,19 @@ package inf112.roborally.app.tile;
 
 import inf112.roborally.app.player.Player;
 
-public class RotateLeftTile extends AbstractFunctionTile {
+public class Laser1 extends AbstractFunctionTile {
 
-    public RotateLeftTile(int r) {
+    public Laser1(int r) {
         super(r);
     }
 
     @Override
     public int getRenderPriority() {
-        return 2;
+        return 100;
     }
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'a';
     }
-
-    @Override
-    public void execute(Player player) { player.rotate(-1,1); }
 }

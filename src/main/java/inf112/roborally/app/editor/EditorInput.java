@@ -32,35 +32,31 @@ public class EditorInput {
 
         float x = Gdx.input.getX();
         float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
-        mouseVec = new Vector2(x,y);
         int gridX, gridY;
+        mouseVec = new Vector2(x,y);
+        boolean outsideBoardBounds = false;
 
         //Calculate the grid positions
         gridX = (int) (x / Main.WINDOW_WIDTH * Main.GRID_WIDTH);
         gridY = (int) (y / (Main.WINDOW_HEIGHT - Main.TOP_MARGIN) * Main.GRID_HEIGHT);
         gridVec = new Vector2(gridX, gridY);
-        if(gridVec.x > (Main.GRID_WIDTH - 1) || gridVec.y > (Main.GRID_HEIGHT - 1)) gridVec = null;
+        if(gridVec.x > (Main.GRID_WIDTH - 1) || gridVec.y > (Main.GRID_HEIGHT - 1))
+            outsideBoardBounds = true;
+        if(x < 0 || x > Main.WINDOW_WIDTH || y > Main.WINDOW_HEIGHT - 1 && y < 0) {
+            return;
+        }
 
         if (Gdx.input.isTouched()) {
-            //If mouse is not on grid, check if an editor tile is selected. If that's the
-            //case, then switch currentTile to the desired tiles.
-            //TODO: Make IButtons, so we can call Button.insideBounds() instead of manually checking.
-            //TODO: Make EditorButtons that can return the tile we wanna get.
-            if (y > Main.WINDOW_HEIGHT - Main.TOP_MARGIN - 1) {
-                if(insideBounds(new Vector2(0, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Floor(rotation);
-                    System.out.println("Floor is selected");
-                } else if(insideBounds(new Vector2(Main.TILE_SIZE, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Hole(rotation);
-                    System.out.println("Hole is selected");
-                } else if (insideBounds(new Vector2(Main.TILE_SIZE*2, Main.WINDOW_HEIGHT - Main.TILE_SIZE), mouseVec)) {
-                    currentTile = new Wall(rotation);
-                    System.out.println("Wall is selected");
-                }
+            if(outsideBoardBounds) {
+                System.out.println(gridVec);
+                int selectedTile = (int) (gridVec.x + ((13 - gridVec.y) * Main.GRID_WIDTH));
+                if(TileIndex.indexToTile((int) selectedTile) == null) return;
+                currentTile = TileIndex.indexToTile((int) selectedTile);
+                currentTile.setRotation(rotation);
                 return;
             }
 
-
+            if (outsideBoardBounds) gridVec = null;
             if (gridVec == null) return;
             if (currentTile == null) return;
 
@@ -108,8 +104,12 @@ public class EditorInput {
         }
     }
 
-    public static void enterEditorMode() {
-        board.loadEmptyMap();
+    public static void enterEditorMode(String map) {
+        if(map == null)
+            board.loadEmptyMap();
+        else
+            board.loadMap(map);
+
         grid = board.getGrid();
         Main.gameState = GameState.EDITOR;
     }

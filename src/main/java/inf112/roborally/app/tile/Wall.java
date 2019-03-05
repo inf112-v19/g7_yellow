@@ -20,6 +20,11 @@ public class Wall extends AbstractCollidableTile {
 
     @Override
     public void execute(Player player) {
-        //This should move, but no action against other player
+        // TODO: Make sure this works properly
+        var sin = (int) Math.sin(Math.toRadians(rotation));
+        var cos = (int) Math.cos(Math.toRadians(rotation));
+        if(player.getPos().x - player.getOldPos().x == -cos && player.getPos().y - player.getOldPos().y == -sin) {
+            player.push(rotation);
+        }
     }
 }

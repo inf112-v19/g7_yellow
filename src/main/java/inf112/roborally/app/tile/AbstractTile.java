@@ -6,7 +6,7 @@ public abstract class AbstractTile implements IBoardTile {
 
     protected int rotation;
 
-    public AbstractTile(int r) {
+    protected AbstractTile(int r) {
         rotation = r;
     }
 
@@ -17,6 +17,10 @@ public abstract class AbstractTile implements IBoardTile {
         return 0;
     }
 
+    /**
+     * Not testable
+     * @return sprite
+     */
     @Override
     public Sprite getSprite() {
         return SpriteLoader.fetchSprite(this);
