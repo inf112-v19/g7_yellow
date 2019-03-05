@@ -2,9 +2,8 @@ package inf112.roborally.app.tile;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
+import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class WallTest {
 
@@ -12,12 +11,12 @@ public class WallTest {
 
     @Test
     public void getRenderPriority() {
-        assertEquals(3, w.getRenderPriority());
+        Assert.assertEquals(3, w.getRenderPriority());
     }
 
     @Test
     public void getSymbol() {
-        assertEquals('W', w.getSymbol());
+        Assert.assertEquals('W', w.getSymbol());
     }
 
     @Test
@@ -27,6 +26,6 @@ public class WallTest {
         p.move(1,1);
         p.move(1,1);
         w.execute(p);
-        assertEquals(new Vector2(0,1), p.getPos());
+        Assert.assertEquals(new Vector2(0,1), p.getPos());
     }
 }

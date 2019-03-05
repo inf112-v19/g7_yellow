@@ -8,8 +8,8 @@ import static org.junit.Assert.assertEquals;
 
 public class BlueConveyorTurnRightTest {
 
-    BlueConveyorTurnRight bC = new BlueConveyorTurnRight(90);
-    Player p = new Player(1,new Vector2(0,0), 0);
+    private BlueConveyorTurnRight bC = new BlueConveyorTurnRight(90);
+    private Player p = new Player(1,new Vector2(0,0), 0);
 
 
     @Test

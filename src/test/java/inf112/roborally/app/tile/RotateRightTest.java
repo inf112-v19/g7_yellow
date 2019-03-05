@@ -2,9 +2,8 @@ package inf112.roborally.app.tile;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
+import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class RotateRightTest {
 
@@ -12,12 +11,12 @@ public class RotateRightTest {
 
     @Test
     public void getRenderPriority() {
-        assertEquals(2, rR.getRenderPriority());
+        Assert.assertEquals(2, rR.getRenderPriority());
     }
 
     @Test
     public void getSymbol() {
-        assertEquals('B', rR.getSymbol());
+        Assert.assertEquals('B', rR.getSymbol());
 
     }
 
@@ -25,6 +24,6 @@ public class RotateRightTest {
     public void execute() {
         Player p = new Player(1, new Vector2(0,0), 0);
         rR.execute(p);
-        assertEquals(0, p.getRotation());
+        Assert.assertEquals(0, p.getRotation());
     }
 }

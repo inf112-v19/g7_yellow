@@ -2,9 +2,8 @@ package inf112.roborally.app.tile;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
+import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class YellowConveyorTurnLeftTest {
 
@@ -12,12 +11,12 @@ public class YellowConveyorTurnLeftTest {
 
     @Test
     public void getRenderPriority() {
-        assertEquals(2, yC.getRenderPriority());
+        Assert.assertEquals(2, yC.getRenderPriority());
     }
 
     @Test
     public void getSymbol() {
-        assertEquals('X', yC.getSymbol());
+        Assert.assertEquals('X', yC.getSymbol());
 
     }
 
@@ -25,7 +24,7 @@ public class YellowConveyorTurnLeftTest {
     public void execute() {
         Player p = new Player(1, new Vector2(0,0), 0);
         yC.execute(p);
-        assertEquals(new Vector2(0,1), p.getPos());
+        Assert.assertEquals(new Vector2(0,1), p.getPos());
     }
 
 }

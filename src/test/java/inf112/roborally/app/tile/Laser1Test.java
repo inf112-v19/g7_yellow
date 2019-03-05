@@ -1,8 +1,7 @@
 package inf112.roborally.app.tile;
 
+import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class Laser1Test {
 
@@ -10,12 +9,12 @@ public class Laser1Test {
 
     @Test
     public void getRenderPriority() {
-        assertEquals(100, l.getRenderPriority());
+        Assert.assertEquals(100, l.getRenderPriority());
     }
 
     @Test
     public void getSymbol() {
-        assertEquals('a', l.getSymbol());
+        Assert.assertEquals('a', l.getSymbol());
     }
 
 }

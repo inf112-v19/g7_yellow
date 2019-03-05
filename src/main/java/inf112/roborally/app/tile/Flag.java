@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class Flag extends AbstractFunctionTile {
 
     private final int id;

@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class YellowConveyorTest {
 
