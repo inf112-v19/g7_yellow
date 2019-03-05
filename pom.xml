@@ -155,13 +155,6 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.8.3</version>
-                    <configuration>
-                        <excludes>
-                            <exclude>inf112.roborally.app.editor/*</exclude>
-                            <exclude>**/*Abstract*</exclude>
-                            <exclude>**/*Sprite*</exclude>
-                        </excludes>
-                    </configuration>
                 </plugin>
 
             </plugins>

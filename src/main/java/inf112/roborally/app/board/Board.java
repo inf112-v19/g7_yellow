@@ -30,9 +30,7 @@ public class Board {
         try {
              in = getClass().getResourceAsStream("maps/" + map + ".txt");
              int count = 0;
-            int x;
-            int y;
-            int r;
+            int x, y, r;
             while ((r = in.read()) != -1) {
                 IBoardTile currentTile;
                 char ch = (char) r;
@@ -46,7 +44,7 @@ public class Board {
                     }
                 }
                 int rot = 0;
-                if(!"".equals(rotation)) {
+                if(rotation != "") {
                     rot = Integer.parseInt(rotation);
                 }
 

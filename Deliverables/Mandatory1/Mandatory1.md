@@ -1,1 +1,1 @@
-# Ingen notater fra denne obligg
+# Ingen notater fra denne
