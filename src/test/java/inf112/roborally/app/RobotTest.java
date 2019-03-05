@@ -7,10 +7,10 @@ import static org.junit.Assert.*;
 
 public class RobotTest {
 
-    Robot robot = new Robot(0);
+    private Robot robot = new Robot(0);
 
     @Test
-    public void RenderPriorityZero(){
+    public void renderPriorityZero(){
         assertEquals(0, robot.getRenderPriority());
     }
 

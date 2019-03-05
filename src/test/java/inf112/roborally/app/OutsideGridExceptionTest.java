@@ -6,10 +6,10 @@ import static org.junit.Assert.*;
 
 public class OutsideGridExceptionTest {
 
-    OutsideGridException oge = new OutsideGridException(1,1, "out");
+    private OutsideGridException oge = new OutsideGridException(1,1, "out");
 
     @Test
-    public void MessageTestTrue(){
+    public void messageTestTrue(){
         assertEquals("out", oge.getMessage());
     }
 

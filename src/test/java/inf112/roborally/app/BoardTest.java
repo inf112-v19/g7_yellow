@@ -19,22 +19,22 @@ public class BoardTest {
     }
 
     @Test
-    public void HeightTestTrue(){
+    public void heightTestTrue(){
         assertEquals(1,board.getHeight());
     }
 
     @Test
-    public void HeightTestFalse(){
+    public void heightTestFalse(){
         assertNotEquals(2, board.getHeight());
     }
 
     @Test
-    public void WidthTestTrue(){
+    public void widthTestTrue(){
         assertEquals(1,board.getWidth());
     }
 
     @Test
-    public void WidthTestFalse(){
+    public void widthTestFalse(){
         assertNotEquals(2, board.getWidth());
     }
 
