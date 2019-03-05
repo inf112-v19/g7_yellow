@@ -4,9 +4,9 @@ import inf112.roborally.app.helpers.AbstractCardPile;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 
 public class CardTest {
 
@@ -26,7 +26,7 @@ public class CardTest {
     public void doesItRemove() {
         pile = new AbstractCardPile<Integer>();
 
-        for(int i = 0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             pile.add(i);
         }
         System.out.println("Old size: " + pile.size());
@@ -39,14 +39,14 @@ public class CardTest {
     @Test
     public void doesItRemoveRandom() {
         pile = new AbstractCardPile<Integer>();
-        int [] arr = new int[1000];
-        int [] copy = new int [1000];
+        int[] arr = new int[1000];
+        int[] copy = new int[1000];
 
-        for(int i = 0; i<1000000; i++) {
+        for (int i = 0; i < 1000000; i++) {
             pile.add(i);
         }
 
-        for(int j = 0; j < 1000; j++) {
+        for (int j = 0; j < 1000; j++) {
             arr[j] = pile.pop();
             copy[j] = arr[j];
         }
@@ -56,23 +56,20 @@ public class CardTest {
         assertFalse(Arrays.equals(arr, copy));
 
 
-
-
-
     }
 
     @Test
     public void isSizeCorrect() {
         pile = new AbstractCardPile<>();
 
-        for(int i = 0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             pile.add(i);
         }
 
         pile.print();
         System.out.println();
 
-        for(int i = 0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             pile.pop();
         }
 
