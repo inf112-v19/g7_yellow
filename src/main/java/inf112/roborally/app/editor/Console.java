@@ -60,7 +60,6 @@ public class Console implements Screen {
             case ("exit"):
                 System.exit(1);
             default:
-                System.out.println("nope");
                 console.setText("no such command");
                 console.selectAll();
                 return;

@@ -2,7 +2,6 @@ package inf112.roborally.app.editor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.board.Grid;
@@ -10,8 +9,6 @@ import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.*;
-
-import java.lang.reflect.Constructor;
 
 public class EditorInput {
 
@@ -50,8 +47,8 @@ public class EditorInput {
             if(outsideBoardBounds) {
                 System.out.println(gridVec);
                 int selectedTile = (int) (gridVec.x + ((13 - gridVec.y) * Main.GRID_WIDTH));
-                if(TileIndex.indexToTile((int) selectedTile) == null) return;
-                currentTile = TileIndex.indexToTile((int) selectedTile);
+                if(TileIndex.indexToTile(selectedTile) == null) return;
+                currentTile = TileIndex.indexToTile(selectedTile);
                 currentTile.setRotation(rotation);
                 return;
             }
@@ -114,11 +111,6 @@ public class EditorInput {
         Main.gameState = GameState.EDITOR;
     }
 
-    public static void exitEditorMode() {
-        board.loadMap("map1");
-        Main.gameState = GameState.PLAYING;
-    }
-
     public static void saveMap(String name) {
         board.saveMap(grid, name);
     }
@@ -126,10 +118,5 @@ public class EditorInput {
     public static void loadMap(String name) {
         board.loadMap(name);
         Main.gameState = GameState.PLAYING;
-    }
-
-    private boolean insideBounds(Vector2 boundsStartPos, Vector2 mousePos) {
-        return mousePos.x > boundsStartPos.x && mousePos.x < (boundsStartPos.x + Main.TILE_SIZE)
-                && mousePos.y > boundsStartPos.y && mousePos.y < boundsStartPos.y + Main.TILE_SIZE;
     }
 }
