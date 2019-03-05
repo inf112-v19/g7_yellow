@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class HoleTest {
 
-    Hole h = new Hole(0);
+    private Hole h = new Hole(0);
 
     @Test
     public void getRenderPriority() {

@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 
 public class BlueConveyor2in1outLeftTest {
 
-    BlueConveyor2in1outLeft bC = new BlueConveyor2in1outLeft(90);
-    Player p = new Player(1,new Vector2(0,0), 0);
+    private BlueConveyor2in1outLeft bC = new BlueConveyor2in1outLeft(90);
+    private Player p = new Player(1,new Vector2(0,0), 0);
 
 
     @Test

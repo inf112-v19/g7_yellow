@@ -9,7 +9,9 @@ import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.*;
+import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.TileIndex;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
