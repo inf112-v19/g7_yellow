@@ -6,13 +6,14 @@ public class Player {
 
     private int id;
     private int x, y;
-    private int health;
+    private int damage;
     private int rotation; //Using degrees
 
-    public Player(int id, Vector2 pos){
+    public Player(int id, Vector2 pos, int damage){
         this.id = id;
         this.x = (int) pos.x;
         this.y = (int) pos.y;
+        this.damage = damage;
         rotation = 90;
     }
 
@@ -22,20 +23,10 @@ public class Player {
      * @param dist - max dist is 3
      */
     public void move(int dir, int dist){
-        switch (rotation) {
-            case(0) :
-                x += dist * dir;
-                break;
-            case(90):
-                y += dist * dir;
-                break;
-            case(180):
-                x -= dist * dir;
-                break;
-            case(270):
-                y -= dist * dir;
-                break;
-        }
+        var sin = (int) Math.sin(Math.toRadians(rotation));
+        var cos = (int) Math.cos(Math.toRadians(rotation));
+        x += cos * dist * dir;
+        y += sin * dist * dir;
     }
 
     /**
@@ -44,10 +35,18 @@ public class Player {
      * @param dist 1 is default rotation. Use 2 for 180 turns
      */
     public void rotate(int dir, int dist) {
-        rotation += 90 * -dir * dist;
-        if (rotation < 0) rotation = 360 + rotation;
-        else if (rotation >= 360) rotation = 360 - rotation;
-        System.out.println("rotation: " + rotation);
+        rotation = Math.floorMod(rotation + (90 * -dir * dist), 360);
+    }
+
+    /**
+     * Push the player
+     * @param rotation Given "direction" to push the player in
+     */
+    public void push(int rotation) {
+        var sin = (int) Math.sin(Math.toRadians(rotation));
+        var cos = (int) Math.cos(Math.toRadians(rotation));
+        x += cos;
+        y += sin;
     }
 
     /**
@@ -63,4 +62,24 @@ public class Player {
     public int getRotation() {
         return rotation;
     }
+
+    /**
+     *
+     * @return the players damage
+     */
+    public int getDamage() {
+        return damage;
+    }
+
+    /**
+     * damage
+     */
+    public void takenDamage(int damage){
+        this.damage += damage;
+    }
+
+    /**
+     * For the Repair tile to easily reset a player's damage
+     */
+    public void resetDamage() { this.damage = 0; }
 }
