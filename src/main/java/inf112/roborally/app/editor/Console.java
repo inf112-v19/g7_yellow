@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
 public class Console implements Screen {
 
     private static Stage stage;
-    private static TextField console;
+    public static TextField console;
     private ShapeRenderer sr;
     private static boolean active = false;
 

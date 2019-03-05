@@ -119,4 +119,9 @@ public class EditorInput {
         board.loadMap(name);
         Main.gameState = GameState.PLAYING;
     }
+
+    public boolean insideBounds(Vector2 boundsStartPos, Vector2 mousePos) {
+        return mousePos.x > boundsStartPos.x && mousePos.x < (boundsStartPos.x + Main.TILE_SIZE)
+                && mousePos.y > boundsStartPos.y && mousePos.y < boundsStartPos.y + Main.TILE_SIZE;
+    }
 }

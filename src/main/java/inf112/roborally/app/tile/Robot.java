@@ -1,6 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
 
 /**
  * The tile class for the robot
@@ -17,17 +16,12 @@ public class Robot extends AbstractCollidableTile {
 
     @Override
     public int getRenderPriority() {
-        return 0;
+        return 2;
     }
 
     @Override
     public char getSymbol() {
         return 'R';
-    }
-
-    @Override
-    public void execute(Player[] player) {
-        //This should move, but no action against other player
     }
 
 }

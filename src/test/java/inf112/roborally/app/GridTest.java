@@ -46,7 +46,7 @@ public class GridTest {
      * and that the proper exception is thrown
      */
     @Test
-    public void getTiles_OutsideGridFails() {
+    public void getTilesOutsideGridFails() {
         var runs = 100;
         for (int i1 = 0, x = grid.getBoardWidth() + 1; i1 < runs; x++, i1++)
             for (int i2 = 0, y = grid.getBoardHeight() + 1; i2 < runs; y++, i2++)
@@ -75,7 +75,7 @@ public class GridTest {
     }
 
     @Test
-    public void addTile_getTile_equal() throws OutsideGridException{
+    public void addTileGetTileEqual() throws OutsideGridException{
         var myRobot = new Robot(90);
         var pos = new Vector2(50,50);
         grid.addTile(pos, myRobot);
@@ -84,7 +84,7 @@ public class GridTest {
     }
 
     @Test
-    public void addTile_removeTile() throws OutsideGridException{
+    public void addTileRemoveTile() throws OutsideGridException{
         var myRobot = new Robot(90);
         var pos = new Vector2(50,50);
         grid.addTile(pos, myRobot);

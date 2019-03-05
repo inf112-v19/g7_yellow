@@ -10,8 +10,8 @@ import java.util.LinkedList;
 
 public class SpriteLoader {
 
-    final String SPRITE_PATH = this.getClass().getPackageName().replace('.', '/') + '/';
-    final String RESOURCE_PATH = "src/main/resources/";
+    private final String SPRITE_PATH = this.getClass().getPackageName().replace('.', '/') + '/';
+    private final String RESOURCE_PATH = "src/main/resources/";
     private static Sprite MISSING_SPRITE;
 
     private static LinkedList<SpriteContainer> list = new LinkedList<>();
@@ -20,6 +20,11 @@ public class SpriteLoader {
         loadSprites();
     }
 
+    /**
+     * This is pretty untestable so I just let it be without a test
+     * @param t IBoardTile to fetch the sprite of
+     * @return the sprite if found, MISSING_SPRITE otherwise
+     */
     public static Sprite fetchSprite(IBoardTile t) {
         Iterator<SpriteContainer> it = list.iterator();
         while(it.hasNext()){
