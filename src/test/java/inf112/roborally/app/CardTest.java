@@ -3,7 +3,10 @@ package inf112.roborally.app;
 import inf112.roborally.app.helpers.AbstractCardPile;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static junit.framework.TestCase.*;
 
 public class CardTest {
 
@@ -35,20 +38,27 @@ public class CardTest {
 
     @Test
     public void doesItRemoveRandom() {
-       AbstractCardPile pile2 = new AbstractCardPile<String>();
-        pile2.add("Hei");
-        pile2.add("på");
-        pile2.add("deg");
-        pile2.add("din");
-        pile2.add("gamle");
-        pile2.add("ørn");
+        pile = new AbstractCardPile<Integer>();
+        int [] arr = new int[1000];
+        int [] copy = new int [1000];
 
-        pile2.print();
+        for(int i = 0; i<1000000; i++) {
+            pile.add(i);
+        }
 
-        pile2.pop();
+        for(int j = 0; j < 1000; j++) {
+            arr[j] = pile.pop();
+            copy[j] = arr[j];
+        }
 
-        System.out.println("\n Pile after popping: ");
-        pile2.print();
+        Arrays.sort(copy);
+
+        assertFalse(Arrays.equals(arr, copy));
+
+
+
+
+
     }
 
     @Test
