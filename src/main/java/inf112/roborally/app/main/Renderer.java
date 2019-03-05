@@ -118,8 +118,7 @@ public class Renderer {
             x++;
 
             if(x >= Main.GRID_WIDTH) {
-                x = 0;
-                y++;
+                x = 0; y++;
             }
         }
 

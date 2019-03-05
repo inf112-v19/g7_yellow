@@ -15,8 +15,6 @@ import java.lang.reflect.Constructor;
 
 public class EditorInput {
 
-    public static float EDITOR_BUTTON_SPACING = 1.5f;
-
     private static Board board;
     private static Grid grid;
     public static IBoardTile currentTile;
@@ -37,7 +35,6 @@ public class EditorInput {
         int gridX, gridY;
         mouseVec = new Vector2(x,y);
         boolean outsideBoardBounds = false;
-        boolean outsideWindowBounds = false;
 
         //Calculate the grid positions
         gridX = (int) (x / Main.WINDOW_WIDTH * Main.GRID_WIDTH);
@@ -107,8 +104,12 @@ public class EditorInput {
         }
     }
 
-    public static void enterEditorMode() {
-        board.loadEmptyMap();
+    public static void enterEditorMode(String map) {
+        if(map == null)
+            board.loadEmptyMap();
+        else
+            board.loadMap(map);
+
         grid = board.getGrid();
         Main.gameState = GameState.EDITOR;
     }

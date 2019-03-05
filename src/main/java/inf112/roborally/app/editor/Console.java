@@ -52,7 +52,10 @@ public class Console implements Screen {
                     EditorInput.loadMap(st.nextToken());
                 break;
             case ("editor"):
-                EditorInput.enterEditorMode();
+                if (st.hasMoreTokens())
+                    EditorInput.enterEditorMode(st.nextToken());
+                else
+                    EditorInput.enterEditorMode(null);
                 break;
             case ("exit"):
                 System.exit(1);
