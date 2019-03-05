@@ -9,31 +9,22 @@ public class AbstractTileTest {
     /**
      * We cannot test AbstactTile directly, So I'll be using Barricade instead
      */
+    private Barricade b1 = new Barricade(0);
 
     @Test
     public void compareTo() {
-        Barricade b1 = new Barricade(0);
         Barricade b2 = new Barricade(0);
         assertEquals(0,b1.compareTo(b2));
     }
 
     @Test
-    public void getSprite() {
-        Barricade b1 = new Barricade(0);
-        SpriteLoader sL = new SpriteLoader();
-
-        assertEquals(b1.getSprite(),sL.fetchSprite(b1));
-    }
-
-    @Test
     public void toStringMethod() {
+        assertEquals("Barricade", b1.toString());
     }
 
     @Test
-    public void setRotation() {
-    }
-
-    @Test
-    public void getRotation() {
+    public void setGetRotation() {
+        b1.setRotation(90);
+        assertEquals(90, b1.getRotation());
     }
 }
