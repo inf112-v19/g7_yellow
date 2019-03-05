@@ -6,13 +6,13 @@ import static org.junit.Assert.*;
 
 public class OutsideGridExceptionTest {
 
-    OutsideGridException oge = new OutsideGridException(1,1, "out");
+    private OutsideGridException oge = new OutsideGridException(1,1, "out");
 
     /**
      * Test if message returns correct
      */
     @Test
-    public void MessageTestTrue(){
+    public void messageTestTrue(){
         assertEquals("out", oge.getMessage());
     }
 
@@ -20,7 +20,7 @@ public class OutsideGridExceptionTest {
      * Test if y coordinate returns correct
      */
     @Test
-    public void YTestTrue(){
+    public void yTestTrue(){
         assertEquals(1, oge.getY());
     }
 
@@ -28,7 +28,7 @@ public class OutsideGridExceptionTest {
      * Test if x coordinate returns correct
      */
     @Test
-    public void XTestTrue(){
+    public void xTestTrue(){
         assertEquals(1, oge.getX());
     }
 

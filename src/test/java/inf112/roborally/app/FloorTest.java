@@ -10,7 +10,7 @@ public class FloorTest {
     private Floor floor = new Floor(90);
 
     @Test
-    public void RenderPriorityTest(){
+    public void renderPriorityTest(){
         assertEquals(0, floor.getRenderPriority());
     }
 }
