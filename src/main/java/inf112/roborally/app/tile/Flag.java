@@ -2,15 +2,15 @@ package inf112.roborally.app.tile;
 
 import inf112.roborally.app.player.Player;
 
-public class YellowConveyorTurnLeft extends AbstractFunctionTile {
+public class Flag extends AbstractFunctionTile {
 
-    public YellowConveyorTurnLeft(int r) {
+    public Flag(int r) {
         super(r);
     }
 
     @Override
     public int getRenderPriority() {
-        return 2;
+        return 1;
     }
 
     @Override
@@ -21,8 +21,5 @@ public class YellowConveyorTurnLeft extends AbstractFunctionTile {
     @Override
     public void execute(Player[] player) {
 
-        // Does game logic handle the rotation at the start of the turn?
-
-        player[0].push(rotation);
     }
 }

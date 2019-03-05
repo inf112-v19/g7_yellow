@@ -28,7 +28,6 @@ public class Console implements Screen {
         font.getData().setScale(2);
         style.font = font;
         style.fontColor = Color.RED;
-
         console = new TextField("", style);
         console.setPosition(15, Main.WINDOW_HEIGHT - 100);
         console.setSize(Main.WINDOW_WIDTH - 50,100);
@@ -53,12 +52,14 @@ public class Console implements Screen {
                     EditorInput.loadMap(st.nextToken());
                 break;
             case ("editor"):
-                EditorInput.enterEditorMode();
+                if (st.hasMoreTokens())
+                    EditorInput.enterEditorMode(st.nextToken());
+                else
+                    EditorInput.enterEditorMode(null);
                 break;
             case ("exit"):
                 System.exit(1);
             default:
-                System.out.println("nope");
                 console.setText("no such command");
                 console.selectAll();
                 return;

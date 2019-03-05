@@ -1,13 +1,10 @@
 package inf112.roborally.app.tile;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 
-public class YellowConveyor2in1out_Left extends AbstractFunctionTile {
+public class YellowConveyor2in1outRight extends AbstractFunctionTile {
 
-    public YellowConveyor2in1out_Left(int r) {
+    public YellowConveyor2in1outRight(int r) {
         super(r);
     }
 

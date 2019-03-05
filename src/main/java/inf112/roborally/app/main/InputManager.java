@@ -17,6 +17,7 @@ class InputManager {
         this.board = board;
     }
 
+
     protected void checkForInput() {
         if(Main.gameState == GameState.PLAYING) {
             if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP))
@@ -28,6 +29,7 @@ class InputManager {
             else if (Gdx.input.isKeyJustPressed(Input.Keys.A) || Gdx.input.isKeyJustPressed(Input.Keys.LEFT))
                 player.rotate(-1,1);
         }
+
 
         /*
         if (Gdx.input.isKeyJustPressed(Input.Keys.E) && Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {

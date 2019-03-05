@@ -1,13 +1,10 @@
 package inf112.roborally.app.tile;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 
-public class RotateRightTile extends AbstractFunctionTile {
+public class RotateRight extends AbstractFunctionTile {
 
-    public RotateRightTile(int r) {
+    public RotateRight(int r) {
         super(r);
     }
 
