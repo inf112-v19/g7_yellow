@@ -17,21 +17,10 @@ public class EditorTest {
     private EditorInput editorInput = new EditorInput(board);
 
     @Test
-    public void testOpenCloseEditor() {
+    public void testOpenEditor() {
         assertEquals(Main.gameState, GameState.PLAYING);
-        EditorInput.enterEditorMode(null);
+        editorInput.enterEditorMode(null);
         assertEquals(Main.gameState, GameState.EDITOR);
-        EditorInput.exitEditorMode();
-        assertEquals(Main.gameState, GameState.PLAYING);
-    }
-
-    @Test
-    public void testInsideBoundsButton() {
-        Vector2 buttonPos = new Vector2(0,0);
-        Vector2 mousePosInside = new Vector2(1,1);
-        Vector2 mousePosOutisde = new Vector2(50,50);
-        assertTrue(editorInput.insideBounds(buttonPos,mousePosInside));
-        assertFalse(editorInput.insideBounds(buttonPos, mousePosOutisde));
     }
 
     @Test

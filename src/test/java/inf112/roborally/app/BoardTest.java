@@ -14,8 +14,7 @@ import static org.junit.Assert.*;
  */
 public class BoardTest {
 
-    private Board board = new Board(1,1);
-    private Board boardBig = new Board(12, 12);
+    private Board board = new Board(12,12);
 
     @Test
     public void getGridTest(){
@@ -24,7 +23,7 @@ public class BoardTest {
 
     @Test
     public void getHeightTestTrue(){
-        assertEquals(1,board.getHeight());
+        assertEquals(12,board.getHeight());
     }
 
     @Test
@@ -34,7 +33,7 @@ public class BoardTest {
 
     @Test
     public void widthTestTrue(){
-        assertEquals(1,board.getWidth());
+        assertEquals(12,board.getWidth());
     }
 
     @Test
@@ -56,8 +55,8 @@ public class BoardTest {
 
     @Test
     public void testLoadMap1Works() throws OutsideGridException {
-        boardBig.loadMap("map1");
-        assertEquals(boardBig.getGrid().getTiles(new Vector2(0,0)).get(0).getClass(),
+        board.loadMap("map1");
+        assertEquals(board.getGrid().getTiles(new Vector2(0,0)).get(0).getClass(),
                 new Hole(90).getClass());
     }
 }

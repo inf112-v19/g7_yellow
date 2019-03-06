@@ -23,5 +23,4 @@ public class Robot extends AbstractCollidableTile {
     public char getSymbol() {
         return 'R';
     }
-
 }

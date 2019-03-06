@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
 public class Console implements Screen {
 
     private static Stage stage;
-    public static TextField console;
+    private static TextField console;
     private ShapeRenderer sr;
     private static boolean active = false;
 
@@ -60,7 +60,6 @@ public class Console implements Screen {
             case ("exit"):
                 System.exit(1);
             default:
-                System.out.println("nope");
                 console.setText("no such command");
                 console.selectAll();
                 return;

@@ -87,15 +87,9 @@ public class PlayerTest
     public void isPlayerPushable()
     {
         Player testPlayer = originalPlayer;
-        testPlayer.push(0);
-        testPlayer.push(180);
-        testPlayer.push(90);
-        testPlayer.push(270);
         testPlayer.push(270);
         assertEquals(new Vector2(1,0), testPlayer.getPos());
     }
-
-
 
     /**
      * Final test to make sure a bunch of movements work
@@ -115,7 +109,6 @@ public class PlayerTest
         testPlayer.move(1,3); // x=4, y=7, rotation=0
         assertEquals(new Vector2(4,7),testPlayer.getPos());
     }
-
 
     /**
      * Test if damage return zero
@@ -153,6 +146,6 @@ public class PlayerTest
      */
     @Test
     public void idRetained(){
-        assertEquals(1, originalPlayer.getID());
+        assertEquals(1, originalPlayer.getId());
     }
 }

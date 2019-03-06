@@ -12,7 +12,6 @@ import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileIndex;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
