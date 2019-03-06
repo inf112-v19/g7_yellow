@@ -111,7 +111,6 @@ public class EditorInput {
         Main.gameState = GameState.EDITOR;
     }
 
-
     public static void saveMap(String name) {
         board.saveMap(grid, name);
     }

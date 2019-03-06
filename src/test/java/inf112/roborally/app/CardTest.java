@@ -28,6 +28,7 @@ public class CardTest {
         for (int i = 0; i < 10; i++) {
             pile.add(i);
         }
+        pile.pop();
 
         assertEquals(9, pile.size());
     }
@@ -61,11 +62,9 @@ public class CardTest {
         for (int i = 0; i < 10; i++) {
             pile.add(i);
         }
-
         for (int i = 0; i < 3; i++) {
             pile.pop();
         }
-
         assertEquals(7, pile.size());
 
 
