@@ -18,7 +18,6 @@ public class CardTest {
         pile.add(1);
         pile.add(0);
 
-        System.out.println(pile.size());
         assertEquals(2, pile.size());
     }
 
@@ -29,9 +28,6 @@ public class CardTest {
         for (int i = 0; i < 10; i++) {
             pile.add(i);
         }
-        System.out.println("Old size: " + pile.size());
-        pile.pop();
-        System.out.println("Size after removing " + pile.size());
 
         assertEquals(9, pile.size());
     }
@@ -66,14 +62,9 @@ public class CardTest {
             pile.add(i);
         }
 
-        pile.print();
-        System.out.println();
-
         for (int i = 0; i < 3; i++) {
             pile.pop();
         }
-
-        pile.print();
 
         assertEquals(7, pile.size());
 
