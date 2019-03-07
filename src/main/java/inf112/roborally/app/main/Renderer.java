@@ -22,8 +22,7 @@ public class Renderer {
     private SpriteBatch batch;
     private Board board;
     private Player[] players;
-    Texture playerTexture;
-    Sprite playerSprite;
+    private Sprite playerSprite;
 
     public Renderer(Board board, Player[] players) {
         this.players = players;
@@ -32,7 +31,7 @@ public class Renderer {
         batch        = new SpriteBatch();
 
         //TODO: Player textures are in the Robot classes, so this is just temporary.
-        playerTexture = new Texture("inf112/roborally/app/tile/Tank1.png");
+        Texture playerTexture = new Texture("inf112/roborally/app/tile/Tank1.png");
         playerSprite = new Sprite(playerTexture);
         playerSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
     }
