@@ -45,7 +45,7 @@ public class SpriteLoader {
             var uri = this.getClass().getClassLoader().getResource(SPRITE_PATH).toURI();
 
             //TEST TO SEE IF INSIDE JAR
-            if (uri.toString().contains("jar:")) {
+            if (uri.toURL().getProtocol().equals("jar")) {
                 String jarPath = uri.toString().substring(9, uri.toString().indexOf("!")); //strip out only the JAR file
                 JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
 
@@ -70,14 +70,13 @@ public class SpriteLoader {
 
             } else {
                 File[] listOfFiles = new File(uri).listFiles();
-                for (File f : listOfFiles) {
+                for (File f : listOfFiles)
                     if (f.isFile() && f.toString().contains(".png")) {
                         Texture texture = new Texture(new FileHandle(f));
                         Sprite sprite = new Sprite(texture);
                         sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
                         list.add(new SpriteContainer(sprite, f.getName()));
                     }
-                }
             }
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
