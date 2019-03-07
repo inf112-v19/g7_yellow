@@ -40,4 +40,9 @@ public class GameController {
             System.out.println(board.getGrid().findPlayer(pId));
         } catch(OutsideGridException e) {e.printStackTrace();}
     }
+    public static void movePlayer(Robot r, int dist, int dir) {
+        try {
+            System.out.println(board.getGrid().findPlayer(r.getId()));
+        } catch(OutsideGridException e) {e.printStackTrace();}
+    }
 }
