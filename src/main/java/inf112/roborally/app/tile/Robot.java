@@ -1,6 +1,8 @@
 package inf112.roborally.app.tile;
 
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
 /**
  * The tile class for the robot
  *
@@ -10,8 +12,14 @@ package inf112.roborally.app.tile;
  */
 public class Robot extends AbstractCollidableTile {
 
+    private int id;
+
     public Robot(int r) {
         super(r);
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     @Override
@@ -22,5 +30,10 @@ public class Robot extends AbstractCollidableTile {
     @Override
     public char getSymbol() {
         return 'R';
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return SpriteLoader.fetchSprite(this, id);
     }
 }

@@ -25,6 +25,15 @@ public class SpriteLoader {
      * @param t IBoardTile to fetch the sprite of
      * @return the sprite if found, MISSING_SPRITE otherwise
      */
+    public static Sprite fetchSprite(IBoardTile t, int id) {
+        Iterator<SpriteContainer> it = list.iterator();
+        while(it.hasNext()){
+            SpriteContainer sC = it.next();
+            if(t.toString().equals(sC.getName().substring(0, sC.getName().length() - 4) + id + ".png")) return sC.getSprite();
+        }
+        return MISSING_SPRITE;
+    }
+
     public static Sprite fetchSprite(IBoardTile t) {
         Iterator<SpriteContainer> it = list.iterator();
         while(it.hasNext()){
