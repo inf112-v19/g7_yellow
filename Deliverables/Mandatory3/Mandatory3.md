@@ -89,4 +89,6 @@ lages nye maps. Vi har skrevet ***mange*** tester, det er her det meste av vårt
 stoppet litt av fremgangen. Vi har fikset problemer vi hadde i libgdx (fikse sprites etc.). Vi har hatt veldig mye problemløsing
 og disse finner ser man i pages på wikien vår: [Yellowbots wiki](https://github.com/inf112-v19/YellowBots/wiki)   
  
+## Deloppgave 4: Kode 
+
 
