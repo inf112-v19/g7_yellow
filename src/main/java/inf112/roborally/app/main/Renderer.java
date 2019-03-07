@@ -52,7 +52,6 @@ public class Renderer {
 
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
-                    System.out.println(s);
                     s.setPosition(x*Main.TILE_SIZE, y*Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());

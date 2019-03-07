@@ -22,6 +22,10 @@ public class Robot extends AbstractCollidableTile {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public int getRenderPriority() {
         return 2;
