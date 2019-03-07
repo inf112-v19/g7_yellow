@@ -41,6 +41,7 @@ public class Renderer {
      * @throws OutsideGridException
      */
     public void drawBoard() throws OutsideGridException {
+
         batch.begin();
         for(int x = 0; x < board.getWidth(); x++) {
             for(int y = 0; y < board.getHeight(); y++) {
@@ -50,31 +51,14 @@ public class Renderer {
                 Collections.sort(tiles);
 
                 for (IBoardTile t : tiles) {
-                    //System.out.println(t);
                     Sprite s = t.getSprite();
+                    System.out.println(s);
                     s.setPosition(x*Main.TILE_SIZE, y*Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());
                     s.draw(batch);
                 }
             }
-        }
-        batch.end();
-    }
-
-    public void drawPlayer() {
-        batch.begin();
-
-        for(Player p : players) {
-            int x = (int) p.getPos().x;
-            int y = (int) p.getPos().y;
-            int rotation = p.getRotation();
-
-
-            playerSprite.setPosition(x*Main.TILE_SIZE, y*Main.TILE_SIZE);
-            playerSprite.setOriginCenter();
-            playerSprite.setRotation(rotation);
-            playerSprite.draw(batch);
         }
         batch.end();
     }

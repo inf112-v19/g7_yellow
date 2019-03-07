@@ -2,6 +2,7 @@ package inf112.roborally.app.main;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import inf112.roborally.app.game.GameController;
 
 
 public class Main {
@@ -19,12 +20,13 @@ public class Main {
     public static GameState gameState = GameState.PLAYING;
 
     public static void main(String[] args) {
+        new GameController(2);
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 
         cfg.title = "RoboRally";
         cfg.width = WINDOW_WIDTH;
         cfg.height = WINDOW_HEIGHT;
 
-        new LwjglApplication(new MapLayout(GRID_WIDTH, GRID_HEIGHT), cfg);
+        new LwjglApplication(new MapLayout(), cfg);
     }
 }
