@@ -28,6 +28,21 @@ Dette fordi vi byggserveren vår klaget på at coverage-prosenten var ekstremt l
 Vi jobber som regel veldig bra når vi møtes, og vi møtes ca. 2 ganger i uken. Men vi har forbedringspotensiale når det kommer
 til å få ting gjort utenom møtetidene. 
 
-*
+* Sånn som det ligger an nå har Oskar veldig mange flere commits enn resten av teamet (resten av teamet ligger ganske jevnt).
+Ser vi på antall linjer så har resten av teamet bortsett fra Andrè tilnærmet eller flere linjer enn Oskar. Dette skyldes at 
+Oskar er vant til å jobbe med Git og commiter mest sannsynlig oftere enn resten av teamet. Årsaken til at Andrè har færre linjer 
+enn de andre er at han har ansvar for skriving av referater og obliger i tillegg til kodeoppgaver, så naturlig nok vil han ha litt færre linjer
+enn de andre på teamet.   
+
+* Alle våre referater ligger i meeting minutes. Referatene som er skrevet siden sist innlevering starter fra `20190212-0.md`
+til `20190207-0.md`
+
+* **Fobedringspunkter**:
+1. Effektivisere arbeidet, slik at ting blir gjort raskere, slik at vi slipper å føle at vi ligger bakpå. 
+
+2. Jobbe på større ting samtidig, så langt har vi alle hatt litt mindre oppgaver vi har jobbet på samtidig, noe
+som også har redusert fremgangen. 
+
+3. Opprettholde coveragen vi nå har klart å bygge opp, kan også forbedre den ytterligere. 
 
 ## Deloppgave 2: Krav
