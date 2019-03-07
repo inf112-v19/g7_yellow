@@ -46,3 +46,16 @@ som også har redusert fremgangen.
 3. Opprettholde coveragen vi nå har klart å bygge opp, kan også forbedre den ytterligere. 
 
 ## Deloppgave 2: Krav
+Det er et par av hovedkravene vi har begynt implementasjonen av:
+* Dele ut 9 kort: Vi har lagd en implementasjon av en kortstokk. Her kan vi trekke ut et tilfeldig kort.
+Dette skal vi bruke for å gi spilleren tilfeldige kort.
+* Velge ut 5 kort: Når vi har tidelt spillerne tilfeldige kort, må vi implementere funksjonalitet for å trekke
+ut 5 kort, for så å bruke dem til å programmere. 
+* Eksekvere program: Vi har laget funksjonalitet for å bevege og rotere spiller, så vi skal bruke dette
+til å eksekvere program. Da må vi samkjøre kort og spiller-funkjsonalitet.
+* Besøke flag: Vi har laget flagg, som har en ID. Nå må vi jobbe med å faktisk kunne besøke flaggene.
+For å få dette til, må vi jobbe en del med kollisjon, og oppdagelse av kollisjon. 
+* Robot utenfor brettet: Om robotten går utenfor brettet, skal den bli ødelagt. Vi har nesten implementasjonen
+for dette klar, vi mangler bare litt for å fullføre det.
+
+Resten av kravene ligger fortsatt litt langt framme, så har ikke begynt å tenke særlig på dem enda. 
