@@ -50,6 +50,7 @@ public class Renderer {
                 Collections.sort(tiles);
 
                 for (IBoardTile t : tiles) {
+                    //System.out.println(t);
                     Sprite s = t.getSprite();
                     s.setPosition(x*Main.TILE_SIZE, y*Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center

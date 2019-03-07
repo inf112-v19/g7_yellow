@@ -9,11 +9,12 @@ import inf112.roborally.app.editor.Console;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.player.Player;
+import inf112.roborally.app.tile.Robot;
 import inf112.roborally.app.tile.SpriteLoader;
 
 /**
  * Class used to render the Maps layout
- * for the main game
+ * for the main Game
  *
  * @author RakNoel
  * @version 1.0
@@ -34,6 +35,18 @@ public class MapLayout implements ApplicationListener {
     MapLayout(int width, int height){
         board = new Board(width, height);
         board.loadMap("map1");
+
+        //Test robots on map
+        Robot r = new Robot(90);
+        Robot r2 = new Robot(200);
+        r.setId(1);
+        r2.setId(2);
+        try {
+            board.getGrid().addTile(new Vector2(2,2), r);
+            board.getGrid().addTile(new Vector2(2,5), r2);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
         players = new Player[1];
         players[0] = new Player(1, new Vector2(5,5), 0);

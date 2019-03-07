@@ -29,7 +29,7 @@ public class SpriteLoader {
         Iterator<SpriteContainer> it = list.iterator();
         while(it.hasNext()){
             SpriteContainer sC = it.next();
-            if(t.toString().equals(sC.getName().substring(0, sC.getName().length() - 4) + id + ".png")) return sC.getSprite();
+            if((t.toString() + id).equals(sC.getName())) return sC.getSprite();
         }
         return MISSING_SPRITE;
     }

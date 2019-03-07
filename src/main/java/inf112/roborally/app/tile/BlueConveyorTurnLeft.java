@@ -21,7 +21,7 @@ public class BlueConveyorTurnLeft extends AbstractFunctionTile {
     @Override
     public void execute(Player player) {
 
-        // Does game logic handle the rotation at the start of the turn?
+        // Does Game logic handle the rotation at the start of the turn?
 
         player.push(rotation);
     }
