@@ -6,8 +6,7 @@ import static org.junit.Assert.*;
 
 public class FlagTest {
 
-    private Flag f1 = new Flag(0,1);
-    private Flag f3 = new Flag(0,3);
+    private Flag f1 = new Flag(0);
 
     @Test
     public void getRenderPriority() {
@@ -21,7 +20,6 @@ public class FlagTest {
 
     @Test
     public void getId() {
-        assertEquals(1, f1.getId());
-        assertEquals(3, f3.getId());
+        assertEquals(0, f1.getId());
     }
 }

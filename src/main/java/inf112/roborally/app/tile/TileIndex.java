@@ -6,7 +6,7 @@ public enum TileIndex {
     WALL(2, new Wall(0)),
     CORNER_WALL(3, new CornerWall(0)),
     REPAIR(4, new Repair(0)),
-    FLAG(5, new Flag(0,0)),
+    FLAG(5, new Flag(0)),
     ROTATE_LEFT(6, new RotateLeft(0)),
     ROTATE_RIGHT(7, new RotateRight(0)),
     YELLOW_CONVEYOR(8, new YellowConveyor(0)),

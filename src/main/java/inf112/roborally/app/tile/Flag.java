@@ -2,11 +2,10 @@ package inf112.roborally.app.tile;
 
 public class Flag extends AbstractFunctionTile {
 
-    private final int id;
+    private final int id = 0;
 
-    public Flag(int r, int id) {
+    public Flag(int r) {
         super(r);
-        this.id = id;
     }
 
     @Override
