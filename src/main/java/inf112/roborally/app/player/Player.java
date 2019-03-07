@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Player {
 
     private int id;
+    private int oldX, oldY;
     private int x, y;
     private int damage;
     private int rotation; //Using degrees
@@ -13,6 +14,8 @@ public class Player {
         this.id = id;
         this.x = (int) pos.x;
         this.y = (int) pos.y;
+        this.oldX = this.x;
+        this.oldY = this.y;
         this.damage = damage;
         rotation = 90;
     }
@@ -23,6 +26,8 @@ public class Player {
      * @param dist - max dist is 3
      */
     public void move(int dir, int dist){
+        oldX = x;
+        oldY = y;
         var sin = (int) Math.sin(Math.toRadians(rotation));
         var cos = (int) Math.cos(Math.toRadians(rotation));
         x += cos * dist * dir;
@@ -43,6 +48,8 @@ public class Player {
      * @param rotation Given "direction" to push the player in
      */
     public void push(int rotation) {
+        oldX = x;
+        oldY = y;
         var sin = (int) Math.sin(Math.toRadians(rotation));
         var cos = (int) Math.cos(Math.toRadians(rotation));
         x += cos;
@@ -54,6 +61,13 @@ public class Player {
      */
     public Vector2 getPos() {
         return new Vector2(x, y);
+    }
+
+    /**
+     * @return The players previous position
+     */
+    public Vector2 getOldPos() {
+        return new Vector2(oldX, oldY);
     }
 
     /**
@@ -75,11 +89,17 @@ public class Player {
      * damage
      */
     public void takenDamage(int damage){
-        this.damage += damage;
+        if(this.damage + damage > 0) this.damage += damage;
+        else this.damage = 0;
     }
 
     /**
      * For the Repair tile to easily reset a player's damage
      */
     public void resetDamage() { this.damage = 0; }
+
+    /**
+     * For the Repair tile to easily reset a player's damage
+     */
+    public int getId() { return this.id; }
 }

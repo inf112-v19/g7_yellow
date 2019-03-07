@@ -1,7 +1,10 @@
 package inf112.roborally.app;
 
 
+import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.tile.Hole;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class BoardTest {
 
-    private Board board = new Board(1,1);
+    private Board board = new Board(12,12);
 
     @Test
     public void getGridTest(){
@@ -19,8 +22,8 @@ public class BoardTest {
     }
 
     @Test
-    public void heightTestTrue(){
-        assertEquals(1,board.getHeight());
+    public void getHeightTestTrue(){
+        assertEquals(12,board.getHeight());
     }
 
     @Test
@@ -30,7 +33,7 @@ public class BoardTest {
 
     @Test
     public void widthTestTrue(){
-        assertEquals(1,board.getWidth());
+        assertEquals(12,board.getWidth());
     }
 
     @Test
@@ -38,5 +41,22 @@ public class BoardTest {
         assertNotEquals(2, board.getWidth());
     }
 
+    @Test
+    public void testLoadEmptyMapIsEmpty() throws OutsideGridException {
+        board.loadEmptyMap();
+        assertEquals(board.getGrid().getTiles(new Vector2(0,0)).size(), 0);
+    }
 
+    @Test
+    public void testLoadDefaultMapWorks() throws OutsideGridException {
+        board.loadDefaultMap();
+        assertNotEquals(board.getGrid().getTiles(new Vector2(0,0)).size(), 0);
+    }
+
+    @Test
+    public void testLoadMap1Works() throws OutsideGridException {
+        board.loadMap("map1");
+        assertEquals(board.getGrid().getTiles(new Vector2(0,0)).get(0).getClass(),
+                new Hole(90).getClass());
+    }
 }

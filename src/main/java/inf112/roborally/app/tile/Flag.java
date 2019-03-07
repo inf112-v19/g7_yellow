@@ -1,8 +1,8 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class Flag extends AbstractFunctionTile {
+
+    private final int id = 0;
 
     public Flag(int r) {
         super(r);
@@ -10,16 +10,22 @@ public class Flag extends AbstractFunctionTile {
 
     @Override
     public int getRenderPriority() {
-        return 1;
+        return 3;
     }
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'f';
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    /*
     @Override
-    public void execute(Player[] player) {
-
+    public void execute(Player player) {
+        // TODO: This needs to do stuff unless its handled by the game logic
     }
+    */
 }
