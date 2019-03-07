@@ -7,7 +7,6 @@ import inf112.roborally.app.main.Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.util.*;
