@@ -36,6 +36,7 @@ public class SpriteLoader {
 
     private void loadSprites() {
 
+        /*
         File folder = new File(RESOURCE_PATH + SPRITE_PATH);
         File[] listOfFiles = folder.listFiles();
 
@@ -47,6 +48,22 @@ public class SpriteLoader {
                 list.add(new SpriteContainer(sprite, listOfFiles[i].getName()));
             }
         }
+        */
+
+        Texture texture = new Texture(SPRITE_PATH + "Floor.png");
+        Sprite sprite = new Sprite(texture);
+        sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        list.add(new SpriteContainer(sprite, "Floor.png"));
+
+        texture = new Texture(SPRITE_PATH + "Hole.png");
+        sprite = new Sprite(texture);
+        sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        list.add(new SpriteContainer(sprite, "Hole.png"));
+
+        texture = new Texture(SPRITE_PATH + "Wall.png");
+        sprite = new Sprite(texture);
+        sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        list.add(new SpriteContainer(sprite, "Wall.png"));
 
         Texture img = new Texture(SPRITE_PATH + "MISSING_SPRITE.png");
         MISSING_SPRITE = new Sprite(img);
