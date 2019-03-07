@@ -57,5 +57,37 @@ til å eksekvere program. Da må vi samkjøre kort og spiller-funkjsonalitet.
 For å få dette til, må vi jobbe en del med kollisjon, og oppdagelse av kollisjon. 
 * Robot utenfor brettet: Om robotten går utenfor brettet, skal den bli ødelagt. Vi har nesten implementasjonen
 for dette klar, vi mangler bare litt for å fullføre det.
+* Mapeditor og konsoll: Dette var ikke et krav, men vi har laget en mapeditor og en konsoll for å gjøre jobben vår
+enklere. Vi slipper nå å manuelt kode et map, vi kan gjøre det med mapeditoren som gjør det mye enklere. 
 
 Resten av kravene ligger fortsatt litt langt framme, så har ikke begynt å tenke særlig på dem enda. 
+
+* Vi kommer til å prioritere kortene og spillogikk. Nærmere bestemt slik at man kan få sekvenser der 
+roboten styres etter kortene. Vi prioriterer også at `Player` kan samhandle med brettet. Dette vil vi fokusere
+på den nærmeste tiden. 
+
+* **Akseptansekriteriene** er at et krav er oppfyllt når vi mener at prosjektet møter kundens spesifikasjoner.
+Derfor er det ekstra viktig at vi forstår hva kunden ønsker, slik at vi kan verifisere at prosjektet vårt *faktisk*
+gjør det slik kunden ønsket. 
+
+**Krav vi har prioritert** 
+* Høy coverage 
+* Kodekvalitet (tilfredstille byggserver)
+* Prøve å få alle tiles'ene til å tegnes på brettet (fungerende tiles)
+* Mapeditor - som skal gjøre det enklere å generere et brett 
+* Grafikk
+
+**Hvor langt har vi kommet** 
+* Vi har en player som kan bevege seg på et brett. Den kan også rotere. Vi har implementert en mapeditor som gjør
+det enklere for oss. Vi har også fått inn masse grafikk, så det begynner å ligne på et spill. Vi har begynt å implemntere 
+kortene, vi har nå en cardpile som kan legge til elementer og trekke dem ut tilfeldig av en liste.
+
+**Hva har vi gjort siden sist gang** 
+* Spillet i seg selv ligner på det vi leverte sist, men vi har lagt til veldig mye underliggende som ikke synees. 
+For eksempel har vi ikke lenger en grå firkant som beveger seg på et rutenett, men nå har vi faktisk en grafikk som ser 
+bra ut. Mapeditoren er en egenskap vi har fått implementert, og den kommer til å være veldig nyttig for oss når det skal 
+lages nye maps. Vi har skrevet ***mange*** tester, det er her det meste av vårt fokus har vært og det har selvfølgelig
+stoppet litt av fremgangen. Vi har fikset problemer vi hadde i libgdx (fikse sprites etc.). Vi har hatt veldig mye problemløsing
+og disse finner ser man i pages på wikien vår: [Yellowbots wiki](https://github.com/inf112-v19/YellowBots/wiki)   
+ 
+
