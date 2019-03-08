@@ -47,18 +47,20 @@ som også har redusert fremgangen.
 
 ## Deloppgave 2: Krav
 Det er et par av hovedkravene vi har begynt implementasjonen av:
-* Dele ut 9 kort: Vi har lagd en implementasjon av en kortstokk. Her kan vi trekke ut et tilfeldig kort.
-Dette skal vi bruke for å gi spilleren tilfeldige kort.
+* Dele ut 9 kort: Vi har lagd en implementasjon av logikken til en kortstokk. Her kan vi trekke ut et tilfeldig kort.
+Dette skal vi bruke for å gi spilleren tilfeldige kort, og på en enkel og ryddig måte.
 * Velge ut 5 kort: Når vi har tidelt spillerne tilfeldige kort, må vi implementere funksjonalitet for å trekke
 ut 5 kort, for så å bruke dem til å programmere. 
 * Eksekvere program: Vi har laget funksjonalitet for å bevege og rotere spiller, så vi skal bruke dette
-til å eksekvere program. Da må vi samkjøre kort og spiller-funkjsonalitet.
+til å eksekvere program. Da må vi samkjøre kort og spiller-funkjsonalitet. Vi har til nå laget en bevegelse på "spiller"
+brikken som roterer og beveger seg frem og tilbake i henhold til hvordan spillets logikk vil fungere senere.
 * Besøke flag: Vi har laget flagg, som har en ID. Nå må vi jobbe med å faktisk kunne besøke flaggene.
 For å få dette til, må vi jobbe en del med kollisjon, og oppdagelse av kollisjon. 
 * Robot utenfor brettet: Om robotten går utenfor brettet, skal den bli ødelagt. Vi har nesten implementasjonen
 for dette klar, vi mangler bare litt for å fullføre det.
 * Mapeditor og konsoll: Dette var ikke et krav, men vi har laget en mapeditor og en konsoll for å gjøre jobben vår
-enklere. Vi slipper nå å manuelt kode et map, vi kan gjøre det med mapeditoren som gjør det mye enklere. 
+enklere. Vi slipper nå å manuelt kode et map, vi kan gjøre det med mapeditoren som gjør det mye enklere. Både for å lage
+alle maps til spillet, men vil hjelpe mye til utvikling og testing. 
 *Resten av kravene ligger fortsatt litt langt frem i tid, så vi har ikke begynt å tenke særlig på dem enda.* 
 
 * Vi kommer til å prioritere kortene og spillogikk. Nærmere bestemt slik at man kan få sekvenser der 
@@ -70,16 +72,18 @@ Derfor er det ekstra viktig at vi forstår hva kunden ønsker, slik at vi kan ve
 gjør det slik kunden ønsket. 
 
 **Krav vi har prioritert** 
-* Høy coverage 
-* Kodekvalitet (tilfredstille byggserver)
+* Høy coverage
+* Kodekvalitet og Lint i henhold til standarder
 * Prøve å få alle tiles'ene til å tegnes på brettet (fungerende tiles)
-* Mapeditor - som skal gjøre det enklere å generere et brett 
+* Mapeditor - som skal gjøre det enklere å generere et brett
+* Developer console - som kan hjelpe oss til brukertesting og utvikling 
 * Grafikk
 
 **Hvor langt har vi kommet** 
-* Vi har en player som kan bevege seg på et brett. Den kan også rotere. Vi har implementert en mapeditor som gjør
+* Vi har en player som kan bevege seg på et brett. Den kan også rotere. Vi har implementert en mapeditor og console som gjør
 det enklere for oss. Vi har også fått inn masse grafikk, så det begynner å ligne på et spill. Vi har begynt å implemntere 
-kortene, vi har nå en cardpile som kan legge til elementer og trekke dem ut tilfeldig av en liste.
+kortene, vi har nå en cardpile som kan legge til elementer og trekke dem ut tilfeldig av en liste. Vi har også oppnådd en
+høy kodestandard og har masse tester på plass, noe som trolig vil gjøre videre utvikling mye raskere og forhindre flere feil.
 
 **Hva har vi gjort siden sist gang** 
 * Spillet i seg selv ligner på det vi leverte sist, men vi har lagt til veldig mye underliggende som ikke synes. 
@@ -89,6 +93,26 @@ lages nye maps. Vi har skrevet ***mange*** tester, det er her det meste av vårt
 stoppet litt av fremgangen. Vi har fikset problemer vi hadde i libgdx (fikse sprites etc.). Vi har hatt veldig mye problemløsing
 og disse finner ser man i pages på wikien vår: [Yellowbots wiki](https://github.com/inf112-v19/YellowBots/wiki)   
  
-## Deloppgave 4: Kode 
+## Deloppgave 4:
+* For instrukser til bygging av prosjektet se [GitHub-Readme](https://github.com/inf112-v19/YellowBots#how-to-buildcompile). 
+*Obs: krever Java 11*
+* Vi har foreløpig bare Unit-tester. Disse kjøres ofte, og både eksternt og lokalt. Vi ser nå mot slutten at vi ikke
+har vert gode nok på brukertester så det jobber fortløpende med en rutine for dette før nye releaser. Se 
+[Issues](https://github.com/inf112-v19/YellowBots/wiki/MissingJarTesting) for mer info om dette. For live mengde vellykkede tester
+se [![Tests](https://img.shields.io/jenkins/t/http/build.raknoel.no/job/RoboRally.svg?style=flat-square&logo=jekyll)](http://build.raknoel.no/job/RoboRally/lastCompletedBuild/testReport/)
+* For informasjon til vårt bygge-system se [Jenkins-byggeserver](https://github.com/inf112-v19/YellowBots/wiki/ByggeServer)
+på wiki 
 
+## Klasse-diagram
+![Klasse-diagram](ClassDiagram20190308.png "Klasse-diagram per 08/03/2019")
 
+## Annet skryt og magi
+Vi har opplevd noen kjedelige problemer/situasjoner under utviklingen av produktet. Noen "hikker" er nesten forventet og
+ikke nødvendigvis en negativ ting i seg selv. Det viktige er hvordan vi som team kan løse problemene etterhvert som de
+oppstår. Vi har dermed begynt å dokumentere alle de mer "alvorlige" hendelsene i vår wiki i håp om å dele kunnskapen,
+og kanskje lære av hverandres feil. Alle disse kan finnes på
+[Issues](https://github.com/inf112-v19/YellowBots/wiki/Issues) siden i wikien vår.
+
+Vi har ellers begynt å dokumentere litt mer om hvordan vår gruppe jobber, dette slik at alle kan finne informasjon selv
+uten å måtte spørre. Dette kan bedre missforståelser, og åpner forsåvidt for at vi kan få nye medlemmer. Alle sidene
+under vår [Wiki](https://github.com/inf112-v19/YellowBots/wiki/ByggeServer) er åpne og under konstant utvikling.
