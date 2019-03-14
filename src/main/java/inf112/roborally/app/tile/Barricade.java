@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class Barricade extends AbstractCollidableTile {
 
     public Barricade(int r) {
@@ -19,12 +17,14 @@ public class Barricade extends AbstractCollidableTile {
     }
 
     @Override
-    public void execute(Player player) {
+    public void execute(int pId, int dir, int dist) {
+        /*
         // TODO: Figure out what the barricade does and make that happen
         var sin = (int) Math.sin(Math.toRadians(rotation));
         var cos = (int) Math.cos(Math.toRadians(rotation));
-        if(player.getPos().x - player.getOldPos().x == -cos && player.getPos().y - player.getOldPos().y == -sin) {
-            player.push(rotation);
+        if(robot.getPos().x - robot.getOldPos().x == -cos && robot.getPos().y - robot.getOldPos().y == -sin) {
+            robot.push(rotation);
         }
+        */
     }
 }

@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class CornerWall extends AbstractCollidableTile {
 
     public CornerWall(int r) {
@@ -20,7 +18,7 @@ public class CornerWall extends AbstractCollidableTile {
 
 
     @Override
-    public void execute(Player player) {
+    public void execute(int pId, int dir, int dist) {
         // TODO: Make sure this works properly
         int rot2;
         if(rotation == 0) rot2 = 270;
@@ -31,13 +29,16 @@ public class CornerWall extends AbstractCollidableTile {
         var sin2 = (int) Math.sin(Math.toRadians(rot2));
         var cos2 = (int) Math.cos(Math.toRadians(rot2));
 
-        if(player.getPos().x - player.getOldPos().x == -cos1
-                && player.getPos().y - player.getOldPos().y == -sin1) {
-            player.push(rotation);
+        /*
 
-        } else if (player.getPos().x - player.getOldPos().x == -cos2
-                && player.getPos().y - player.getOldPos().y == -sin2) {
-            player.push(rot2);
+        if(pId.getPos().x - pId.getOldPos().x == -cos1
+                && pId.getPos().y - pId.getOldPos().y == -sin1) {
+            pId.push(rotation);
+
+        } else if (pId.getPos().x - pId.getOldPos().x == -cos2
+                && pId.getPos().y - pId.getOldPos().y == -sin2) {
+            pId.push(rot2);
         }
+        */
     }
 }

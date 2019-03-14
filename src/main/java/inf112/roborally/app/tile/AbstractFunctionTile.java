@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 /**
  * Abstract class for objects that has a function
  *
@@ -15,7 +13,7 @@ public abstract class AbstractFunctionTile extends AbstractTile {
         super(r);
     }
 
-    public void execute(Player player) {
+    public void execute(Robot player) {
         //This is used to perform a method on the players that are standing on it at the end of the turn
     }
 }

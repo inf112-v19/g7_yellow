@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class Hole extends AbstractCollidableTile {
 
     public Hole(int r) {
@@ -19,7 +17,6 @@ public class Hole extends AbstractCollidableTile {
     }
 
     @Override
-    public void execute(Player player) {
-        player.takenDamage(10);
+    public void execute(int pId, int dir, int dist) {
     }
 }

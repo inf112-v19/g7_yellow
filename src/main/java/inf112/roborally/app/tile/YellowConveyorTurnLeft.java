@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class YellowConveyorTurnLeft extends AbstractFunctionTile {
 
     public YellowConveyorTurnLeft(int r) {
@@ -19,7 +17,7 @@ public class YellowConveyorTurnLeft extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
+    public void execute(Robot player) {
 
         // Does GameController logic handle the rotation at the start of the turn?
 

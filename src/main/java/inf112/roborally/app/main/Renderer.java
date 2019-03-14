@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
-import inf112.roborally.app.player.Player;
+import inf112.roborally.app.player.Robot;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileIndex;
 
@@ -21,16 +21,16 @@ public class Renderer {
     private ShapeRenderer render;
     private SpriteBatch batch;
     private Board board;
-    private Player[] players;
+    private Robot[] players;
     private Sprite playerSprite;
 
-    public Renderer(Board board, Player[] players) {
-        this.players = players;
+    public Renderer(Board board, Robot[] robots) {
+        this.players = robots;
         this.board   = board;
         render       = new ShapeRenderer();
         batch        = new SpriteBatch();
 
-        //TODO: Player textures are in the Robot classes, so this is just temporary.
+        //TODO: Robot textures are in the Robot classes, so this is just temporary.
         Texture playerTexture = new Texture("inf112/roborally/app/tile/Robot1.png");
         playerSprite = new Sprite(playerTexture);
         playerSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);

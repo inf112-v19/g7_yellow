@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class YellowConveyorTurnRight extends AbstractFunctionTile {
 
     /**
@@ -35,10 +33,7 @@ public class YellowConveyorTurnRight extends AbstractFunctionTile {
      * @param player player to act upon
      */
     @Override
-    public void execute(Player player) {
-
-        // Does GameController logic handle the rotation at the start of the turn?
-
+    public void execute(Robot player) {
         player.push(rotation);
     }
 }

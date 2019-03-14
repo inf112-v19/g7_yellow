@@ -4,16 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.Console;
-import inf112.roborally.app.editor.EditorInput;
-import inf112.roborally.app.player.Player;
+import inf112.roborally.app.player.Robot;
 
 class InputManager {
 
-    private Player player;
+    private Robot player;
     private Board board;
 
-    InputManager(Player player, Board board) {
-        this.player = player;
+    InputManager(Robot robot, Board board) {
+        this.player = robot;
         this.board = board;
     }
 

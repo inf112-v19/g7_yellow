@@ -1,12 +1,15 @@
 package inf112.roborally.app.main;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.game.GameController;
 
 
 public class Main {
 
+    public static int AMOUNT_OF_PLAYERS = 4;
 
     public static final int GRID_WIDTH  = 12;
     public static final int GRID_HEIGHT = 12;
@@ -19,8 +22,10 @@ public class Main {
 
     public static GameState gameState = GameState.PLAYING;
 
-    public static void main(String[] args) {
-        new GameController(2);
+    public static void main(String[] args) throws OutsideGridException {
+        try {
+            new GameController(1);
+        } catch (OutsideGridException e) { e.printStackTrace(); }
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 
         cfg.title = "RoboRally";
@@ -28,5 +33,14 @@ public class Main {
         cfg.height = WINDOW_HEIGHT;
 
         new LwjglApplication(new MapLayout(), cfg);
+
+        GameController.moveRobot(1,1,1);
+        GameController.moveRobot(1,1,1);
+        GameController.moveRobot(1,1,1);
+        GameController.rotateRobot(1,1,1);
+        GameController.moveRobot(1,1,1);
+        GameController.rotateRobot(1,-1,1);
+        GameController.moveRobot(1,1,1);
+        GameController.moveRobot(1,1,1);
     }
 }

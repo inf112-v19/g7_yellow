@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class LaserStart1 extends AbstractFunctionTile {
 
     public LaserStart1(int r) {
@@ -19,8 +17,6 @@ public class LaserStart1 extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
-        // TODO: Make sure this does what it is supposed to do
-        player.takenDamage(1);
+    public void execute(Robot player) {
     }
 }

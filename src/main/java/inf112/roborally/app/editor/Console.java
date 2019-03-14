@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
@@ -24,6 +25,7 @@ public class Console implements Screen {
         stage = new Stage();
 
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
+        Button.ButtonStyle s = new Button.ButtonStyle();
         BitmapFont font = new BitmapFont();
         font.getData().setScale(2);
         style.font = font;
