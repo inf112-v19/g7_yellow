@@ -1,5 +1,6 @@
 package inf112.roborally.app.tile;
 
+import inf112.roborally.app.tile.tiles.Flag;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

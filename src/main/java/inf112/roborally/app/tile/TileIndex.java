@@ -1,5 +1,7 @@
 package inf112.roborally.app.tile;
 
+import inf112.roborally.app.tile.tiles.*;
+
 public enum TileIndex {
     FLOOR(0, new Floor(0)),
     HOLE(1, new Hole(0)),
@@ -29,6 +31,10 @@ public enum TileIndex {
             if(t.index == i)
                 return t.tile;
         }
+        return null;
+    }
+
+    public static IBoardTile charToTile(char type){
         return null;
     }
 }

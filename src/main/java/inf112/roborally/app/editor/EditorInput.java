@@ -9,6 +9,7 @@ import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.*;
+import inf112.roborally.app.tile.tiles.Hole;
 
 public class EditorInput {
 

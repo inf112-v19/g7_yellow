@@ -2,6 +2,7 @@ package inf112.roborally.app.tile;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
+import inf112.roborally.app.tile.tiles.BlueConveyorTurnLeft;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

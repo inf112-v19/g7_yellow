@@ -2,12 +2,12 @@ package inf112.roborally.app.tile;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.YellowConveyor;
-import inf112.roborally.app.tile.YellowConveyor2in1outLeft;
-import inf112.roborally.app.tile.YellowConveyor2in1outRight;
-import inf112.roborally.app.tile.YellowConveyor2in1outStraight;
-import inf112.roborally.app.tile.YellowConveyorTurnLeft;
-import inf112.roborally.app.tile.YellowConveyorTurnRight;
+import inf112.roborally.app.tile.tiles.YellowConveyor;
+import inf112.roborally.app.tile.tiles.YellowConveyor2in1outLeft;
+import inf112.roborally.app.tile.tiles.YellowConveyor2in1outRight;
+import inf112.roborally.app.tile.tiles.YellowConveyor2in1outStraight;
+import inf112.roborally.app.tile.tiles.YellowConveyorTurnLeft;
+import inf112.roborally.app.tile.tiles.YellowConveyorTurnRight;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -3,10 +3,11 @@ package inf112.roborally.app.board;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.Floor;
-import inf112.roborally.app.tile.Hole;
+import inf112.roborally.app.tile.TileFactory;
+import inf112.roborally.app.tile.tiles.Floor;
+import inf112.roborally.app.tile.tiles.Hole;
 import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.Wall;
+import inf112.roborally.app.tile.tiles.Wall;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -17,11 +18,13 @@ public class Board {
 
     private Grid grid;
     private int width, height;
+    private TileFactory tileFactory;
 
     public Board(int width, int height) {
         grid = new Grid(width, height);
         this.width = width;
         this.height = height;
+        this.tileFactory = new TileFactory();
     }
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol

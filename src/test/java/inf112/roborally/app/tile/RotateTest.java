@@ -2,8 +2,8 @@ package inf112.roborally.app.tile;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.RotateLeft;
-import inf112.roborally.app.tile.RotateRight;
+import inf112.roborally.app.tile.tiles.RotateLeft;
+import inf112.roborally.app.tile.tiles.RotateRight;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
