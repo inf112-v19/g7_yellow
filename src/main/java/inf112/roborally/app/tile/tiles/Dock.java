@@ -9,6 +9,12 @@ public class Dock extends AbstractFunctionTile {
         this.id = id;
     }
 
+    //REQUIRED by Dynamic factory
+    public Dock(int r) {
+        super(r);
+        this.id = 0;
+    }
+
     public int getId(){
         return this.id;
     }

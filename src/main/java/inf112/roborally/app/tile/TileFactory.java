@@ -23,6 +23,7 @@ public class TileFactory {
 
     private static HashMap<Character, Class<? extends IBoardTile>> characterToClass = null;
     private final String TILE_PATH = this.getClass().getPackageName().replace('.', '/') + "/tiles/";
+    private final String TILES_PACKAGE = this.getClass().getPackageName() + ".tiles";
 
     public TileFactory() {
         if (characterToClass == null) {
@@ -75,11 +76,13 @@ public class TileFactory {
 
             } else {
                 for (File f : new File(uri).listFiles())
-                    if (f.isFile() && f.toString().contains(".class"))
+                    if (f.isFile() && f.toString().contains(".class") && !f.toString().contains("Abstract"))
                         try {
-                            System.out.println(f);
-                            var name = f.getName().split(".")[0];
-                            IBoardTile obj = (IBoardTile) Class.forName(name).getConstructor().newInstance();
+                            String name = f.getName().replace(".class", "");
+                            name = TILES_PACKAGE + "." + name;
+                            Object[] prms = {0};
+                            Class[] types = {Integer.TYPE};
+                            IBoardTile obj = (IBoardTile) Class.forName(name).getConstructor(types).newInstance(prms);
                             characterToClass.put(obj.getSymbol(), obj.getClass());
                         } catch (Exception e) {
                             e.printStackTrace();
