@@ -41,6 +41,17 @@ public class Main {
         GameController.moveRobot(1,1,1);
         GameController.rotateRobot(1,-1,1);
         GameController.moveRobot(1,1,1);
+        GameController.rotateRobot(1,-1,1);
         GameController.moveRobot(1,1,1);
+        GameController.rotateRobot(1,-1,1);
+        GameController.moveRobot(1,1,1);
+        GameController.moveRobot(1,-1,1);
+        GameController.rotateRobot(1,-1,1);
+        GameController.rotateRobot(1,-1,1);
+        GameController.moveRobot(1,-1,1);
+        GameController.moveRobot(1,-1,1);
+        GameController.moveRobot(1,-1,1);
+        GameController.moveRobot(1,-1,1);
+
     }
 }

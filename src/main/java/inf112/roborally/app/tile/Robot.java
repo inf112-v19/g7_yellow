@@ -19,6 +19,16 @@ public class Robot extends AbstractCollidableTile {
         super(r);
     }
 
+    @Override
+    public boolean canMoveIntoFrom(int rotation) {
+        return false;
+    }
+
+    @Override
+    public boolean canMoveOutFrom(int rotation) {
+        return false;
+    }
+
     public void setId(int id){
         this.id = id;
     }

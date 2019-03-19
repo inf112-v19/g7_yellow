@@ -3,10 +3,7 @@ package inf112.roborally.app.board;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.Floor;
-import inf112.roborally.app.tile.Hole;
-import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.Wall;
+import inf112.roborally.app.tile.*;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -58,6 +55,9 @@ public class Board {
                         break;
                     case ('W'):
                         currentTile = new Wall(rot);
+                        break;
+                    case ('l'):
+                        currentTile = new CornerWall(rot);
                         break;
                     case ('-'):
                         count++;

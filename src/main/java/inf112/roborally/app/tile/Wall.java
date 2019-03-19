@@ -1,8 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.exceptions.OutsideGridException;
-import inf112.roborally.app.game.GameController;
-
 public class Wall extends AbstractCollidableTile {
 
     public Wall(int r) {
@@ -20,9 +17,15 @@ public class Wall extends AbstractCollidableTile {
     }
 
     @Override
-    public void execute(int pId, int dir, int dist) {
-        try {
-            GameController.pushRobot(pId, -dir, dist);
-        } catch (OutsideGridException e) {e.printStackTrace();}
+    public boolean canMoveIntoFrom(int rotation) {
+        if(rotation - this.rotation == 180 || this.rotation - rotation == 180){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean canMoveOutFrom(int rotation) {
+        return !(this.rotation == rotation);
     }
 }

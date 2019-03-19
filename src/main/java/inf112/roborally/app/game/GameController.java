@@ -68,19 +68,36 @@ public class GameController {
         //Find the old and new position of the robot
         Vector2 oldPos = findRobot(r);
         Vector2 newPos = r.move(oldPos, dir, dist);
+        System.out.println(newPos);
 
-        board.getGrid().removeTile(oldPos, r);
-        board.getGrid().addTile(newPos, r);
+        //Get all the tiles on old position, and check for collidable tiles.
+        //If collidable tile is found, act immediately.
+        LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(oldPos);
+        for(IBoardTile t : tilesOnOldPos) {
+            if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
+                if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))){
+                    System.out.println("broke");
+                    break;
+                }
+                System.out.println(t.toString());
+                return;
+            }
+        }
 
         //Get all the tiles on new position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
         for(IBoardTile t : tilesOnNewPos) {
             if (t instanceof AbstractCollidableTile) {
-                ((AbstractCollidableTile) t).execute(pId, dir, dist);
+                if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))){
+                    break;
+                }
                 return;
             }
         }
+
+        board.getGrid().removeTile(oldPos, r);
+        board.getGrid().addTile(newPos, r);
     }
 
     public static void pushRobot(int pId, int dir, int dist) throws OutsideGridException {
@@ -120,5 +137,12 @@ public class GameController {
                 Thread.sleep(200);
             } catch (Exception e) { e.printStackTrace(); }
         }
+    }
+
+    private static int getWorldRotation(Vector2 v1, Vector2 v2){
+        Vector2 unitVec = new Vector2(v2.x, v2.y).sub(v1);
+        if(unitVec.x != 0){
+            return (90-(int)unitVec.x*90);
+        } else return (180-(int)unitVec.y*90);
     }
 }

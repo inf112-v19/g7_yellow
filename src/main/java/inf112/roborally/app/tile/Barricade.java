@@ -17,7 +17,7 @@ public class Barricade extends AbstractCollidableTile {
     }
 
     @Override
-    public void execute(int pId, int dir, int dist) {
+    public boolean canMoveIntoFrom(int rotation) {
         /*
         // TODO: Figure out what the barricade does and make that happen
         var sin = (int) Math.sin(Math.toRadians(rotation));
@@ -26,5 +26,11 @@ public class Barricade extends AbstractCollidableTile {
             robot.push(rotation);
         }
         */
+        return true;
+    }
+
+    @Override
+    public boolean canMoveOutFrom(int rotation) {
+        return false;
     }
 }

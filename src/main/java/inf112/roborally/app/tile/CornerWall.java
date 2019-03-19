@@ -13,32 +13,22 @@ public class CornerWall extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'C';
+        return 'l';
     }
 
+    @Override
+    public boolean canMoveIntoFrom(int rotation) {
+        if(rotation - this.rotation == 180 || this.rotation - rotation == 180
+        || rotation - this.rotation == 90 || (rotation == 0 && this.rotation == 270)){
+            return false;
+        }
+        return true;
+    }
 
     @Override
-    public void execute(int pId, int dir, int dist) {
-        // TODO: Make sure this works properly
-        int rot2;
-        if(rotation == 0) rot2 = 270;
-        else rot2 = rotation-90;
-
-        var sin1 = (int) Math.sin(Math.toRadians(rotation));
-        var cos1 = (int) Math.cos(Math.toRadians(rotation));
-        var sin2 = (int) Math.sin(Math.toRadians(rot2));
-        var cos2 = (int) Math.cos(Math.toRadians(rot2));
-
-        /*
-
-        if(pId.getPos().x - pId.getOldPos().x == -cos1
-                && pId.getPos().y - pId.getOldPos().y == -sin1) {
-            pId.push(rotation);
-
-        } else if (pId.getPos().x - pId.getOldPos().x == -cos2
-                && pId.getPos().y - pId.getOldPos().y == -sin2) {
-            pId.push(rot2);
-        }
-        */
+    public boolean canMoveOutFrom(int rotation) {
+        if(rotation == this.rotation || rotation == this.rotation-90 ||(rotation == 270 && this.rotation == 0))
+            return false;
+        return true;
     }
 }

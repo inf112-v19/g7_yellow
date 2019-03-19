@@ -13,7 +13,6 @@ public abstract class AbstractCollidableTile extends AbstractTile{
         super(r);
     }
 
-    public void execute(int pId, int dir, int dist) {
-        //This is used to perform a method on the players that hit it
-    }
+    public abstract boolean canMoveIntoFrom(int rotation);
+    public abstract boolean canMoveOutFrom(int rotation);
 }
