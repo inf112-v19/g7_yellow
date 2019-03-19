@@ -1,5 +1,7 @@
 package inf112.roborally.app.tile;
 
+import inf112.roborally.app.exceptions.DuplicateTileSymbolCollisionException;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -36,11 +38,11 @@ public class TileFactory {
         characterToClass.put(product, description);
     }
 
-    public IBoardTile produce(char ch) throws ClassNotFoundException {
+    public IBoardTile produce(char character, Class[] parameterTypes, Object[] parameters) throws ClassNotFoundException {
         try {
-            return characterToClass.get(ch).getConstructor().newInstance();
+            return characterToClass.get(character).getConstructor(parameterTypes).newInstance(parameters);
         } catch (Exception e) {
-            throw new ClassNotFoundException("Class was not found for character: " + ch);
+            throw new ClassNotFoundException("Class or constructor was not found for character: " + character);
         }
     }
 
@@ -83,7 +85,15 @@ public class TileFactory {
                             Object[] prms = {0};
                             Class[] types = {Integer.TYPE};
                             IBoardTile obj = (IBoardTile) Class.forName(name).getConstructor(types).newInstance(prms);
-                            characterToClass.put(obj.getSymbol(), obj.getClass());
+                            var symbol = obj.getSymbol();
+                            if (characterToClass.containsKey(symbol))
+                                throw new DuplicateTileSymbolCollisionException(
+                                        symbol,
+                                        characterToClass.get(symbol),
+                                        obj.getClass()
+                                );
+
+                            characterToClass.put(symbol, obj.getClass());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
