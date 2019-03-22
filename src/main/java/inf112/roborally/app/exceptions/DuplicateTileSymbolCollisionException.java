@@ -29,13 +29,25 @@ public class DuplicateTileSymbolCollisionException extends Exception {
         this.message = String.format(
                 "Duplicate tile symbol '%s' from colliding class: %s onto existing class: %s",
                 symbol,
-                existing.toString(),
-                colliding.toString()
+                colliding.toString(),
+                existing.toString()
         );
     }
 
     @Override
     public String getMessage() {
         return message;
+    }
+
+    public Class<? extends IBoardTile> getColliding() {
+        return colliding;
+    }
+
+    public Class<? extends IBoardTile> getExisting() {
+        return existing;
+    }
+
+    public char getSymbol() {
+        return symbol;
     }
 }
