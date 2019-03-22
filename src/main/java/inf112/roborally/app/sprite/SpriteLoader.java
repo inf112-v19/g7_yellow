@@ -1,9 +1,11 @@
-package inf112.roborally.app.tile;
+package inf112.roborally.app.sprite;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import inf112.roborally.app.main.Main;
+import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.TileFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +20,7 @@ import static inf112.roborally.app.helpers.FileLocationHelper.isJar;
 
 public class SpriteLoader {
 
-    private final String SPRITE_PATH = this.getClass().getPackageName().replace('.', '/') + '/';
+    private final String SPRITE_PATH = TileFactory.class.getPackageName().replace('.', '/') + '/';
     private static Sprite MISSING_SPRITE;
 
     private static LinkedList<SpriteContainer> list = new LinkedList<>();

@@ -1,4 +1,4 @@
-package inf112.roborally.app.tile;
+package inf112.roborally.app.sprite;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
