@@ -24,7 +24,7 @@ public class Board {
         grid = new Grid(width, height);
         this.width = width;
         this.height = height;
-        this.tileFactory = new TileFactory();
+        this.tileFactory = TileFactory.getInstance();
     }
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol

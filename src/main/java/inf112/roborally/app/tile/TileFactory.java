@@ -15,7 +15,9 @@ import java.util.jar.JarFile;
 
 /**
  * Factory to produce new tiles from its given
- * type
+ * type. This will only need to be loaded once during the entire
+ * program, and is therefore a singleton to prevent unnecessary
+ * cycles.
  *
  * @author RakNoel
  * @version 1.0
@@ -23,19 +25,21 @@ import java.util.jar.JarFile;
  */
 public class TileFactory {
 
-    private static HashMap<Character, Class<? extends IBoardTile>> characterToClass = null;
+    private static TileFactory singletonInstance;
+
     private final String TILE_PATH = this.getClass().getPackageName().replace('.', '/') + "/tiles/";
+    private HashMap<Character, Class<? extends IBoardTile>> characterToClass;
     private final String TILES_PACKAGE = this.getClass().getPackageName() + ".tiles";
 
-    public TileFactory() {
-        if (characterToClass == null) {
+    private TileFactory() {
             characterToClass = new HashMap<>();
             mapAllTiles();
-        }
     }
 
-    private void put(char product, Class<IBoardTile> description) {
-        characterToClass.put(product, description);
+    public synchronized static TileFactory getInstance(){
+        if (singletonInstance == null)
+            singletonInstance = new TileFactory();
+        return singletonInstance;
     }
 
     public IBoardTile produce(char character, Class[] parameterTypes, Object[] parameters) throws ClassNotFoundException {
