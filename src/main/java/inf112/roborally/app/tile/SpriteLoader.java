@@ -8,10 +8,13 @@ import inf112.roborally.app.main.Main;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.util.*;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+
+import static inf112.roborally.app.helpers.FileLocationHelper.getJarFileList;
+import static inf112.roborally.app.helpers.FileLocationHelper.isJar;
 
 public class SpriteLoader {
 
@@ -42,35 +45,20 @@ public class SpriteLoader {
     private void loadSprites() {
 
         try {
-            var uri = this.getClass().getClassLoader().getResource(SPRITE_PATH).toURI();
+            URL url = this.getClass().getClassLoader().getResource(SPRITE_PATH);
+            assert url != null;
 
-            //TEST TO SEE IF INSIDE JAR
-            if (uri.toURL().getProtocol().equals("jar")) {
-                String jarPath = uri.toString().substring(9, uri.toString().indexOf("!")); //strip out only the JAR file
-                JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
-
-                Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
-                Set<String> result = new HashSet<>();
-
-                //Add all files to set as to remove dupes
-                entries.asIterator().forEachRemaining(x -> {
-                    if (x.toString().matches("inf112/roborally/app/tile/{1}.*\\.png")) {
-                        result.add(x.getName());
-                    }
-                });
-
-                //Foreach file
-                result.forEach(x -> {
-                    Texture texture = new Texture(x);
-                    Sprite sprite = new Sprite(texture);
-                    sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
-                    var hold = x.split("/");
-                    list.add(new SpriteContainer(sprite, hold[hold.length - 1]));
-                });
-
-            } else {
-                File[] listOfFiles = new File(uri).listFiles();
-                for (File f : listOfFiles)
+            if (isJar(url))
+                getJarFileList(url, "inf112/roborally/app/tile/{1}.*\\.png")
+                        .forEach(x -> {
+                            Texture texture = new Texture(x);
+                            Sprite sprite = new Sprite(texture);
+                            sprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+                            var hold = x.split("/");
+                            list.add(new SpriteContainer(sprite, hold[hold.length - 1]));
+                        });
+            else {
+                for (File f : Objects.requireNonNull(new File(url.toURI()).listFiles()))
                     if (f.isFile() && f.toString().contains(".png")) {
                         Texture texture = new Texture(new FileHandle(f));
                         Sprite sprite = new Sprite(texture);

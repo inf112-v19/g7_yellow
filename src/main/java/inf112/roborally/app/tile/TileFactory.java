@@ -5,13 +5,12 @@ import inf112.roborally.app.exceptions.DuplicateTileSymbolCollisionException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.util.Enumeration;
+import java.net.URL;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
+import java.util.Objects;
+
+import static inf112.roborally.app.helpers.FileLocationHelper.getJarFileList;
+import static inf112.roborally.app.helpers.FileLocationHelper.isJar;
 
 /**
  * Factory to produce new tiles from its given
@@ -32,11 +31,11 @@ public class TileFactory {
     private final String TILES_PACKAGE = this.getClass().getPackageName() + ".tiles";
 
     private TileFactory() {
-            characterToClass = new HashMap<>();
-            mapAllTiles();
+        characterToClass = new HashMap<>();
+        mapAllTiles();
     }
 
-    public synchronized static TileFactory getInstance(){
+    public synchronized static TileFactory getInstance() {
         if (singletonInstance == null)
             singletonInstance = new TileFactory();
         return singletonInstance;
@@ -52,26 +51,11 @@ public class TileFactory {
 
     private void mapAllTiles() {
         try {
-            var uri = this.getClass().getClassLoader().getResource(TILE_PATH).toURI();
+            URL url = this.getClass().getClassLoader().getResource(TILE_PATH);
+            assert url != null;
 
-            //TEST TO SEE IF INSIDE JAR
-            if (uri.toURL().getProtocol().equals("jar")) {
-                String jarPath = uri.toString().substring(9, uri.toString().indexOf("!")); //strip out only the JAR file
-                JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
-
-                Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
-                Set<String> result = new HashSet<>();
-
-                //Add all files to set as to remove dupes
-                entries.asIterator().forEachRemaining(x -> {
-                    if (x.toString().matches("inf112/roborally/app/tile/{1}.*\\.class")) {
-                        if (!x.toString().contains("Abstract"))
-                            result.add(x.getName());
-                    }
-                });
-
-                //Foreach file
-                result.forEach(x -> {
+            if (isJar(url)) {
+                getJarFileList(url, "inf112/roborally/app/tile/{1}.*\\.class").forEach(x -> {
                     try {
                         IBoardTile obj = (IBoardTile) Class.forName(x).getConstructor().newInstance();
                         characterToClass.put(obj.getSymbol(), obj.getClass());
@@ -79,9 +63,8 @@ public class TileFactory {
                         e.printStackTrace();
                     }
                 });
-
             } else {
-                for (File f : new File(uri).listFiles())
+                for (File f : Objects.requireNonNull(new File(url.toURI()).listFiles()))
                     if (f.isFile() && f.toString().contains(".class") && !f.toString().contains("Abstract"))
                         try {
                             String name = f.getName().replace(".class", "");
