@@ -30,34 +30,5 @@ public class Main {
         cfg.height = WINDOW_HEIGHT;
 
         new LwjglApplication(new MapLayout(), cfg);
-
-        /*
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
-        GameController.pushRobot(1,90);
-        GameController.moveRobot(1,1);
-        GameController.rotateRobot(1,1, 1);
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
-        GameController.rotateRobot(1,-1, 1);
-        GameController.moveRobot(1,1);
-        GameController.rotateRobot(1,-1, 1);
-        GameController.moveRobot(1,1);
-        GameController.rotateRobot(1,-1, 1);
-        GameController.moveRobot(1,1);
-        GameController.moveRobot(1,-1);
-        GameController.rotateRobot(1,-1, 1);
-        GameController.rotateRobot(1,-1, 1);
-        GameController.moveRobot(1,-1);
-        GameController.moveRobot(1,-1);
-        GameController.moveRobot(1,-1);
-        GameController.moveRobot(1,-1);
-        */
     }
 }
