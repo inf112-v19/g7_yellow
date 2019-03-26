@@ -1,7 +1,9 @@
 # Mandatory 4
 
 ## Deloppgave 1: Prosjekt og prosjektstruktur
-* *Testrolle*
+* Testrollen har vi valgt at kundekontak Hein skal ha, siden han er den som har jobbet mest med koden per dags dato. 
+Han har også direkte kontakt med kunden og vil kunne dele oppgaver ut i fra det kunden ønsker. Vi har manuelle tester, 
+disse finner man beskrevet på wikien vår [produksjonsprosedyre og manuelle tester](https://github.com/inf112-v19/YellowBots/wiki/Produksjonsprosedyre) 
 
 * Vi har jo nå jobbet sammen som gruppe over lengere tid, og da er det klart man får erfaringer som blir viktig kunnskap
 for videre utvikling. Blant annet har vi erfart at det og jobbe som gruppe på et så stort prosjekt kan være spennende, 
