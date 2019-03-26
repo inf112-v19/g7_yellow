@@ -13,19 +13,20 @@ public class GameController {
     private static Board board;
     private static Robot[] robots;
 
-    public GameController(int amountOfPlayers) throws OutsideGridException {
+    public GameController(int amountOfPlayers) {
         robots = new Robot[amountOfPlayers];
         board = new Board(Main.GRID_WIDTH, Main.GRID_HEIGHT);
         board.loadMap("map1");
 
-        //Test robots on map
+        //Load robots on map
         loadRobots(amountOfPlayers);
-
-        //oneStep();
-
-        //robots[0].rotate(-1, 1);
     }
 
+
+    /**
+     * Load robots onto map. Doesn't use spawn positions yet (docking stations)
+     * @param a
+     */
     private void loadRobots(int a) {
         for (int i = 0; i < a; i++) {
             Robot r = new Robot(0);
@@ -86,11 +87,16 @@ public class GameController {
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
         for(IBoardTile t : tilesOnNewPos) {
             if (t instanceof AbstractCollidableTile) {
-                //Handle robot pushing first
+                //Try to push robots if robot is in front
                 if (t instanceof Robot) {
-                    pushRobot(((Robot) t).getId(), dir);
-                    break;
+                    System.out.println("checking if can push with: " + dir);
+                    if (canPushRobot(oldPos, dir)) {
+                        pushRobot(((Robot) t).getId(), dir);
+                        break;
+                    }
+                    else return;
                 }
+                //Otherwise just try to move to the next tile
                 else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))){
                     break;
                 }
@@ -105,7 +111,7 @@ public class GameController {
     public static void moveRobot(int pId, int dir) throws OutsideGridException {
         if (dir > 0)
             pushRobot(pId, robots[pId - 1].getRotation());
-        else if (dir > 0)
+        else if (dir < 0)
             pushRobot(pId, robots[pId - 1].getRotation() + 180);
     }
 
@@ -116,19 +122,26 @@ public class GameController {
         robots[pId - 1].rotate(dir, dist);
     }
 
-    private static boolean canPushRobot(Vector2 startPos, int dir) {
-        /*
-        IBoardTile nextTile =
-        while(!(nextTile instanceof Robot)) {
-
+    private static boolean canPushRobot(Vector2 startPos, int dir) throws OutsideGridException {
+        Vector2 nextPos = findNextPosition(startPos, dir);
+        LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(nextPos);
+        for(IBoardTile t : tilesOnOldPos) {
+            if (t instanceof Robot) {
+                return canPushRobot(nextPos, dir);
+            } else if (t instanceof AbstractCollidableTile){
+                return false;
+            }
         }
-        */
-        return false;
+
+        return true;
     }
 
-    private static Vector2 findNextPositionFromRobot(Robot r, int dir) {
-        Vector2 oldPos = findRobot(r);
-        return r.push(oldPos, dir);
+    private static Vector2 findNextPosition(Vector2 pos, int dir) {
+        var sin = (int) Math.sin(Math.toRadians(dir));
+        var cos = (int) Math.cos(Math.toRadians(dir));
+        var newX = pos.x + cos;
+        var newY = pos.y + sin;
+        return new Vector2(newX, newY);
     }
 
     public static void oneStep() throws OutsideGridException {
