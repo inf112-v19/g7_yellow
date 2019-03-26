@@ -21,7 +21,7 @@ public class GameController {
         //Test robots on map
         loadRobots(amountOfPlayers);
 
-        oneStep();
+        //oneStep();
 
         //robots[0].rotate(-1, 1);
     }
@@ -57,7 +57,7 @@ public class GameController {
         return pos;
     }
 
-    public static void moveRobot(int pId, int dir) throws OutsideGridException {
+    public static void pushRobot(int pId, int dir) throws OutsideGridException {
         try {
             Thread.sleep(500);
         } catch (Exception e) { e.printStackTrace(); }
@@ -67,7 +67,7 @@ public class GameController {
 
         //Find the old and new position of the robot
         Vector2 oldPos = findRobot(r);
-        Vector2 newPos = r.move(oldPos, dir, 1);
+        Vector2 newPos = r.push(oldPos, dir);
 
         //Get all the tiles on old position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
@@ -86,7 +86,12 @@ public class GameController {
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
         for(IBoardTile t : tilesOnNewPos) {
             if (t instanceof AbstractCollidableTile) {
-                if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))){
+                //Handle robot pushing first
+                if (t instanceof Robot) {
+                    pushRobot(((Robot) t).getId(), dir);
+                    break;
+                }
+                else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))){
                     break;
                 }
                 return;
@@ -97,17 +102,11 @@ public class GameController {
         board.getGrid().addTile(newPos, r);
     }
 
-    public static void pushRobot(int pId, int dir, int dist) throws OutsideGridException {
-        //Find robot based on pId input
-        Robot r = robots[pId - 1];
-
-        //Find the old and new position of the robot
-        Vector2 oldPos = findRobot(r);
-        Vector2 newPos = r.move(oldPos, dir, dist);
-
-        //Actually move the robot
-        board.getGrid().removeTile(oldPos, r);
-        board.getGrid().addTile(newPos, r);
+    public static void moveRobot(int pId, int dir) throws OutsideGridException {
+        if (dir > 0)
+            pushRobot(pId, robots[pId - 1].getRotation());
+        else if (dir > 0)
+            pushRobot(pId, robots[pId - 1].getRotation() + 180);
     }
 
     public static void rotateRobot(int pId, int dir, int dist) {
@@ -115,6 +114,21 @@ public class GameController {
             Thread.sleep(500);
         } catch (Exception e) { e.printStackTrace(); }
         robots[pId - 1].rotate(dir, dist);
+    }
+
+    private static boolean canPushRobot(Vector2 startPos, int dir) {
+        /*
+        IBoardTile nextTile =
+        while(!(nextTile instanceof Robot)) {
+
+        }
+        */
+        return false;
+    }
+
+    private static Vector2 findNextPositionFromRobot(Robot r, int dir) {
+        Vector2 oldPos = findRobot(r);
+        return r.push(oldPos, dir);
     }
 
     public static void oneStep() throws OutsideGridException {

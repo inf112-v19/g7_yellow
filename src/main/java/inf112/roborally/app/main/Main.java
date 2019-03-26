@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) throws OutsideGridException {
         try {
-            new GameController(1);
+            new GameController(3);
         } catch (OutsideGridException e) { e.printStackTrace(); }
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 
@@ -35,9 +35,10 @@ public class Main {
         new LwjglApplication(new MapLayout(), cfg);
 
         GameController.moveRobot(1,1);
-        GameController.moveRobot(1,1);
+        GameController.pushRobot(1,90);
         GameController.moveRobot(1,1);
         GameController.rotateRobot(1,1, 1);
+        GameController.moveRobot(1,1);
         GameController.moveRobot(1,1);
         GameController.rotateRobot(1,-1, 1);
         GameController.moveRobot(1,1);

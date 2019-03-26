@@ -21,6 +21,5 @@ public class YellowConveyor2in1outLeft extends AbstractFunctionTile {
 
         // Does GameController logic handle the rotation at the start of the turn?
 
-        player.push(rotation);
     }
 }

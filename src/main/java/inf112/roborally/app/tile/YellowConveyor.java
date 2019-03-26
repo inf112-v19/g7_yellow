@@ -18,6 +18,5 @@ public class YellowConveyor extends AbstractFunctionTile {
 
     @Override
     public void execute(Robot player) {
-        player.push(rotation);
     }
 }
