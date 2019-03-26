@@ -26,14 +26,20 @@ public class TileFactory {
 
     private static TileFactory singletonInstance;
 
-    private final String TILE_PATH = this.getClass().getPackageName().replace('.', '/') + "/tiles/";
+    private final String TILE_PATH = TileFactory.class.getPackageName().replace('.', '/') + "/tiles/";
     private HashMap<Character, Class<? extends IBoardTile>> characterToClass;
-    private final String TILES_PACKAGE = this.getClass().getPackageName() + ".tiles";
+    private final String TILES_PACKAGE = TileFactory.class.getPackageName() + ".tiles";
 
     private TileFactory() {
         characterToClass = new HashMap<>();
         mapAllTiles();
         characterToClass.forEach((x, y) -> System.out.println(String.format("%s maps to %s", x, y)));
+    }
+
+    public HashMap<Character, Class<? extends IBoardTile>> getAllMappings(){
+        HashMap<Character, Class<? extends IBoardTile>> hashmapCopy = new HashMap<>();
+        characterToClass.forEach(hashmapCopy::put);
+        return hashmapCopy;
     }
 
     public synchronized static TileFactory getInstance() {
@@ -44,6 +50,7 @@ public class TileFactory {
 
     public IBoardTile produce(char character, Class[] parameterTypes, Object[] parameters) throws ClassNotFoundException {
         try {
+            assert(characterToClass.containsKey(character));
             return characterToClass.get(character).getConstructor(parameterTypes).newInstance(parameters);
         } catch (Exception e) {
             throw new ClassNotFoundException("Class or constructor was not found for character: " + character);
