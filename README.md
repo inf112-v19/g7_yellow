@@ -11,3 +11,24 @@
 
 ![Github Repo size](https://img.shields.io/github/repo-size/inf112-v19/YellowBots.svg?style=flat-square&logo=GitHub)
 [![Java Version](https://img.shields.io/badge/Java_Version-11-blue.svg?style=flat-square&logo=Java)](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+## How to build/compile
+This project uses maven and can be built using that tool, and due to the ease of doing so, it is recommended to allways run all unit-tests at the same time. This can be done using a simple mvn install. We also recommend allways using the mvn clean before any build to ensure no old file are present at compile time.
+
+```mvn clean install```
+
+
+Unfortunately this will not produce an ease-of-use JAR and it is therefore recommended to use the following line to assure that all dependencies are also added to the JAR.
+
+```mvn clean assembly:assembly```
+
+
+
+Test coverage reports can be generated using the Jacoco maven plugin. We recommend ding so by using the following command.
+
+```mvn clean jacoco:prepare-agent install jacoco:report```
+
+
+We are currently working on implementing the usage of the SpotBugs plugin to the development, but is currently not in use. However the report may be produced by using the following maven command.
+
+```mvn clean install spotbugs:spotbugs```
