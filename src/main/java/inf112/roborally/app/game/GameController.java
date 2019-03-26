@@ -126,11 +126,26 @@ public class GameController {
         Vector2 nextPos = findNextPosition(startPos, dir);
         LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(nextPos);
         for(IBoardTile t : tilesOnOldPos) {
-            if (t instanceof Robot) {
+            if ((t instanceof AbstractCollidableTile) && !(t instanceof Robot)) {
+                if (((AbstractCollidableTile) t).canMoveIntoFrom(dir)) {
+                    System.out.println("wowsie can move");
+                } else {
+                    System.out.println("NO");
+                    return false;
+                }
+            }
+        }
+
+        for(IBoardTile t : tilesOnOldPos) {
+            if ((t instanceof Robot)) {
                 return canPushRobot(nextPos, dir);
+            }
+
+                /*
             } else if (t instanceof AbstractCollidableTile){
                 return false;
             }
+            */
         }
 
         return true;

@@ -8,7 +8,7 @@ import inf112.roborally.app.game.GameController;
 
 public class Main {
 
-    public static int AMOUNT_OF_PLAYERS = 3;
+    public static int AMOUNT_OF_PLAYERS = 4;
 
     public static final int GRID_WIDTH  = 12;
     public static final int GRID_HEIGHT = 12;
@@ -31,6 +31,13 @@ public class Main {
 
         new LwjglApplication(new MapLayout(), cfg);
 
+        GameController.moveRobot(1,1);
+        GameController.moveRobot(1,1);
+        GameController.moveRobot(1,1);
+        GameController.moveRobot(1,1);
+        GameController.moveRobot(1,1);
+        GameController.moveRobot(1,1);
+        GameController.moveRobot(1,1);
         GameController.moveRobot(1,1);
         GameController.pushRobot(1,90);
         GameController.moveRobot(1,1);
