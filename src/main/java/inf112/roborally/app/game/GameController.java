@@ -57,7 +57,7 @@ public class GameController {
         return pos;
     }
 
-    public static void moveRobot(int pId, int dir, int dist) throws OutsideGridException {
+    public static void moveRobot(int pId, int dir) throws OutsideGridException {
         try {
             Thread.sleep(500);
         } catch (Exception e) { e.printStackTrace(); }
@@ -67,8 +67,7 @@ public class GameController {
 
         //Find the old and new position of the robot
         Vector2 oldPos = findRobot(r);
-        Vector2 newPos = r.move(oldPos, dir, dist);
-        System.out.println(newPos);
+        Vector2 newPos = r.move(oldPos, dir, 1);
 
         //Get all the tiles on old position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
@@ -76,10 +75,8 @@ public class GameController {
         for(IBoardTile t : tilesOnOldPos) {
             if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
                 if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))){
-                    System.out.println("broke");
                     break;
                 }
-                System.out.println(t.toString());
                 return;
             }
         }
