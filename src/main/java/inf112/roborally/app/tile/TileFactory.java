@@ -33,6 +33,7 @@ public class TileFactory {
     private TileFactory() {
         characterToClass = new HashMap<>();
         mapAllTiles();
+        characterToClass.forEach((x, y) -> System.out.println(String.format("%s maps to %s", x, y)));
     }
 
     public synchronized static TileFactory getInstance() {

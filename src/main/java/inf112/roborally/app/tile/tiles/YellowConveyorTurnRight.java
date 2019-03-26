@@ -8,6 +8,6 @@ public class YellowConveyorTurnRight extends AbstractConveyor {
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'm';
     }
 }

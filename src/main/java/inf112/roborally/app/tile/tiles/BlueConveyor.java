@@ -8,6 +8,6 @@ public class BlueConveyor extends AbstractBlueConveyor {
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return '0';
     }
 }
