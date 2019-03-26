@@ -31,6 +31,7 @@ public class Main {
 
         new LwjglApplication(new MapLayout(), cfg);
 
+        /*
         GameController.moveRobot(1,1);
         GameController.moveRobot(1,1);
         GameController.moveRobot(1,1);
@@ -57,6 +58,6 @@ public class Main {
         GameController.moveRobot(1,-1);
         GameController.moveRobot(1,-1);
         GameController.moveRobot(1,-1);
-
+        */
     }
 }

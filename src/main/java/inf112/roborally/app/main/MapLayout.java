@@ -39,7 +39,11 @@ public class MapLayout implements ApplicationListener {
 
     @Override
     public void render() {
-        inputManager.checkForInput();
+        try {
+            inputManager.checkForInput();
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
         //editorInput messes with grid, and needs to throw OutsideGridExcepetions
         try {
             editorInput.checkForInput();

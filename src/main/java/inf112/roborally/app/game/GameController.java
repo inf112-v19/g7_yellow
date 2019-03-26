@@ -125,27 +125,30 @@ public class GameController {
     private static boolean canPushRobot(Vector2 startPos, int dir) throws OutsideGridException {
         Vector2 nextPos = findNextPosition(startPos, dir);
         LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(nextPos);
+        LinkedList<IBoardTile> tilesOnOldPos2 = board.getGrid().getTiles(nextPos);
         for(IBoardTile t : tilesOnOldPos) {
             if ((t instanceof AbstractCollidableTile) && !(t instanceof Robot)) {
+                System.out.println("checking with: " + t);
                 if (((AbstractCollidableTile) t).canMoveIntoFrom(dir)) {
                     System.out.println("wowsie can move");
                 } else {
                     System.out.println("NO");
                     return false;
                 }
+
             }
         }
 
         for(IBoardTile t : tilesOnOldPos) {
             if ((t instanceof Robot)) {
+                for (IBoardTile t2 : tilesOnOldPos2) {
+                    if ((t2 instanceof AbstractCollidableTile) && !(t2 instanceof Robot)) {
+                        if (!((AbstractCollidableTile) t).canMoveOutFrom(dir))
+                            return false;
+                    }
+                }
                 return canPushRobot(nextPos, dir);
             }
-
-                /*
-            } else if (t instanceof AbstractCollidableTile){
-                return false;
-            }
-            */
         }
 
         return true;
