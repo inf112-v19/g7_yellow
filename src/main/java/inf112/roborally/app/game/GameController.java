@@ -131,12 +131,10 @@ public class GameController {
         for(IBoardTile t : tilesOnNewPos) {
             if ((t instanceof AbstractCollidableTile) && !(t instanceof Robot)) {
                 return ((AbstractCollidableTile) t).canMoveIntoFrom(dir);
-            }
-            if ((t instanceof Robot)) {
+            } else if ((t instanceof Robot)) {
                 for (IBoardTile t2 : tilesOnNewPos) {
                     if ((t2 instanceof AbstractCollidableTile) && !(t2 instanceof Robot)) {
-                        if (!((AbstractCollidableTile) t).canMoveOutFrom(dir))
-                            return false;
+                        return ((AbstractCollidableTile) t).canMoveOutFrom(dir);
                     }
                 }
                 return canPushRobot(nextPos, dir);
