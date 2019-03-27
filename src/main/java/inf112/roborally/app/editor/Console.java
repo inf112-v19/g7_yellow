@@ -103,21 +103,26 @@ public class Console implements Screen {
 
     @Override
     public void resize(int i, int i1) {
+        // As of now does nothing :)
     }
 
     @Override
     public void pause() {
+        // As of now does nothing :)
     }
 
     @Override
     public void resume() {
+        // As of now does nothing :)
     }
 
     @Override
     public void hide() {
+        // As of now does nothing :)
     }
 
     @Override
     public void dispose() {
+        // As of now does nothing :)
     }
 }
