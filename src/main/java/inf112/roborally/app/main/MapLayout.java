@@ -32,7 +32,7 @@ public class MapLayout implements ApplicationListener {
 
     @Override
     public void create() {
-        renderer = new Renderer(GameController.getBoard(), null);
+        renderer = new Renderer(GameController.getBoard());
         new SpriteLoader();
         console = new Console();
     }
