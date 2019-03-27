@@ -63,14 +63,13 @@ public class Grid implements Iterable<LinkedList<IBoardTile>> {
     }
 
     public Vector2 findPlayer(int pId) throws OutsideGridException {
-        for(int x = 0; x < BOARD_WIDTH; x++) {
+        for (int x = 0; x < BOARD_WIDTH; x++) {
             for (int y = 0; y < BOARD_HEIGHT; y++) {
-                LinkedList<IBoardTile> tiles = getTiles(new Vector2(x,y));
+                LinkedList<IBoardTile> tiles = getTiles(new Vector2(x, y));
                 for (int i = 0; i < tiles.size(); i++) {
                     IBoardTile t = tiles.get(i);
-                    if (t instanceof Robot)
-                        if (((Robot) t).getId() == pId)
-                            return new Vector2(x,y);
+                    if ((t instanceof Robot) && ((Robot) t).getId() == pId)
+                        return new Vector2(x, y);
                 }
             }
         }

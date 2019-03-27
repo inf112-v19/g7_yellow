@@ -34,5 +34,8 @@ public class YellowConveyorTurnRight extends AbstractFunctionTile {
      */
     @Override
     public void execute(Robot player) {
+
+        // Does GameController logic handle the rotation at the start of the turn?
+
     }
 }

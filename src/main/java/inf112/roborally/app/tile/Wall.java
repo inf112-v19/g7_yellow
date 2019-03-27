@@ -18,14 +18,11 @@ public class Wall extends AbstractCollidableTile {
 
     @Override
     public boolean canMoveIntoFrom(int rotation) {
-        if(rotation - this.rotation == 180 || this.rotation - rotation == 180){
-            return false;
-        }
-        return true;
+        return !(rotation - this.rotation == 180 || this.rotation - rotation == 180);
     }
 
     @Override
     public boolean canMoveOutFrom(int rotation) {
-        return !(this.rotation == rotation);
+        return (this.rotation != rotation);
     }
 }

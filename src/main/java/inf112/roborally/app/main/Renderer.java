@@ -21,38 +21,31 @@ public class Renderer {
     private ShapeRenderer render;
     private SpriteBatch batch;
     private Board board;
-    private Robot[] players;
-    private Sprite playerSprite;
 
     public Renderer(Board board, Robot[] robots) {
-        this.players = robots;
-        this.board   = board;
-        render       = new ShapeRenderer();
-        batch        = new SpriteBatch();
-
-        //TODO: Robot textures are in the Robot classes, so this is just temporary.
-        Texture playerTexture = new Texture("inf112/roborally/app/tile/Robot1.png");
-        playerSprite = new Sprite(playerTexture);
-        playerSprite.setSize(Main.TILE_SIZE, Main.TILE_SIZE);
+        this.board = board;
+        render = new ShapeRenderer();
+        batch = new SpriteBatch();
     }
 
     /**
      * Draws every tile inside the board.
+     *
      * @throws OutsideGridException
      */
     public void drawBoard() throws OutsideGridException {
 
         batch.begin();
-        for(int x = 0; x < board.getWidth(); x++) {
-            for(int y = 0; y < board.getHeight(); y++) {
-                LinkedList<IBoardTile> tiles = board.getGrid().getTiles(new Vector2(x,y));
-                if(tiles == null || tiles.size() == 0) continue;
+        for (int x = 0; x < board.getWidth(); x++) {
+            for (int y = 0; y < board.getHeight(); y++) {
+                LinkedList<IBoardTile> tiles = board.getGrid().getTiles(new Vector2(x, y));
+                if (tiles == null || tiles.size() == 0) continue;
 
                 Collections.sort(tiles);
 
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
-                    s.setPosition(x*Main.TILE_SIZE, y*Main.TILE_SIZE);
+                    s.setPosition(x * Main.TILE_SIZE, y * Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());
                     s.draw(batch);
@@ -63,9 +56,9 @@ public class Renderer {
     }
 
     public void drawGrid() {
-        for(int x = 0; x < Main.GRID_WIDTH; x++) {
-            for(int y = 0; y < Main.GRID_HEIGHT; y++) {
-                drawRect(x*Main.TILE_SIZE, y * Main.TILE_SIZE, Main.TILE_SIZE);
+        for (int x = 0; x < Main.GRID_WIDTH; x++) {
+            for (int y = 0; y < Main.GRID_HEIGHT; y++) {
+                drawRect(x * Main.TILE_SIZE, y * Main.TILE_SIZE, Main.TILE_SIZE);
             }
         }
     }
@@ -85,7 +78,7 @@ public class Renderer {
     public void drawEditorUI() {
         ArrayList<IBoardTile> tiles = new ArrayList<>();
 
-        for(int i = 0; i < TileIndex.values().length; i++) {
+        for (int i = 0; i < TileIndex.values().length; i++) {
             tiles.add(TileIndex.indexToTile(i));
         }
 
@@ -96,13 +89,14 @@ public class Renderer {
             Sprite s = t.getSprite();
             s.setOriginCenter();
             s.setRotation(0);
-            s.setPosition(Main.TILE_SIZE*x,
+            s.setPosition(Main.TILE_SIZE * x,
                     (Main.WINDOW_HEIGHT - Main.TILE_SIZE) - Main.TILE_SIZE * y);
             s.draw(batch);
             x++;
 
-            if(x >= Main.GRID_WIDTH) {
-                x = 0; y++;
+            if (x >= Main.GRID_WIDTH) {
+                x = 0;
+                y++;
             }
         }
 

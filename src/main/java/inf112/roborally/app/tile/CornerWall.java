@@ -18,17 +18,12 @@ public class CornerWall extends AbstractCollidableTile {
 
     @Override
     public boolean canMoveIntoFrom(int rotation) {
-        if(rotation - this.rotation == 180 || this.rotation - rotation == 180
-        || rotation - this.rotation == 90 || (rotation == 0 && this.rotation == 270)){
-            return false;
-        }
-        return true;
+        return !(rotation - this.rotation == 180 || this.rotation - rotation == 180
+                || rotation - this.rotation == 90 || (rotation == 0 && this.rotation == 270));
     }
 
     @Override
     public boolean canMoveOutFrom(int rotation) {
-        if(rotation == this.rotation || rotation == this.rotation-90 ||(rotation == 270 && this.rotation == 0))
-            return false;
-        return true;
+        return !(rotation == this.rotation || rotation == this.rotation - 90 || (rotation == 270 && this.rotation == 0));
     }
 }

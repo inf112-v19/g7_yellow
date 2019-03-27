@@ -25,8 +25,8 @@ public class MapLayout implements ApplicationListener {
     private EditorInput editorInput;
     private Console console;
 
-    MapLayout(){
-        inputManager = new InputManager(null, GameController.getBoard());
+    MapLayout() {
+        inputManager = new InputManager(Main.ID_OF_CURRENT_PLAYER);
         editorInput = new EditorInput(GameController.getBoard());
     }
 
@@ -47,7 +47,7 @@ public class MapLayout implements ApplicationListener {
         //editorInput messes with grid, and needs to throw OutsideGridExcepetions
         try {
             editorInput.checkForInput();
-        } catch(OutsideGridException e) {
+        } catch (OutsideGridException e) {
             e.printStackTrace();
         }
 
@@ -61,7 +61,7 @@ public class MapLayout implements ApplicationListener {
         //drawing the board
         try {
             renderer.drawBoard();
-        } catch(OutsideGridException e) {
+        } catch (OutsideGridException e) {
             e.printStackTrace();
         }
 
@@ -71,7 +71,7 @@ public class MapLayout implements ApplicationListener {
 
         console.render(1);
 
-        }
+    }
 
     @Override
     public void dispose() {

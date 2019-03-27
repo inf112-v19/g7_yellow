@@ -4,37 +4,39 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.*;
+import inf112.roborally.app.tile.AbstractCollidableTile;
+import inf112.roborally.app.tile.AbstractFunctionTile;
+import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.Robot;
 
 import java.util.LinkedList;
 
 public class GameController {
+    private final static Board board;
 
-    private static Board board;
-    private static Robot[] robots;
-
-    public GameController(int amountOfPlayers) {
-        robots = new Robot[amountOfPlayers];
+    static {
         board = new Board(Main.GRID_WIDTH, Main.GRID_HEIGHT);
         board.loadMap("map1");
-
-        //Load robots on map
-        loadRobots(amountOfPlayers);
     }
 
+    private static Robot[] robots;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
+     *
      * @param a
      */
-    private void loadRobots(int a) {
+    public static void loadRobots(int a) {
+        robots = new Robot[a];
         for (int i = 0; i < a; i++) {
             Robot r = new Robot(0);
-            r.setId(i+1);
+            r.setId(i + 1);
             robots[i] = r;
             try {
-                board.getGrid().addTile(new Vector2(i + 1,2), r);
-            } catch(OutsideGridException e) { e.printStackTrace(); }
+                board.getGrid().addTile(new Vector2(i + 1, 2), r);
+            } catch (OutsideGridException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -46,7 +48,9 @@ public class GameController {
         Vector2 pos = null;
         try {
             pos = board.getGrid().findPlayer(pId);
-        } catch(OutsideGridException e) {e.printStackTrace();}
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
         return pos;
     }
 
@@ -54,14 +58,13 @@ public class GameController {
         Vector2 pos = null;
         try {
             pos = board.getGrid().findPlayer(r.getId());
-        } catch(OutsideGridException e) {e.printStackTrace();}
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
         return pos;
     }
 
     public static void pushRobot(int pId, int dir) throws OutsideGridException {
-        try {
-            Thread.sleep(500);
-        } catch (Exception e) { e.printStackTrace(); }
 
         //Find robot based on pId input
         Robot r = robots[pId - 1];
@@ -73,9 +76,9 @@ public class GameController {
         //Get all the tiles on old position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
         LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(oldPos);
-        for(IBoardTile t : tilesOnOldPos) {
+        for (IBoardTile t : tilesOnOldPos) {
             if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
-                if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))){
+                if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))) {
                     break;
                 }
                 return;
@@ -85,7 +88,7 @@ public class GameController {
         //Get all the tiles on new position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
-        for(IBoardTile t : tilesOnNewPos) {
+        for (IBoardTile t : tilesOnNewPos) {
             if (t instanceof AbstractCollidableTile) {
                 //Try to push robots if robot is in front
                 if (t instanceof Robot) {
@@ -93,11 +96,10 @@ public class GameController {
                     if (canPushRobot(oldPos, dir)) {
                         pushRobot(((Robot) t).getId(), dir);
                         break;
-                    }
-                    else return;
+                    } else return;
                 }
                 //Otherwise just try to move to the next tile
-                else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))){
+                else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))) {
                     break;
                 }
                 return;
@@ -116,9 +118,6 @@ public class GameController {
     }
 
     public static void rotateRobot(int pId, int dir, int dist) {
-        try {
-            Thread.sleep(500);
-        } catch (Exception e) { e.printStackTrace(); }
         robots[pId - 1].rotate(dir, dist);
     }
 
@@ -128,7 +127,7 @@ public class GameController {
         //Get tiles on next pos
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(nextPos);
 
-        for(IBoardTile t : tilesOnNewPos) {
+        for (IBoardTile t : tilesOnNewPos) {
             if ((t instanceof AbstractCollidableTile) && !(t instanceof Robot)) {
                 return ((AbstractCollidableTile) t).canMoveIntoFrom(dir);
             } else if ((t instanceof Robot)) {
@@ -160,20 +159,23 @@ public class GameController {
             var tiles = (board.getGrid().getTiles(pos));
 
             for (IBoardTile t : tiles) {
-                if (t instanceof Floor) {
-                    //((AbstractFunctionTile)(t)).execute(rob);
+                if (t instanceof AbstractFunctionTile) {
+                    System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
+                    ((AbstractFunctionTile) (t)).execute(rob);
                 }
             }
             try {
                 Thread.sleep(200);
-            } catch (Exception e) { e.printStackTrace(); }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private static int getWorldRotation(Vector2 v1, Vector2 v2){
+    private static int getWorldRotation(Vector2 v1, Vector2 v2) {
         Vector2 unitVec = new Vector2(v2.x, v2.y).sub(v1);
-        if(unitVec.x != 0){
-            return (90-(int)unitVec.x*90);
-        } else return (180-(int)unitVec.y*90);
+        if (unitVec.x != 0) {
+            return (90 - (int) unitVec.x * 90);
+        } else return (180 - (int) unitVec.y * 90);
     }
 }
