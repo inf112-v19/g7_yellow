@@ -155,7 +155,6 @@ public class GameController {
             Vector2 pos = findRobot(i + 1);
             if (pos == null) continue;
             Robot rob = robots[i];
-            System.out.println("Robot" + (i + 1) + " is at pos: " + pos);
             var tiles = (board.getGrid().getTiles(pos));
 
             for (IBoardTile t : tiles) {
