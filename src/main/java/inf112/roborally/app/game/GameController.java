@@ -164,11 +164,6 @@ public class GameController {
                     ((AbstractFunctionTile) (t)).execute(rob);
                 }
             }
-            try {
-                Thread.sleep(200);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 
