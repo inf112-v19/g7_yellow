@@ -11,16 +11,6 @@ public class BarricadeTest {
     private Barricade b = new Barricade(90);
 
     @Test
-    public void getRenderPriority() {
-        Assert.assertEquals(3, b.getRenderPriority());
-    }
-
-    @Test
-    public void getSymbol() {
-        Assert.assertEquals('j', b.getSymbol());
-    }
-
-    @Test
     public void execute() {
         Player p = new Player(1, new Vector2(0,2), 0);
         p.rotate(1,2);

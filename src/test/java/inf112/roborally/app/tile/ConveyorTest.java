@@ -12,12 +12,6 @@ public class ConveyorTest {
     private BlueConveyor bC = new BlueConveyor(90);
     private Player p = new Player(1,new Vector2(0,0), 0);
 
-
-    @Test
-    public void getRenderPriority() {
-        assertEquals(2,bC.getRenderPriority());
-    }
-
     @Test
     public void execute() {
         Player temp = p;
