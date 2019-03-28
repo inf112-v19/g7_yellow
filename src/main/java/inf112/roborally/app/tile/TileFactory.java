@@ -36,7 +36,7 @@ public class TileFactory {
         characterToClass.forEach((x, y) -> System.out.println(String.format("%s maps to %s", x, y)));
     }
 
-    public HashMap<Character, Class<? extends IBoardTile>> getAllMappings(){
+    public HashMap<Character, Class<? extends IBoardTile>> getAllMappings() {
         HashMap<Character, Class<? extends IBoardTile>> hashmapCopy = new HashMap<>();
         characterToClass.forEach(hashmapCopy::put);
         return hashmapCopy;
@@ -50,7 +50,7 @@ public class TileFactory {
 
     public IBoardTile produce(char character, Class[] parameterTypes, Object[] parameters) throws ClassNotFoundException {
         try {
-            assert(characterToClass.containsKey(character));
+            assert (characterToClass.containsKey(character));
             return characterToClass.get(character).getConstructor(parameterTypes).newInstance(parameters);
         } catch (Exception e) {
             throw new ClassNotFoundException("Class or constructor was not found for character: " + character);
@@ -61,15 +61,22 @@ public class TileFactory {
         try {
             URL url = this.getClass().getClassLoader().getResource(TILE_PATH);
             assert url != null;
-
+            Object[] prms = {0};
+            Class[] types = {Integer.TYPE};
             if (isJar(url)) {
-                getJarFileList(url, "inf112/roborally/app/tile/{1}.*\\.class").forEach(x -> {
-                    try {
-                        IBoardTile obj = (IBoardTile) Class.forName(x).getConstructor().newInstance();
-                        characterToClass.put(obj.getSymbol(), obj.getClass());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                getJarFileList(url, "inf112/roborally/app/tile/tiles/{1}.*\\.class").forEach(x -> {
+                    if (!x.contains("Abstract"))
+                        try {
+                            IBoardTile obj =
+                                    (IBoardTile) Class.forName(
+                                            x.replace('/', '.').replace(".class", "")
+                                    )
+                                    .getConstructor(types)
+                                    .newInstance(prms);
+                            characterToClass.put(obj.getSymbol(), obj.getClass());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                 });
             } else {
                 for (File f : Objects.requireNonNull(new File(url.toURI()).listFiles()))
@@ -77,8 +84,6 @@ public class TileFactory {
                         try {
                             String name = f.getName().replace(".class", "");
                             name = TILES_PACKAGE + "." + name;
-                            Object[] prms = {0};
-                            Class[] types = {Integer.TYPE};
                             IBoardTile obj = (IBoardTile) Class.forName(name).getConstructor(types).newInstance(prms);
                             var symbol = obj.getSymbol();
                             if (characterToClass.containsKey(symbol))

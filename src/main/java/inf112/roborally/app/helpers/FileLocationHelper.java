@@ -26,7 +26,7 @@ public class FileLocationHelper {
      * @return logical test result
      */
     public static boolean isJar(URL url) {
-        return url.getProtocol().equals("JAR");
+        return url.getProtocol().equals("jar");
     }
 
     /**
