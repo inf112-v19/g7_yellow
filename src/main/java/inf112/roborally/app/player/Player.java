@@ -20,6 +20,16 @@ public class Player {
         rotation = 90;
     }
 
+    public Player(){
+        this.id = 0;
+        this.x = 0;
+        this.y = 0;
+        this.oldX = this.x;
+        this.oldY = this.y;
+        this.damage = 0;
+        rotation = 90;
+    }
+
     /**
      * Move the player
      * @param dir Use 1 for forward, -1 for backwards
