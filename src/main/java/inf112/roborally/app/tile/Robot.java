@@ -71,11 +71,10 @@ public class Robot extends AbstractCollidableTile {
 
     /**
      * Rotate the player
-     * @param dir Use -1 for clockwise, 1 for counter-clockwise
-     * @param dist 1 is default rotation. Use 2 for 180 turns
+     * @param rotation this is rotation to ROTATE BY, such as 90 to rotate left or -90/270 to rotate right
      */
-    public void rotate(int dir, int dist) {
-        rotation = Math.floorMod(rotation + (90 * -dir * dist), 360);
+    public void rotate(int rotation) {
+        this.rotation = Math.floorMod(this.rotation + rotation, 360);
     }
 
     /**

@@ -117,8 +117,8 @@ public class GameController {
             pushRobot(pId, robots[pId - 1].getRotation() + 180);
     }
 
-    public static void rotateRobot(int pId, int dir, int dist) {
-        robots[pId - 1].rotate(dir, dist);
+    public static void rotateRobot(int pId, int rotation) {
+        robots[pId - 1].rotate(rotation);
     }
 
     private static boolean canPushRobot(Vector2 startPos, int dir) throws OutsideGridException {
