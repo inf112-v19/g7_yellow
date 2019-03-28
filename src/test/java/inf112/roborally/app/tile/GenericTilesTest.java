@@ -2,14 +2,17 @@ package inf112.roborally.app.tile;
 
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
+import inf112.roborally.app.tile.tiles.Robot;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -17,7 +20,7 @@ import static org.junit.Assert.fail;
  * the different class types of tiles loaded using
  * the TileFactory class
  */
-public class AllTilesTest {
+public class GenericTilesTest {
     private Set<IBoardTile> tiles;
     private TileFactory factory;
 
@@ -41,12 +44,40 @@ public class AllTilesTest {
     }
 
     @Test
-    public void allFunctionTilesCanRun(){
+    public void allFunctionTilesCanExecute(){
         tiles.stream()
                 .filter(x -> x instanceof AbstractFunctionTile)
                 .map(x -> (AbstractFunctionTile) x)
                 .forEach(x -> x.execute(new Player()));
     }
+
+    @Test
+    public void compareTo() {
+        IBoardTile t1 = new Robot(0);
+        IBoardTile t2 = new Robot(0);
+        assertEquals(0,t1.compareTo(t2));
+    }
+
+    @Test
+    public void toStringMethod() {
+        assertEquals("Robot", new Robot(90).toString());
+    }
+
+    @Test
+    public void setGetRotation() {
+        var rnd = new Random();
+        IBoardTile bt1 = new Robot(0);
+        IBoardTile bt2 = new Robot(0);
+        for (int i = 0; i < 1000; i++) {
+            var rot = rnd.nextInt(360);
+            bt1.setRotation(rot);
+            bt2.setRotation((rnd.nextBoolean()) ? bt2.getRotation() + rot : bt2.getRotation() - rot);
+            assertEquals(bt1.getRotation(), rot);
+            assertTrue((bt2.getRotation() >= 0) && bt2.getRotation() <= 360);
+        }
+    }
+
+
 
     private void loadAllTiles() {
         factory.getAllMappings().forEach((x, y) -> {

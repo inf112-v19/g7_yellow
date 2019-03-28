@@ -35,7 +35,7 @@ public abstract class AbstractTile implements IBoardTile {
     }
 
     public void setRotation(int rotation) {
-        this.rotation = rotation;
+        this.rotation = Math.floorMod(rotation, 360);
     }
 
     public int getRotation() {
