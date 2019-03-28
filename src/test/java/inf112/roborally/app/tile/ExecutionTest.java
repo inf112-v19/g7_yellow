@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class ExecutionTests {
+public class ExecutionTest {
 
     @Test
     public void barricadeStopsPlayer() {
