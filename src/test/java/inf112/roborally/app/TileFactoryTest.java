@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * The ultimate tile test
+ * Class used to test the TileFactory
  *
  * @author RakNoel
  * @version 1.0
@@ -20,7 +20,7 @@ public class TileFactoryTest {
     private TileFactory factory = TileFactory.getInstance();
 
     @Before
-    public void before(){
+    public void before() {
         this.factory = TileFactory.getInstance();
     }
 
@@ -38,10 +38,13 @@ public class TileFactoryTest {
         }
     }
 
+    /**
+     * Test that the factory produces a simple Robot class
+     */
     @Test
-    public void simpleProduction() {
+    public void simpleTileProduction() {
         try {
-            Class[] paramTypes = {Double.TYPE};
+            Class[] paramTypes = {Integer.TYPE};
             Object[] params = {0};
             IBoardTile player = factory.produce('R', paramTypes, params);
             assertTrue(player instanceof Robot);
@@ -51,22 +54,23 @@ public class TileFactoryTest {
         }
     }
 
-    @Test
-    public void tileProduction() {
-
-    }
-
+    /**
+     * Method will create all tiles and assert that all tiles holds their
+     * corresponding mapping with the tileFactory
+     */
     @Test
     public void tilesHoldsCorrectMapping() {
         var mappings = factory.getAllMappings();
         mappings.forEach((x, y) -> {
             try {
-                Class[] paramTypes = {Double.TYPE};
+                Class[] paramTypes = {Integer.TYPE};
                 Object[] params = {0};
                 IBoardTile holder = factory.produce(x, paramTypes, params);
-                assertEquals(x.toString(), holder.getSymbol());
+                assertEquals(String.format("Problem with maping %s to %s", x, y),
+                        x + "",
+                        holder.getSymbol() + "");
             } catch (ClassNotFoundException e) {
-                System.err.println(String.format("Problem with maping %s to %s", x, y));
+                System.err.println();
                 e.printStackTrace();
                 fail("Exception on class not found");
             }
