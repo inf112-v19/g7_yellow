@@ -17,5 +17,5 @@ public class RotateLeft extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Robot player) { player.rotate(-1,1); }
+    public void execute(Robot player) { player.rotate(90); }
 }

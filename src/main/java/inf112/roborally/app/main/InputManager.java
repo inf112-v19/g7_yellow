@@ -24,10 +24,10 @@ class InputManager {
                 GameController.moveRobot(playerId, -1);
                 GameController.oneStep();
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.D) || Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-                GameController.rotateRobot(playerId, 1, 1);
+                GameController.rotateRobot(playerId, 270);
                 GameController.oneStep();
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.A) || Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-                GameController.rotateRobot(playerId, -1, 1);
+                GameController.rotateRobot(playerId, 90);
                 GameController.oneStep();
             }
         }
