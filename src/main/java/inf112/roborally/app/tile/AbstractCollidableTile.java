@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 /**
  * Abstract class for tiles that have a function upon entering
  *
@@ -15,7 +13,6 @@ public abstract class AbstractCollidableTile extends AbstractTile{
         super(r);
     }
 
-    public void execute(Player player) {
-        //This is used to perform a method on the players that hit it
-    }
+    public abstract boolean canMoveIntoFrom(int rotation);
+    public abstract boolean canMoveOutFrom(int rotation);
 }

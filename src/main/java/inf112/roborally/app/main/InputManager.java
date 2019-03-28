@@ -2,44 +2,35 @@ package inf112.roborally.app.main;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.Console;
-import inf112.roborally.app.editor.EditorInput;
-import inf112.roborally.app.player.Player;
+import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.game.GameController;
 
 class InputManager {
 
-    private Player player;
-    private Board board;
+    private int playerId;
 
-    InputManager(Player player, Board board) {
-        this.player = player;
-        this.board = board;
+    InputManager(int robotId) {
+        this.playerId = robotId;
     }
 
-
-    protected void checkForInput() {
-        if(Main.gameState == GameState.PLAYING) {
-            if(Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP))
-                player.move(1,1);
-            else if (Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
-                player.move(-1,1);
-            else if (Gdx.input.isKeyJustPressed(Input.Keys.D) || Gdx.input.isKeyJustPressed(Input.Keys.RIGHT))
-                player.rotate(1,1);
-            else if (Gdx.input.isKeyJustPressed(Input.Keys.A) || Gdx.input.isKeyJustPressed(Input.Keys.LEFT))
-                player.rotate(-1,1);
-        }
-
-
-        /*
-        if (Gdx.input.isKeyJustPressed(Input.Keys.E) && Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
-            if(Main.gameState != GameState.EDITOR) {
-                EditorInput.enterEditorMode();
-            } else {
-                EditorInput.exitEditorMode();
+    protected void checkForInput() throws OutsideGridException {
+        if (Main.gameState == GameState.PLAYING) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                GameController.moveRobot(playerId, 1);
+                GameController.oneStep();
+                System.out.println("wow move forward");
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+                GameController.moveRobot(playerId, -1);
+                GameController.oneStep();
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.D) || Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+                GameController.rotateRobot(playerId, 1, 1);
+                GameController.oneStep();
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.A) || Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+                GameController.rotateRobot(playerId, -1, 1);
+                GameController.oneStep();
             }
         }
-        */
 
         // Enable/Disable console with TAB
         if (Gdx.input.isKeyJustPressed(Input.Keys.TAB)) {

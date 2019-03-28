@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class CornerWall extends AbstractCollidableTile {
 
     public CornerWall(int r) {
@@ -15,29 +13,17 @@ public class CornerWall extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'C';
+        return 'l';
     }
 
+    @Override
+    public boolean canMoveIntoFrom(int rotation) {
+        return !(rotation - this.rotation == 180 || this.rotation - rotation == 180
+                || rotation - this.rotation == 90 || (rotation == 0 && this.rotation == 270));
+    }
 
     @Override
-    public void execute(Player player) {
-        // TODO: Make sure this works properly
-        int rot2;
-        if(rotation == 0) rot2 = 270;
-        else rot2 = rotation-90;
-
-        var sin1 = (int) Math.sin(Math.toRadians(rotation));
-        var cos1 = (int) Math.cos(Math.toRadians(rotation));
-        var sin2 = (int) Math.sin(Math.toRadians(rot2));
-        var cos2 = (int) Math.cos(Math.toRadians(rot2));
-
-        if(player.getPos().x - player.getOldPos().x == -cos1
-                && player.getPos().y - player.getOldPos().y == -sin1) {
-            player.push(rotation);
-
-        } else if (player.getPos().x - player.getOldPos().x == -cos2
-                && player.getPos().y - player.getOldPos().y == -sin2) {
-            player.push(rot2);
-        }
+    public boolean canMoveOutFrom(int rotation) {
+        return !(rotation == this.rotation || rotation == this.rotation - 90 || (rotation == 270 && this.rotation == 0));
     }
 }

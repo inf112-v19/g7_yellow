@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class BlueConveyorTurnLeft extends AbstractFunctionTile {
 
     public BlueConveyorTurnLeft(int r) {
@@ -19,10 +17,9 @@ public class BlueConveyorTurnLeft extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
-
-        // Does game logic handle the rotation at the start of the turn?
-
-        player.push(rotation);
+    public void execute(Robot player) {
+        /*
+        Should move the player twice and be called once, or be called twice and move the player once
+         */
     }
 }

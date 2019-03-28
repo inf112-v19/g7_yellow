@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class LaserStart2 extends AbstractFunctionTile {
 
     public LaserStart2(int r) {
@@ -19,8 +17,9 @@ public class LaserStart2 extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
-        // TODO: Make sure this does what it is supposed to do
-        player.takenDamage(2);
+    public void execute(Robot player) {
+        /**
+         * This should hit the player for two (2) damage as long as they are in the laserbeam and they're the closest to this tile
+         */
     }
 }

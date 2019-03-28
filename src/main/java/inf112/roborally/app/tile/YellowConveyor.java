@@ -1,6 +1,7 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
+import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.game.GameController;
 
 public class YellowConveyor extends AbstractFunctionTile {
 
@@ -19,7 +20,12 @@ public class YellowConveyor extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
-        player.push(rotation);
+    public void execute(Robot robot) {
+        try {
+            GameController.pushRobot(robot.getId(), this.rotation);
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
+
     }
 }

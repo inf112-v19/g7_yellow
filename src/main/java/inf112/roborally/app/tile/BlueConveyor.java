@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
-
 public class BlueConveyor extends AbstractFunctionTile {
 
     public BlueConveyor(int r) {
@@ -19,7 +17,9 @@ public class BlueConveyor extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
-        player.push(rotation);
+    public void execute(Robot player) {
+        /*
+        Should move the player twice and be called once, or be called twice and move the player once
+         */
     }
 }

@@ -1,7 +1,7 @@
 package inf112.roborally.app;
 
 import com.badlogic.gdx.math.Vector2;
-import inf112.roborally.app.player.Player;
+import inf112.roborally.app.player.Robot;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class PlayerTest
 {
 
-    private Player originalPlayer = new Player(1, new Vector2(1, 1), 0);
+    private Robot originalPlayer = new Robot(1, new Vector2(1, 1), 0);
 
     /**
      * Does the player start facing upwards?
@@ -20,7 +20,7 @@ public class PlayerTest
     @Test
     public void doesPlayerLookUp()
     {
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         assertEquals(90, testPlayer.getRotation());
     }
 
@@ -30,7 +30,7 @@ public class PlayerTest
     @Test
     public void canPlayerMove()
     {
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         testPlayer.move(1,1);
         assertEquals(testPlayer.getPos(), new Vector2(1,2));
     }
@@ -41,7 +41,7 @@ public class PlayerTest
     @Test
     public void canPlayerMoveBackwards()
     {
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         testPlayer.move(-1,1);
         assertEquals(testPlayer.getPos(), new Vector2(1,0));
     }
@@ -52,7 +52,7 @@ public class PlayerTest
     @Test
     public void canPlayerRotate90()
     {
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         testPlayer.rotate(1, 1);
         assertEquals(testPlayer.getRotation(), 0);
     }
@@ -63,7 +63,7 @@ public class PlayerTest
     @Test
     public void canPlayerRotate180()
     {
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         testPlayer.rotate(1, 2);
         assertEquals(testPlayer.getRotation(), 270);
     }
@@ -74,7 +74,7 @@ public class PlayerTest
     @Test
     public void canPlayerRotateAndMove()
     {
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         testPlayer.rotate(1, 1);
         testPlayer.move(1, 1);
         assertEquals(testPlayer.getPos(), new Vector2(2,1));
@@ -86,7 +86,7 @@ public class PlayerTest
     @Test
     public void isPlayerPushable()
     {
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         testPlayer.push(270);
         assertEquals(new Vector2(1,0), testPlayer.getPos());
     }
@@ -97,7 +97,7 @@ public class PlayerTest
     @Test
     public void canPlayerMoveMore()
     {
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         // x=1, y=1, rotation=90
         testPlayer.move(1,1); // x=1, y=2, rotation=90
 
@@ -115,7 +115,7 @@ public class PlayerTest
      */
     @Test
     public void damageReturnZeroTest(){
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         assertEquals(0, testPlayer.getDamage());
     }
 
@@ -124,7 +124,7 @@ public class PlayerTest
      */
     @Test
     public void takenDamageTest(){
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         testPlayer.takenDamage(1);
         assertEquals(1, testPlayer.getDamage());
 
@@ -135,7 +135,7 @@ public class PlayerTest
      */
     @Test
     public void resetDamageTest(){
-        Player testPlayer = originalPlayer;
+        Robot testPlayer = originalPlayer;
         testPlayer.takenDamage(1);
         testPlayer.resetDamage();
         assertEquals(0,testPlayer.getDamage());
