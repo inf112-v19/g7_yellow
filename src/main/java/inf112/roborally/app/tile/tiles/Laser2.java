@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile.tiles;
 
-import inf112.roborally.app.player.Player;
-
 public class Laser2 extends AbstractFunctionTile {
 
     public Laser2(int r) {

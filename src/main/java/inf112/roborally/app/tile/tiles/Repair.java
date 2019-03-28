@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile.tiles;
 
-import inf112.roborally.app.player.Player;
-
 public class Repair extends AbstractFunctionTile {
 
     public Repair(int r) {
@@ -17,8 +15,9 @@ public class Repair extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Player player) {
-        // TODO: Does this do the right thing?
-        player.takenDamage(-2);
+    public void execute(Robot player) {
+        /**
+         * This should repair the player by 2 damage points
+         */
     }
 }

@@ -2,11 +2,10 @@ package inf112.roborally.app.tile.tiles;
 
 public class Dock extends AbstractFunctionTile {
 
-    private final int id;
+    private int id;
 
-    public Dock(int r, int id) {
+    public Dock(int r) {
         super(r);
-        this.id = id;
     }
 
     //REQUIRED by Dynamic factory
@@ -17,6 +16,9 @@ public class Dock extends AbstractFunctionTile {
 
     public int getId(){
         return this.id;
+    }
+    public void setId(int id){
+        this.id = id;
     }
 
     @Override

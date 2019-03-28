@@ -1,7 +1,5 @@
 package inf112.roborally.app.tile.tiles;
 
-import inf112.roborally.app.player.Player;
-
 public class Hole extends AbstractCollidableTile {
 
     public Hole(int r) {
@@ -19,7 +17,12 @@ public class Hole extends AbstractCollidableTile {
     }
 
     @Override
-    public void execute(Player player) {
-        player.takenDamage(10);
+    public boolean canMoveIntoFrom(int rotation) {
+        return true;
+    }
+
+    @Override
+    public boolean canMoveOutFrom(int rotation) {
+        return false;
     }
 }

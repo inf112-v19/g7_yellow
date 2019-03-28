@@ -14,7 +14,7 @@ public class AbstractCardPile<E> implements ICardPile<E> {
     private LinkedList<E> list;
     private int size;
 
-    public AbstractCardPile () {
+    public AbstractCardPile() {
         size = 0;
         list = new LinkedList<>();
 
@@ -28,7 +28,7 @@ public class AbstractCardPile<E> implements ICardPile<E> {
 
     @Override
     public E pop() {
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             throw new IllegalArgumentException("Cannot remove elements an empty list");
         }
 
@@ -38,15 +38,15 @@ public class AbstractCardPile<E> implements ICardPile<E> {
         size--;
         return elem;
 
-   }
+    }
 
-   public int size() {
+    public int size() {
         return size;
-   }
+    }
 
-   public void print() {
-        for(E elem : list) {
+    public void print() {
+        for (E elem : list) {
             System.out.print(elem + " ");
         }
-   }
+    }
 }
