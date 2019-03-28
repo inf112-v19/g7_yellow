@@ -35,11 +35,11 @@ public class CardTest {
 
     @Test
     public void doesItRemoveRandom() {
-        pile = new AbstractCardPile<Integer>();
+        pile = new AbstractCardPile<>();
         int[] arr = new int[1000];
         int[] copy = new int[1000];
 
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 10000; i++) {
             pile.add(i);
         }
 
