@@ -28,13 +28,13 @@ public enum TileIndex {
 
     public static IBoardTile indexToTile(int i) {
         for (TileIndex t : TileIndex.values()) {
-            if(t.index == i)
+            if (t.index == i)
                 return t.tile;
         }
         return null;
     }
 
-    public static IBoardTile charToTile(char type){
+    public static IBoardTile charToTile(char type) {
         return null;
     }
 }

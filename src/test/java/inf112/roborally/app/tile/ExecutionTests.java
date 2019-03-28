@@ -3,7 +3,6 @@ package inf112.roborally.app.tile;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.tiles.*;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -18,18 +17,18 @@ public class ExecutionTests {
         p.move(1, 1);
         p.move(1, 1);
         b.execute(p);
-        Assert.assertEquals(new Vector2(0, 1), p.getPos());
+        assertEquals(new Vector2(0, 1), p.getPos());
     }
 
     @Test
     public void wallStopsPlayer() {
         Wall w = new Wall(90);
-        Player p = new Player(1, new Vector2(0,2), 0);
-        p.rotate(1,2);
-        p.move(1,1);
-        p.move(1,1);
+        Player p = new Player(1, new Vector2(0, 2), 0);
+        p.rotate(1, 2);
+        p.move(1, 1);
+        p.move(1, 1);
         w.execute(p);
-        assertEquals(new Vector2(0,1), p.getPos());
+        assertEquals(new Vector2(0, 1), p.getPos());
     }
 
     @Test
@@ -99,9 +98,9 @@ public class ExecutionTests {
     }
 
     @Test
-    public void repairStationRepairsPlayerAsExpected(){
+    public void repairStationRepairsPlayerAsExpected() {
         AbstractFunctionTile repair1 = new Repair(0);
-        Player p1 = new Player(1, new Vector2(0,0), 5);
+        Player p1 = new Player(1, new Vector2(0, 0), 5);
 
         repair1.execute(p1);
         assertEquals(3, p1.getDamage());
@@ -112,16 +111,16 @@ public class ExecutionTests {
     }
 
     @Test
-    public void repairFullStationRepairsPlayerAsExpected(){
+    public void repairFullStationRepairsPlayerAsExpected() {
         AbstractFunctionTile repair2 = new RepairFull(0);
-        Player p2 = new Player(2, new Vector2(0,0), 8);
+        Player p2 = new Player(2, new Vector2(0, 0), 8);
 
         repair2.execute(p2);
         assertEquals(0, p2.getDamage());
     }
 
     @Test
-    public void rotateRightTest(){
+    public void rotateRightTest() {
         RotateRight rR = new RotateRight(90);
         Player temp = new Player();
         rR.execute(temp);
@@ -129,7 +128,7 @@ public class ExecutionTests {
     }
 
     @Test
-    public void rotateLeftTest(){
+    public void rotateLeftTest() {
         RotateLeft rL = new RotateLeft(90);
         Player temp = new Player();
         rL.execute(temp);

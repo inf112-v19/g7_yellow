@@ -3,7 +3,6 @@ package inf112.roborally.app.tile;
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
 import inf112.roborally.app.tile.tiles.Robot;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,9 +10,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /**
  * Large Test to execute general tests on all
@@ -33,7 +30,7 @@ public class GenericTilesTest {
 
     @Test
     public void tilePriorityBetween0and100() {
-        tiles.forEach(x -> Assert.assertTrue((x.getRenderPriority() >= 0) && (x.getRenderPriority() <= 100)));
+        tiles.forEach(x -> assertTrue((x.getRenderPriority() >= 0) && (x.getRenderPriority() <= 100)));
     }
 
     @Test
@@ -76,8 +73,6 @@ public class GenericTilesTest {
             assertTrue((bt2.getRotation() >= 0) && bt2.getRotation() <= 360);
         }
     }
-
-
 
     private void loadAllTiles() {
         factory.getAllMappings().forEach((x, y) -> {

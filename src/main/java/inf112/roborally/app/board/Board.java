@@ -3,11 +3,9 @@ package inf112.roborally.app.board;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
+import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
 import inf112.roborally.app.tile.tiles.Floor;
-import inf112.roborally.app.tile.tiles.Hole;
-import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.tiles.Wall;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -52,10 +50,10 @@ public class Board {
                     rot = Integer.parseInt(rotation);
                 }
 
-                if (ch == '-'){
+                if (ch == '-') {
                     count++;
                     continue;
-                } else if (!Character.isLetter(ch)){
+                } else if (!Character.isLetter(ch)) {
                     continue;
                 }
                 Class[] paramTypes = {Integer.TYPE};
