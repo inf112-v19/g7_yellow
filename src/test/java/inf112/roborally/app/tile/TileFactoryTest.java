@@ -1,7 +1,5 @@
-package inf112.roborally.app;
+package inf112.roborally.app.tile;
 
-import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.TileFactory;
 import inf112.roborally.app.tile.tiles.Robot;
 import org.junit.Before;
 import org.junit.Test;
