@@ -1,4 +1,4 @@
-package inf112.roborally.app.helpers;
+package inf112.roborally.app.card.programcard;
 
 /**
  * TODO: Describe class

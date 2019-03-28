@@ -1,4 +1,4 @@
-package inf112.roborally.app.helpers;
+package inf112.roborally.app.card.programcard;
 
 import inf112.roborally.app.game.GameController;
 
@@ -19,7 +19,6 @@ public class RotateCard implements IProgamCard {
 
     @Override
     public void excecute(int robotId) {
-        // VERY TEMPORARY, WANT TO USE DEGREES HERE
-        GameController.rotateRobot(robotId, 1, 1);
+        GameController.rotateRobot(robotId, rotateByDegrees);
     }
 }

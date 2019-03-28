@@ -1,4 +1,4 @@
-package inf112.roborally.app.helpers;
+package inf112.roborally.app.card.programcard;
 
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.game.GameController;
