@@ -14,7 +14,7 @@ public class CardTest {
 
     @Test
     public void doesitAdd() {
-        pile = new AbstractCardPile<Integer>();
+        pile = new AbstractCardPile<>();
         pile.add(1);
         pile.add(0);
 
@@ -23,7 +23,7 @@ public class CardTest {
 
     @Test
     public void doesItRemove() {
-        pile = new AbstractCardPile<Integer>();
+        pile = new AbstractCardPile<>();
 
         for (int i = 0; i < 10; i++) {
             pile.add(i);
