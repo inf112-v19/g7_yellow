@@ -92,7 +92,7 @@ public class GameController {
             if (t instanceof AbstractCollidableTile) {
                 //Try to push robots if robot is in front
                 if (t instanceof Robot) {
-                    System.out.println("checking if can push with: " + dir);
+                    // System.out.println("checking if can push with: " + dir);
                     if (canPushRobot(oldPos, dir)) {
                         pushRobot(((Robot) t).getId(), dir);
                         break;

@@ -66,7 +66,7 @@ public class Robot extends AbstractCollidableTile {
         var cos = (int) Math.cos(Math.toRadians(pushDirection));
         var newX = pos.x + cos;
         var newY = pos.y + sin;
-        System.out.println("oldpos: " + pos.x + ", " + pos.y + ", newpos: " + newX + ", " + newY);
+        // System.out.println("oldpos: " + pos.x + ", " + pos.y + ", newpos: " + newX + ", " + newY);
         return new Vector2(newX, newY);
     }
 
