@@ -1,11 +1,8 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.tile.tiles.Robot;
-import org.junit.Before;
-import org.junit.Test;
-
 public class ExecutionTest {
-
+    //TODO create all tests for new system
+    /*
     private Robot[] testBots;
 
     @Before
@@ -19,56 +16,57 @@ public class ExecutionTest {
 
     @Test
     public void wallStopsPlayer() {
-
+        //TODO
     }
 
     @Test
     public void conveyorMovesPlayerAsExpected() {
-
+        //TODO
     }
 
     @Test
     public void cornerWallStopsPlayerAsExpected() {
-
+        //TODO
     }
 
     @Test
     public void dockHasExpectedId() {
-
+        //TODO
     }
 
     @Test
     public void flagHasExpectedId() {
-
+        //TODO
     }
 
     @Test
     public void holeDamagesPlayer() {
-
+        //TODO
     }
 
     @Test
     public void lasersDamagesPlayer() {
-
+        //TODO
     }
 
     @Test
     public void repairStationRepairsPlayerAsExpected() {
-
+        //TODO
     }
 
     @Test
     public void repairFullStationRepairsPlayerAsExpected() {
-
+        //TODO
     }
 
     @Test
     public void rotateRightTest() {
-
+        //TODO
     }
 
     @Test
     public void rotateLeftTest() {
-
+        //TODO
     }
+    */
 }
