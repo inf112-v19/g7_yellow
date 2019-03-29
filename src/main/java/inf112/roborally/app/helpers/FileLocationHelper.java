@@ -38,11 +38,7 @@ public class FileLocationHelper {
      * @throws IOException
      */
     public static Set<String> getJarFileList(URL url, String regex) throws IOException {
-        String jarPath;
-        if (isJar(url))
-            jarPath = url.toString().substring(9, url.toString().indexOf("!")); //strip out only the JAR file
-        else
-            jarPath = url.toString().substring(5);
+        String jarPath = (isJar(url)) ? url.toString().substring(9, url.toString().indexOf("!")) : url.toString().substring(5);
         JarFile jar = new JarFile(URLDecoder.decode(jarPath, StandardCharsets.UTF_8));
 
         Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
