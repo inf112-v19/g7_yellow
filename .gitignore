@@ -14,7 +14,7 @@
 .mtj.tmp/
 
 # Package Files #
-#*.jar jar is needed to test
+*.jar
 *.war
 *.nar
 *.ear
