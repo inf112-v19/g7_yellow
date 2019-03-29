@@ -6,7 +6,7 @@ import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.Hole;
+import inf112.roborally.app.tile.tiles.Hole;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

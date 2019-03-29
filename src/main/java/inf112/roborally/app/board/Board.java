@@ -3,11 +3,9 @@ package inf112.roborally.app.board;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.CornerWall;
-import inf112.roborally.app.tile.Floor;
-import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.Wall;
+import inf112.roborally.app.tile.TileFactory;
+import inf112.roborally.app.tile.tiles.Floor;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -18,11 +16,13 @@ public class Board {
 
     private Grid grid;
     private int width, height;
+    private TileFactory tileFactory;
 
     public Board(int width, int height) {
         grid = new Grid(width, height);
         this.width = width;
         this.height = height;
+        this.tileFactory = TileFactory.getInstance();
     }
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
@@ -50,25 +50,15 @@ public class Board {
                     rot = Integer.parseInt(rotation);
                 }
 
-                switch (ch) {
-                    case ('F'):
-                        currentTile = new Floor(rot);
-                        break;
-                    case ('X'):
-                        currentTile = new Hole(rot);
-                        break;
-                    case ('W'):
-                        currentTile = new Wall(rot);
-                        break;
-                    case ('l'):
-                        currentTile = new CornerWall(rot);
-                        break;
-                    case ('-'):
-                        count++;
-                        continue;
-                    default: //If newline or other character, reset loop
-                        continue;
+                if (ch == '-') {
+                    count++;
+                    continue;
+                } else if (!Character.isLetter(ch)) {
+                    continue;
                 }
+                Class[] paramTypes = {Integer.TYPE};
+                Object[] parameters = {rot};
+                currentTile = tileFactory.produce((ch + "").toUpperCase().charAt(0), paramTypes, parameters);
 
                 x = Math.floorMod((int) Math.floor((float) count / 3), width);
                 y = (height - 1) - (int) Math.floor((float) count / (height * MAX_TILE_STACK));
@@ -84,6 +74,8 @@ public class Board {
         } catch (IOError | NullPointerException | IOException e) {
             e.printStackTrace();
             loadDefaultMap();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         } finally {
             if (in != null) {
                 try {

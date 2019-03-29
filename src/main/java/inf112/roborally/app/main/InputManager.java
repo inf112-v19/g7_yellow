@@ -19,7 +19,6 @@ class InputManager {
             if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
                 GameController.moveRobot(playerId, 1);
                 GameController.oneStep();
-                System.out.println("wow move forward");
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.S) || Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
                 GameController.moveRobot(playerId, -1);
                 GameController.oneStep();
