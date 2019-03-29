@@ -64,53 +64,56 @@ public class GameController {
         return pos;
     }
 
-    public static void pushRobot(int pId, int dir) throws OutsideGridException {
+    public static void pushRobot(int pId, int dir) {
+        try {
+            //Find robot based on pId input
+            Robot r = robots[pId - 1];
 
-        //Find robot based on pId input
-        Robot r = robots[pId - 1];
+            //Find the old and new position of the robot
+            Vector2 oldPos = findRobot(r);
+            Vector2 newPos = r.push(oldPos, dir);
 
-        //Find the old and new position of the robot
-        Vector2 oldPos = findRobot(r);
-        Vector2 newPos = r.push(oldPos, dir);
-
-        //Get all the tiles on old position, and check for collidable tiles.
-        //If collidable tile is found, act immediately.
-        LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(oldPos);
-        for (IBoardTile t : tilesOnOldPos) {
-            if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
-                if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))) {
-                    break;
-                }
-                return;
-            }
-        }
-
-        //Get all the tiles on new position, and check for collidable tiles.
-        //If collidable tile is found, act immediately.
-        LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
-        for (IBoardTile t : tilesOnNewPos) {
-            if (t instanceof AbstractCollidableTile) {
-                //Try to push robots if robot is in front
-                if (t instanceof Robot) {
-                    // System.out.println("checking if can push with: " + dir);
-                    if (canPushRobot(oldPos, dir)) {
-                        pushRobot(((Robot) t).getId(), dir);
+            //Get all the tiles on old position, and check for collidable tiles.
+            //If collidable tile is found, act immediately.
+            LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(oldPos);
+            for (IBoardTile t : tilesOnOldPos) {
+                if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
+                    if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))) {
                         break;
-                    } else return;
+                    }
+                    return;
                 }
-                //Otherwise just try to move to the next tile
-                else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))) {
-                    break;
-                }
-                return;
             }
-        }
 
-        board.getGrid().removeTile(oldPos, r);
-        board.getGrid().addTile(newPos, r);
+            //Get all the tiles on new position, and check for collidable tiles.
+            //If collidable tile is found, act immediately.
+            LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
+            for (IBoardTile t : tilesOnNewPos) {
+                if (t instanceof AbstractCollidableTile) {
+                    //Try to push robots if robot is in front
+                    if (t instanceof Robot) {
+                        // System.out.println("checking if can push with: " + dir);
+                        if (canPushRobot(oldPos, dir)) {
+                            pushRobot(((Robot) t).getId(), dir);
+                            break;
+                        } else return;
+                    }
+                    //Otherwise just try to move to the next tile
+                    else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))) {
+                        break;
+                    }
+                    return;
+                }
+            }
+
+            board.getGrid().removeTile(oldPos, r);
+            board.getGrid().addTile(newPos, r);
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void moveRobot(int pId, int dir) throws OutsideGridException {
+    public static void moveRobot(int pId, int dir) {
         if (dir > 0)
             pushRobot(pId, robots[pId - 1].getRotation());
         else if (dir < 0)

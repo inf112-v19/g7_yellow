@@ -20,10 +20,6 @@ public class MoveCard implements IProgamCard {
 
     @Override
     public void excecute(int robotId) {
-        try {
-            GameController.moveRobot(robotId, this.moveLength);
-        } catch (OutsideGridException e) {
-            e.printStackTrace();
-        }
+        GameController.moveRobot(robotId, this.moveLength);
     }
 }
