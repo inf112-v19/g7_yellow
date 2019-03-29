@@ -2,7 +2,7 @@ package inf112.roborally.app.player;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class Robot {
+public class Player {
 
     private int id;
     private int oldX, oldY;
@@ -10,7 +10,7 @@ public class Robot {
     private int damage;
     private int rotation; //Using degrees
 
-    public Robot(int id, Vector2 pos, int damage) {
+    public Player(int id, Vector2 pos, int damage) {
         this.id = id;
         this.x = (int) pos.x;
         this.y = (int) pos.y;
