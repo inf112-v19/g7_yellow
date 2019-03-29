@@ -1,4 +1,4 @@
-package inf112.roborally.app;
+package inf112.roborally.app.helpers;
 
 import inf112.roborally.app.helpers.AbstractCardPile;
 import org.junit.Test;
