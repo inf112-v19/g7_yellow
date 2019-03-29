@@ -37,7 +37,7 @@ public class Board {
                 char ch = (char) r;
                 String rotation = "";
 
-                if (Character.isLetter(ch) && (ch != '-')) {
+                if ((Character.isLetter(ch) && (ch != '-'))||Character.isDigit(ch)) {
                     char temp = (char) in.read();
                     while (Character.isDigit(temp)) {
                         rotation += temp;
@@ -53,7 +53,7 @@ public class Board {
                 if (ch == '-') {
                     count++;
                     continue;
-                } else if (!Character.isLetter(ch)) {
+                } else if (!(Character.isLetter(ch)||Character.isDigit(ch))) {
                     continue;
                 }
                 Class[] paramTypes = {Integer.TYPE};
