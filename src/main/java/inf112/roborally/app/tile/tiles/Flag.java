@@ -18,6 +18,12 @@ public class Flag extends AbstractFunctionTile {
         return 'f';
     }
 
+    @Override
+    public void execute(int RobotId) {
+        //TODO finish
+        System.err.println("Call to unimplemented method int" + this.getClass().toString());
+    }
+
     public int getId() {
         return this.id;
     }

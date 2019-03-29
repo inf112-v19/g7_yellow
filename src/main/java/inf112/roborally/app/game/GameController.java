@@ -4,10 +4,10 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.AbstractCollidableTile;
-import inf112.roborally.app.tile.AbstractFunctionTile;
 import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.Robot;
+import inf112.roborally.app.tile.tiles.AbstractCollidableTile;
+import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
+import inf112.roborally.app.tile.tiles.Robot;
 
 import java.util.LinkedList;
 
@@ -160,7 +160,7 @@ public class GameController {
             for (IBoardTile t : tiles) {
                 if (t instanceof AbstractFunctionTile) {
                     System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
-                    ((AbstractFunctionTile) (t)).execute(rob);
+                    ((AbstractFunctionTile) (t)).execute(i);
                 }
             }
         }

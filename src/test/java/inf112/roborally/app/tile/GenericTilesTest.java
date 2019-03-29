@@ -1,6 +1,6 @@
 package inf112.roborally.app.tile;
 
-import inf112.roborally.app.player.Player;
+import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
 import inf112.roborally.app.tile.tiles.Robot;
 import org.junit.Before;
@@ -41,18 +41,22 @@ public class GenericTilesTest {
     }
 
     @Test
-    public void allFunctionTilesCanExecute(){
+    public void allFunctionTilesCanExecute() {
+        var r = new Robot(90);
+        r.setId(1);
+        GameController.loadRobots(1);
+        r.setId(1);
         tiles.stream()
                 .filter(x -> x instanceof AbstractFunctionTile)
                 .map(x -> (AbstractFunctionTile) x)
-                .forEach(x -> x.execute(new Player()));
+                .forEach(x -> x.execute(1));
     }
 
     @Test
     public void compareTo() {
         IBoardTile t1 = new Robot(0);
         IBoardTile t2 = new Robot(0);
-        assertEquals(0,t1.compareTo(t2));
+        assertEquals(0, t1.compareTo(t2));
     }
 
     @Test

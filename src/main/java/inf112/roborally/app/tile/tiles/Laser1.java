@@ -7,6 +7,12 @@ public class Laser1 extends AbstractFunctionTile {
     }
 
     @Override
+    public void execute(int RobotId) {
+        //TODO finish
+        System.err.println("Call to unimplemented method int" + this.getClass().toString());
+    }
+
+    @Override
     public int getRenderPriority() {
         return 100;
     }

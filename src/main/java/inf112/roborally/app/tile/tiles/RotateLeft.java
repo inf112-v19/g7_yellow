@@ -1,5 +1,7 @@
 package inf112.roborally.app.tile.tiles;
 
+import inf112.roborally.app.game.GameController;
+
 public class RotateLeft extends AbstractFunctionTile {
 
     public RotateLeft(int r) {
@@ -17,5 +19,5 @@ public class RotateLeft extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Robot player) { player.rotate(90); }
+    public void execute(int robotId) { GameController.rotateRobot(robotId,90); }
 }

@@ -13,7 +13,5 @@ public abstract class AbstractFunctionTile extends AbstractTile {
         super(r);
     }
 
-    public void execute(Robot player) {
-        //This is used to perform a method on the players that are standing on it at the end of the turn
-    }
+    abstract public void execute(int RobotId);
 }

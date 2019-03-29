@@ -7,6 +7,13 @@ public class BlueConveyorTurnLeft extends AbstractBlueConveyor {
     }
 
     @Override
+    public void execute(int RobotId) {
+        /*
+        TODO
+         */
+    }
+
+    @Override
     public char getSymbol() {
         return '4';
     }

@@ -17,7 +17,7 @@ public class RepairFull extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(Robot player) {
+    public void execute(int robotId) {
         /**
          * This should repair the player to 0 damage points
          */

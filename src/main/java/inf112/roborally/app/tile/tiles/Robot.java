@@ -3,6 +3,7 @@ package inf112.roborally.app.tile.tiles;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import inf112.roborally.app.sprite.SpriteLoader;
 
 /**
  * The tile class for the robot
@@ -29,7 +30,7 @@ public class Robot extends AbstractCollidableTile {
         return false;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -71,6 +72,7 @@ public class Robot extends AbstractCollidableTile {
 
     /**
      * Rotate the player
+     *
      * @param rotation this is rotation to ROTATE BY, such as 90 to rotate left or -90/270 to rotate right
      */
     public void rotate(int rotation) {

@@ -8,10 +8,10 @@ public class Dock extends AbstractFunctionTile {
         super(r);
     }
 
-    //REQUIRED by Dynamic factory
-    public Dock(int r) {
-        super(r);
-        this.id = 0;
+    @Override
+    public void execute(int RobotId) {
+        //TODO finish
+        System.err.println("Call to unimplemented method int" + this.getClass().toString());
     }
 
     public int getId(){
