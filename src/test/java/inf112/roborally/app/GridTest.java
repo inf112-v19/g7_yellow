@@ -3,7 +3,7 @@ package inf112.roborally.app;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Grid;
 import inf112.roborally.app.exceptions.OutsideGridException;
-import inf112.roborally.app.tile.Robot;
+import inf112.roborally.app.tile.tiles.Robot;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
