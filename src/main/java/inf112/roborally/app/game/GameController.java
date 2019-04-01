@@ -50,7 +50,7 @@ public class GameController {
 
     public static void excecuteCards() {
         for (int i = 0; i < players.length; i++) {
-            players[i].ExecuteNextCard();
+            players[i].executeNextCard();
         }
     }
 

@@ -5,7 +5,7 @@ import inf112.roborally.app.helpers.AbstractCardPile;
 
 public class Program {
 
-    private int damageToken;
+    //private int damageToken;
     private AbstractCardPile<IProgramCard> cards;
 
     public Program() {

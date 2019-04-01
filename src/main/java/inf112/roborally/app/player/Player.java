@@ -42,11 +42,11 @@ public class Player {
         cardPile.add(program.popNextCard());
     }
 
-    public int GetPriorityOfNextCard() {
+    public int getPriorityOfNextCard() {
         return program.peekNextCard().getPriority();
     }
 
-    public void ExecuteNextCard() {
+    public void executeNextCard() {
         if(program.peekNextCard() == null) return;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
