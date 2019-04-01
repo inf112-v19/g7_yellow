@@ -1,8 +1,9 @@
 package inf112.roborally.app;
 
 import inf112.roborally.app.exceptions.OutsideGridException;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OutsideGridExceptionTest {
 

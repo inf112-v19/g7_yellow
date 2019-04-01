@@ -25,7 +25,7 @@ public class MapLayout implements ApplicationListener {
     private EditorInput editorInput;
     private Console console;
 
-    MapLayout() {
+    public MapLayout() {
         inputManager = new InputManager(Main.ID_OF_CURRENT_PLAYER);
         editorInput = new EditorInput(GameController.getBoard());
     }

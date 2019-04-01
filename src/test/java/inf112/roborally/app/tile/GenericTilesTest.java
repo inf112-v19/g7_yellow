@@ -3,14 +3,14 @@ package inf112.roborally.app.tile;
 import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
 import inf112.roborally.app.tile.tiles.Robot;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Large Test to execute general tests on all
@@ -18,13 +18,13 @@ import static org.junit.Assert.*;
  * the TileFactory class
  */
 public class GenericTilesTest {
-    private Set<IBoardTile> tiles;
-    private TileFactory factory;
+    private static Set<IBoardTile> tiles;
+    private static TileFactory factory;
 
-    @Before
-    public void before() {
+    @BeforeEach
+    public void beforeEach() {
         tiles = new HashSet<>();
-        this.factory = TileFactory.getInstance();
+        factory = TileFactory.getInstance();
         loadAllTiles();
     }
 
@@ -37,7 +37,7 @@ public class GenericTilesTest {
     public void allTilesHaveUniqueSymbol() {
         Set<Character> bag = new HashSet<>();
         tiles.forEach(x -> bag.add(x.getSymbol()));
-        assertEquals("Colliding values for symbols", bag.size(), tiles.size());
+        assertEquals(bag.size(), tiles.size());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class GenericTilesTest {
         }
     }
 
-    private void loadAllTiles() {
+    private static void loadAllTiles() {
         factory.getAllMappings().forEach((x, y) -> {
             try {
                 Class[] paramTypes = {Integer.TYPE};

@@ -1,10 +1,10 @@
 package inf112.roborally.app.tile;
 
 import inf112.roborally.app.tile.tiles.Robot;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Class used to test the TileFactory
@@ -17,9 +17,9 @@ public class TileFactoryTest {
 
     private TileFactory factory = TileFactory.getInstance();
 
-    @Before
-    public void before() {
-        this.factory = TileFactory.getInstance();
+    @BeforeEach
+    public void beforeEach() {
+        factory = TileFactory.getInstance();
     }
 
     /**
@@ -64,8 +64,7 @@ public class TileFactoryTest {
                 Class[] paramTypes = {Integer.TYPE};
                 Object[] params = {0};
                 IBoardTile holder = factory.produce(x, paramTypes, params);
-                assertEquals(String.format("Problem with maping %s to %s", x, y),
-                        x + "",
+                assertEquals(x + "",
                         holder.getSymbol() + "");
             } catch (ClassNotFoundException e) {
                 System.err.println();

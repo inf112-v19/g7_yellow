@@ -4,12 +4,10 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Grid;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.tile.tiles.Robot;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test file for the inf112.roborally.app.board.Grid object
@@ -18,13 +16,13 @@ import static org.junit.Assert.*;
  * @version 1.0
  * @since 07.02.19
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GridTest {
 
-    private Grid grid;
+    private Grid grid = new Grid(100, 100);
 
-    @Before
-    public void before() {
+
+    @BeforeEach
+    public void beforeEach() {
         grid = new Grid(100, 100);
     }
 
@@ -51,7 +49,7 @@ public class GridTest {
         for (int i1 = 0, x = grid.getBoardWidth() + 1; i1 < runs; x++, i1++)
             for (int i2 = 0, y = grid.getBoardHeight() + 1; i2 < runs; y++, i2++)
                 try {
-                    var cell = grid.getTiles(new Vector2(x, y));
+                    grid.getTiles(new Vector2(x, y));
                     fail("Should not succeed in getting something outside");
                 } catch (OutsideGridException e) {
                     //This is a success so continue
@@ -62,7 +60,7 @@ public class GridTest {
      * Test if the getWidth function returns expected size
      */
     @Test
-    public void getWidth(){
+    public void getWidth() {
         assertEquals(grid.getBoardWidth(), 100);
     }
 
@@ -70,23 +68,23 @@ public class GridTest {
      * Test if the getWidth function returns expected size
      */
     @Test
-    public void getHeight(){
+    public void getHeight() {
         assertEquals(grid.getBoardHeight(), 100);
     }
 
     @Test
-    public void addTileGetTileEqual() throws OutsideGridException{
+    public void addTileGetTileEqual() throws OutsideGridException {
         var myRobot = new Robot(90);
-        var pos = new Vector2(50,50);
+        var pos = new Vector2(50, 50);
         grid.addTile(pos, myRobot);
 
         assertTrue(grid.getTiles(pos).contains(myRobot));
     }
 
     @Test
-    public void addTileRemoveTile() throws OutsideGridException{
+    public void addTileRemoveTile() throws OutsideGridException {
         var myRobot = new Robot(90);
-        var pos = new Vector2(50,50);
+        var pos = new Vector2(50, 50);
         grid.addTile(pos, myRobot);
         grid.removeTile(pos, myRobot);
 
@@ -97,8 +95,8 @@ public class GridTest {
      * test grid iterator is empty
      */
     @Test
-    public void hasNextEmpty(){
-        grid = new Grid(0,0);
+    public void hasNextEmpty() {
+        grid = new Grid(0, 0);
         assertFalse(grid.iterator().hasNext());
     }
 
@@ -106,11 +104,10 @@ public class GridTest {
      * test grid iterator
      */
     @Test
-    public void hasNextTrue(){
-        grid = new Grid(2,2);
+    public void hasNextTrue() {
+        grid = new Grid(2, 2);
         assertTrue(grid.iterator().hasNext());
     }
-
 
 
 }

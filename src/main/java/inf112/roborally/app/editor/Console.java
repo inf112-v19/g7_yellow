@@ -77,17 +77,21 @@ public class Console implements Screen {
     }
 
     public static void openCloseConsole() {
-        active = !active;
-        if (active) {
-            clear();
-            stage.setKeyboardFocus(console);
+        try {
+            active = !active;
+            if (active) {
+                clear();
+                stage.setKeyboardFocus(console);
+            }
+            if (!active) stage.unfocusAll();
+        } catch (NullPointerException e) {
+            //Ignore
         }
-        if (!active) stage.unfocusAll();
     }
 
     @Override
     public void show() {
-
+        //Empty
     }
 
     @Override
