@@ -4,9 +4,11 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
+import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.AbstractCollidableTile;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
+import inf112.roborally.app.tile.tiles.Hole;
 import inf112.roborally.app.tile.tiles.Robot;
 
 import java.util.LinkedList;
@@ -20,6 +22,7 @@ public class GameController {
     }
 
     private static Robot[] robots;
+    private static Player[] players;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -28,15 +31,26 @@ public class GameController {
      */
     public static void loadRobots(int a) {
         robots = new Robot[a];
+        players = new Player[a];
         for (int i = 0; i < a; i++) {
             Robot r = new Robot(0);
             r.setId(i + 1);
             robots[i] = r;
+
+            //Add robots to player
+            players[i] = new Player(robots[i]);
+
             try {
                 board.getGrid().addTile(new Vector2(i + 1, 2), r);
             } catch (OutsideGridException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void excecuteCards() {
+        for (int i = 0; i < players.length; i++) {
+            players[i].executeNextCard();
         }
     }
 
@@ -64,57 +78,60 @@ public class GameController {
         return pos;
     }
 
-    public static void pushRobot(int pId, int dir) throws OutsideGridException {
+    public static void  pushRobot(int pId, int dir, int dist) {
+        try {
+            //Find robot based on pId input
+            Robot r = robots[pId - 1];
 
-        //Find robot based on pId input
-        Robot r = robots[pId - 1];
+            //Find the old and new position of the robot
+            Vector2 oldPos = findRobot(r);
+            Vector2 newPos = r.push(oldPos, dir);
 
-        //Find the old and new position of the robot
-        Vector2 oldPos = findRobot(r);
-        Vector2 newPos = r.push(oldPos, dir);
-
-        //Get all the tiles on old position, and check for collidable tiles.
-        //If collidable tile is found, act immediately.
-        LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(oldPos);
-        for (IBoardTile t : tilesOnOldPos) {
-            if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
-                if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))) {
-                    break;
-                }
-                return;
-            }
-        }
-
-        //Get all the tiles on new position, and check for collidable tiles.
-        //If collidable tile is found, act immediately.
-        LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
-        for (IBoardTile t : tilesOnNewPos) {
-            if (t instanceof AbstractCollidableTile) {
-                //Try to push robots if robot is in front
-                if (t instanceof Robot) {
-                    // System.out.println("checking if can push with: " + dir);
-                    if (canPushRobot(oldPos, dir)) {
-                        pushRobot(((Robot) t).getId(), dir);
+            //Get all the tiles on old position, and check for collidable tiles.
+            //If collidable tile is found, act immediately.
+            LinkedList<IBoardTile> tilesOnOldPos = board.getGrid().getTiles(oldPos);
+            for (IBoardTile t : tilesOnOldPos) {
+                if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
+                    if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))) {
                         break;
-                    } else return;
+                    }
+                    return;
                 }
-                //Otherwise just try to move to the next tile
-                else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))) {
-                    break;
-                }
-                return;
             }
-        }
 
-        board.getGrid().removeTile(oldPos, r);
-        board.getGrid().addTile(newPos, r);
+            //Get all the tiles on new position, and check for collidable tiles.
+            //If collidable tile is found, act immediately.
+            LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
+            for (IBoardTile t : tilesOnNewPos) {
+                if (t instanceof AbstractCollidableTile) {
+                    //Try to push robots if robot is in front
+                    if (t instanceof Robot) {
+                        // System.out.println("checking if can push with: " + dir);
+                        if (canPushRobot(oldPos, dir)) {
+                            pushRobot(((Robot) t).getId(), dir, dist);
+                            break;
+                        } else return;
+                    }
+                    //Otherwise just try to move to the next tile
+                    else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))) {
+                        break;
+                    }
+                    return;
+                }
+            }
+
+            board.getGrid().removeTile(oldPos, r);
+            board.getGrid().addTile(newPos, r);
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void moveRobot(int pId, int dir) throws OutsideGridException {
+    public static void moveRobot(int pId, int dir) {
         if (dir > 0)
-            pushRobot(pId, robots[pId - 1].getRotation());
+            pushRobot(pId, robots[pId - 1].getRotation(), 1);
         else if (dir < 0)
-            pushRobot(pId, robots[pId - 1].getRotation() + 180);
+            pushRobot(pId, robots[pId - 1].getRotation() + 180,1 );
     }
 
     public static void rotateRobot(int pId, int rotation) {
@@ -160,7 +177,7 @@ public class GameController {
             for (IBoardTile t : tiles) {
                 if (t instanceof AbstractFunctionTile) {
                     System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
-                    ((AbstractFunctionTile) (t)).execute(i);
+                    ((AbstractFunctionTile) (t)).execute(i+1);
                 }
             }
         }

@@ -1,5 +1,7 @@
 package inf112.roborally.app.tile.tiles;
 
+import inf112.roborally.app.game.GameController;
+
 /**
  * Conveyor is abstract just to remove code duplication
  *
@@ -15,9 +17,7 @@ public abstract class AbstractConveyor extends AbstractFunctionTile {
 
     @Override
     public void execute(int RobotId) {
-        /*
-        Should move the player twice and be called once, or be called twice and move the player once
-         */
+        GameController.pushRobot(RobotId, this.getRotation()  ,this.getPushLength());
     }
 
     @Override

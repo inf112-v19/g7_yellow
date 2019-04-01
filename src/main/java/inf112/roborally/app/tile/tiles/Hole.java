@@ -25,4 +25,5 @@ public class Hole extends AbstractCollidableTile {
     public boolean canMoveOutFrom(int rotation) {
         return false;
     }
+
 }
