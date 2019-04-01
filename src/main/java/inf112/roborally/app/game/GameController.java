@@ -78,7 +78,7 @@ public class GameController {
         return pos;
     }
 
-    public static void pushRobot(int pId, int dir, int dist) {
+    public static void  pushRobot(int pId, int dir, int dist) {
         try {
             //Find robot based on pId input
             Robot r = robots[pId - 1];

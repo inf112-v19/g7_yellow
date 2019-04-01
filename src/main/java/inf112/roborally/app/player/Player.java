@@ -47,6 +47,7 @@ public class Player {
     }
 
     public void ExecuteNextCard() {
+        if(program.peekNextCard() == null) return;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
     }
