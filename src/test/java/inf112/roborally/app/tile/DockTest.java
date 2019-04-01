@@ -8,6 +8,10 @@ public class DockTest {
 
     private Dock dock;
 
+
+    /**
+     * Test setId() and getId()
+     */
     @Test
     public void setAndGetIdTest(){
         dock = new Dock(1);
