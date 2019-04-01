@@ -1,4 +1,8 @@
-package inf112.roborally.app;
+/*
+ * Removed due to build-server ARM not supported by LibGdx
+ */
+
+/*package inf112.roborally.app;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
@@ -70,3 +74,4 @@ public class ConsoleTest {
         assertFalse(Console.getActive());
     }
 }
+ */
