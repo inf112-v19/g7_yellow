@@ -5,7 +5,11 @@ import inf112.roborally.app.helpers.AbstractCardPile;
 import java.util.Collections;
 
 public class PlayerCardPile<E> extends AbstractCardPile<E> {
-    private final int STACK_SIZE = 30;
+    private final int STACK_SIZE = 84;
+
+    public void initialize(){
+
+    }
 
     @Override
     public void add(E card) {

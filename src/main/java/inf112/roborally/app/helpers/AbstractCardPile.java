@@ -22,6 +22,11 @@ public class AbstractCardPile<E> implements ICardPile<E> {
     }
 
     @Override
+    public void peek() {
+        list.peek();
+    }
+
+    @Override
     public void add(E card) {
         list.add(card);
         size++;
@@ -33,9 +38,7 @@ public class AbstractCardPile<E> implements ICardPile<E> {
             throw new IllegalArgumentException("Cannot remove elements an empty list");
         }
 
-        E elem = list.get(new Random().nextInt(list.size()));
-
-        list.remove(elem);
+        E elem = list.pop();
         size--;
         return elem;
     }

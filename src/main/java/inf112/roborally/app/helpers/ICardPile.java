@@ -17,6 +17,11 @@ public interface ICardPile<E> {
     void add(E card);
 
     /**
+     * Public method to look at next card
+     */
+    void peek();
+
+    /**
      * Public method to get a random card from the pile
      *
      * @return A card from the pile
