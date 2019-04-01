@@ -32,3 +32,8 @@ Test coverage reports can be generated using the Jacoco maven plugin. We recomme
 We are currently working on implementing the usage of the SpotBugs plugin to the development, but is currently not in use. However the report may be produced by using the following maven command.
 
 ```mvn clean install spotbugs:spotbugs```
+
+
+## Compatible OS 
+Ths product should run perfectly fine with linux and windows, but we've had some issues on OSX. If you are running the project on a Mac 
+and it's not working, you should try to run it from the editor. This should fix the problem. 
