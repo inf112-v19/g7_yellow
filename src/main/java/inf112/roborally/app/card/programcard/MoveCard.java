@@ -1,9 +1,8 @@
 package inf112.roborally.app.card.programcard;
 
-import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.game.GameController;
 
-public class MoveCard implements IProgamCard {
+public class MoveCard implements IProgramCard {
 
     private final int priority;
     private final int moveLength;

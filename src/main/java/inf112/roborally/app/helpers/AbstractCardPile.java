@@ -11,13 +11,14 @@ import java.util.Random;
  * @since 19.02.19
  */
 public class AbstractCardPile<E> implements ICardPile<E> {
-    private LinkedList<E> list;
-    private int size;
+    protected LinkedList<E> list;
+    protected int size;
+    protected int counter;
 
     public AbstractCardPile() {
         size = 0;
+        counter = 0;
         list = new LinkedList<>();
-
     }
 
     @Override
@@ -37,7 +38,6 @@ public class AbstractCardPile<E> implements ICardPile<E> {
         list.remove(elem);
         size--;
         return elem;
-
     }
 
     public int size() {

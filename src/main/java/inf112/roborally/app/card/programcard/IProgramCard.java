@@ -7,7 +7,7 @@ package inf112.roborally.app.card.programcard;
  * @version 1.0
  * @since 28.02.19
  */
-public interface IProgamCard {
+public interface IProgramCard {
 
     /**
      * Get the priority of the card. The highest priority is to be played first

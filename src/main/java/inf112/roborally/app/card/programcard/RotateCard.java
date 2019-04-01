@@ -2,7 +2,7 @@ package inf112.roborally.app.card.programcard;
 
 import inf112.roborally.app.game.GameController;
 
-public class RotateCard implements IProgamCard {
+public class RotateCard implements IProgramCard {
 
     private final int priority;
     private final int rotateByDegrees;
