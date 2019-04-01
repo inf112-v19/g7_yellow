@@ -26,7 +26,7 @@ public class MapLayoutTest {
     @Test
     public void justStart() {
         var tester = Mockito.mock(MapLayout.class);
-        var maplayout = new MapLayout();
+        new MapLayout();
 
         tester.resize(0,0);
         tester.pause();
