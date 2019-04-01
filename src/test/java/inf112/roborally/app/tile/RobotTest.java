@@ -10,18 +10,27 @@ public class RobotTest {
 
     private Robot robot;
 
+    /**
+     * Test canMoveIntoFrom()
+     */
     @Test
     public void canMoveIntoFromTest(){
         robot = new Robot(1);
         assertFalse(robot.canMoveIntoFrom(90));
     }
 
+    /**
+     * Test canMoveOutFrom()
+     */
     @Test
     public void canMoveOutFromTest(){
         robot = new Robot(1);
         assertFalse(robot.canMoveOutFrom(90));
     }
 
+    /**
+     * Test getId()
+     */
     @Test
     public void getIdTest(){
         robot = new Robot(1);
