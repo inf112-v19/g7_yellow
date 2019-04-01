@@ -12,8 +12,12 @@ public class Program {
         cards = new AbstractCardPile<>();
     }
 
-    public IProgramCard getNextCard() {
+    public IProgramCard popNextCard() {
         return cards.pop();
+    }
+
+    public IProgramCard peekNextCard() {
+        return cards.peek();
     }
 
     public void addCardToProgram(IProgramCard card) {

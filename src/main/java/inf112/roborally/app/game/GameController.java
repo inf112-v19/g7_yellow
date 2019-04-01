@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
+import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.AbstractCollidableTile;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
@@ -21,6 +22,7 @@ public class GameController {
     }
 
     private static Robot[] robots;
+    private static Player[] players;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -29,15 +31,26 @@ public class GameController {
      */
     public static void loadRobots(int a) {
         robots = new Robot[a];
+        players = new Player[a];
         for (int i = 0; i < a; i++) {
             Robot r = new Robot(0);
             r.setId(i + 1);
             robots[i] = r;
+
+            //Add robots to player
+            players[i] = new Player(robots[i]);
+
             try {
                 board.getGrid().addTile(new Vector2(i + 1, 2), r);
             } catch (OutsideGridException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void excecuteCards() {
+        for (int i = 0; i < players.length; i++) {
+            players[i].ExecuteNextCard();
         }
     }
 

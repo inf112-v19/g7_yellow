@@ -22,8 +22,8 @@ public class AbstractCardPile<E> implements ICardPile<E> {
     }
 
     @Override
-    public void peek() {
-        list.peek();
+    public E peek() {
+        return list.peek();
     }
 
     @Override

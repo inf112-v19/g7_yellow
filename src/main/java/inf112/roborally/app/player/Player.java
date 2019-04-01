@@ -1,7 +1,6 @@
 package inf112.roborally.app.player;
 
 import inf112.roborally.app.card.programcard.IProgramCard;
-import inf112.roborally.app.card.programcard.MoveCard;
 import inf112.roborally.app.tile.tiles.Robot;
 
 public class Player {
@@ -16,18 +15,39 @@ public class Player {
     private Program program;
 
     public Player(Robot robot) {
-        this.id = robot.getId();
+        this.robot = robot;
 
         cardPile = new PlayerCardPile<>();
+        cardPile.initialize();
+
         program = new Program();
 
-        for (int i = 0; i < 40; i++) {
-            cardPile.add(new MoveCard(1,100));
+        addCardsToProgram();
+    }
+
+    /**
+     * Add cards to program. For now we just add the first 5 cards.
+     */
+    public void addCardsToProgram() {
+        for (int i = 0; i < 5; i++) {
+            program.addCardToProgram(cardPile.pop());
         }
     }
 
+    /**
+     * Should not remove cards that are burnt in because of damage.
+     * For now it removes ALL cards and puts them back in cardstack.
+     */
+    public void removeCardsFromProgram() {
+        cardPile.add(program.popNextCard());
+    }
+
+    public int GetPriorityOfNextCard() {
+        return program.peekNextCard().getPriority();
+    }
+
     public void ExecuteNextCard() {
-        IProgramCard nextCard = program.getNextCard();
+        IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
     }
 
