@@ -7,6 +7,7 @@ import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.AbstractCollidableTile;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
+import inf112.roborally.app.tile.tiles.Hole;
 import inf112.roborally.app.tile.tiles.Robot;
 
 import java.util.LinkedList;
@@ -64,7 +65,7 @@ public class GameController {
         return pos;
     }
 
-    public static void pushRobot(int pId, int dir) {
+    public static void pushRobot(int pId, int dir, int dist) {
         try {
             //Find robot based on pId input
             Robot r = robots[pId - 1];
@@ -94,7 +95,7 @@ public class GameController {
                     if (t instanceof Robot) {
                         // System.out.println("checking if can push with: " + dir);
                         if (canPushRobot(oldPos, dir)) {
-                            pushRobot(((Robot) t).getId(), dir);
+                            pushRobot(((Robot) t).getId(), dir, dist);
                             break;
                         } else return;
                     }
@@ -115,9 +116,9 @@ public class GameController {
 
     public static void moveRobot(int pId, int dir) {
         if (dir > 0)
-            pushRobot(pId, robots[pId - 1].getRotation());
+            pushRobot(pId, robots[pId - 1].getRotation(), 1);
         else if (dir < 0)
-            pushRobot(pId, robots[pId - 1].getRotation() + 180);
+            pushRobot(pId, robots[pId - 1].getRotation() + 180,1 );
     }
 
     public static void rotateRobot(int pId, int rotation) {
@@ -132,6 +133,7 @@ public class GameController {
 
         for (IBoardTile t : tilesOnNewPos) {
             if ((t instanceof AbstractCollidableTile) && !(t instanceof Robot)) {
+                if(t instanceof Hole) return false;
                 return ((AbstractCollidableTile) t).canMoveIntoFrom(dir);
             } else if ((t instanceof Robot)) {
                 for (IBoardTile t2 : tilesOnNewPos) {
@@ -163,7 +165,7 @@ public class GameController {
             for (IBoardTile t : tiles) {
                 if (t instanceof AbstractFunctionTile) {
                     System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
-                    ((AbstractFunctionTile) (t)).execute(i);
+                    ((AbstractFunctionTile) (t)).execute(i+1);
                 }
             }
         }
