@@ -128,4 +128,4 @@ Under **"Compatible OS"** i README, kan man lese hvordan prosjektet skal funke p
 
 ## Tilleggsinformasjon 
 Vi har støtt på flere utfordringer på veien. Disse utfordringene legger vi til i issues på wikien vår, slik at vi kan "lære
-av våre feil" og kanskje andre kan se hvordan vi har løst enkelte problemer. Disse finner man her: Issues](https://github.com/inf112-v19/YellowBots/wiki/Issues)
+av våre feil" og kanskje andre kan se hvordan vi har løst enkelte problemer. Disse finner man her: [Issues](https://github.com/inf112-v19/YellowBots/wiki/Issues)
