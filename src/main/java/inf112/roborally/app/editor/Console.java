@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
 
@@ -24,13 +26,14 @@ public class Console implements Screen {
         stage = new Stage();
 
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
+        new Button.ButtonStyle();
         BitmapFont font = new BitmapFont();
         font.getData().setScale(2);
         style.font = font;
         style.fontColor = Color.RED;
         console = new TextField("", style);
         console.setPosition(15, Main.WINDOW_HEIGHT - 100);
-        console.setSize(Main.WINDOW_WIDTH - 50,100);
+        console.setSize(Main.WINDOW_WIDTH - 50, 100);
         stage.addActor(console);
         Gdx.input.setInputProcessor(stage);
     }
@@ -48,8 +51,10 @@ public class Console implements Screen {
                     EditorInput.saveMap(st.nextToken());
                 break;
             case ("loadmap"):
-                if (st.hasMoreTokens())
+                if (st.hasMoreTokens()) {
                     EditorInput.loadMap(st.nextToken());
+                    GameController.loadRobots(Main.AMOUNT_OF_PLAYERS);
+                }
                 break;
             case ("editor"):
                 if (st.hasMoreTokens())
@@ -73,11 +78,11 @@ public class Console implements Screen {
 
     public static void openCloseConsole() {
         active = !active;
-        if(active) {
+        if (active) {
             clear();
             stage.setKeyboardFocus(console);
         }
-        if(!active) stage.unfocusAll();
+        if (!active) stage.unfocusAll();
     }
 
     @Override
@@ -87,27 +92,37 @@ public class Console implements Screen {
 
     @Override
     public void render(float v) {
-        if(!active) return;
+        if (!active) return;
         sr.begin(ShapeRenderer.ShapeType.Line);
-        sr.setColor(1f,0f,0f,1);
-        sr.rect(15,Main.WINDOW_HEIGHT-75,Main.WINDOW_WIDTH-50,50);
+        sr.setColor(1f, 0f, 0f, 1);
+        sr.rect(15, Main.WINDOW_HEIGHT - 75, Main.WINDOW_WIDTH - 50, 50);
         sr.end();
         stage.act();
         stage.draw();
     }
 
     @Override
-    public void resize(int i, int i1) { }
+    public void resize(int i, int i1) {
+        // As of now does nothing :)
+    }
 
     @Override
-    public void pause() { }
+    public void pause() {
+        // As of now does nothing :)
+    }
 
     @Override
-    public void resume() { }
+    public void resume() {
+        // As of now does nothing :)
+    }
 
     @Override
-    public void hide() { }
+    public void hide() {
+        // As of now does nothing :)
+    }
 
     @Override
-    public void dispose() { }
+    public void dispose() {
+        // As of now does nothing :)
+    }
 }

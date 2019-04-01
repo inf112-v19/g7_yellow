@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  * @version 1.0
  * @since 07.02.19
  */
-public class OutsideGridException extends Exception{
+public class OutsideGridException extends Exception {
     private int x;
     private int y;
     private String message;
@@ -22,8 +22,8 @@ public class OutsideGridException extends Exception{
     }
 
     public OutsideGridException(Vector2 v, String message) {
-        this.x = (int)v.x;
-        this.y = (int)v.y;
+        this.x = (int) v.x;
+        this.y = (int) v.y;
         this.message = message;
     }
 

@@ -3,6 +3,7 @@ package inf112.roborally.app.board;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.tiles.Robot;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -59,6 +60,20 @@ public class Grid implements Iterable<LinkedList<IBoardTile>> {
     public void removeTile(Vector2 p, IBoardTile tile) throws OutsideGridException {
         var tilesAtPos = getTiles(p);
         tilesAtPos.remove(tile);
+    }
+
+    public Vector2 findPlayer(int pId) throws OutsideGridException {
+        for (int x = 0; x < BOARD_WIDTH; x++) {
+            for (int y = 0; y < BOARD_HEIGHT; y++) {
+                LinkedList<IBoardTile> tiles = getTiles(new Vector2(x, y));
+                for (int i = 0; i < tiles.size(); i++) {
+                    IBoardTile t = tiles.get(i);
+                    if ((t instanceof Robot) && ((Robot) t).getId() == pId)
+                        return new Vector2(x, y);
+                }
+            }
+        }
+        return null;
     }
 
     public int getBoardHeight() {

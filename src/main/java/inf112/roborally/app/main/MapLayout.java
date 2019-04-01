@@ -3,17 +3,15 @@ package inf112.roborally.app.main;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.math.Vector2;
-import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.Console;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
-import inf112.roborally.app.player.Player;
-import inf112.roborally.app.tile.SpriteLoader;
+import inf112.roborally.app.game.GameController;
+import inf112.roborally.app.sprite.SpriteLoader;
 
 /**
  * Class used to render the Maps layout
- * for the main game
+ * for the main GameController
  *
  * @author RakNoel
  * @version 1.0
@@ -23,39 +21,33 @@ public class MapLayout implements ApplicationListener {
 
     private Renderer renderer;
 
-    private Board board;
-    private Player[] players;
     private InputManager inputManager;
     private EditorInput editorInput;
     private Console console;
 
-    SpriteLoader sl;
-
-    MapLayout(int width, int height){
-        board = new Board(width, height);
-        board.loadMap("map1");
-
-        players = new Player[1];
-        players[0] = new Player(1, new Vector2(5,5), 0);
-
-        inputManager = new InputManager(players[0], board);
-        editorInput = new EditorInput(board);
+    MapLayout() {
+        inputManager = new InputManager(Main.ID_OF_CURRENT_PLAYER);
+        editorInput = new EditorInput(GameController.getBoard());
     }
 
     @Override
     public void create() {
-        renderer = new Renderer(board, players);
-        sl = new SpriteLoader();
+        renderer = new Renderer(GameController.getBoard());
+        new SpriteLoader();
         console = new Console();
     }
 
     @Override
     public void render() {
-        inputManager.checkForInput();
+        try {
+            inputManager.checkForInput();
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
         //editorInput messes with grid, and needs to throw OutsideGridExcepetions
         try {
             editorInput.checkForInput();
-        } catch(OutsideGridException e) {
+        } catch (OutsideGridException e) {
             e.printStackTrace();
         }
 
@@ -69,19 +61,17 @@ public class MapLayout implements ApplicationListener {
         //drawing the board
         try {
             renderer.drawBoard();
-        } catch(OutsideGridException e) {
+        } catch (OutsideGridException e) {
             e.printStackTrace();
         }
 
-        //draw players
-        if(Main.gameState == GameState.PLAYING)
-            renderer.drawPlayer();
         //Draw editor UI if in editor mode
-        else if (Main.gameState == GameState.EDITOR)
+        if (Main.gameState == GameState.EDITOR)
             renderer.drawEditorUI();
 
         console.render(1);
-        }
+
+    }
 
     @Override
     public void dispose() {

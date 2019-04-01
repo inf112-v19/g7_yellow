@@ -3,10 +3,9 @@ package inf112.roborally.app.board;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.Floor;
-import inf112.roborally.app.tile.Hole;
 import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.Wall;
+import inf112.roborally.app.tile.TileFactory;
+import inf112.roborally.app.tile.tiles.Floor;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -17,26 +16,28 @@ public class Board {
 
     private Grid grid;
     private int width, height;
+    private TileFactory tileFactory;
 
     public Board(int width, int height) {
         grid = new Grid(width, height);
         this.width = width;
         this.height = height;
+        this.tileFactory = TileFactory.getInstance();
     }
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
         grid = new Grid(width, height);
         InputStream in = null;
         try {
-             in = getClass().getResourceAsStream("maps/" + map + ".txt");
-             int count = 0;
+            in = getClass().getResourceAsStream("maps/" + map + ".txt");
+            int count = 0;
             int x, y, r;
             while ((r = in.read()) != -1) {
                 IBoardTile currentTile;
                 char ch = (char) r;
                 String rotation = "";
 
-                if (Character.isLetter(ch) && (ch != '-')) {
+                if ((Character.isLetter(ch) && (ch != '-'))||Character.isDigit(ch)) {
                     char temp = (char) in.read();
                     while (Character.isDigit(temp)) {
                         rotation += temp;
@@ -45,29 +46,22 @@ public class Board {
                 }
                 int rot = 0;
 
-                if(!rotation.isBlank()) {
+                if (!rotation.isBlank()) {
                     rot = Integer.parseInt(rotation);
                 }
 
-                switch (ch) {
-                    case ('F'):
-                        currentTile = new Floor(rot);
-                        break;
-                    case ('X'):
-                        currentTile = new Hole(rot);
-                        break;
-                    case ('W'):
-                        currentTile = new Wall(rot);
-                        break;
-                    case ('-'):
-                        count++;
-                        continue;
-                    default: //If newline or other character, reset loop
-                        continue;
+                if (ch == '-') {
+                    count++;
+                    continue;
+                } else if (!(Character.isLetter(ch)||Character.isDigit(ch))) {
+                    continue;
                 }
+                Class[] paramTypes = {Integer.TYPE};
+                Object[] parameters = {rot};
+                currentTile = tileFactory.produce((ch + "").toUpperCase().charAt(0), paramTypes, parameters);
 
                 x = Math.floorMod((int) Math.floor((float) count / 3), width);
-                y = (height-1) - (int) Math.floor((float) count / (height * MAX_TILE_STACK));
+                y = (height - 1) - (int) Math.floor((float) count / (height * MAX_TILE_STACK));
 
                 count++;
 
@@ -80,12 +74,13 @@ public class Board {
         } catch (IOError | NullPointerException | IOException e) {
             e.printStackTrace();
             loadDefaultMap();
-        }
-        finally {
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
             if (in != null) {
                 try {
                     in.close();
-                } catch(IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -101,17 +96,17 @@ public class Board {
 
         try {
             out = new FileOutputStream("src\\main\\resources\\inf112\\roborally\\app\\board\\maps\\" + map + ".txt");
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return;
         }
 
-        for(int y = Main.GRID_WIDTH - 1; y >= 0; y--) {
+        for (int y = Main.GRID_WIDTH - 1; y >= 0; y--) {
             String line = "";
-            for(int x = 0; x < Main.GRID_HEIGHT; x++) {
+            for (int x = 0; x < Main.GRID_HEIGHT; x++) {
 
                 try {
-                    tiles = grid.getTiles(new Vector2(x,y));
+                    tiles = grid.getTiles(new Vector2(x, y));
                 } catch (OutsideGridException e) {
                     e.printStackTrace();
                     return;
@@ -120,13 +115,12 @@ public class Board {
                 int count = tiles.size();
                 if (count > Board.MAX_TILE_STACK) count = Board.MAX_TILE_STACK;
 
-                for(int i = 0; i < Board.MAX_TILE_STACK; i++) {
-                    if(i < count) {
+                for (int i = 0; i < Board.MAX_TILE_STACK; i++) {
+                    if (i < count) {
                         line += tiles.get(i).getSymbol();
                         line += tiles.get(i).getRotation();
                         line += ",";
-                    }
-                    else
+                    } else
                         line += "-";
                 }
                 line += "|";
@@ -134,12 +128,14 @@ public class Board {
             line += "\n";
             try {
                 out.write(line.getBytes());
-            } catch(IOException e) { e.printStackTrace(); }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         try {
             out.flush();
             out.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -149,14 +145,14 @@ public class Board {
      * Default to this if map can't be found/loaded
      */
     public Grid loadDefaultMap() {
-        grid = new Grid(width,height);
-        for(int x = 0; x < width; x++) {
-            for(int y = 0; y < height; y++) {
+        grid = new Grid(width, height);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
                 try {
                     grid.addTile(new Vector2(x, y), new Floor(90));
                 } catch (OutsideGridException e) {
                     e.printStackTrace();
-                    return new Grid(width,height);
+                    return new Grid(width, height);
                 }
             }
         }
