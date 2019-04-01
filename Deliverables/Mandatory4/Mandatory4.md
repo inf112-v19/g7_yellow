@@ -124,6 +124,7 @@ Under **"Compatible OS"** i README, kan man lese hvordan prosjektet skal funke p
                                                    
 
 ## Klasse-diagram 
+![Klasse-diagram](classDiagram20190401.png "Klasse-diagram per 01/04/2019")
 
 
 ## Tilleggsinformasjon 
