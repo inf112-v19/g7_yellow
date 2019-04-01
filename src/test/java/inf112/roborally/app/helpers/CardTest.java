@@ -1,12 +1,11 @@
 package inf112.roborally.app.helpers;
 
-import inf112.roborally.app.helpers.AbstractCardPile;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CardTest {
 

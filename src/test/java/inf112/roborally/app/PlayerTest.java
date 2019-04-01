@@ -2,9 +2,9 @@ package inf112.roborally.app;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.player.Player;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Does player work?
