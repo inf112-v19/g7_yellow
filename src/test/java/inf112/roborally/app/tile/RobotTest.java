@@ -1,10 +1,10 @@
 package inf112.roborally.app.tile;
 
 import inf112.roborally.app.tile.tiles.Robot;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class RobotTest {
 
@@ -14,7 +14,7 @@ public class RobotTest {
      * Test canMoveIntoFrom()
      */
     @Test
-    public void canMoveIntoFromTest(){
+    public void canMoveIntoFromTest() {
         robot = new Robot(1);
         assertFalse(robot.canMoveIntoFrom(90));
     }
@@ -23,7 +23,7 @@ public class RobotTest {
      * Test canMoveOutFrom()
      */
     @Test
-    public void canMoveOutFromTest(){
+    public void canMoveOutFromTest() {
         robot = new Robot(1);
         assertFalse(robot.canMoveOutFrom(90));
     }
@@ -32,9 +32,9 @@ public class RobotTest {
      * Test getId()
      */
     @Test
-    public void getIdTest(){
+    public void getIdTest() {
         robot = new Robot(1);
-        assertEquals(robot.getId(),0);
+        assertEquals(robot.getId(), 0);
     }
 
 }

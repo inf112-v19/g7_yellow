@@ -1,9 +1,9 @@
 package inf112.roborally.app.tile;
 
 import inf112.roborally.app.tile.tiles.Flag;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FlagTest {
 
@@ -13,7 +13,7 @@ public class FlagTest {
      * test getId()
      */
     @Test
-    public void getIdTest(){
+    public void getIdTest() {
         flag = new Flag(1);
         assertEquals(flag.getId(), 0);
     }

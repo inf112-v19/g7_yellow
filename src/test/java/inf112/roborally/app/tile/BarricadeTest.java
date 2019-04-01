@@ -1,10 +1,10 @@
 package inf112.roborally.app.tile;
 
 import inf112.roborally.app.tile.tiles.Barricade;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BarricadeTest {
 
@@ -14,7 +14,7 @@ public class BarricadeTest {
      * test canMoveIntoFrom()
      */
     @Test
-    public void canMoveIntoFromTest(){
+    public void canMoveIntoFromTest() {
         barri = new Barricade(1);
         assertTrue(barri.canMoveIntoFrom(90));
     }
@@ -23,7 +23,7 @@ public class BarricadeTest {
      * test canMoveOutFrom()
      */
     @Test
-    public void canMoveOutFromTest(){
+    public void canMoveOutFromTest() {
         barri = new Barricade(1);
         assertFalse(barri.canMoveOutFrom(90));
     }

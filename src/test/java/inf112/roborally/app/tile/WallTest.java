@@ -1,9 +1,9 @@
 package inf112.roborally.app.tile;
 
 import inf112.roborally.app.tile.tiles.Wall;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WallTest {
 
@@ -13,7 +13,7 @@ public class WallTest {
      * test if can move into wall
      */
     @Test
-    public void canMoveIntoFromTest(){
+    public void canMoveIntoFromTest() {
         wall = new Wall(1);
         assertTrue(wall.canMoveIntoFrom(90));
     }
@@ -22,7 +22,7 @@ public class WallTest {
      * test if can move out from wall
      */
     @Test
-    public void canMoveOutFromTest(){
+    public void canMoveOutFromTest() {
         wall = new Wall(1);
         assertTrue(wall.canMoveOutFrom(90));
     }

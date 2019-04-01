@@ -1,10 +1,10 @@
 package inf112.roborally.app.tile;
 
 import inf112.roborally.app.tile.tiles.Hole;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HoleTest {
 
@@ -14,7 +14,7 @@ public class HoleTest {
      * test canMoveIntoFrom()
      */
     @Test
-    public void canMoveIntoFromTest(){
+    public void canMoveIntoFromTest() {
         hole = new Hole(1);
         assertTrue(hole.canMoveIntoFrom(90));
     }
@@ -23,7 +23,7 @@ public class HoleTest {
      * Test canMoveOutFrom()
      */
     @Test
-    public void canMoveOutFromTest(){
+    public void canMoveOutFromTest() {
         hole = new Hole(1);
         assertFalse(hole.canMoveOutFrom(90));
     }
