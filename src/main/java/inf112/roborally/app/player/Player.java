@@ -1,115 +1,55 @@
 package inf112.roborally.app.player;
 
-import com.badlogic.gdx.math.Vector2;
+import inf112.roborally.app.card.programcard.IProgramCard;
+import inf112.roborally.app.tile.tiles.Robot;
 
 public class Player {
 
     private int id;
-    private int oldX, oldY;
-    private int x, y;
-    private int damage;
-    private int rotation; //Using degrees
+    private Robot robot;
 
-    public Player(int id, Vector2 pos, int damage) {
-        this.id = id;
-        this.x = (int) pos.x;
-        this.y = (int) pos.y;
-        this.oldX = this.x;
-        this.oldY = this.y;
-        this.damage = damage;
-        rotation = 90;
-    }
+    //Each player has their own stack of cards
+    private PlayerCardPile<IProgramCard> cardPile;
 
-    public Player(){
-        this.id = 0;
-        this.x = 0;
-        this.y = 0;
-        this.oldX = this.x;
-        this.oldY = this.y;
-        this.damage = 0;
-        rotation = 90;
+    //The order of the cards
+    private Program program;
+
+    public Player(Robot robot) {
+        this.robot = robot;
+
+        cardPile = new PlayerCardPile<>();
+        cardPile.initialize();
+
+        program = new Program();
+
+        addCardsToProgram();
     }
 
     /**
-     * Move the player
-     *
-     * @param dir  Use 1 for forward, -1 for backwards
-     * @param dist - max dist is 3
+     * Add cards to program. For now we just add the first 5 cards.
      */
-    public void move(int dir, int dist) {
-        oldX = x;
-        oldY = y;
-        var sin = (int) Math.sin(Math.toRadians(rotation));
-        var cos = (int) Math.cos(Math.toRadians(rotation));
-        x += cos * dist * dir;
-        y += sin * dist * dir;
+    public void addCardsToProgram() {
+        for (int i = 0; i < 5; i++) {
+            program.addCardToProgram(cardPile.pop());
+        }
     }
 
     /**
-     * Rotate the player
-     *
-     * @param dir  Use -1 for clockwise, 1 for counter-clockwise
-     * @param dist 1 is default rotation. Use 2 for 180 turns
+     * Should not remove cards that are burnt in because of damage.
+     * For now it removes ALL cards and puts them back in cardstack.
      */
-    public void rotate(int dir, int dist) {
-        rotation = Math.floorMod(rotation + (90 * -dir * dist), 360);
+    public void removeCardsFromProgram() {
+        cardPile.add(program.popNextCard());
     }
 
-    /**
-     * Push the player
-     *
-     * @param rotation Given "direction" to push the player in
-     */
-    public void push(int rotation) {
-        oldX = x;
-        oldY = y;
-        var sin = (int) Math.sin(Math.toRadians(rotation));
-        var cos = (int) Math.cos(Math.toRadians(rotation));
-        x += cos;
-        y += sin;
+    public int getPriorityOfNextCard() {
+        return program.peekNextCard().getPriority();
     }
 
-    /**
-     * @return The players position
-     */
-    public Vector2 getPos() {
-        return new Vector2(x, y);
-    }
-
-    /**
-     * @return The players previous position
-     */
-    public Vector2 getOldPos() {
-        return new Vector2(oldX, oldY);
-    }
-
-    /**
-     * @return The players rotation
-     */
-    public int getRotation() {
-        return rotation;
-    }
-
-    /**
-     * @return the players damage
-     */
-    public int getDamage() {
-        return damage;
-    }
-
-    /**
-     * damage
-     */
-    public void takenDamage(int damage) {
-        if (this.damage + damage > 0) this.damage += damage;
-        else this.damage = 0;
-    }
-
-    /**
-     * For the Repair tile to easily reset a player's damage
-     */
-    public void resetDamage() {
-        this.damage = 0;
+    public void executeNextCard() {
+        if(program.peekNextCard() == null) return;
+        IProgramCard nextCard = program.popNextCard();
+        nextCard.excecute(robot.getId());
     }
 
     /**

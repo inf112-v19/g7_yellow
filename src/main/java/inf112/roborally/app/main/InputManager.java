@@ -16,6 +16,10 @@ class InputManager {
 
     protected void checkForInput() throws OutsideGridException {
         if (Main.gameState == GameState.PLAYING) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+                GameController.excecuteCards();
+            }
+
             if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
                 GameController.moveRobot(playerId, 1);
                 GameController.oneStep();

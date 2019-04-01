@@ -43,7 +43,7 @@ også lot vi det ligge en stund og nå må vi begynne å fokusere på det igjen.
 
 
 * Alle våre referater ligger i **meeting minutes**. Referatene som er skrevet siden sist innlevering starter fra `20190312-0.md`
- til `20190326-1.md` (sist endret 26/03/2019, kan komme flere referater før innlevering)
+ til `20190401-0.md` (sist endret 01/04/2019, kan komme flere referater før innlevering)
  
 
 * Vi kommer til å løse dette ved at de som har gjort minst kodemessig, prøver å kode først på egenhånd det som skal implementeres
@@ -101,12 +101,32 @@ når man ikke har et spill som  fungerer optimalt.
 
 Fra de mer frie kravene, har vi implementert muligheten til å lage og generere brett. Dette ved hjelp av mapeditoren. 
 
+**Krav vi har prioritert** 
+* Options-kort og programtkort 
+* Opprettholde coverage
+* Grafikk til flere feautres (Samlebånd, kort etc.)
+* Lage en dynamisk tilefactory for å forbedre utvikling samtidig som det forhindrer kodekollisjon. 
+
+**Hvor langt har vi kommet siden sist?** 
+* Vi har fått gjort ganske mye siden sist innlevering. Vi har fått implementert veldig mange features/krav, som vi ikke hadde 
+på den forrige innleveringen. Blant annet så begynner kortene endelig å komme på plass. Før innleveringen nå, jobber vi med
+å få kortene inn i selve spillet. Vi har også fått laget en dynamisk tilefactory, som forbedrer utviklingen vår massivt
+når det kommer til testing av tiles. 
 
 
 ## Deloppgave 3: Kode
 * For instrukser til bygging av prosjektet se [GitHub-Readme](https://github.com/inf112-v19/YellowBots#how-to-buildcompile). 
 *Obs: krever Java 11*
 
-Under **"Compatible OS"** i README, kan man lese hvordan prosjektet skal funke på de forskjellige operativsystemene.
+Under **"Compatible OS"** i README, kan man lese hvordan prosjektet skal funke på de ulike operativsystemene.
+
+Ønsker man mer informasjon om vår bygg-server, se her: [Jenkins-byggeserver](https://github.com/inf112-v19/YellowBots/wiki/ByggeServer)
+                                                   
 
 ## Klasse-diagram 
+![Klasse-diagram](classDiagram20190401.png "Klasse-diagram per 01/04/2019")
+
+
+## Tilleggsinformasjon 
+Vi har støtt på flere utfordringer på veien. Disse utfordringene legger vi til i issues på wikien vår, slik at vi kan "lære
+av våre feil" og kanskje andre kan se hvordan vi har løst enkelte problemer. Disse finner man her: [Issues](https://github.com/inf112-v19/YellowBots/wiki/Issues)

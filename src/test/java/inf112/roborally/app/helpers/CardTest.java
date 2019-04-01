@@ -33,28 +33,6 @@ public class CardTest {
     }
 
     @Test
-    public void doesItRemoveRandom() {
-        pile = new AbstractCardPile<>();
-        int[] arr = new int[1000];
-        int[] copy = new int[1000];
-
-        for (int i = 0; i < 10000; i++) {
-            pile.add(i);
-        }
-
-        for (int j = 0; j < 1000; j++) {
-            arr[j] = pile.pop();
-            copy[j] = arr[j];
-        }
-
-        Arrays.sort(copy);
-
-        assertFalse(Arrays.equals(arr, copy));
-
-
-    }
-
-    @Test
     public void isSizeCorrect() {
         pile = new AbstractCardPile<>();
 

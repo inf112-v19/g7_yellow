@@ -8,9 +8,10 @@ import inf112.roborally.app.game.GameController;
 
 public class Main {
 
-    public static int AMOUNT_OF_PLAYERS = 4;
+    public static int AMOUNT_OF_PLAYERS = 8;
     public static int ID_OF_CURRENT_PLAYER = 1;
 
+    public static final int MAP_SCALE = 2;
     public static final int GRID_WIDTH = 12;
     public static final int GRID_HEIGHT = 12;
     public static final int TILE_SIZE = 50;

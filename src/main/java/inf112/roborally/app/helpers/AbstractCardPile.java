@@ -11,13 +11,19 @@ import java.util.Random;
  * @since 19.02.19
  */
 public class AbstractCardPile<E> implements ICardPile<E> {
-    private LinkedList<E> list;
-    private int size;
+    protected LinkedList<E> list;
+    protected int size;
+    protected int counter;
 
     public AbstractCardPile() {
         size = 0;
+        counter = 0;
         list = new LinkedList<>();
+    }
 
+    @Override
+    public E peek() {
+        return list.peek();
     }
 
     @Override
@@ -32,12 +38,9 @@ public class AbstractCardPile<E> implements ICardPile<E> {
             throw new IllegalArgumentException("Cannot remove elements an empty list");
         }
 
-        E elem = list.get(new Random().nextInt(list.size()));
-
-        list.remove(elem);
+        E elem = list.pop();
         size--;
         return elem;
-
     }
 
     public int size() {
