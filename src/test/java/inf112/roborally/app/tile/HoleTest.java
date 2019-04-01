@@ -10,12 +10,18 @@ public class HoleTest {
 
     public Hole hole;
 
+    /**
+     * test canMoveIntoFrom()
+     */
     @Test
     public void canMoveIntoFromTest(){
         hole = new Hole(1);
         assertTrue(hole.canMoveIntoFrom(90));
     }
 
+    /**
+     * Test canMoveOutFrom()
+     */
     @Test
     public void canMoveOutFrom(){
         hole = new Hole(1);
