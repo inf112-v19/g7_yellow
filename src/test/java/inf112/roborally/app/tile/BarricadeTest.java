@@ -23,7 +23,7 @@ public class BarricadeTest {
      * test canMoveOutFrom()
      */
     @Test
-    public void canMoveOutFrom(){
+    public void canMoveOutFromTest(){
         barri = new Barricade(1);
         assertFalse(barri.canMoveOutFrom(90));
     }
