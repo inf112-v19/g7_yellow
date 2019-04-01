@@ -23,7 +23,7 @@ public class HoleTest {
      * Test canMoveOutFrom()
      */
     @Test
-    public void canMoveOutFrom(){
+    public void canMoveOutFromTest(){
         hole = new Hole(1);
         assertFalse(hole.canMoveOutFrom(90));
     }
