@@ -10,12 +10,18 @@ public class BarricadeTest {
 
     private Barricade barri;
 
+    /**
+     * test canMoveIntoFrom()
+     */
     @Test
     public void canMoveIntoFromTest(){
         barri = new Barricade(1);
         assertTrue(barri.canMoveIntoFrom(90));
     }
 
+    /**
+     * test canMoveOutFrom()
+     */
     @Test
     public void canMoveOutFrom(){
         barri = new Barricade(1);
