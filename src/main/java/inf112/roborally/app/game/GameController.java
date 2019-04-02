@@ -6,10 +6,7 @@ import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.tiles.AbstractCollidableTile;
-import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
-import inf112.roborally.app.tile.tiles.Hole;
-import inf112.roborally.app.tile.tiles.Robot;
+import inf112.roborally.app.tile.tiles.*;
 
 import java.util.LinkedList;
 
@@ -128,8 +125,10 @@ public class GameController {
     }
 
     public static void moveRobot(int pId, int dir) {
-        if (dir > 0)
-            pushRobot(pId, robots[pId - 1].getRotation(), 1);
+        if (dir > 0) {
+            for(int i = 0 ; i < dir; i++)
+                pushRobot(pId, robots[pId - 1].getRotation(), 1);
+        }
         else if (dir < 0)
             pushRobot(pId, robots[pId - 1].getRotation() + 180,1 );
     }
@@ -168,17 +167,31 @@ public class GameController {
     }
 
     public static void oneStep() throws OutsideGridException {
-        for (int i = 0; i < robots.length; i++) {
-            Vector2 pos = findRobot(i + 1);
-            if (pos == null) continue;
-            Robot rob = robots[i];
-            var tiles = (board.getGrid().getTiles(pos));
+        for (int i = 1; i <= robots.length; i++) {
+            oneRobotStep(i, 0);
+        }
+    }
 
-            for (IBoardTile t : tiles) {
-                if (t instanceof AbstractFunctionTile) {
+    private static void oneRobotStep(int robotID, int moves) throws OutsideGridException {
+        Vector2 pos = findRobot(robotID);
+        if (pos == null) return;
+        Robot rob = robots[robotID-1];
+        var tiles = (board.getGrid().getTiles(pos));
+
+        for (IBoardTile t : tiles) {
+            if (t instanceof AbstractFunctionTile) {
+                if(moves < 1){
                     System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
-                    ((AbstractFunctionTile) (t)).execute(i+1);
+                    ((AbstractFunctionTile) (t)).execute(robotID);
+                }else if(t instanceof  AbstractBlueConveyor && moves < 2){
+                    System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
+                    ((AbstractFunctionTile) (t)).execute(robotID);
+                    return;
                 }
+                if(t instanceof AbstractBlueConveyor){
+                    oneRobotStep(robotID, ++moves);
+                }
+
             }
         }
     }
