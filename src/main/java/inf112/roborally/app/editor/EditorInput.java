@@ -31,7 +31,8 @@ public class EditorInput {
 
         float x = Gdx.input.getX();
         float y = Main.WINDOW_HEIGHT - Gdx.input.getY();
-        int gridX, gridY;
+        int gridX;
+        int gridY;
         mouseVec = new Vector2(x, y);
         boolean outsideBoardBounds = false;
 

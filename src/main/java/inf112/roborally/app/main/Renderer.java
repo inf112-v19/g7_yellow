@@ -82,7 +82,8 @@ public class Renderer {
 
         batch.begin();
 
-        int x = 0, y = 0;
+        int x = 0;
+        int y = 0;
         for (IBoardTile t : tiles) {
             Sprite s = t.getSprite();
             s.setOriginCenter();

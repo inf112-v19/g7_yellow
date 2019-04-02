@@ -31,7 +31,9 @@ public class Board {
         try {
             in = getClass().getResourceAsStream("maps/" + map + ".txt");
             int count = 0;
-            int x, y, r;
+            int x;
+            int y;
+            int r;
             while ((r = in.read()) != -1) {
                 IBoardTile currentTile;
                 char ch = (char) r;
