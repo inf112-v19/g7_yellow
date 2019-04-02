@@ -8,11 +8,10 @@ import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.tile.IBoardTile;
+import inf112.roborally.app.tile.TileFactory;
 import inf112.roborally.app.tile.TileIndex;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Renderer {
 
@@ -74,29 +73,36 @@ public class Renderer {
     }
 
     public void drawEditorUI() {
-        ArrayList<IBoardTile> tiles = new ArrayList<>();
+        HashMap map = TileFactory.getInstance().getAllMappings();
 
-        for (int i = 0; i < TileIndex.values().length; i++) {
-            tiles.add(TileIndex.indexToTile(i));
-        }
+        Class[] paramTypes = {Integer.TYPE};
+        Object[] parameters = {90};
+
+        Iterator it = map.entrySet().iterator();
 
         batch.begin();
 
         int x = 0;
         int y = 0;
-        for (IBoardTile t : tiles) {
-            Sprite s = t.getSprite();
-            s.setOriginCenter();
-            s.setRotation(0);
-            s.setPosition(Main.TILE_SIZE * x,
-                    (Main.WINDOW_HEIGHT - Main.TILE_SIZE) - Main.TILE_SIZE * y);
-            s.draw(batch);
-            x++;
 
-            if (x >= Main.GRID_WIDTH) {
-                x = 0;
-                y++;
-            }
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            System.out.println((char)pair.getKey());
+            it.remove();
+            try {
+                Sprite s = (TileFactory.getInstance().produce((char)pair.getKey(), paramTypes, parameters).getSprite());
+                s.setOriginCenter();
+                s.setRotation(0);
+                s.setPosition(Main.TILE_SIZE * x,
+                        (Main.WINDOW_HEIGHT - Main.TILE_SIZE) - Main.TILE_SIZE * y);
+                s.draw(batch);
+                x++;
+
+                if (x >= Main.GRID_WIDTH) {
+                    x = 0;
+                    y++;
+                }
+            } catch (ClassNotFoundException e) { e.printStackTrace(); }
         }
 
         //Show the tile you're about to draw

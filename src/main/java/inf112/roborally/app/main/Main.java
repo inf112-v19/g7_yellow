@@ -18,7 +18,7 @@ public class Main {
 
     public static final int TOP_MARGIN = 2 * TILE_SIZE;
 
-    public static int WINDOW_WIDTH = (GRID_WIDTH * TILE_SIZE);
+    public static int WINDOW_WIDTH = (GRID_WIDTH * TILE_SIZE) + ;
     public static int WINDOW_HEIGHT = (GRID_HEIGHT * TILE_SIZE) + TOP_MARGIN;
 
     public static GameState gameState = GameState.PLAYING;
