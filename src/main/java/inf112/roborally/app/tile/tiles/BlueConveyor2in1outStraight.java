@@ -10,4 +10,8 @@ public class BlueConveyor2in1outStraight extends AbstractBlueConveyor {
     public char getSymbol() {
         return '3';
     }
+
+    public boolean doesTurn(int rotation){
+        return !(this.rotation == rotation-180 || this.rotation == rotation+180);
+    }
 }

@@ -28,4 +28,8 @@ public abstract class AbstractConveyor extends AbstractFunctionTile {
     public int getPushLength() {
         return 1;
     }
+
+    public boolean doesTurn(int rotation) {
+        return false;
+    }
 }

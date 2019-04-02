@@ -10,4 +10,8 @@ public class YellowConveyorTurnRight extends AbstractConveyor {
     public char getSymbol() {
         return 'm';
     }
+
+    public boolean doesTurn(int rotation){
+        return (this.rotation == rotation-90 || this.rotation == rotation+270);
+    }
 }

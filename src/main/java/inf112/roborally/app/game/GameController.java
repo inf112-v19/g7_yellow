@@ -180,6 +180,9 @@ public class GameController {
 
         for (IBoardTile t : tiles) {
             if (t instanceof AbstractFunctionTile) {
+                if(t instanceof AbstractConveyor){
+                    if(((AbstractConveyor) t).doesTurn(rob.getRotation())) rob.setRotation(t.getRotation());
+                }
                 if(moves < 1){
                     System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
                     ((AbstractFunctionTile) (t)).execute(robotID);

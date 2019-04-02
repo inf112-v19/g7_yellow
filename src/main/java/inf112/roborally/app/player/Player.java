@@ -34,6 +34,10 @@ public class Player {
         }
     }
 
+    public boolean isOnLastProgramCard(){
+        return this.program.peekNextCard()==null;
+    }
+
     /**
      * Should not remove cards that are burnt in because of damage.
      * For now it removes ALL cards and puts them back in cardstack.

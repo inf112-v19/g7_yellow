@@ -7,14 +7,11 @@ public class BlueConveyorTurnLeft extends AbstractBlueConveyor {
     }
 
     @Override
-    public void execute(int RobotId) {
-        /*
-        TODO
-         */
-    }
-
-    @Override
     public char getSymbol() {
         return '4';
+    }
+
+    public boolean doesTurn(int rotation){
+        return (this.rotation == rotation+90 || (this.rotation == rotation - 270));
     }
 }
