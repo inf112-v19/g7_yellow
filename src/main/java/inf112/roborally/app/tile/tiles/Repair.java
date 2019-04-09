@@ -1,6 +1,8 @@
 package inf112.roborally.app.tile.tiles;
 
 
+import inf112.roborally.app.game.GameController;
+
 public class Repair extends AbstractFunctionTile {
 
     public Repair(int r) {
@@ -9,7 +11,7 @@ public class Repair extends AbstractFunctionTile {
 
     @Override
     public void execute(int RobotId) {
-
+        GameController.repairRobot(RobotId,2);
     }
 
     @Override

@@ -16,6 +16,8 @@ public class Robot extends AbstractCollidableTile {
 
     private int id;
 
+    private int damage;
+
     public Robot(int r) {
         super(r);
     }
@@ -53,12 +55,16 @@ public class Robot extends AbstractCollidableTile {
         return SpriteLoader.fetchSprite(this, id);
     }
 
-    public Vector2 move(Vector2 pos, int dir, int dist) {
-        var sin = (int) Math.sin(Math.toRadians(rotation));
-        var cos = (int) Math.cos(Math.toRadians(rotation));
-        var newX = pos.x + cos * dist * dir;
-        var newY = pos.y + sin * dist * dir;
-        return new Vector2(newX, newY);
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
+
+    public void destroy(){
+        this.damage = 10;
+    }
+
+    public int getDamage(){
+        return this.damage;
     }
 
     public Vector2 push(Vector2 pos, int pushDirection) {

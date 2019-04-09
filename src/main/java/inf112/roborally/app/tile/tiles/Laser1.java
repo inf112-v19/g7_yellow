@@ -1,6 +1,8 @@
 package inf112.roborally.app.tile.tiles;
 
-public class Laser1 extends AbstractFunctionTile {
+import inf112.roborally.app.game.GameController;
+
+public class Laser1 extends AbstractLaser {
 
     public Laser1(int r) {
         super(r);
@@ -8,8 +10,6 @@ public class Laser1 extends AbstractFunctionTile {
 
     @Override
     public void execute(int RobotId) {
-        //TODO finish
-        System.err.println("Call to unimplemented method int" + this.getClass().toString());
     }
 
     @Override

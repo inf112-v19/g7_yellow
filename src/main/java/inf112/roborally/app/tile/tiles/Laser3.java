@@ -1,15 +1,18 @@
 package inf112.roborally.app.tile.tiles;
 
-public class Laser3 extends AbstractFunctionTile {
+public class Laser3 extends AbstractLaser {
 
     public Laser3(int r) {
         super(r);
     }
 
     @Override
+    public int getDamageValue() {
+        return super.getDamageValue() + 2;
+    }
+
+    @Override
     public void execute(int RobotId) {
-        //TODO finish
-        System.err.println("Call to unimplemented method int" + this.getClass().toString());
     }
 
     @Override

@@ -1,5 +1,7 @@
 package inf112.roborally.app.tile.tiles;
 
+import inf112.roborally.app.game.GameController;
+
 public class RepairFull extends AbstractFunctionTile {
 
     public RepairFull(int r) {
@@ -18,8 +20,6 @@ public class RepairFull extends AbstractFunctionTile {
 
     @Override
     public void execute(int robotId) {
-        /**
-         * This should repair the player to 0 damage points
-         */
+        GameController.repairRobot(robotId, 10);
     }
 }

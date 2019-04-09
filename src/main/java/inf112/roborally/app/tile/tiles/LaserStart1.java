@@ -1,6 +1,6 @@
 package inf112.roborally.app.tile.tiles;
 
-public class LaserStart1 extends AbstractFunctionTile {
+public class LaserStart1 extends AbstractLaserStart {
 
     public LaserStart1(int r) {
         super(r);

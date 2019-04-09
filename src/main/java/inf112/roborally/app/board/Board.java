@@ -60,7 +60,7 @@ public class Board {
                 }
                 Class[] paramTypes = {Integer.TYPE};
                 Object[] parameters = {rot};
-                currentTile = tileFactory.produce((ch + "").toUpperCase().charAt(0), paramTypes, parameters);
+                currentTile = tileFactory.produce((ch + "").charAt(0), paramTypes, parameters);
 
                 x = Math.floorMod((int) Math.floor((float) count / 3), width);
                 y = (height - 1) - (int) Math.floor((float) count / (height * MAX_TILE_STACK));
