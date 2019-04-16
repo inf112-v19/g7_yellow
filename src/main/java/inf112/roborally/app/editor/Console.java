@@ -53,7 +53,6 @@ public class Console implements Screen {
             case ("loadmap"):
                 if (st.hasMoreTokens()) {
                     EditorInput.loadMap(st.nextToken());
-                    GameController.loadRobots(Main.AMOUNT_OF_PLAYERS);
                 }
                 break;
             case ("editor"):

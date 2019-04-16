@@ -21,6 +21,6 @@ public class Floor extends AbstractTile {
 
     @Override
     public char getSymbol() {
-        return 'F';
+        return 'J';
     }
 }

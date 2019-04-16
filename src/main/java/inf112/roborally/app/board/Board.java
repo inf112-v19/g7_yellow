@@ -2,9 +2,12 @@ package inf112.roborally.app.board;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
+import inf112.roborally.app.tile.tiles.AbstractDock;
+import inf112.roborally.app.tile.tiles.Dock1;
 import inf112.roborally.app.tile.tiles.Floor;
 
 import java.io.*;
@@ -27,6 +30,7 @@ public class Board {
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
         grid = new Grid(width, height);
+        Vector2[] dockPositions = new Vector2[8];
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("maps/" + map + ".txt");
@@ -58,6 +62,7 @@ public class Board {
                 } else if (!(Character.isLetter(ch)||Character.isDigit(ch))) {
                     continue;
                 }
+
                 Class[] paramTypes = {Integer.TYPE};
                 Object[] parameters = {rot};
                 currentTile = tileFactory.produce((ch + "").charAt(0), paramTypes, parameters);
@@ -67,12 +72,18 @@ public class Board {
 
                 count++;
 
+                if(currentTile instanceof AbstractDock){
+                    dockPositions[((AbstractDock) currentTile).getId()-1] = new Vector2(x, y);
+                }
+
+
                 try {
                     grid.addTile(new Vector2(x, y), currentTile);
                 } catch (OutsideGridException e) {
                     e.printStackTrace();
                 }
             }
+            GameController.loadRobots(dockPositions);
         } catch (IOError | NullPointerException | IOException e) {
             e.printStackTrace();
             loadDefaultMap();

@@ -30,6 +30,10 @@ public class MapLayout implements ApplicationListener {
         editorInput = new EditorInput(GameController.getBoard());
     }
 
+    public void newInputManager(InputManager inputManager){
+        this.inputManager = inputManager;
+    }
+
     @Override
     public void create() {
         renderer = new Renderer(GameController.getBoard());

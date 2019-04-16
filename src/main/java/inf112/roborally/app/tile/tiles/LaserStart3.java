@@ -18,7 +18,7 @@ public class LaserStart3 extends AbstractLaserStart {
 
     @Override
     public char getSymbol() {
-        return 'E';
+        return 'Q';
     }
 
     @Override

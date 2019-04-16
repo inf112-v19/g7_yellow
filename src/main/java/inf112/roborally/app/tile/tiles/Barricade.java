@@ -13,7 +13,7 @@ public class Barricade extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'j';
+        return 'A';
     }
 
     @Override

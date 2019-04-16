@@ -15,7 +15,7 @@ public class RotateLeft extends AbstractFunctionTile {
 
     @Override
     public char getSymbol() {
-        return 'L';
+        return 'T';
     }
 
     @Override

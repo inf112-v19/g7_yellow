@@ -42,7 +42,7 @@ public class Robot extends AbstractCollidableTile {
 
     @Override
     public int getRenderPriority() {
-        return 2;
+        return 5;
     }
 
     @Override

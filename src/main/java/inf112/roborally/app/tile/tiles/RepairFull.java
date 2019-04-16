@@ -15,7 +15,7 @@ public class RepairFull extends AbstractFunctionTile {
 
     @Override
     public char getSymbol() {
-        return 'A';
+        return 'S';
     }
 
     @Override

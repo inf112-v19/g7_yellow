@@ -20,7 +20,7 @@ public class Hole extends AbstractFunctionTile {
 
     @Override
     public char getSymbol() {
-        return 'X';
+        return 'K';
     }
 
 }

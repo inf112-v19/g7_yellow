@@ -2,7 +2,7 @@ package inf112.roborally.app.tile.tiles;
 
 public class Flag extends AbstractFunctionTile {
 
-    private final int id = 0;
+    private int id = 0;
 
     public Flag(int r) {
         super(r);
@@ -15,13 +15,17 @@ public class Flag extends AbstractFunctionTile {
 
     @Override
     public char getSymbol() {
-        return 'f';
+        return 'I';
     }
 
     @Override
     public void execute(int RobotId) {
         //TODO finish
         System.err.println("Call to unimplemented method int" + this.getClass().toString());
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public int getId() {

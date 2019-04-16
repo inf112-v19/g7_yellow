@@ -22,6 +22,6 @@ public class Laser3 extends AbstractLaser {
 
     @Override
     public char getSymbol() {
-        return 'c';
+        return 'N';
     }
 }
