@@ -16,12 +16,15 @@ public class Main {
     public static final int GRID_HEIGHT = 12;
     public static final int TILE_SIZE = 50;
 
-    public static final int TOP_MARGIN = 2 * TILE_SIZE;
+    //Margins have to be even-number
+    public static final int TOP_MARGIN = 8;
+    public static final int SIDE_MARGIN = 8;
 
-    public static int WINDOW_WIDTH = (GRID_WIDTH * TILE_SIZE) + ;
-    public static int WINDOW_HEIGHT = (GRID_HEIGHT * TILE_SIZE) + TOP_MARGIN;
 
-    public static GameState gameState = GameState.PLAYING;
+    public static int WINDOW_WIDTH = (GRID_WIDTH * TILE_SIZE) + (SIDE_MARGIN * TILE_SIZE);
+    public static int WINDOW_HEIGHT = (GRID_HEIGHT * TILE_SIZE) + (TOP_MARGIN * TILE_SIZE);
+
+    public static GameState gameState = GameState.EDITOR;
 
     public static void main(String[] args) throws OutsideGridException {
         GameController gC = new GameController();

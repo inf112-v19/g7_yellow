@@ -9,7 +9,6 @@ import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
-import inf112.roborally.app.tile.TileIndex;
 
 import java.util.*;
 
@@ -42,7 +41,7 @@ public class Renderer {
 
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
-                    s.setPosition(x * Main.TILE_SIZE, y * Main.TILE_SIZE);
+                    s.setPosition((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2)* Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());
                     s.draw(batch);
@@ -55,7 +54,7 @@ public class Renderer {
     public void drawGrid() {
         for (int x = 0; x < Main.GRID_WIDTH; x++) {
             for (int y = 0; y < Main.GRID_HEIGHT; y++) {
-                drawRect(x * Main.TILE_SIZE, y * Main.TILE_SIZE, Main.TILE_SIZE);
+                drawRect((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2)* Main.TILE_SIZE, Main.TILE_SIZE);
             }
         }
     }
@@ -85,9 +84,9 @@ public class Renderer {
         int x = 0;
         int y = 0;
 
+        //Get all tiles from factory and draw them on top
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            System.out.println((char)pair.getKey());
             it.remove();
             try {
                 Sprite s = (TileFactory.getInstance().produce((char)pair.getKey(), paramTypes, parameters).getSprite());
@@ -98,7 +97,7 @@ public class Renderer {
                 s.draw(batch);
                 x++;
 
-                if (x >= Main.GRID_WIDTH) {
+                if (x >= Main.GRID_WIDTH + Main.SIDE_MARGIN) {
                     x = 0;
                     y++;
                 }
