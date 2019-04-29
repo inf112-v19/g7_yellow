@@ -87,7 +87,10 @@ public class GameController {
     }
 
     public static void quePushRobot(int id, Vector2 oldPos, Vector2 newPos, AbstractFunctionTile t){
-        movesToDo[id] = new MoveToken(id, oldPos, newPos, t);
+        if(movesToDo[id] == null)
+            movesToDo[id] = new MoveToken(id, oldPos, newPos, t);
+        else
+            movesToDo[id].makeDouble(new MoveToken(id,oldPos,newPos,t));
     }
 
     public static void pushRobot(int pId, int dir, int dist) throws OutsideGridException {
@@ -222,9 +225,28 @@ public class GameController {
         for(int i = 0; i  < movesToDo.length; i++){
             for (int j = i + 1; j < movesToDo.length; j++) {
                 if (movesToDo[i] != null && movesToDo[j] != null) {
-                    if(movesToDo[i].compareTo(movesToDo[j]) == 0) {
-                        movesToDo [i] = null;
-                        movesToDo[j] = null;
+                    switch(movesToDo[i].compareTo(movesToDo[j])){
+                        case -2:
+                            movesToDo[j] = null;
+                            break;
+                        case -1:
+                            movesToDo[i] = null;
+                            break;
+                        case 0:
+                            movesToDo[i] = null;
+                            movesToDo[j] = null;
+                            break;
+                        case 1:
+                            movesToDo[i].removeEndToken();
+                            break;
+                        case 2:
+                            movesToDo[j].removeEndToken();
+                            break;
+                        case 3:
+                            movesToDo[i].removeEndToken();
+                            movesToDo[j].removeEndToken();
+                            break;
+                         default: continue;
                     }
                 }
             }
@@ -232,6 +254,7 @@ public class GameController {
         for(MoveToken mT : movesToDo){
             if(mT != null){
                 mT.getTile().execute(mT.getId());
+                if(mT.isDouble()) mT.getSecondTile().execute(mT.getId());
             }
         }
         movesToDo = new MoveToken[amount];
