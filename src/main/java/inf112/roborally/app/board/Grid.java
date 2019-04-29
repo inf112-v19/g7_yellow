@@ -85,7 +85,7 @@ public class Grid implements Iterable<LinkedList<IBoardTile>> {
     }
 
     private boolean isInsideGrid(Vector2 p) {
-        return p.x > BOARD_WIDTH || p.x < 0 || p.y > BOARD_HEIGHT || p.y < 0;
+        return p.x >= BOARD_WIDTH || p.x < 0 || p.y > BOARD_HEIGHT || p.y < 0;
     }
 
     @Override

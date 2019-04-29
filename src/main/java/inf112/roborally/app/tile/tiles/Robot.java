@@ -3,6 +3,7 @@ package inf112.roborally.app.tile.tiles;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.sprite.SpriteLoader;
 
 /**
@@ -68,12 +69,7 @@ public class Robot extends AbstractCollidableTile {
     }
 
     public Vector2 push(Vector2 pos, int pushDirection) {
-        var sin = (int) Math.sin(Math.toRadians(pushDirection));
-        var cos = (int) Math.cos(Math.toRadians(pushDirection));
-        var newX = pos.x + cos;
-        var newY = pos.y + sin;
-        // System.out.println("oldpos: " + pos.x + ", " + pos.y + ", newpos: " + newX + ", " + newY);
-        return new Vector2(newX, newY);
+        return GameController.findNextPosition(pos, pushDirection);
     }
 
     /**

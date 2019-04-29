@@ -50,10 +50,11 @@ public class Player {
         return program.peekNextCard().getPriority();
     }
 
-    public void executeNextCard() {
-        if(program.peekNextCard() == null) return;
+    public IProgramCard executeNextCard() {
+        if(program.peekNextCard() == null) return null;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
+        return nextCard;
     }
 
     /**

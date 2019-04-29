@@ -32,6 +32,8 @@ class InputManager {
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.A) || Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
                 GameController.rotateRobot(playerId, 90);
                 GameController.oneStep();
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+                GameController.oneStep();
             }
         }
 
