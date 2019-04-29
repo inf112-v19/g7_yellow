@@ -26,16 +26,6 @@ public class MoveToken implements Comparable<MoveToken> {
         endToken = mT;
     }
 
-    public MoveToken getEndToken() { return endToken; }
-/*
-    public void removeFirstToken() {
-        this.id = endToken.id;
-        this.oldPos = endToken.oldPos;
-        this.newPos = endToken.newPos;
-        this.t = endToken.t;
-        this.removeEndToken();
-    }*/
-
     public void removeEndToken() {
         this.endToken = null;
     }
