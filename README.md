@@ -36,4 +36,4 @@ We are currently working on implementing the usage of the SpotBugs plugin to the
 
 ## Compatible OS 
 Ths product should run perfectly fine with linux and windows, but we've had some issues on OSX. If you are running the project on a Mac 
-and it's not working, you should try to run it from the editor. This should fix the problem. 
+and it's not working, you should try to run it from the terminal. This should fix the problem. 
