@@ -2,6 +2,7 @@ package inf112.roborally.app.main;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.game.GameController;
 
@@ -24,7 +25,7 @@ public class Main {
     public static int WINDOW_WIDTH = (GRID_WIDTH * TILE_SIZE) + (SIDE_MARGIN * TILE_SIZE);
     public static int WINDOW_HEIGHT = (GRID_HEIGHT * TILE_SIZE) + (TOP_MARGIN * TILE_SIZE);
 
-    public static GameState gameState = GameState.EDITOR;
+    public static GameState gameState = GameState.MENU;
 
     public static void main(String[] args) throws OutsideGridException {
         GameController gC = new GameController();

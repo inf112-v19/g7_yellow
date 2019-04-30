@@ -24,6 +24,7 @@ public class MapLayout implements ApplicationListener {
     private InputManager inputManager;
     private EditorInput editorInput;
     private Console console;
+    private Menu menu;
 
     public MapLayout() {
         inputManager = new InputManager(Main.ID_OF_CURRENT_PLAYER);
@@ -35,6 +36,7 @@ public class MapLayout implements ApplicationListener {
         renderer = new Renderer(GameController.getBoard());
         new SpriteLoader();
         console = new Console();
+        menu = new Menu();
     }
 
     @Override
@@ -55,21 +57,25 @@ public class MapLayout implements ApplicationListener {
         Gdx.gl.glClearColor(0F, 0F, 0F, 0F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //just a simple grid
-        renderer.drawGrid();
 
-        //drawing the board
-        try {
-            renderer.drawBoard();
-        } catch (OutsideGridException e) {
-            e.printStackTrace();
+        if(Main.gameState != GameState.MENU) {
+            //just a simple grid
+            renderer.drawGrid();
+
+            //drawing the board
+            try {
+                renderer.drawBoard();
+            } catch (OutsideGridException e) {
+                e.printStackTrace();
+            }
         }
-
         //Draw editor UI if in editor mode
         if (Main.gameState == GameState.EDITOR)
             renderer.drawEditorUI();
 
+
         console.render(1);
+        menu.render(1);
 
     }
 

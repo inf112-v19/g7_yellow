@@ -81,7 +81,7 @@ public class Console implements Screen {
             active = !active;
             if (active) {
                 clear();
-                stage.setKeyboardFocus(console);
+                //stage.setKeyboardFocus(console);
             }
             if (!active) stage.unfocusAll();
         } catch (NullPointerException e) {
