@@ -84,10 +84,8 @@ public class EditorInput {
                 grid.addTile(gameBoardVec, new Hole(rotation));
             }
 
-            //PLACE FLOOR
+            //PLACE Anything else
             else {
-                System.out.println("lets place tile");
-                System.out.println("tiles: " + grid);
                 if (grid.getTiles(gameBoardVec).size() != 0)
                 //Remove hole if any
                     if (grid.getTiles(gameBoardVec).getFirst() instanceof Hole)
@@ -104,7 +102,6 @@ public class EditorInput {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
 
@@ -141,7 +138,6 @@ public class EditorInput {
             board.loadEmptyMap();
         else
             board.loadMap(map);
-
         grid = board.getGrid();
         Main.gameState = GameState.EDITOR;
     }

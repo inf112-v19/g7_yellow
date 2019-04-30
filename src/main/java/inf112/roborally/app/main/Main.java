@@ -24,7 +24,7 @@ public class Main {
     public static int WINDOW_WIDTH = (GRID_WIDTH * TILE_SIZE) + (SIDE_MARGIN * TILE_SIZE);
     public static int WINDOW_HEIGHT = (GRID_HEIGHT * TILE_SIZE) + (TOP_MARGIN * TILE_SIZE);
 
-    public static GameState gameState = GameState.EDITOR;
+    public static GameState gameState = GameState.PLAYING;
 
     public static void main(String[] args) throws OutsideGridException {
         GameController gC = new GameController();
