@@ -8,11 +8,9 @@ import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.tile.IBoardTile;
-import inf112.roborally.app.tile.TileIndex;
+import inf112.roborally.app.tile.TileFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Renderer {
 
@@ -43,7 +41,7 @@ public class Renderer {
 
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
-                    s.setPosition(x * Main.TILE_SIZE, y * Main.TILE_SIZE);
+                    s.setPosition((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2)* Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());
                     s.draw(batch);
@@ -56,7 +54,7 @@ public class Renderer {
     public void drawGrid() {
         for (int x = 0; x < Main.GRID_WIDTH; x++) {
             for (int y = 0; y < Main.GRID_HEIGHT; y++) {
-                drawRect(x * Main.TILE_SIZE, y * Main.TILE_SIZE, Main.TILE_SIZE);
+                drawRect((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2)* Main.TILE_SIZE, Main.TILE_SIZE);
             }
         }
     }
@@ -74,29 +72,36 @@ public class Renderer {
     }
 
     public void drawEditorUI() {
-        ArrayList<IBoardTile> tiles = new ArrayList<>();
+        HashMap map = TileFactory.getInstance().getAllMappings();
 
-        for (int i = 0; i < TileIndex.values().length; i++) {
-            tiles.add(TileIndex.indexToTile(i));
-        }
+        Class[] paramTypes = {Integer.TYPE};
+        Object[] parameters = {90};
+
+        Iterator it = map.entrySet().iterator();
 
         batch.begin();
 
         int x = 0;
         int y = 0;
-        for (IBoardTile t : tiles) {
-            Sprite s = t.getSprite();
-            s.setOriginCenter();
-            s.setRotation(0);
-            s.setPosition(Main.TILE_SIZE * x,
-                    (Main.WINDOW_HEIGHT - Main.TILE_SIZE) - Main.TILE_SIZE * y);
-            s.draw(batch);
-            x++;
 
-            if (x >= Main.GRID_WIDTH) {
-                x = 0;
-                y++;
-            }
+        //Get all tiles from factory and draw them on top
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            it.remove();
+            try {
+                Sprite s = (TileFactory.getInstance().produce((char)pair.getKey(), paramTypes, parameters).getSprite());
+                s.setOriginCenter();
+                s.setRotation(0);
+                s.setPosition(Main.TILE_SIZE * x,
+                        (Main.WINDOW_HEIGHT - Main.TILE_SIZE) - Main.TILE_SIZE * y);
+                s.draw(batch);
+                x++;
+
+                if (x >= Main.GRID_WIDTH + Main.SIDE_MARGIN) {
+                    x = 0;
+                    y++;
+                }
+            } catch (ClassNotFoundException e) { e.printStackTrace(); }
         }
 
         //Show the tile you're about to draw
