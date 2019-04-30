@@ -65,7 +65,7 @@ public class EditorInput {
         if (Gdx.input.isTouched()) {
             //If we are outside of the playboard, get the selected tile if any
             if (!insideBoardBounds) {
-                if (tileIndex > TileFactory.getInstance().getAllMappings().size() || tileIndex < 0) return;
+                if (tileIndex > TileFactory.getInstance().getAllMappings().size() - 1 || tileIndex < 0) return;
                 currentTile = produceTileFromIndex(tileIndex);
                 return;
             }
