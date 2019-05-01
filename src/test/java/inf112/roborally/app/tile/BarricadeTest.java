@@ -16,7 +16,7 @@ public class BarricadeTest {
     @Test
     public void canMoveIntoFromTest() {
         barri = new Barricade(1);
-        assertTrue(barri.canMoveIntoFrom(90));
+        assertFalse(barri.canMoveIntoFrom(90));
     }
 
     /**
@@ -25,6 +25,6 @@ public class BarricadeTest {
     @Test
     public void canMoveOutFromTest() {
         barri = new Barricade(1);
-        assertFalse(barri.canMoveOutFrom(90));
+        assertTrue(barri.canMoveOutFrom(90));
     }
 }

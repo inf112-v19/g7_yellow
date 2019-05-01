@@ -7,6 +7,7 @@ public class Player {
 
     private int id;
     private Robot robot;
+    private int flagNumber = 0;
 
     //Each player has their own stack of cards
     private PlayerCardPile<IProgramCard> cardPile;
@@ -62,5 +63,9 @@ public class Player {
      */
     public int getId() {
         return this.id;
+    }
+
+    public void visitedFlag(int id){
+        if(id == this.flagNumber + 1) flagNumber = id;
     }
 }

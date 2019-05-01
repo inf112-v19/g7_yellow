@@ -20,7 +20,7 @@ public class GameController {
         board.loadMap("map1");
     }
 
-    private static int amount = 0;
+    private static int amount;
     private static Robot[] robots;
     private static Player[] players;
     private static MoveToken[] movesToDo;
@@ -94,6 +94,7 @@ public class GameController {
     }
 
     public static void pushRobot(int pId, int dir, int dist) throws OutsideGridException {
+        Boolean canMoveInto = false;
         //Find robot based on pId input
         Robot r = robots[pId - 1];
 
@@ -101,7 +102,6 @@ public class GameController {
         Vector2 oldPos = findRobot(r);
         Vector2 newPos = r.push(oldPos, dir);
 
-        System.out.println(oldPos + " " + newPos);
 
 
         //Get all the tiles on old position, and check for collidable tiles.
@@ -127,9 +127,8 @@ public class GameController {
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
         for (IBoardTile t : tilesOnNewPos) {
             if (t instanceof AbstractCollidableTile) {
-                //Try to push robots if robot is in front
                 if (t instanceof Robot) {
-                    // System.out.println("checking if can push with: " + dir);
+                    System.out.println(canPushRobot(oldPos, dir));
                     if (canPushRobot(oldPos, dir)) {
                         pushRobot(((Robot) t).getId(), dir, dist);
                         break;
@@ -137,12 +136,11 @@ public class GameController {
                 }
                 //Otherwise just try to move to the next tile
                 else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))) {
-                    break;
+                    continue;
                 }
                 return;
             }
         }
-
         board.getGrid().removeTile(oldPos, r);
         board.getGrid().addTile(newPos, r);
     }
@@ -189,24 +187,29 @@ public class GameController {
     }
 
     private static boolean canPushRobot(Vector2 startPos, int dir) throws OutsideGridException {
+        boolean canMoveOut = true;
+        boolean foundRobot = false;
         //Get position for next tile
         Vector2 nextPos = findNextPosition(startPos, dir);
         //Get tiles on next pos
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(nextPos);
 
-        for (IBoardTile t : tilesOnNewPos) {
-            if ((t instanceof AbstractCollidableTile) && !(t instanceof Robot)) {
-                return ((AbstractCollidableTile) t).canMoveIntoFrom(dir);
-            } else if ((t instanceof Robot)) {
-                for (IBoardTile t2 : tilesOnNewPos) {
-                    if ((t2 instanceof AbstractCollidableTile) && !(t2 instanceof Robot)) {
-                        return ((AbstractCollidableTile) t).canMoveOutFrom(dir);
-                    }
+        for(IBoardTile t : tilesOnNewPos){
+            if(t instanceof AbstractCollidableTile){
+                if(!(t instanceof Robot)){
+                    if(!(((AbstractCollidableTile) t).canMoveIntoFrom(dir))) return false;
+                    else if(!((AbstractCollidableTile) t).canMoveOutFrom(dir)) canMoveOut = false;
+                } else {
+                    foundRobot = true;
                 }
-                return canPushRobot(nextPos, dir);
             }
         }
-        return true;
+        if(foundRobot && !canMoveOut) return false;
+        else return true;
+    }
+
+    public static void playerOnFlag(int id, int robotId){
+        players[robotId].visitedFlag(id);
     }
 
     public static Vector2 findNextPosition(Vector2 pos, int dir) {
@@ -246,7 +249,7 @@ public class GameController {
                             movesToDo[i].removeEndToken();
                             movesToDo[j].removeEndToken();
                             break;
-                         default: continue;
+                        default: continue;
                     }
                 }
             }
@@ -272,14 +275,15 @@ public class GameController {
                 if (t instanceof AbstractConveyor) {
                     if (((AbstractConveyor) t).doesTurn(rob.getRotation())) rob.setRotation(t.getRotation());
                 }
-                if (!(t instanceof Repair || t instanceof RepairFull)) {
+                if (!(t instanceof Repair || t instanceof RepairFull || t instanceof Flag)) {
                     if (t instanceof AbstractLaser) {
                         LaserHelper.propagateLaser(pos, t.getRotation(), robotID, ((AbstractLaser) t).getDamageValue());
                     }
                     if(t instanceof AbstractConveyor) quePushRobot(robotID, pos, findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
                     else ((AbstractFunctionTile) (t)).execute(robotID);
-                } else if (players[robotID - 1].isOnLastProgramCard())
+                } else if (players[robotID - 1].isOnLastProgramCard()){
                     ((AbstractFunctionTile) (t)).execute(robotID);
+                }
                 if (t instanceof AbstractBlueConveyor) {
                     nextRobotStep(robotID, findNextPosition(pos, t.getRotation()));
                 }

@@ -1,5 +1,7 @@
 package inf112.roborally.app.tile.tiles;
 
+import inf112.roborally.app.game.GameController;
+
 public class Flag extends AbstractFunctionTile {
 
     private int id = 0;
@@ -20,8 +22,7 @@ public class Flag extends AbstractFunctionTile {
 
     @Override
     public void execute(int RobotId) {
-        //TODO finish
-        System.err.println("Call to unimplemented method int" + this.getClass().toString());
+        GameController.playerOnFlag(id, RobotId);
     }
 
     public void setId(int id){
@@ -31,11 +32,4 @@ public class Flag extends AbstractFunctionTile {
     public int getId() {
         return this.id;
     }
-
-    /*
-    @Override
-    public void execute(Player player) {
-        // TODO: This needs to do stuff unless its handled by the GameController logic
-    }
-    */
 }

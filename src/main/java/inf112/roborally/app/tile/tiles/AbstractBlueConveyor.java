@@ -1,7 +1,7 @@
 package inf112.roborally.app.tile.tiles;
 
 /**
- * TODO: Describe class
+ * Blue conveyors move players twice instead of once
  *
  * @author RakNoel
  * @version 1.0
