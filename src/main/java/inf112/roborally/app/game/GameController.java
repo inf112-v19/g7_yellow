@@ -123,6 +123,8 @@ public class GameController {
         //Get all the tiles on new position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
+        // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
+        // we don't swap places of two robots if they're on opposite conveyors facing each other
         for (IBoardTile t : tilesOnNewPos){
             if(t instanceof AbstractConveyor &&
                     !(t.getRotation() == r.getRotation() - 180 ||
