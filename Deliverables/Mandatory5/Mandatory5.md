@@ -68,3 +68,29 @@ Det er spesielt Git, codacy og trello som vi har brukt og tilegnet oss mest kunn
 
 
 # Deloppgave 3: Kode
+**Liste over kjente svakheter i prosjektet** 
+1. *Kompleksitet*: Noen av metodene kan være litt komplisert å sette seg inn i, noe som kan karakteriseres som et svakhetstegn. 
+2. Enkelte av klassene er ekstremt store. Et eksempel er [```GameController```](https://github.com/inf112-v19/YellowBots/blob/master/src/main/java/inf112/roborally/app/game/GameController.java)
+3. Vi har en del bugs på collisions. Når roboter skal dyttes og kræsje etc. skjer ikke det vi vil skal skje. 
+4.
+5.
+
+
+
+
+
+For instrukser til bygging av prosjektet se [GitHub-Readme](https://github.com/inf112-v19/YellowBots#how-to-buildcompile). 
+*Obs: krever Java 11*
+
+Under **"Compatible OS"** i README, kan man lese hvordan prosjektet skal funke på de ulike operativsystemene.
+
+Ønsker man mer informasjon om vår bygg-server, se her: [Jenkins-byggeserver](https://github.com/inf112-v19/YellowBots/wiki/ByggeServer)
+                                                   
+
+## Klasse-diagram 
+
+
+
+## Tilleggsinformasjon 
+Vi har støtt på flere utfordringer på veien. Disse utfordringene legger vi til i issues på wikien vår, slik at vi kan "lære
+av våre feil" og kanskje andre kan se hvordan vi har løst enkelte problemer. Disse finner man her: [Issues](https://github.com/inf112-v19/YellowBots/wiki/Issues)
