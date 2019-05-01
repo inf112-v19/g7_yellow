@@ -93,7 +93,9 @@ public class GameController {
             movesToDo[id].makeDouble(new MoveToken(id,oldPos,newPos,t));
     }
 
-    public static void pushRobot(int pId, int dir, int dist, boolean isConveyor) throws OutsideGridException {
+    public static void pushRobot(int pId, int dir, int dist, boolean isConveyor, boolean doPushRobot) throws OutsideGridException {
+        boolean foundConveyor = false;
+        boolean foundRobot = false;
         //Find robot based on pId input
         Robot r = robots[pId - 1];
 
@@ -101,11 +103,8 @@ public class GameController {
         Vector2 oldPos = findRobot(r);
         Vector2 newPos = r.push(oldPos, dir);
 
-
-
         //Get all the tiles on old position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
-
         LinkedList<IBoardTile> tilesOnOldPos = null;
         try {
             tilesOnOldPos = board.getGrid().getTiles(oldPos);
@@ -124,43 +123,61 @@ public class GameController {
         //Get all the tiles on new position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
-        for (IBoardTile t : tilesOnNewPos) {
-            if (t instanceof AbstractCollidableTile) {
-                if (t instanceof Robot) {
-                    if(isConveyor) return;
-                    if (canPushRobot(oldPos, dir)) {
-                        pushRobot(((Robot) t).getId(), dir, dist, false);
+        for (IBoardTile t : tilesOnNewPos){
+            if(t instanceof AbstractConveyor &&
+                    !(t.getRotation() == r.getRotation() - 180 ||
+                            t.getRotation() == r.getRotation() + 180)) foundConveyor = true;
+        }
+        for (IBoardTile t : tilesOnNewPos){
+            if (t instanceof AbstractCollidableTile){
+                if(t instanceof Robot){
+                    if(canPushRobot(oldPos, dir) && doPushRobot){
+                        pushRobot(((Robot) t).getId(), dir, dist, false, true);
                         break;
-                    } else return;
-                }
-                //Otherwise just try to move to the next tile
-                else if (((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))) {
+                    } else if(!doPushRobot){
+                        foundRobot = true;
+                    }
+                } else if(((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))){
                     continue;
-                }
-                return;
+                } else return;
             }
         }
+        if(!foundConveyor && foundRobot) return;
         board.getGrid().removeTile(oldPos, r);
         board.getGrid().addTile(newPos, r);
     }
 
-    public static void moveRobot(int pId, int dir) {
-        if (dir > 0) {
-            for (int i = 0; i < dir; i++) {
+    public static void moveRobot(int pId, int dist) {
+        if (dist > 0) {
+            for (int i = 0; i < dist; i++) {
                 try {
-                    pushRobot(pId, robots[pId - 1].getRotation(), 1, false);
+                    pushRobot(pId, robots[pId - 1].getRotation(), 1, false, true);
                 } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
                     System.err.println(e);
                     continue;
                 }
             }
-        } else if (dir < 0) {
+        } else if (dist < 0) {
             try {
-                pushRobot(pId, robots[pId - 1].getRotation() + 180, 1, false);
+                pushRobot(pId, robots[pId - 1].getRotation() + 180, 1, false,true);
             } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
                 System.err.println(e);
                 return;
             }
+        }
+    }
+
+    /**
+     * Should only be used by conveyors to move one robot at a time
+     * @param pId
+     * @param dir
+     * @param doPushRobot
+     */
+    public static void moveRobot(int pId, int dir, boolean doPushRobot) {
+        try {
+            pushRobot(pId, dir, 1, false, doPushRobot);
+        } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
+            System.err.println(e);
         }
     }
 
