@@ -128,7 +128,6 @@ public class GameController {
         for (IBoardTile t : tilesOnNewPos) {
             if (t instanceof AbstractCollidableTile) {
                 if (t instanceof Robot) {
-                    System.out.println(canPushRobot(oldPos, dir));
                     if (canPushRobot(oldPos, dir)) {
                         pushRobot(((Robot) t).getId(), dir, dist);
                         break;
