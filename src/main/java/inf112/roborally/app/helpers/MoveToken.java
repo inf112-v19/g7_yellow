@@ -1,6 +1,7 @@
 package inf112.roborally.app.helpers;
 
 import com.badlogic.gdx.math.Vector2;
+import inf112.roborally.app.tile.tiles.AbstractConveyor;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
 
 public class MoveToken implements Comparable<MoveToken> {
@@ -61,58 +62,69 @@ public class MoveToken implements Comparable<MoveToken> {
         if(this.isDouble() && o.isDouble()){
 
             // Can move this one, can't move the other one
-            if(this.getOldPos().epsilonEquals(o.getMiddlePos())) return -2;
+            if(isEqual(this.getOldPos(), o.getMiddlePos()) && !(o.getTile() instanceof AbstractConveyor)) return -2;
 
             // Can't move this one, can move the other one
-            else if(this.getMiddlePos().epsilonEquals(o.getOldPos())) return -1;
+            else if(isEqual(this.getMiddlePos(), o.getOldPos()) && !(this.getTile() instanceof AbstractConveyor)) return -1;
 
             // Can't move either
-            else if(this.getMiddlePos().epsilonEquals(o.getMiddlePos())) return 0;
+            else if(isEqual(this.getMiddlePos(), o.getMiddlePos())) return 0;
 
             // Can move this once, can't move the other one
-            else if(this.getNewPos().epsilonEquals(o.getMiddlePos())) return 1;
+            else if(isEqual(this.getNewPos(), o.getMiddlePos())) return 1;
 
             // Can't move this, can move the other once
-            else if(this.getMiddlePos().epsilonEquals(o.getNewPos())) return 2;
+            else if(isEqual(this.getMiddlePos(), o.getNewPos())) return 2;
 
             // Can move both once
-            else return 3;
+            else if(isEqual(this.getNewPos(), o.getNewPos())) return 3;
+
+            else return 4;
         } else if (this.isDouble()){
 
             // Can move this one, can't move the other one
-            if(this.getOldPos().epsilonEquals(o.getNewPos())) return -2;
+            if(isEqual(this.getOldPos(), o.getNewPos()) && !(o.getTile() instanceof AbstractConveyor)) return -2;
 
             // Can't move this one, can move the other one
-            else if(this.getMiddlePos().epsilonEquals(o.getOldPos())) return -1;
+            else if(isEqual(this.getMiddlePos(), o.getOldPos()) && !(this.getTile() instanceof AbstractConveyor)) return -1;
 
             // Can't move either
-            else if(this.getMiddlePos().epsilonEquals(o.getNewPos())) return 0;
+            else if(isEqual(this.getMiddlePos(), o.getNewPos())) return 0;
 
             // Can move this once, can't move the other one
-            else return 1;
+            else if(isEqual(this.getNewPos(), o.getNewPos())) return 1;
+
+            else return 4;
         } else if (o.isDouble()){
 
             // Can't move this one, can move the other one
-            if(this.getNewPos().epsilonEquals(o.getOldPos())) return 2;
+            if(isEqual(this.getNewPos(), o.getOldPos()) && !(this.getTile() instanceof AbstractConveyor)) return -1;
 
             // Can move this one, can't move the other one
-            else if(this.getOldPos().epsilonEquals(o.getMiddlePos())) return 1;
+            else if(isEqual(this.getOldPos(), o.getMiddlePos()) && !(o.getTile() instanceof AbstractConveyor)) return -2;
 
             // Can't move either
-            else if(this.getNewPos().epsilonEquals(o.getMiddlePos())) return 0;
+            else if(isEqual(this.getNewPos(), o.getMiddlePos())) return 0;
 
-            // Can't move this once, can move the other one
-            else return -1;
+            // Can't move this one, can move the other once
+            else if(isEqual(this.getNewPos(), o.getNewPos())) return 2;
+            else return 4;
         } else {
 
             // Can move this, can't move the other
-            if(this.getOldPos().epsilonEquals(o.getNewPos())) return 1;
+            if(isEqual(this.getOldPos(), o.getNewPos()) && !(o.getTile() instanceof AbstractConveyor)) return -2;
 
             // Can't move either
-            else if(this.getNewPos().epsilonEquals(o.getNewPos())) return 0;
+            else if(isEqual(this.getNewPos(), o.getNewPos())) return 0;
 
-            // Only one left is newPos = oldPos, which means can't move this, can move the other
-            else return -1;
+            // Can't move this one, can move the other
+            else if(isEqual(this.getNewPos(), o.getOldPos()) && !(this.getTile() instanceof AbstractConveyor)) return -1;
+            else return 4;
         }
+    }
+
+    private boolean isEqual(Vector2 oldPos, Vector2 newPos){
+        if(oldPos.x == newPos.x && oldPos.y == newPos.y) return true;
+        else return false;
     }
 }

@@ -93,8 +93,7 @@ public class GameController {
             movesToDo[id].makeDouble(new MoveToken(id,oldPos,newPos,t));
     }
 
-    public static void pushRobot(int pId, int dir, int dist) throws OutsideGridException {
-        Boolean canMoveInto = false;
+    public static void pushRobot(int pId, int dir, int dist, boolean isConveyor) throws OutsideGridException {
         //Find robot based on pId input
         Robot r = robots[pId - 1];
 
@@ -128,8 +127,9 @@ public class GameController {
         for (IBoardTile t : tilesOnNewPos) {
             if (t instanceof AbstractCollidableTile) {
                 if (t instanceof Robot) {
+                    if(isConveyor) return;
                     if (canPushRobot(oldPos, dir)) {
-                        pushRobot(((Robot) t).getId(), dir, dist);
+                        pushRobot(((Robot) t).getId(), dir, dist, false);
                         break;
                     } else return;
                 }
@@ -148,7 +148,7 @@ public class GameController {
         if (dir > 0) {
             for (int i = 0; i < dir; i++) {
                 try {
-                    pushRobot(pId, robots[pId - 1].getRotation(), 1);
+                    pushRobot(pId, robots[pId - 1].getRotation(), 1, false);
                 } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
                     System.err.println(e);
                     continue;
@@ -156,7 +156,7 @@ public class GameController {
             }
         } else if (dir < 0) {
             try {
-                pushRobot(pId, robots[pId - 1].getRotation() + 180, 1);
+                pushRobot(pId, robots[pId - 1].getRotation() + 180, 1, false);
             } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
                 System.err.println(e);
                 return;
@@ -225,6 +225,7 @@ public class GameController {
         }
         // This is not optimal, but considering it will at max be 8 moves to do, it should be fine.
         for(int i = 0; i  < movesToDo.length; i++){
+            if(movesToDo[i] != null) System.out.println(movesToDo[i].getOldPos() + " and " + movesToDo[i].getNewPos());
             for (int j = i + 1; j < movesToDo.length; j++) {
                 if (movesToDo[i] != null && movesToDo[j] != null) {
                     switch(movesToDo[i].compareTo(movesToDo[j])){
@@ -255,8 +256,8 @@ public class GameController {
         }
         for(MoveToken mT : movesToDo){
             if(mT != null){
-                mT.getTile().execute(mT.getId());
-                if(mT.isDouble()) mT.getSecondTile().execute(mT.getId());
+                mT.getTile().execute(mT.getId()+1);
+                if(mT.isDouble()) mT.getSecondTile().execute(mT.getId()+1);
             }
         }
         movesToDo = new MoveToken[amount];
@@ -278,7 +279,7 @@ public class GameController {
                     if (t instanceof AbstractLaser) {
                         LaserHelper.propagateLaser(pos, t.getRotation(), robotID, ((AbstractLaser) t).getDamageValue());
                     }
-                    if(t instanceof AbstractConveyor) quePushRobot(robotID, pos, findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
+                    if(t instanceof AbstractConveyor) quePushRobot(robotID-1, pos, findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
                     else ((AbstractFunctionTile) (t)).execute(robotID);
                 } else if (players[robotID - 1].isOnLastProgramCard()){
                     ((AbstractFunctionTile) (t)).execute(robotID);
@@ -298,7 +299,7 @@ public class GameController {
         for (IBoardTile t : tiles) {
             if (t instanceof AbstractConveyor) {
                 if (((AbstractConveyor) t).doesTurn(rob.getRotation())) rob.setRotation(t.getRotation());
-                if(t instanceof AbstractBlueConveyor) quePushRobot(robotId, pos, findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
+                if(t instanceof AbstractBlueConveyor) quePushRobot(robotId-1, pos, findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
             }
         }
     }
