@@ -20,6 +20,11 @@ public class Program {
         return cards.peek();
     }
 
+    public void printProgram() {
+        cards.print();
+        System.out.println();
+    }
+
     public void addCardToProgram(IProgramCard card) {
         cards.add(card);
     }

@@ -7,6 +7,7 @@ import inf112.roborally.app.editor.Console;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.game.GameController;
+import inf112.roborally.app.player.CardUI;
 import inf112.roborally.app.sprite.SpriteLoader;
 
 /**
@@ -20,6 +21,7 @@ import inf112.roborally.app.sprite.SpriteLoader;
 public class MapLayout implements ApplicationListener {
 
     private Renderer renderer;
+    private CardUI playerUI;
 
     private InputManager inputManager;
     private EditorInput editorInput;
@@ -33,6 +35,7 @@ public class MapLayout implements ApplicationListener {
     @Override
     public void create() {
         renderer = new Renderer(GameController.getBoard());
+        playerUI = new CardUI();
         new SpriteLoader();
         console = new Console();
     }
@@ -70,6 +73,15 @@ public class MapLayout implements ApplicationListener {
             renderer.drawEditorUI();
 
         console.render(1);
+
+        //Render playerUI
+        if (Main.gameState == GameState.PLAYING) {
+            playerUI.drawForwardCard(20,20);
+            playerUI.drawBackwardsCard(75 + 40,20);
+            playerUI.drawRotateRightCard(75*2 + 60, 20);
+            playerUI.drawRotateLeftCard(75*3 + 80, 20);
+            playerUI.drawFullRotateCard(75*4 + 100, 20);
+        }
 
     }
 

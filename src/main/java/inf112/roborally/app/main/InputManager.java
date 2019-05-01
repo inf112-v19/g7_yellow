@@ -17,7 +17,7 @@ class InputManager {
     protected void checkForInput() throws OutsideGridException {
         if (Main.gameState == GameState.PLAYING) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-                GameController.excecuteCards();
+                GameController.executeCard();
             }
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.UP)) {

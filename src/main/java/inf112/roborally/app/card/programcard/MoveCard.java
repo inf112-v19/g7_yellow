@@ -21,4 +21,9 @@ public class MoveCard implements IProgramCard {
     public void excecute(int robotId) {
         GameController.moveRobot(robotId, this.moveLength);
     }
+
+    @Override
+    public String toString() {
+        return "MoveCard " + moveLength;
+    }
 }

@@ -8,13 +8,14 @@ import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.AbstractCollidableTile;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
-import inf112.roborally.app.tile.tiles.Hole;
 import inf112.roborally.app.tile.tiles.Robot;
 
 import java.util.LinkedList;
 
 public class GameController {
+
     private final static Board board;
+    private static int playerTurn = 0;
 
     static {
         board = new Board(Main.GRID_WIDTH, Main.GRID_HEIGHT);
@@ -22,7 +23,7 @@ public class GameController {
     }
 
     private static Robot[] robots;
-    private static Player[] players;
+    public static Player[] players;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -48,10 +49,11 @@ public class GameController {
         }
     }
 
-    public static void excecuteCards() {
-        for (int i = 0; i < players.length; i++) {
-            players[i].executeNextCard();
-        }
+    public static void executeCard() {
+        players[playerTurn].executeNextCard();
+        playerTurn++;
+        if (playerTurn > 7)
+            playerTurn = 0;
     }
 
     public static Board getBoard() {
@@ -106,7 +108,7 @@ public class GameController {
                 if (t instanceof AbstractCollidableTile) {
                     //Try to push robots if robot is in front
                     if (t instanceof Robot) {
-                        // System.out.println("checking if can push with: " + dir);
+                        System.out.println(canPushRobot(oldPos, dir));
                         if (canPushRobot(oldPos, dir)) {
                             pushRobot(((Robot) t).getId(), dir, dist);
                             break;

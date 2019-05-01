@@ -3,14 +3,14 @@ package inf112.roborally.app.player;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class PlayerUI {
+public class CardUI {
     private ShapeRenderer render;
     private SpriteBatch batch;
 
     private final int CARD_HEIGHT = 100;
     private final int CARD_WIDTH = 75;
 
-    public PlayerUI() {
+    public CardUI() {
         render = new ShapeRenderer();
         batch = new SpriteBatch();
     }

@@ -16,6 +16,7 @@ public class Player {
 
     public Player(Robot robot) {
         this.robot = robot;
+        id = robot.getId();
 
         cardPile = new PlayerCardPile<>();
         cardPile.initialize();
@@ -50,6 +51,8 @@ public class Player {
         if(program.peekNextCard() == null) return;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
+        System.out.print("Player" + id + " program: |  ");
+        program.printProgram();
     }
 
     /**
