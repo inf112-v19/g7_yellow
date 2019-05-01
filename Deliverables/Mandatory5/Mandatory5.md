@@ -31,4 +31,40 @@ noen har kodet mer enn andre, og dette ønsket vi å gjøre noe med. Dessverre b
 skulle sette seg inn i alt av kode når vi trengte mest mulig effektivitet. Vi prøvde også å få gjort det slik at vi måtte gjøre mer arbeid hjemmefra. Dette funket til en viss grad. 
 Det ble jo selvfølgelig bedre enn det var, vi skulle vært enda flinkere, da hadde vi nok ikke vært i den posisjonen vi er i nå. 
 
- 
+* *Hva har fungert best, og hvorfor? (Hva er vi mest fornøyd med)*
+Det som har fungert bset har vært dynamikken og kommunikasjonen innad i gruppa. Vi er veldig fornøyde med hvordan vi har blitt en sammensveiset gruppe i løpet av de siste månedene. 
+Hvis noen fra gruppen har hatt noen spørsmål eller trengt hjelp, har alltid noen på gruppen stilt opp og tatt seg tid til å hjelpe. Det har også
+vært veldig godt at kjemien har vært så bra, for da slipper man å gå rundt og grue seg til møtene med gruppa osv. En annen ting som fungerte veldig bra var når vi endret
+fokuset vårt til testing og samtlige i gruppa skrev tester som bare det, og en periode så lå vi vel rundt 55% coverage. 
+
+* *Hvis vi skulle fortsatt med prosjektet, hva ville vi justert?* 
+Vi ville absolutt ha **økt** arbeidsmengde og arbeidsinnsatsen betraktelig. På grunn av dårlige arbeidsmengde har vi stort sett hele prosjektet følt at vi har vært bakpå, 
+noe man selvfølgelig skulle unngått. Skulle vi fortsatt på prosjektet ville det også vært nødvendig at flere på gruppen hadde bidratt mer på kodingen. Dette fordi at 
+at folk ser forskjellige kodeløsninger, og selvom noen har programmert mindre enn andre på prosjektet, kan det hende at de har bedre løsninger på enkelte problemer. 
+Generelt sett, så måtte vi ha blitt flinkere på å fordele arbeidsoppgaver og faktiskt forsikre oss om at de blir gjort skikkelig, da dette har vært litt svakt til tider. 
+
+* *Hva er det viktigste vi har lært?*
+Det viktigste vi har lært er at når man først havner bakpå, er det ekstremt vanskelig og ikke ligge bakpå resten av prosjektet også. Men kanskje den viktigste erfaringen
+vi sitter igjen med er at vi nå har erfart hvordan det er å jobbe med så sort prosjekt i team. Dette er erfaringer som de fleste av oss  kommer til å dra
+ekstremt nytte av når vi skal ut i arbeidslivet. Vi har også lært oss å bruke viktige verktøy og hjelpemidler som kan være ekstremt nyttig å ha med seg videre.
+Det er spesielt Git, codacy og trello som vi har brukt og tilegnet oss mest kunnskap om. 
+
+
+# Deloppgave 2: Krav
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Deloppgave 3: Kode
