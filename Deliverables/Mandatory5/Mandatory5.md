@@ -45,7 +45,7 @@ Generelt sett, så måtte vi ha blitt flinkere på å fordele arbeidsoppgaver og
 
 * *Hva er det viktigste vi har lært?*
 Det viktigste vi har lært er at når man først havner bakpå, er det ekstremt vanskelig og ikke ligge bakpå resten av prosjektet også. Men kanskje den viktigste erfaringen
-vi sitter igjen med er at vi nå har erfart hvordan det er å jobbe med så sort prosjekt i team. Dette er erfaringer som de fleste av oss  kommer til å dra
+vi sitter igjen med er at vi nå har erfart hvordan det er å jobbe med et så stort prosjekt i team. Dette er erfaringer som de fleste av oss  kommer til å dra
 ekstremt nytte av når vi skal ut i arbeidslivet. Vi har også lært oss å bruke viktige verktøy og hjelpemidler som kan være ekstremt nyttig å ha med seg videre.
 Det er spesielt Git, codacy og trello som vi har brukt og tilegnet oss mest kunnskap om. 
 
