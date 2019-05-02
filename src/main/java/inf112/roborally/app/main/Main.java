@@ -2,7 +2,6 @@ package inf112.roborally.app.main;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import inf112.roborally.app.exceptions.OutsideGridException;
 
 
 public class Main {
@@ -22,7 +21,7 @@ public class Main {
 
     public static GameState gameState = GameState.PLAYING;
 
-    public static void main(String[] args) throws OutsideGridException {
+    public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 
         cfg.title = "RoboRally";
