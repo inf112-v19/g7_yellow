@@ -114,8 +114,7 @@ public class GameController {
 
         playerTurn++;
         if (playerTurn > amount - 1) {
-            playerTurn = 0;
-            roundTurn++;
+            playerTurn = 1;
             try {
                 oneStep();
             } catch (OutsideGridException e) {
@@ -123,9 +122,8 @@ public class GameController {
             }
             if (roundTurn > 5) {
                 roundTurn = 0;
-                for (int i = 0; i < amount; i++) {
+                for (int i = 0; i < amount; i++)
                     players[i].resetProgram();
-                }
             }
         }
     }
@@ -285,12 +283,10 @@ public class GameController {
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
-        for (IBoardTile t : tilesOnPos) {
-            if (t instanceof Robot) {
+        for (IBoardTile t : Objects.requireNonNull(tilesOnPos))
+            if (t instanceof Robot)
                 if (hasConveyor) return canMoveIntoRobot(LogicMethodHelper.findNextPosition(pos, dir), dir);
                 else return false;
-            }
-        }
         return true;
     }
 
@@ -298,7 +294,7 @@ public class GameController {
         boolean canMoveOut = true;
         boolean foundRobot = false;
         //Get position for next tile
-        Vector2 nextPos = LogicMethodHelper.findNextPosition(startPos, dir);
+        var nextPos = LogicMethodHelper.findNextPosition(startPos, dir);
         //Get tiles on next pos
         LinkedList<IBoardTile> tilesOnNewPos;
         try {
@@ -327,9 +323,8 @@ public class GameController {
     }
 
     public static void oneStep() throws OutsideGridException {
-        for (int i = 1; i <= robots.length; i++) {
+        for (int i = 1; i <= robots.length; i++)
             oneRobotStep(i);
-        }
         // This is not optimal, but considering it will at max be 8 moves to do, it should be fine.
         for (int i = 0; i < movesToDo.length; i++) {
             for (int j = i + 1; j < movesToDo.length; j++) {
@@ -361,23 +356,23 @@ public class GameController {
                 }
             }
         }
-        for (MoveToken mT : movesToDo) {
+        for (MoveToken mT : movesToDo)
             if (mT != null) {
                 mT.getTile().execute(mT.getId() + 1);
                 if (mT.isDouble()) mT.getSecondTile().execute(mT.getId() + 1);
             }
-        }
+
         movesToDo = new MoveToken[amount];
         LaserHelper.damageRobots();
     }
 
     private static void oneRobotStep(int robotID) throws OutsideGridException {
-        Vector2 pos = findRobot(robotID);
+        var pos = findRobot(robotID);
         if (pos == null) return;
         Robot rob = robots[robotID - 1];
         // Check if the robot is dead, if it is, nullify it.
         if (rob == null) return;
-        if (rob.getDamage() >= 10) {
+        if (rob.getDamage() >= MAX_DAMAGE) {
             robots[robotID - 1] = null;
             return;
         }
@@ -417,12 +412,11 @@ public class GameController {
         Robot rob = robots[robotId - 1];
         var tiles = (board.getGrid().getTiles(pos));
 
-        for (IBoardTile t : tiles) {
+        for (IBoardTile t : tiles)
             if (t instanceof AbstractConveyor) {
                 if (((AbstractConveyor) t).doesTurn(rob.getRotation())) rob.setRotation(t.getRotation());
                 if (t instanceof AbstractBlueConveyor)
                     quePushRobot(robotId - 1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
             }
-        }
     }
 }
