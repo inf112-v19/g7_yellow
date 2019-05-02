@@ -3,11 +3,14 @@ package inf112.roborally.app.main;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -18,35 +21,46 @@ public class Menu implements Screen {
 
     public static Stage stage;
     private ShapeRenderer sr;
+    private SpriteBatch batch;
     private static boolean active = true;
     private Table table;
+    private BitmapFont font;
 
     public Menu() {
+        sr = new ShapeRenderer();
+        batch = new SpriteBatch();
 
         stage = new Stage();
         table = new Table();
         table.setFillParent(true);
-        table.setDebug(true);
+        //table.setDebug(true);
         stage.addActor(table);
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
         new Button.ButtonStyle();
-        BitmapFont font = new BitmapFont();
+        font = new BitmapFont();
         font.getData().setScale(2);
         style.font = font;
         style.fontColor = Color.RED;
+        labelStyle.font = font;
+        labelStyle.fontColor = Color.RED;
+
+        Label roborally = new Label("RoboRally", labelStyle);
+        roborally.setPosition((Main.WINDOW_WIDTH / 2) - 70,(Main.WINDOW_HEIGHT) - 300);
+        stage.addActor(roborally);
 
         //create buttons
         TextButton newGame = new TextButton("Play", style);
         TextButton editor = new TextButton("Editor", style);
         TextButton exit = new TextButton("Exit", style);
 
-        //add buttons to table
-        table.add(newGame).width(100);
-        table.row().pad(10, 0, 10, 0);
-        table.add(editor).fillX().uniformX();
+        //add to table
+        table.add(newGame).width(100).width(400);
         table.row();
-        table.add(exit).fillX().uniformX();
+        table.add(editor).width(100).width(400);
+        table.row();
+        table.add(exit).width(100).width(400);
 
         newGame.addListener(new ChangeListener() {
             @Override
@@ -71,6 +85,9 @@ public class Menu implements Screen {
         });
 
         Gdx.input.setInputProcessor(stage);
+
+
+
     }
 
 
