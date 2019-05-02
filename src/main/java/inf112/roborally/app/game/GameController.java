@@ -189,7 +189,6 @@ public class GameController {
             } catch (OutsideGridException e) {
                 e.printStackTrace();
             }
-
         }
         if (!foundConveyor && foundRobot) return;
         try {
@@ -357,9 +356,8 @@ public class GameController {
 
         for (IBoardTile t : tiles) {
             if (t instanceof AbstractFunctionTile) {
-                if (t instanceof AbstractConveyor) {
-                    if (((AbstractConveyor) t).doesTurn(rob.getRotation())) rob.setRotation(t.getRotation());
-                }
+                if (t instanceof AbstractConveyor && ((AbstractConveyor) t).doesTurn(rob.getRotation()))
+                    rob.setRotation(t.getRotation());
                 if (!(t instanceof Repair || t instanceof RepairFull || t instanceof Flag)) {
                     if (t instanceof AbstractLaser) {
                         LaserHelper.propagateLaser(pos, t.getRotation(), robotID, ((AbstractLaser) t).getDamageValue());

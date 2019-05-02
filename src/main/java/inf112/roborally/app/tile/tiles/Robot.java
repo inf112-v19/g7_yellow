@@ -48,7 +48,7 @@ public class Robot extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'R';
+        return 'c';
     }
 
     @Override

@@ -44,7 +44,7 @@ public class TileFactoryTest {
         try {
             Class[] paramTypes = {Integer.TYPE};
             Object[] params = {0};
-            IBoardTile player = factory.produce('R', paramTypes, params);
+            IBoardTile player = factory.produce('c', paramTypes, params);
             assertTrue(player instanceof Robot);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

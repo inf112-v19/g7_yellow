@@ -5,11 +5,11 @@ import inf112.roborally.app.tile.tiles.AbstractConveyor;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
 
 public class MoveToken implements Comparable<MoveToken> {
-    MoveToken endToken;
-    int id;
-    Vector2 oldPos;
-    Vector2 newPos;
-    AbstractFunctionTile t;
+    private MoveToken endToken;
+    private int id;
+    private Vector2 oldPos;
+    private Vector2 newPos;
+    private AbstractFunctionTile t;
 
     public MoveToken(int id, Vector2 oldPos, Vector2 newPos, AbstractFunctionTile t) {
         this.id = id;
@@ -134,7 +134,6 @@ public class MoveToken implements Comparable<MoveToken> {
     }
 
     private boolean isEqual(Vector2 oldPos, Vector2 newPos) {
-        if (oldPos.x == newPos.x && oldPos.y == newPos.y) return true;
-        else return false;
+        return oldPos.x == newPos.x && oldPos.y == newPos.y;
     }
 }

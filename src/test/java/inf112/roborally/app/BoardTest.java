@@ -4,7 +4,7 @@ package inf112.roborally.app;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
-import inf112.roborally.app.tile.tiles.Hole;
+import inf112.roborally.app.tile.tiles.Floor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,6 +57,6 @@ public class BoardTest {
     public void testLoadMap1Works() throws OutsideGridException {
         board.loadMap("map1");
         assertEquals(board.getGrid().getTiles(new Vector2(0, 0)).get(0).getClass(),
-                new Hole(90).getClass());
+                new Floor(90).getClass());
     }
 }

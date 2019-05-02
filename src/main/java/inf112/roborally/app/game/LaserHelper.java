@@ -33,7 +33,7 @@ public class LaserHelper {
             Vector2 nextPos = LogicMethodHelper.findNextPosition(pos, rotation);
             Vector2 prevPos = LogicMethodHelper.findNextPosition(pos, rotation - 180);
             robotIdToDamage = startedLaser(nextPos, robotId, rotation, false);
-            if (!(robotIdToDamage > 0)) robotIdToDamage = startedLaser(prevPos, robotId, rotation, true);
+            if (robotIdToDamage <= 0) robotIdToDamage = startedLaser(prevPos, robotId, rotation, true);
         }
         dT.setId(robotIdToDamage);
         damageTokens.add(dT);

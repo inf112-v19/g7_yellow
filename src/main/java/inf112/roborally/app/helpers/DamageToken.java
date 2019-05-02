@@ -1,9 +1,9 @@
 package inf112.roborally.app.helpers;
 
 public class DamageToken implements Comparable<DamageToken> {
-    int id;
-    int damage;
-    int rotation;
+    private int id;
+    private int damage;
+    private int rotation;
 
     public DamageToken(int damage, int rotation) {
         this.damage = damage;
