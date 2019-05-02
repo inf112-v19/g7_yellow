@@ -8,6 +8,10 @@ public class BlueConveyorTurnRight extends AbstractBlueConveyor {
 
     @Override
     public char getSymbol() {
-        return '5';
+        return 'G';
+    }
+
+    public boolean doesTurn(int rotation) {
+        return (this.rotation == rotation - 90 || this.rotation == rotation + 270);
     }
 }

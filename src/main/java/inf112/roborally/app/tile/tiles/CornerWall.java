@@ -13,7 +13,7 @@ public class CornerWall extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'e';
+        return 'H';
     }
 
     @Override

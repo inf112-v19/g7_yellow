@@ -3,6 +3,7 @@ package inf112.roborally.app.tile.tiles;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import inf112.roborally.app.helpers.LogicMethodHelper;
 import inf112.roborally.app.sprite.SpriteLoader;
 
 /**
@@ -15,6 +16,8 @@ import inf112.roborally.app.sprite.SpriteLoader;
 public class Robot extends AbstractCollidableTile {
 
     private int id;
+
+    private int damage;
 
     public Robot(int r) {
         super(r);
@@ -40,12 +43,12 @@ public class Robot extends AbstractCollidableTile {
 
     @Override
     public int getRenderPriority() {
-        return 2;
+        return 5;
     }
 
     @Override
     public char getSymbol() {
-        return 'R';
+        return 'c';
     }
 
     @Override
@@ -53,21 +56,20 @@ public class Robot extends AbstractCollidableTile {
         return SpriteLoader.fetchSprite(this, id);
     }
 
-    public Vector2 move(Vector2 pos, int dir, int dist) {
-        var sin = (int) Math.sin(Math.toRadians(rotation));
-        var cos = (int) Math.cos(Math.toRadians(rotation));
-        var newX = pos.x + cos * dist * dir;
-        var newY = pos.y + sin * dist * dir;
-        return new Vector2(newX, newY);
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void destroy() {
+        this.damage = 10;
+    }
+
+    public int getDamage() {
+        return this.damage;
     }
 
     public Vector2 push(Vector2 pos, int pushDirection) {
-        var sin = (int) Math.sin(Math.toRadians(pushDirection));
-        var cos = (int) Math.cos(Math.toRadians(pushDirection));
-        var newX = pos.x + cos;
-        var newY = pos.y + sin;
-        // System.out.println("oldpos: " + pos.x + ", " + pos.y + ", newpos: " + newX + ", " + newY);
-        return new Vector2(newX, newY);
+        return LogicMethodHelper.findNextPosition(pos, pushDirection);
     }
 
     /**

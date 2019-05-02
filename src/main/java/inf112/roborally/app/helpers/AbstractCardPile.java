@@ -1,7 +1,6 @@
 package inf112.roborally.app.helpers;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * TODO: Describe class
@@ -49,7 +48,11 @@ public class AbstractCardPile<E> implements ICardPile<E> {
 
     public void print() {
         for (E elem : list) {
-            System.out.print(elem + " ");
+            System.out.print(elem.toString() + "  |  ");
         }
+    }
+
+    public LinkedList<E> getList() {
+        return list;
     }
 }

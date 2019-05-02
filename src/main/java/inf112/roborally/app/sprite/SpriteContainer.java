@@ -7,8 +7,8 @@ public class SpriteContainer {
     private String spriteName;
     private Sprite sprite;
 
-    public SpriteContainer(Sprite sprite, String spriteName){
-        this.spriteName = spriteName.substring(0, spriteName.length()-4);
+    public SpriteContainer(Sprite sprite, String spriteName) {
+        this.spriteName = spriteName.substring(0, spriteName.length() - 4);
         this.sprite = sprite;
     }
 

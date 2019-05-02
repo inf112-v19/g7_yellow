@@ -48,7 +48,7 @@ public class EditorInput {
         int tileIndex = (int) (gridVec.x) + ((Main.TOP_MARGIN + Main.GRID_HEIGHT -
                 ((int) gridVec.y) - 1) * (Main.GRID_WIDTH + Main.SIDE_MARGIN));
         //The actual position on the game board
-        gameBoardVec = new Vector2((gridVec.x - (Main.SIDE_MARGIN/2)), (gridVec.y - (Main.TOP_MARGIN)/2));
+        gameBoardVec = new Vector2((gridVec.x - (Main.SIDE_MARGIN / 2)), (gridVec.y - (Main.TOP_MARGIN) / 2));
 
         //Return if mouse is outside of screen
         if (x < 0 || x > Main.WINDOW_WIDTH || y > Main.WINDOW_HEIGHT - 1 && y < 0) {
@@ -65,7 +65,7 @@ public class EditorInput {
         if (Gdx.input.isTouched()) {
             //If we are outside of the playboard, get the selected tile if any
             if (!insideBoardBounds) {
-                if (tileIndex > TileFactory.getInstance().getAllMappings().size() || tileIndex < 0) return;
+                if (tileIndex > TileFactory.getInstance().getAllMappings().size() - 1 || tileIndex < 0) return;
                 currentTile = produceTileFromIndex(tileIndex);
                 return;
             }
@@ -84,12 +84,10 @@ public class EditorInput {
                 grid.addTile(gameBoardVec, new Hole(rotation));
             }
 
-            //PLACE FLOOR
+            //PLACE Anything else
             else {
-                System.out.println("lets place tile");
-                System.out.println("tiles: " + grid);
                 if (grid.getTiles(gameBoardVec).size() != 0)
-                //Remove hole if any
+                    //Remove hole if any
                     if (grid.getTiles(gameBoardVec).getFirst() instanceof Hole)
                         grid.removeTile(gameBoardVec, grid.getTiles(gameBoardVec).getFirst());
                     else for (IBoardTile t : grid.getTiles(gameBoardVec)) {
@@ -104,7 +102,6 @@ public class EditorInput {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
 
@@ -130,7 +127,7 @@ public class EditorInput {
         char c = (char) keys.get(i);
         try {
             t = TileFactory.getInstance().produce(c, paramTypes, parameters);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return t;
@@ -141,7 +138,6 @@ public class EditorInput {
             board.loadEmptyMap();
         else
             board.loadMap(map);
-
         grid = board.getGrid();
         Main.gameState = GameState.EDITOR;
     }

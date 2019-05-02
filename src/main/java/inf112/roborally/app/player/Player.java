@@ -7,22 +7,42 @@ public class Player {
 
     private int id;
     private Robot robot;
+    private int flagNumber = 0;
 
     //Each player has their own stack of cards
     private PlayerCardPile<IProgramCard> cardPile;
 
     //The order of the cards
     private Program program;
+    //private AbstractCardPile<IProgramCard> selectCards;
+    private IProgramCard[] selectCards;
 
     public Player(Robot robot) {
         this.robot = robot;
+        id = robot.getId();
 
         cardPile = new PlayerCardPile<>();
         cardPile.initialize();
 
+        //selectCards = new AbstractCardPile<>();
+        selectCards = new IProgramCard[9];
+
         program = new Program();
 
-        addCardsToProgram();
+        //addCardsToProgram();
+        drawNineCards();
+    }
+
+    public void drawNineCards() {
+        for (int i = 0; i < 9; i++) {
+            selectCards[i] = cardPile.pop();
+        }
+    }
+
+    public void resetProgram() {
+        drawNineCards();
+        program.resetProgram();
+        System.out.println("resetting");
     }
 
     /**
@@ -34,22 +54,50 @@ public class Player {
         }
     }
 
-    /**
-     * Should not remove cards that are burnt in because of damage.
-     * For now it removes ALL cards and puts them back in cardstack.
-     */
-    public void removeCardsFromProgram() {
-        cardPile.add(program.popNextCard());
+    public void setRobot(Robot r) {
+        this.robot = r;
+    }
+
+    public boolean isOnLastProgramCard() {
+        return this.program.peekNextCard() == null;
+    }
+
+    public void addOneCardToProgram(int i) {
+        if (selectCards[i] == null) return;
+        if (!program.canAddCard()) return;
+        program.addCardToProgram(selectCards[i]);
+        selectCards[i] = null;
+    }
+
+    public boolean havePickedCards() {
+        return program.fullProgram();
+    }
+
+    public void returnCards() {
+        for (int i = 0; i < 9; i++) {
+            if (selectCards[i] == null) {
+                for (int u = 0; u < 5; u++) {
+                    if (program.getCardsInProgram()[u] != null) {
+                        selectCards[i] = program.getCardsInProgram()[u];
+                        program.getCardsInProgram()[u] = null;
+                        break;
+                    }
+                }
+            }
+        }
+        program.resetProgram();
     }
 
     public int getPriorityOfNextCard() {
         return program.peekNextCard().getPriority();
     }
 
-    public void executeNextCard() {
-        if(program.peekNextCard() == null) return;
+    public IProgramCard executeNextCard() {
+        if (program.peekNextCard() == null) return null;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
+        program.printProgram();
+        return nextCard;
     }
 
     /**
@@ -57,5 +105,21 @@ public class Player {
      */
     public int getId() {
         return this.id;
+    }
+
+    public void visitedFlag(int id) {
+        if (id == this.flagNumber + 1) flagNumber = id;
+    }
+
+    public int currentFlag() {
+        return this.flagNumber;
+    }
+
+    public IProgramCard[] getCards() {
+        return program.getCardsInProgram();
+    }
+
+    public IProgramCard[] getSelectCards() {
+        return selectCards;
     }
 }

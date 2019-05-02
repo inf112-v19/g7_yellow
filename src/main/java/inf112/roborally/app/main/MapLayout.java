@@ -5,8 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import inf112.roborally.app.editor.Console;
 import inf112.roborally.app.editor.EditorInput;
+import inf112.roborally.app.editor.Status;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.game.GameController;
+import inf112.roborally.app.player.CardUI;
 import inf112.roborally.app.sprite.SpriteLoader;
 
 /**
@@ -20,23 +22,31 @@ import inf112.roborally.app.sprite.SpriteLoader;
 public class MapLayout implements ApplicationListener {
 
     private Renderer renderer;
+    private CardUI cardUI;
 
     private InputManager inputManager;
     private EditorInput editorInput;
     private Console console;
     private Menu menu;
+    private Status status;
 
     public MapLayout() {
         inputManager = new InputManager(Main.ID_OF_CURRENT_PLAYER);
         editorInput = new EditorInput(GameController.getBoard());
     }
 
+    public void newInputManager(InputManager inputManager){
+        this.inputManager = inputManager;
+    }
+
     @Override
     public void create() {
         renderer = new Renderer(GameController.getBoard());
+        cardUI = new CardUI();
         new SpriteLoader();
         console = new Console();
         menu = new Menu();
+        status = new Status();
     }
 
     @Override
@@ -68,13 +78,21 @@ public class MapLayout implements ApplicationListener {
                 e.printStackTrace();
             }
         }
+
         //Draw editor UI if in editor mode
         if (Main.gameState == GameState.EDITOR)
             renderer.drawEditorUI();
 
-
         console.render(1);
         menu.render(1);
+        status.render(1);
+
+        //Render playerUI
+        if (Main.gameState == GameState.PLAYING) {
+            cardUI.drawPlayerCards();
+            if (GameController.roundTurn == 0)
+                cardUI.drawSelectCards();
+        }
 
     }
 
