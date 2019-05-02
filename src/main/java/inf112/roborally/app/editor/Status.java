@@ -16,11 +16,10 @@ public class Status implements Screen {
 
     private static Stage stage = new Stage();
     private TextArea console;
-    private static String status = "";
+    private static String status = "USE (1-9) on your keyboard to select cards. \n" +
+            "BACKSPACE to reset cards and SPACE to continue";
 
     public Status() {
-        stage = new Stage();
-
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
         BitmapFont font = new BitmapFont();
         font.getData().setScale(2f);
@@ -30,8 +29,6 @@ public class Status implements Screen {
         console.setPosition(15, Main.WINDOW_HEIGHT - 180);
         console.setSize(Main.WINDOW_WIDTH - 50, 150);
         stage.addActor(console);
-        status = "USE (1-9) on your keyboard to select cards. \n" +
-                 "BACKSPACE to reset cards and SPACE to continue";
     }
 
     @Override
