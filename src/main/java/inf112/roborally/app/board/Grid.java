@@ -50,14 +50,6 @@ public class Grid implements Iterable<LinkedList<IBoardTile>> {
         return tiles[((int) p.y * BOARD_WIDTH) + (int) p.x];
     }
 
-    public IBoardTile getTile(Vector2 p, String type) throws OutsideGridException {
-        LinkedList<IBoardTile> tiles = getTiles(p);
-        for(IBoardTile t : tiles){
-            if(t.getClass().getSimpleName().contains(type)) return t;
-        }
-        return null;
-    }
-
 
     /**
      * Remove a tile at position x,y.

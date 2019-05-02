@@ -129,8 +129,8 @@ public class GameController {
 
     public static void pushRobot(int pId, int dir, boolean doPushRobot) {
         int currentConveyorRotation = 1;
-        boolean foundConveyor = false;
-        boolean foundRobot = false;
+        boolean foundRobot;
+        boolean foundConveyor;
         //Find robot based on pId input
         Robot r = robots[pId - 1];
 
@@ -158,13 +158,13 @@ public class GameController {
         // we don't swap places of two robots if they're on opposite conveyors facing each other
         try {
             foundConveyor = isFoundConveyor(currentConveyorRotation, newPos);
-            foundRobot = isFoundRobot(dir, doPushRobot, foundRobot, oldPos, newPos);
+            foundRobot = isFoundRobot(dir, doPushRobot, oldPos, newPos);
         } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
             // If the new position is outside the map then the robot should be destroyed
             destroyRobot(r.getId());
             return;
         }
-        if (!foundConveyor && foundRobot) return;
+        if (foundRobot && (!doPushRobot || !foundConveyor)) return;
         try {
             board.getGrid().removeTile(oldPos, r);
             board.getGrid().addTile(newPos, r);
@@ -173,18 +173,30 @@ public class GameController {
         }
     }
 
-    private static boolean isFoundRobot(int dir, boolean doPushRobot, boolean foundRobot, Vector2 oldPos, Vector2 newPos) throws OutsideGridException {
-        Robot robot = (Robot) board.getGrid().getTile(newPos, "Robot");
-        if (robot != null) {
-            if (canPushRobot(oldPos, dir) && doPushRobot) pushRobot(robot.getId(), dir, true);
-            foundRobot = (!doPushRobot && canMoveIntoRobot(newPos, dir));
+    private static boolean isFoundRobot(int dir, boolean doPushRobot, Vector2 oldPos, Vector2 newPos) throws OutsideGridException {
+        boolean found = false;
+        LinkedList<IBoardTile> list = board.getGrid().getTiles(newPos);
+        for(IBoardTile t : list){
+            if(t instanceof Robot) {
+                if (canPushRobot(oldPos, dir) && doPushRobot) pushRobot(((Robot) t).getId(), dir, true);
+                else if(!found){
+                    found = (!doPushRobot && !canMoveIntoRobot(newPos, dir));
+                }
+            }
         }
-        return foundRobot;
+        return found;
     }
 
     private static boolean isFoundConveyor(int currentConveyorRotation, Vector2 newPos) throws OutsideGridException {
-        IBoardTile conveyor = board.getGrid().getTile(newPos, "Conveyor");
-        return (conveyor != null) && (conveyor.getRotation() == currentConveyorRotation + 180 || conveyor.getRotation() == currentConveyorRotation - 180);
+        boolean out = false;
+        LinkedList<IBoardTile> tiles = board.getGrid().getTiles(newPos);
+        for(IBoardTile t : tiles){
+            if(t instanceof AbstractConveyor && !out) {
+                if (!(t.getRotation() == currentConveyorRotation + 180 || t.getRotation() == currentConveyorRotation - 180))
+                    out = true;
+            }
+        }
+        return out;
     }
 
     public static void moveRobot(int pId, int dist) {
@@ -218,8 +230,10 @@ public class GameController {
         robots[pId - 1].destroy();
         Vector2 pos = findRobot(pId);
         try {
-            Robot r = (Robot) board.getGrid().getTile(pos, "Robot");
-            if (r != null && r.getId() == pId) board.getGrid().removeTile(pos, r);
+            LinkedList<IBoardTile> tiles = board.getGrid().getTiles(pos);
+            for(IBoardTile t : tiles)
+                if(t instanceof Robot)
+                    if (((Robot) t).getId() == pId) board.getGrid().removeTile(pos, t);
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
@@ -241,7 +255,8 @@ public class GameController {
         LinkedList<IBoardTile> tilesOnPos = null;
         try {
             tilesOnPos = board.getGrid().getTiles(pos);
-            if (board.getGrid().getTile(pos, "Conveyor") != null) hasConveyor = true;
+            for(IBoardTile t : tilesOnPos)
+                if(t instanceof AbstractConveyor) hasConveyor = true;
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
