@@ -12,7 +12,7 @@ public class PlayerCardPile<E> extends AbstractCardPile<E> {
 
     public void initialize() {
         for (int i = 0; i < 84; i++) {
-            if (onlyMoveForwatd) this.add((E) new MoveCard(1, 100));
+            if (onlyMoveForwatd) this.add((E) new MoveCard(3, 100));
             else {
                 if (i < 18) this.add((E) new MoveCard(1, 100));
                 else if (i < 30) this.add((E) new MoveCard(2, 100));
