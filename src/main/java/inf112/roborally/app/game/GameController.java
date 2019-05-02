@@ -140,22 +140,21 @@ public class GameController {
         }
 
         for (IBoardTile t : tilesOnNewPos){
-            try{
+            try {
                 if (t instanceof AbstractCollidableTile){
                     if(t instanceof Robot){
-                        if(canPushRobot(oldPos, dir) && doPushRobot){
-                            pushRobot(((Robot) t).getId(), dir, true);
-                            break;
-                        } else if(!doPushRobot && canMoveIntoRobot(newPos, dir)){
-                            foundRobot = true;
-                        } else return;
+                            if(canPushRobot(oldPos, dir) && doPushRobot){
+                                pushRobot(((Robot) t).getId(), dir, true);
+                                break;
+                            } else if(!doPushRobot && canMoveIntoRobot(newPos, dir)){
+                                foundRobot = true;
+                            } else return;
                     } else if(((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))){
                         continue;
-                    } else return;
+                    } else continue;
                 }
-            } catch (ArrayIndexOutOfBoundsException | OutsideGridException e){
-                if(t instanceof Robot) destroyRobot(((Robot) t).getId());
-                continue;
+            } catch (OutsideGridException e) {
+                e.printStackTrace();
             }
 
         }
@@ -208,7 +207,9 @@ public class GameController {
     }
 
     public static void damageRobot(int pId, int damageAmount) {
-        robots[pId - 1].setDamage(robots[pId - 1].getDamage() + damageAmount > 10 ? 10 : robots[pId - 1].getDamage() + damageAmount);
+        int currentDamage = robots[pId-1].getDamage();
+        if(currentDamage + damageAmount >= 10) destroyRobot(pId);
+        else robots[pId-1].setDamage(currentDamage+damageAmount);
     }
 
     public static void repairRobot(int pId, int repairAmount) {
@@ -230,14 +231,18 @@ public class GameController {
         return true;
     }
 
-    private static boolean canPushRobot(Vector2 startPos, int dir) throws OutsideGridException {
+    private static boolean canPushRobot(Vector2 startPos, int dir) {
         boolean canMoveOut = true;
         boolean foundRobot = false;
-
         //Get position for next tile
         Vector2 nextPos = LogicMethodHelper.findNextPosition(startPos, dir);
         //Get tiles on next pos
-        LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(nextPos);
+        LinkedList<IBoardTile> tilesOnNewPos;
+        try {
+            tilesOnNewPos = board.getGrid().getTiles(nextPos);
+        }catch (ArrayIndexOutOfBoundsException | OutsideGridException e){
+            return true;
+        }
 
         for(IBoardTile t : tilesOnNewPos){
             if(t instanceof AbstractCollidableTile){

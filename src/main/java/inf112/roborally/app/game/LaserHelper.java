@@ -8,6 +8,7 @@ import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.*;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -38,12 +39,18 @@ public class LaserHelper {
         damageTokens.add(dT);
     }
 
-    protected static int startedLaser(Vector2 pos, int robotId, int rotation, boolean backwards) throws OutsideGridException {
+    protected static int startedLaser(Vector2 pos, int robotId, int rotation, boolean backwards){
         int rId = robotId;
         boolean hitWall = false;
         boolean started = false;
         boolean hasNext = false;
-        var tiles = GameController.getBoard().getGrid().getTiles(pos);
+
+        LinkedList<IBoardTile> tiles;
+        try {
+            tiles = GameController.getBoard().getGrid().getTiles(pos);
+        } catch (OutsideGridException e){
+            return -1;
+        }
         for (IBoardTile t : tiles) {
             int tileRot = t.getRotation();
             if (t instanceof Robot) rId = ((Robot) t).getId();
