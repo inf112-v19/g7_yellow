@@ -44,6 +44,7 @@ public class Console implements Screen {
 
     public static void execute() {
         StringTokenizer st = new StringTokenizer(console.getText());
+        if(!st.hasMoreTokens()) return;
 
         switch (st.nextToken()) {
             case ("savemap"):
