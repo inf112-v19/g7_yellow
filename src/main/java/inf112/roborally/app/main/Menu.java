@@ -18,12 +18,10 @@ public class Menu implements Screen {
 
     private static Stage stage;
     private ShapeRenderer sr;
-    private static boolean active = false;
+    private static boolean active = true;
     private Table table;
 
     public Menu() {
-
-        sr = new ShapeRenderer();
 
         stage = new Stage();
         table = new Table();
@@ -44,7 +42,7 @@ public class Menu implements Screen {
         TextButton exit = new TextButton("Exit", style);
 
         //add buttons to table
-        table.add(newGame).fillX().uniformX();
+        table.add(newGame).width(100);
         table.row().pad(10, 0, 10, 0);
         table.add(editor).fillX().uniformX();
         table.row();
