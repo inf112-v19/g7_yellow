@@ -1,6 +1,5 @@
 package inf112.roborally.app.tile.tiles;
 
-import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.game.GameController;
 
 /**

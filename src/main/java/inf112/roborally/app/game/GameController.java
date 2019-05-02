@@ -94,7 +94,7 @@ public class GameController {
             movesToDo[id].makeDouble(new MoveToken(id,oldPos,newPos,t));
     }
 
-    public static void pushRobot(int pId, int dir, boolean doPushRobot) throws OutsideGridException {
+    public static void pushRobot(int pId, int dir, boolean doPushRobot) {
         int currentConveyorRotation = 1;
         boolean foundConveyor = false;
         boolean foundRobot = false;
@@ -111,7 +111,7 @@ public class GameController {
         try {
             tilesOnOldPos = board.getGrid().getTiles(oldPos);
         } catch (OutsideGridException e) {
-            throw new OutsideGridException(oldPos, "Outside of map!");
+            e.printStackTrace();
         }
         for (IBoardTile t : tilesOnOldPos) {
             if (t instanceof AbstractConveyor) currentConveyorRotation = t.getRotation();
@@ -123,7 +123,14 @@ public class GameController {
 
         //Get all the tiles on new position, and check for collidable tiles.
         //If collidable tile is found, act immediately.
-        LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(newPos);
+        LinkedList<IBoardTile> tilesOnNewPos = null;
+        try {
+            tilesOnNewPos = board.getGrid().getTiles(newPos);
+        } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
+            // If the new position is outside the map then the robot should be destroyed
+            destroyRobot(r.getId());
+            return;
+        }
         // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
         // we don't swap places of two robots if they're on opposite conveyors facing each other
         for (IBoardTile t : tilesOnNewPos){
@@ -131,42 +138,44 @@ public class GameController {
                     !(t.getRotation() == currentConveyorRotation - 180 ||
                             t.getRotation() == currentConveyorRotation + 180)) foundConveyor = true;
         }
+
         for (IBoardTile t : tilesOnNewPos){
-            if (t instanceof AbstractCollidableTile){
-                if(t instanceof Robot){
-                    if(canPushRobot(oldPos, dir) && doPushRobot){
-                        pushRobot(((Robot) t).getId(), dir, true);
-                        break;
-                    } else if(!doPushRobot && canMoveIntoRobot(newPos, dir)){
-                        foundRobot = true;
+            try{
+                if (t instanceof AbstractCollidableTile){
+                    if(t instanceof Robot){
+                        if(canPushRobot(oldPos, dir) && doPushRobot){
+                            pushRobot(((Robot) t).getId(), dir, true);
+                            break;
+                        } else if(!doPushRobot && canMoveIntoRobot(newPos, dir)){
+                            foundRobot = true;
+                        } else return;
+                    } else if(((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))){
+                        continue;
                     } else return;
-                } else if(((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))){
-                    continue;
-                } else return;
+                }
+            } catch (ArrayIndexOutOfBoundsException | OutsideGridException e){
+                if(t instanceof Robot) destroyRobot(((Robot) t).getId());
+                continue;
             }
+
         }
         if(!foundConveyor && foundRobot) return;
-        board.getGrid().removeTile(oldPos, r);
-        board.getGrid().addTile(newPos, r);
+        try {
+            board.getGrid().removeTile(oldPos, r);
+            board.getGrid().addTile(newPos, r);
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void moveRobot(int pId, int dist) {
+        if(robots[pId -1] == null) return;
         if (dist > 0) {
             for (int i = 0; i < dist; i++) {
-                try {
-                    pushRobot(pId, robots[pId - 1].getRotation(), true);
-                } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
-                    System.err.println(e);
-                    continue;
-                }
+                pushRobot(pId, robots[pId - 1].getRotation(), true);
             }
         } else if (dist < 0) {
-            try {
-                pushRobot(pId, robots[pId - 1].getRotation() + 180,true);
-            } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
-                System.err.println(e);
-                return;
-            }
+            pushRobot(pId, robots[pId - 1].getRotation() + 180,true);
         }
     }
 
@@ -177,24 +186,25 @@ public class GameController {
      * @param doPushRobot
      */
     public static void moveRobot(int pId, int dir, boolean doPushRobot) {
-        try {
-            pushRobot(pId, dir, doPushRobot);
-        } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
-            System.err.println(e);
-        }
+        pushRobot(pId, dir, doPushRobot);
     }
 
     public static void rotateRobot(int pId, int rotation) {
-        try {
+        if(robots[pId-1] != null)
             robots[pId - 1].rotate(rotation);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.println(e);
-            return;
-        }
     }
 
     public static void destroyRobot(int pId) {
         robots[pId - 1].destroy();
+        Vector2 pos = findRobot(pId);
+        try {
+            for(IBoardTile t : board.getGrid().getTiles(pos)){
+                if(t instanceof Robot && ((Robot) t).getId() == pId) board.getGrid().removeTile(pos,t);
+            }
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
+        }
+        robots[pId-1] = null;
     }
 
     public static void damageRobot(int pId, int damageAmount) {
@@ -296,6 +306,13 @@ public class GameController {
         Vector2 pos = findRobot(robotID);
         if (pos == null) return;
         Robot rob = robots[robotID - 1];
+        // Check if the robot is dead, if it is, nullify it.
+        if(rob == null) return;
+        if(rob.getDamage() >= 10){
+            robots[robotID -1] = null;
+            return;
+        }
+
         var tiles = (board.getGrid().getTiles(pos));
 
         for (IBoardTile t : tiles) {
@@ -331,4 +348,5 @@ public class GameController {
             }
         }
     }
+
 }
