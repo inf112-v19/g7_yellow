@@ -1,7 +1,6 @@
 package inf112.roborally.app.exceptions;
 
 import com.badlogic.gdx.math.Vector2;
-import inf112.roborally.app.tile.tiles.Robot;
 
 /**
  * Exception for referencing position outside of grid
@@ -14,7 +13,6 @@ public class OutsideGridException extends Exception {
     private int x;
     private int y;
     private String message;
-    private Robot r;
 
 
     public OutsideGridException(int x, int y, String message) {
@@ -29,17 +27,9 @@ public class OutsideGridException extends Exception {
         this.message = message;
     }
 
-    public void setT(Robot r) {
-        this.r = r;
-    }
-
     @Override
     public String getMessage() {
         return message;
-    }
-
-    public Robot getR() {
-        return r;
     }
 
     public int getY() {
