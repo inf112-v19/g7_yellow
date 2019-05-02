@@ -2,19 +2,22 @@ package inf112.roborally.app.game;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.editor.Status;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.AbstractCollidableTile;
 import inf112.roborally.app.tile.tiles.AbstractFunctionTile;
-import inf112.roborally.app.tile.tiles.Hole;
 import inf112.roborally.app.tile.tiles.Robot;
 
 import java.util.LinkedList;
 
 public class GameController {
+
     private final static Board board;
+    public static int playerTurn = 0;
+    public static int roundTurn = 0;
 
     static {
         board = new Board(Main.GRID_WIDTH, Main.GRID_HEIGHT);
@@ -22,7 +25,7 @@ public class GameController {
     }
 
     private static Robot[] robots;
-    private static Player[] players;
+    public static Player[] players;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -48,9 +51,33 @@ public class GameController {
         }
     }
 
-    public static void excecuteCards() {
-        for (int i = 0; i < players.length; i++) {
-            players[i].executeNextCard();
+    public static void executeCard() {
+        if (roundTurn == 0) {
+            Status.setText("USE (1-9) on your keyboard to select cards. \n" +
+                    "BACKSPACE to reset cards and SPACE to continue");
+            if (!players[playerTurn].havePickedCards()) {
+                return;
+            }
+            playerTurn++;
+            if (playerTurn > Main.AMOUNT_OF_PLAYERS - 1) {
+                playerTurn = 0;
+                roundTurn++;
+            }
+            return;
+        }
+        Status.setText("SPACE to continue");
+        players[playerTurn].executeNextCard();
+
+        playerTurn++;
+        if (playerTurn > Main.AMOUNT_OF_PLAYERS - 1) {
+            playerTurn = 0;
+            roundTurn ++;
+            if (roundTurn > 5) {
+                roundTurn = 0;
+                for (int i = 0; i < Main.AMOUNT_OF_PLAYERS; i++) {
+                    players[i].resetProgram();
+                }
+            }
         }
     }
 
@@ -106,7 +133,6 @@ public class GameController {
                 if (t instanceof AbstractCollidableTile) {
                     //Try to push robots if robot is in front
                     if (t instanceof Robot) {
-                        // System.out.println("checking if can push with: " + dir);
                         if (canPushRobot(oldPos, dir)) {
                             pushRobot(((Robot) t).getId(), dir, dist);
                             break;
@@ -176,7 +202,6 @@ public class GameController {
 
             for (IBoardTile t : tiles) {
                 if (t instanceof AbstractFunctionTile) {
-                    System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
                     ((AbstractFunctionTile) (t)).execute(i+1);
                 }
             }

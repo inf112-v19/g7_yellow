@@ -49,7 +49,11 @@ public class AbstractCardPile<E> implements ICardPile<E> {
 
     public void print() {
         for (E elem : list) {
-            System.out.print(elem + " ");
+            System.out.print(elem.toString() + "  |  ");
         }
+    }
+
+    public LinkedList<E> getList() {
+        return list;
     }
 }
