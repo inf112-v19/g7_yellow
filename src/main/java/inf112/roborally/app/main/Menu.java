@@ -20,15 +20,12 @@ import static inf112.roborally.app.editor.Console.clear;
 public class Menu implements Screen {
 
     public static Stage stage;
-    private ShapeRenderer sr;
-    private SpriteBatch batch;
+
     private static boolean active = true;
     private Table table;
     private BitmapFont font;
 
     public Menu() {
-        sr = new ShapeRenderer();
-        batch = new SpriteBatch();
 
         stage = new Stage();
         table = new Table();
@@ -56,11 +53,11 @@ public class Menu implements Screen {
         TextButton exit = new TextButton("Exit", style);
 
         //add to table
-        table.add(newGame).width(100).width(400);
+        table.add(newGame);
         table.row();
-        table.add(editor).width(100).width(400);
+        table.add(editor);
         table.row();
-        table.add(exit).width(100).width(400);
+        table.add(exit);
 
         newGame.addListener(new ChangeListener() {
             @Override
@@ -68,7 +65,6 @@ public class Menu implements Screen {
                 Main.gameState = GameState.PLAYING;
             }
         });
-
 
         editor.addListener(new ChangeListener() {
             @Override

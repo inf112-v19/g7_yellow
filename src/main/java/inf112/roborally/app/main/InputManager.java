@@ -83,6 +83,7 @@ class InputManager {
         if (Console.getActive() && Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
                 Console.execute();
 
+        //Enter Menu
         if(Main.gameState != GameState.MENU){
             if(Gdx.input.isKeyJustPressed(Input.Keys.M)){
                 Main.gameState = GameState.MENU;
