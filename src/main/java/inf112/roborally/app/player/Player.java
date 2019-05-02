@@ -72,4 +72,8 @@ public class Player {
     public void visitedFlag(int id){
         if(id == this.flagNumber + 1) flagNumber = id;
     }
+
+    public int currentFlag() {
+        return this.flagNumber;
+    }
 }

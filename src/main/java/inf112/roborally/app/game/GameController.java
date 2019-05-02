@@ -293,7 +293,7 @@ public class GameController {
     }
 
     public static void playerOnFlag(int id, int robotId){
-        players[robotId].visitedFlag(id);
+        players[robotId-1].visitedFlag(id);
     }
 
     public static void oneStep() throws OutsideGridException {
@@ -375,6 +375,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Only called by Blue conveyors as they move the robot twice
+     * @param robotId
+     * @param pos
+     * @throws OutsideGridException
+     */
     private static void nextRobotStep(int robotId, Vector2 pos) throws OutsideGridException{
         Robot rob = robots[robotId - 1];
         var tiles = (board.getGrid().getTiles(pos));

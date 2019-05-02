@@ -8,10 +8,12 @@ import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
 import inf112.roborally.app.tile.tiles.AbstractDock;
 import inf112.roborally.app.tile.tiles.Dock1;
+import inf112.roborally.app.tile.tiles.Flag;
 import inf112.roborally.app.tile.tiles.Floor;
 
 import java.io.*;
-import java.util.LinkedList;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Board {
 
@@ -32,6 +34,9 @@ public class Board {
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
         dockPositions = new Vector2[8];
         grid = new Grid(width, height);
+
+        LinkedList<Flag> flags = new LinkedList<>();
+
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("maps/" + map + ".txt");
@@ -75,9 +80,9 @@ public class Board {
 
                 if(currentTile instanceof AbstractDock){
                     dockPositions[((AbstractDock) currentTile).getId()-1] = new Vector2(x, y);
+                } else if (currentTile instanceof Flag){
+                    flags.add((Flag) currentTile);
                 }
-
-
                 try {
                     grid.addTile(new Vector2(x, y), currentTile);
                 } catch (OutsideGridException e) {
@@ -85,6 +90,7 @@ public class Board {
                 }
             }
             GameController.loadRobots(dockPositions);
+            if(flags.size() > 0) assignIdsTo(flags);
         } catch (IOError | NullPointerException | IOException e) {
             e.printStackTrace();
             loadDefaultMap();
@@ -98,6 +104,17 @@ public class Board {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    private void assignIdsTo(LinkedList<Flag> flags){
+        LinkedList<Integer> flagIDs = new LinkedList<>();
+        for(int i = 0; i < flags.size(); i++){
+            flagIDs.add(i+1);
+        }
+        Collections.shuffle(flagIDs);
+        for(int i = 0; i < flags.size(); i++){
+            flags.get(i).setId(flagIDs.get(i));
         }
     }
 
