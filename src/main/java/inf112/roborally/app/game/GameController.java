@@ -17,6 +17,7 @@ import java.util.Objects;
 public class GameController {
 
     private final static Board board;
+    public static final int MAX_DAMAGE = 10;
     public static int playerTurn = 0;
     public static int roundTurn = 0;
 
@@ -208,40 +209,33 @@ public class GameController {
 
     private static boolean isFoundRobot(int dir, boolean doPushRobot, Vector2 oldPos, Vector2 newPos) throws OutsideGridException {
         boolean found = false;
-        LinkedList<IBoardTile> list = board.getGrid().getTiles(newPos);
-        for (IBoardTile t : list) {
-            if (t instanceof Robot) {
+        var list = board.getGrid().getTiles(newPos);
+        for (IBoardTile t : list)
+            if (t instanceof Robot)
                 if (canPushRobot(oldPos, dir) && doPushRobot) pushRobot(((Robot) t).getId(), dir, true);
-                else if (!found) {
+                else if (!found)
                     found = (!doPushRobot && !canMoveIntoRobot(newPos, dir));
-                }
-            }
-        }
         return found;
     }
 
     private static boolean isFoundConveyor(int currentConveyorRotation, Vector2 newPos) throws OutsideGridException {
-        boolean out = false;
-        LinkedList<IBoardTile> tiles = board.getGrid().getTiles(newPos);
-        for (IBoardTile t : tiles) {
-            if (t instanceof AbstractConveyor && !out) {
+        var tiles = board.getGrid().getTiles(newPos);
+        for (IBoardTile t : tiles)
+            if (t instanceof AbstractConveyor)
                 if (!(t.getRotation() == currentConveyorRotation + 180 || t.getRotation() == currentConveyorRotation - 180))
-                    out = true;
-            }
-        }
-        return out;
+                    return true;
+        return false;
     }
 
     public static void moveRobot(int pId, int dist) {
         if (robots[pId - 1] == null) return;
-        if (dist > 0) {
+        if (dist > 0)
             for (int i = 0; i < dist; i++) {
                 if (robots[pId - 1] == null) return;
                 pushRobot(pId, robots[pId - 1].getRotation(), true);
             }
-        } else if (dist < 0) {
+        else if (dist < 0)
             pushRobot(pId, robots[pId - 1].getRotation() + 180, true);
-        }
     }
 
     /**
@@ -256,18 +250,15 @@ public class GameController {
     }
 
     public static void rotateRobot(int pId, int rotation) {
-        if (robots[pId - 1] != null)
-            robots[pId - 1].rotate(rotation);
+        if (robots[pId - 1] != null) robots[pId - 1].rotate(rotation);
     }
 
     public static void destroyRobot(int pId) {
         robots[pId - 1].destroy();
         Vector2 pos = findRobot(pId);
         try {
-            LinkedList<IBoardTile> tiles = board.getGrid().getTiles(pos);
-            for (IBoardTile t : tiles)
-                if (t instanceof Robot)
-                    if (((Robot) t).getId() == pId) board.getGrid().removeTile(pos, t);
+            for (var t : board.getGrid().getTiles(pos))
+                if (t instanceof Robot && ((Robot) t).getId() == pId) board.getGrid().removeTile(pos, t);
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
@@ -276,12 +267,12 @@ public class GameController {
 
     public static void damageRobot(int pId, int damageAmount) {
         int currentDamage = robots[pId - 1].getDamage();
-        if (currentDamage + damageAmount >= 10) destroyRobot(pId);
+        if (currentDamage + damageAmount >= MAX_DAMAGE) destroyRobot(pId);
         else robots[pId - 1].setDamage(currentDamage + damageAmount);
     }
 
     public static void repairRobot(int pId, int repairAmount) {
-        robots[pId - 1].setDamage(robots[pId - 1].getDamage() > repairAmount ? robots[pId - 1].getDamage() - repairAmount : 0);
+        robots[pId - 1].setDamage(Math.max(robots[pId - 1].getDamage() - repairAmount, 0));
     }
 
     private static boolean canMoveIntoRobot(Vector2 pos, int dir) {
