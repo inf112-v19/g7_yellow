@@ -71,8 +71,8 @@ public class TileFactory {
                                     (IBoardTile) Class.forName(
                                             x.replace('/', '.').replace(".class", "")
                                     )
-                                    .getConstructor(types)
-                                    .newInstance(prms);
+                                            .getConstructor(types)
+                                            .newInstance(prms);
                             characterToClass.put(obj.getSymbol(), obj.getClass());
                         } catch (Exception e) {
                             e.printStackTrace();
