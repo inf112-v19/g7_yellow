@@ -133,7 +133,6 @@ public class GameController {
                 if (t instanceof AbstractCollidableTile) {
                     //Try to push robots if robot is in front
                     if (t instanceof Robot) {
-                        System.out.println(canPushRobot(oldPos, dir));
                         if (canPushRobot(oldPos, dir)) {
                             pushRobot(((Robot) t).getId(), dir, dist);
                             break;
@@ -203,7 +202,6 @@ public class GameController {
 
             for (IBoardTile t : tiles) {
                 if (t instanceof AbstractFunctionTile) {
-                    System.out.println("Attempting to excecute " + t.toString() + "'s function on robot with Id " + rob.getId());
                     ((AbstractFunctionTile) (t)).execute(i+1);
                 }
             }

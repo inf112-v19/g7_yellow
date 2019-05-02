@@ -80,14 +80,6 @@ public class Player {
         program.resetProgram();
     }
 
-    /**
-     * Should not remove cards that are burnt in because of damage.
-     * For now it removes ALL cards and puts them back in cardstack.
-     */
-    public void removeCardsFromProgram() {
-        cardPile.add(program.popNextCard());
-    }
-
     public int getPriorityOfNextCard() {
         return program.peekNextCard().getPriority();
     }
@@ -96,7 +88,6 @@ public class Player {
         if(program.peekNextCard() == null) return;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
-        System.out.print("Player" + id + " program: |  ");
         program.printProgram();
     }
 
