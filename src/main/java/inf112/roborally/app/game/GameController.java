@@ -11,6 +11,7 @@ import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.*;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class GameController {
     private final static Board board;
@@ -145,28 +146,27 @@ public class GameController {
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
-        for (IBoardTile t : tilesOnOldPos) {
+        for (IBoardTile t : Objects.requireNonNull(tilesOnOldPos))
             if (t instanceof AbstractConveyor) currentConveyorRotation = t.getRotation();
             else if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
                 if (((AbstractCollidableTile) t).canMoveOutFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos)))
                     break;
                 return;
             }
-        }
 
         // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
         // we don't swap places of two robots if they're on opposite conveyors facing each other
         try {
             IBoardTile conveyor = board.getGrid().getTile(newPos, "Conveyor");
-            if(conveyor != null){
-                if(conveyor.getRotation() == currentConveyorRotation + 180 ||
-                                conveyor.getRotation() == currentConveyorRotation - 180) foundConveyor = true;
+            if (conveyor != null) {
+                if (conveyor.getRotation() == currentConveyorRotation + 180 ||
+                        conveyor.getRotation() == currentConveyorRotation - 180) foundConveyor = true;
             }
             Robot robot = (Robot) board.getGrid().getTile(newPos, "Robot");
-            if(robot != null){
-                if(canPushRobot(oldPos, dir) && doPushRobot)
+            if (robot != null) {
+                if (canPushRobot(oldPos, dir) && doPushRobot)
                     pushRobot(robot.getId(), dir, true);
-                else if(!doPushRobot && canMoveIntoRobot(newPos,dir)) foundRobot = true;
+                else if (!doPushRobot && canMoveIntoRobot(newPos, dir)) foundRobot = true;
             }
         } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
             // If the new position is outside the map then the robot should be destroyed
@@ -231,12 +231,12 @@ public class GameController {
         robots[pId - 1].setDamage(robots[pId - 1].getDamage() > repairAmount ? robots[pId - 1].getDamage() - repairAmount : 0);
     }
 
-    private static boolean canMoveIntoRobot(Vector2 pos, int dir){
+    private static boolean canMoveIntoRobot(Vector2 pos, int dir) {
         boolean hasConveyor = false;
         LinkedList<IBoardTile> tilesOnPos = null;
         try {
             tilesOnPos = board.getGrid().getTiles(pos);
-            if(board.getGrid().getTile(pos,"Conveyor") != null) hasConveyor = true;
+            if (board.getGrid().getTile(pos, "Conveyor") != null) hasConveyor = true;
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
