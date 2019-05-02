@@ -6,7 +6,6 @@ import inf112.roborally.app.exceptions.OutsideGridException;
 
 
 public class Main {
-
     public static int ID_OF_CURRENT_PLAYER = 1;
 
     public static final int GRID_WIDTH = 12;

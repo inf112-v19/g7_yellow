@@ -21,4 +21,9 @@ public class RotateCard implements IProgramCard {
     public void excecute(int robotId) {
         GameController.rotateRobot(robotId, rotateByDegrees);
     }
+
+    @Override
+    public String toString() {
+        return "RotateCard " + rotateByDegrees;
+    }
 }

@@ -2,6 +2,7 @@ package inf112.roborally.app.game;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.editor.Status;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.helpers.LogicMethodHelper;
 import inf112.roborally.app.helpers.MoveToken;
@@ -14,7 +15,10 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class GameController {
+
     private final static Board board;
+    public static int playerTurn = 0;
+    public static int roundTurn = 0;
 
     static {
         board = new Board(Main.GRID_WIDTH, Main.GRID_HEIGHT);
@@ -23,9 +27,9 @@ public class GameController {
 
     private static int amount;
     private static Robot[] robots;
-    private static Player[] players;
     private static MoveToken[] movesToDo;
     private static Vector2[] dockPositions;
+    public static Player[] players;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -89,10 +93,38 @@ public class GameController {
             e.printStackTrace();
         }
     }
+    public static void executeCard() {
+        if (roundTurn == 0) {
+            Status.setText("USE (1-9) on your keyboard to select cards. \n" +
+                    "BACKSPACE to reset cards and SPACE to continue");
+            if (!players[playerTurn].havePickedCards()) {
+                return;
+            }
+            playerTurn++;
+            if (playerTurn > amount - 1) {
+                playerTurn = 0;
+                roundTurn++;
+            }
+            return;
+        }
+        Status.setText("SPACE to continue");
+        players[playerTurn].executeNextCard();
 
-    public static void excecuteCards() {
-        for (int i = 0; i < players.length; i++) {
-            if (players[i] != null) players[i].executeNextCard();
+        playerTurn++;
+        if (playerTurn > amount - 1) {
+            playerTurn = 0;
+            roundTurn ++;
+            try {
+                oneStep();
+            } catch (OutsideGridException e) {
+                e.printStackTrace();
+            }
+            if (roundTurn > 5) {
+                roundTurn = 0;
+                for (int i = 0; i < amount; i++) {
+                    players[i].resetProgram();
+                }
+            }
         }
     }
 
