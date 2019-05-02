@@ -32,6 +32,10 @@ class InputManager {
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.A) || Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
                 GameController.rotateRobot(playerId, 90);
                 GameController.oneStep();
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+                GameController.oneStep();
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+                GameController.respawnAllRobots();
             }
 
             //Grab a card
@@ -77,6 +81,6 @@ class InputManager {
 
         // Exeute console input with ENTER
         if (Console.getActive() && Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
-                Console.execute();
+            Console.execute();
     }
 }

@@ -6,14 +6,14 @@ import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
-import inf112.roborally.app.tile.tiles.Hole;
+import inf112.roborally.app.tile.tiles.Floor;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EditorTest {
 
-    private Board board = new Board(12,12);
+    private Board board = new Board(12, 12);
     private EditorInput editorInput = new EditorInput(board);
 
     @Test
@@ -26,7 +26,7 @@ public class EditorTest {
     @Test
     public void testLoadMapFromEditor() throws OutsideGridException {
         EditorInput.loadMap("map1");
-        assertEquals(board.getGrid().getTiles(new Vector2(0,0)).get(0).getClass()
-                , new Hole(90).getClass());
+        assertEquals(board.getGrid().getTiles(new Vector2(0, 0)).get(0).getClass()
+                , new Floor(90).getClass());
     }
 }

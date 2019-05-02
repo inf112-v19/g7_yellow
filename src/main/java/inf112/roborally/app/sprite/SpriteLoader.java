@@ -37,9 +37,9 @@ public class SpriteLoader {
      */
     public static Sprite fetchSprite(IBoardTile t, int id) {
         Iterator<SpriteContainer> it = list.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             SpriteContainer sC = it.next();
-            if((t.toString() + id).equals(sC.getName())) return sC.getSprite();
+            if ((t.toString() + id).equals(sC.getName())) return sC.getSprite();
         }
         return MISSING_SPRITE;
     }

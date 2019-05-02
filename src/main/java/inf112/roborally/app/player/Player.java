@@ -1,13 +1,13 @@
 package inf112.roborally.app.player;
 
 import inf112.roborally.app.card.programcard.IProgramCard;
-import inf112.roborally.app.helpers.AbstractCardPile;
 import inf112.roborally.app.tile.tiles.Robot;
 
 public class Player {
 
     private int id;
     private Robot robot;
+    private int flagNumber = 0;
 
     //Each player has their own stack of cards
     private PlayerCardPile<IProgramCard> cardPile;
@@ -54,6 +54,14 @@ public class Player {
         }
     }
 
+    public void setRobot(Robot r) {
+        this.robot = r;
+    }
+
+    public boolean isOnLastProgramCard() {
+        return this.program.peekNextCard() == null;
+    }
+
     public void addOneCardToProgram(int i) {
         if (selectCards[i] == null) return;
         if (!program.canAddCard()) return;
@@ -84,11 +92,12 @@ public class Player {
         return program.peekNextCard().getPriority();
     }
 
-    public void executeNextCard() {
-        if(program.peekNextCard() == null) return;
+    public IProgramCard executeNextCard() {
+        if (program.peekNextCard() == null) return null;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
         program.printProgram();
+        return nextCard;
     }
 
     /**
@@ -96,6 +105,14 @@ public class Player {
      */
     public int getId() {
         return this.id;
+    }
+
+    public void visitedFlag(int id) {
+        if (id == this.flagNumber + 1) flagNumber = id;
+    }
+
+    public int currentFlag() {
+        return this.flagNumber;
     }
 
     public IProgramCard[] getCards() {

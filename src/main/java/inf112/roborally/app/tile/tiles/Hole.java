@@ -1,9 +1,16 @@
 package inf112.roborally.app.tile.tiles;
 
-public class Hole extends AbstractCollidableTile {
+import inf112.roborally.app.game.GameController;
+
+public class Hole extends AbstractFunctionTile {
 
     public Hole(int r) {
         super(r);
+    }
+
+    @Override
+    public void execute(int RobotId) {
+        GameController.destroyRobot(RobotId);
     }
 
     @Override
@@ -13,17 +20,7 @@ public class Hole extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'X';
-    }
-
-    @Override
-    public boolean canMoveIntoFrom(int rotation) {
-        return true;
-    }
-
-    @Override
-    public boolean canMoveOutFrom(int rotation) {
-        return false;
+        return 'K';
     }
 
 }

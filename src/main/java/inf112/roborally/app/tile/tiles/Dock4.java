@@ -1,22 +1,22 @@
 package inf112.roborally.app.tile.tiles;
 
-public class Laser1 extends AbstractLaser {
+public class Dock4 extends AbstractDock {
 
-    public Laser1(int r) {
+    public Dock4(int r) {
         super(r);
     }
 
-    @Override
-    public void execute(int RobotId) {
+    public int getId() {
+        return super.getId() + 4;
     }
 
     @Override
     public int getRenderPriority() {
-        return 100;
+        return 3;
     }
 
     @Override
     public char getSymbol() {
-        return 'L';
+        return '4';
     }
 }

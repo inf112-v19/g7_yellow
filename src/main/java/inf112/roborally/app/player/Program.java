@@ -3,7 +3,6 @@ package inf112.roborally.app.player;
 import inf112.roborally.app.card.programcard.IProgramCard;
 
 public class Program {
-
     //private int damageToken;
     private IProgramCard[] cards;
     private int currentCard;

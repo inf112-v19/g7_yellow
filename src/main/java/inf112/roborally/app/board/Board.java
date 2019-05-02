@@ -2,12 +2,16 @@ package inf112.roborally.app.board;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
+import inf112.roborally.app.tile.tiles.AbstractDock;
+import inf112.roborally.app.tile.tiles.Flag;
 import inf112.roborally.app.tile.tiles.Floor;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class Board {
@@ -26,7 +30,11 @@ public class Board {
     }
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
+        Vector2[] dockPositions = new Vector2[8];
         grid = new Grid(width, height);
+
+        LinkedList<Flag> flags = new LinkedList<>();
+
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("maps/" + map + ".txt");
@@ -39,7 +47,7 @@ public class Board {
                 char ch = (char) r;
                 String rotation = "";
 
-                if ((Character.isLetter(ch) && (ch != '-'))||Character.isDigit(ch)) {
+                if ((Character.isLetter(ch) && (ch != '-')) || Character.isDigit(ch)) {
                     char temp = (char) in.read();
                     while (Character.isDigit(temp)) {
                         rotation += temp;
@@ -55,24 +63,32 @@ public class Board {
                 if (ch == '-') {
                     count++;
                     continue;
-                } else if (!(Character.isLetter(ch)||Character.isDigit(ch))) {
+                } else if (!(Character.isLetter(ch) || Character.isDigit(ch))) {
                     continue;
                 }
+
                 Class[] paramTypes = {Integer.TYPE};
                 Object[] parameters = {rot};
-                currentTile = tileFactory.produce((ch + "").toUpperCase().charAt(0), paramTypes, parameters);
+                currentTile = tileFactory.produce((ch + "").charAt(0), paramTypes, parameters);
 
                 x = Math.floorMod((int) Math.floor((float) count / 3), width);
                 y = (height - 1) - (int) Math.floor((float) count / (height * MAX_TILE_STACK));
 
                 count++;
 
+                if (currentTile instanceof AbstractDock) {
+                    dockPositions[((AbstractDock) currentTile).getId() - 1] = new Vector2(x, y);
+                } else if (currentTile instanceof Flag) {
+                    flags.add((Flag) currentTile);
+                }
                 try {
                     grid.addTile(new Vector2(x, y), currentTile);
                 } catch (OutsideGridException e) {
                     e.printStackTrace();
                 }
             }
+            GameController.loadRobots(dockPositions);
+            if (flags.size() > 0) assignIdsTo(flags);
         } catch (IOError | NullPointerException | IOException e) {
             e.printStackTrace();
             loadDefaultMap();
@@ -86,6 +102,17 @@ public class Board {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    private void assignIdsTo(LinkedList<Flag> flags) {
+        LinkedList<Integer> flagIDs = new LinkedList<>();
+        for (int i = 0; i < flags.size(); i++) {
+            flagIDs.add(i + 1);
+        }
+        Collections.shuffle(flagIDs);
+        for (int i = 0; i < flags.size(); i++) {
+            flags.get(i).setId(flagIDs.get(i));
         }
     }
 

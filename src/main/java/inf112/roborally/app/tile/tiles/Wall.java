@@ -13,7 +13,7 @@ public class Wall extends AbstractCollidableTile {
 
     @Override
     public char getSymbol() {
-        return 'W';
+        return 'V';
     }
 
     @Override

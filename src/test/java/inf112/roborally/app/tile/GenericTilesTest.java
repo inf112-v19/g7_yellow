@@ -39,7 +39,7 @@ public class GenericTilesTest {
         tiles.forEach(x -> bag.add(x.getSymbol()));
         assertEquals(bag.size(), tiles.size());
     }
-
+/*
     @Test
     public void allFunctionTilesCanExecute() {
         var r = new Robot(90);
@@ -51,7 +51,7 @@ public class GenericTilesTest {
                 .map(x -> (AbstractFunctionTile) x)
                 .forEach(x -> x.execute(1));
     }
-
+*/
     @Test
     public void compareTo() {
         IBoardTile t1 = new Robot(0);

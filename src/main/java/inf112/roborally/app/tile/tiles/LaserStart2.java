@@ -1,9 +1,14 @@
 package inf112.roborally.app.tile.tiles;
 
-public class LaserStart2 extends AbstractFunctionTile {
+public class LaserStart2 extends AbstractLaserStart {
 
     public LaserStart2(int r) {
         super(r);
+    }
+
+    @Override
+    public int getDamageValue() {
+        return super.getDamageValue() + 1;
     }
 
     @Override
@@ -13,7 +18,7 @@ public class LaserStart2 extends AbstractFunctionTile {
 
     @Override
     public char getSymbol() {
-        return 'D';
+        return 'P';
     }
 
     @Override
