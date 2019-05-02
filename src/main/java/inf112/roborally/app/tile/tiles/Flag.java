@@ -25,7 +25,7 @@ public class Flag extends AbstractFunctionTile {
         GameController.playerOnFlag(id, RobotId);
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 

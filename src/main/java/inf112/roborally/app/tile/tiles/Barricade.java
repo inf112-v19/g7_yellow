@@ -17,7 +17,9 @@ public class Barricade extends AbstractCollidableTile {
     }
 
     @Override
-    public boolean canMoveIntoFrom(int rotation) {return false;}
+    public boolean canMoveIntoFrom(int rotation) {
+        return false;
+    }
 
     @Override
     public boolean canMoveOutFrom(int rotation) {

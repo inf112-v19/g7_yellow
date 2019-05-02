@@ -4,8 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class LogicMethodHelper {
 
-
-
     public static Vector2 findNextPosition(Vector2 pos, int dir) {
         var sin = (int) Math.sin(Math.toRadians(dir));
         var cos = (int) Math.cos(Math.toRadians(dir));

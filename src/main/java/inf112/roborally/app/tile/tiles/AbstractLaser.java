@@ -5,7 +5,7 @@ public abstract class AbstractLaser extends AbstractFunctionTile {
         super(r);
     }
 
-    public int getDamageValue(){
+    public int getDamageValue() {
         return 1;
     }
 }

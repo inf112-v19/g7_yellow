@@ -39,7 +39,7 @@ public class LaserHelper {
         damageTokens.add(dT);
     }
 
-    protected static int startedLaser(Vector2 pos, int robotId, int rotation, boolean backwards){
+    protected static int startedLaser(Vector2 pos, int robotId, int rotation, boolean backwards) {
         int rId = robotId;
         boolean hitWall = false;
         boolean started = false;
@@ -48,7 +48,7 @@ public class LaserHelper {
         LinkedList<IBoardTile> tiles;
         try {
             tiles = GameController.getBoard().getGrid().getTiles(pos);
-        } catch (OutsideGridException e){
+        } catch (OutsideGridException e) {
             return -1;
         }
         for (IBoardTile t : tiles) {

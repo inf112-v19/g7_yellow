@@ -11,11 +11,13 @@ public class Repair extends AbstractFunctionTile {
 
     @Override
     public void execute(int RobotId) {
-        GameController.repairRobot(RobotId,2);
+        GameController.repairRobot(RobotId, 2);
     }
 
     @Override
-    public int getRenderPriority() { return 2; }
+    public int getRenderPriority() {
+        return 2;
+    }
 
     @Override
     public char getSymbol() {

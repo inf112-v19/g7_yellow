@@ -1,7 +1,6 @@
 package inf112.roborally.app.helpers;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * TODO: Describe class

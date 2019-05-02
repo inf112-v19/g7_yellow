@@ -22,6 +22,7 @@ public class FileLocationHelper {
 
     /**
      * Method to tell if url/path is pointing inside a JAR file
+     *
      * @param url the URL / filepath to test
      * @return logical test result
      */
@@ -32,7 +33,8 @@ public class FileLocationHelper {
     /**
      * Method used to get all files from inside a JAR file matching the regex
      * pattern
-     * @param url URL / filepath to be used
+     *
+     * @param url   URL / filepath to be used
      * @param regex The regex used to filter files
      * @return A Set with unique values of the files inside the URL/Path that matches the regex
      * @throws IOException

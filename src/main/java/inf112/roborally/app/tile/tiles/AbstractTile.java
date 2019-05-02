@@ -1,8 +1,8 @@
 package inf112.roborally.app.tile.tiles;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.sprite.SpriteLoader;
+import inf112.roborally.app.tile.IBoardTile;
 
 public abstract class AbstractTile implements IBoardTile {
 

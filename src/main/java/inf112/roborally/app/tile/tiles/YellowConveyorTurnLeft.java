@@ -11,7 +11,7 @@ public class YellowConveyorTurnLeft extends AbstractConveyor {
         return 'a';
     }
 
-    public boolean doesTurn(int rotation){
-        return (this.rotation == rotation+90 || (this.rotation == rotation - 270));
+    public boolean doesTurn(int rotation) {
+        return (this.rotation == rotation + 90 || (this.rotation == rotation - 270));
     }
 }

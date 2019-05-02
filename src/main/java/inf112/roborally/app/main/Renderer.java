@@ -41,7 +41,7 @@ public class Renderer {
 
                 for (IBoardTile t : tiles) {
                     Sprite s = t.getSprite();
-                    s.setPosition((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2)* Main.TILE_SIZE);
+                    s.setPosition((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2) * Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());
                     s.draw(batch);
@@ -54,7 +54,7 @@ public class Renderer {
     public void drawGrid() {
         for (int x = 0; x < Main.GRID_WIDTH; x++) {
             for (int y = 0; y < Main.GRID_HEIGHT; y++) {
-                drawRect((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2)* Main.TILE_SIZE, Main.TILE_SIZE);
+                drawRect((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2) * Main.TILE_SIZE, Main.TILE_SIZE);
             }
         }
     }
@@ -86,10 +86,10 @@ public class Renderer {
 
         //Get all tiles from factory and draw them on top
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+            Map.Entry pair = (Map.Entry) it.next();
             it.remove();
             try {
-                Sprite s = (TileFactory.getInstance().produce((char)pair.getKey(), paramTypes, parameters).getSprite());
+                Sprite s = (TileFactory.getInstance().produce((char) pair.getKey(), paramTypes, parameters).getSprite());
                 s.setOriginCenter();
                 s.setRotation(0);
                 s.setPosition(Main.TILE_SIZE * x,
@@ -101,7 +101,9 @@ public class Renderer {
                     x = 0;
                     y++;
                 }
-            } catch (ClassNotFoundException e) { e.printStackTrace(); }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
         //Show the tile you're about to draw

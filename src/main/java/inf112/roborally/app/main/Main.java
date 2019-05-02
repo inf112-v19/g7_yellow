@@ -3,14 +3,12 @@ package inf112.roborally.app.main;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import inf112.roborally.app.exceptions.OutsideGridException;
-import inf112.roborally.app.game.GameController;
 
 
 public class Main {
 
     public static int ID_OF_CURRENT_PLAYER = 1;
 
-    public static final int MAP_SCALE = 2;
     public static final int GRID_WIDTH = 12;
     public static final int GRID_HEIGHT = 12;
     public static final int TILE_SIZE = 50;

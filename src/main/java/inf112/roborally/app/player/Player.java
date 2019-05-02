@@ -35,12 +35,12 @@ public class Player {
         }
     }
 
-    public void setRobot(Robot r){
+    public void setRobot(Robot r) {
         this.robot = r;
     }
 
-    public boolean isOnLastProgramCard(){
-        return this.program.peekNextCard()==null;
+    public boolean isOnLastProgramCard() {
+        return this.program.peekNextCard() == null;
     }
 
     /**
@@ -56,7 +56,7 @@ public class Player {
     }
 
     public IProgramCard executeNextCard() {
-        if(program.peekNextCard() == null) return null;
+        if (program.peekNextCard() == null) return null;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
         return nextCard;
@@ -69,8 +69,8 @@ public class Player {
         return this.id;
     }
 
-    public void visitedFlag(int id){
-        if(id == this.flagNumber + 1) flagNumber = id;
+    public void visitedFlag(int id) {
+        if (id == this.flagNumber + 1) flagNumber = id;
     }
 
     public int currentFlag() {

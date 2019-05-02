@@ -8,7 +8,7 @@ public class Laser2 extends AbstractLaser {
 
     @Override
     public int getDamageValue() {
-        return super.getDamageValue()+1;
+        return super.getDamageValue() + 1;
     }
 
     @Override

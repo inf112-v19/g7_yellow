@@ -7,13 +7,12 @@ import inf112.roborally.app.main.Main;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
 import inf112.roborally.app.tile.tiles.AbstractDock;
-import inf112.roborally.app.tile.tiles.Dock1;
 import inf112.roborally.app.tile.tiles.Flag;
 import inf112.roborally.app.tile.tiles.Floor;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
 
 public class Board {
 
@@ -49,7 +48,7 @@ public class Board {
                 char ch = (char) r;
                 String rotation = "";
 
-                if ((Character.isLetter(ch) && (ch != '-'))||Character.isDigit(ch)) {
+                if ((Character.isLetter(ch) && (ch != '-')) || Character.isDigit(ch)) {
                     char temp = (char) in.read();
                     while (Character.isDigit(temp)) {
                         rotation += temp;
@@ -65,7 +64,7 @@ public class Board {
                 if (ch == '-') {
                     count++;
                     continue;
-                } else if (!(Character.isLetter(ch)||Character.isDigit(ch))) {
+                } else if (!(Character.isLetter(ch) || Character.isDigit(ch))) {
                     continue;
                 }
 
@@ -78,9 +77,9 @@ public class Board {
 
                 count++;
 
-                if(currentTile instanceof AbstractDock){
-                    dockPositions[((AbstractDock) currentTile).getId()-1] = new Vector2(x, y);
-                } else if (currentTile instanceof Flag){
+                if (currentTile instanceof AbstractDock) {
+                    dockPositions[((AbstractDock) currentTile).getId() - 1] = new Vector2(x, y);
+                } else if (currentTile instanceof Flag) {
                     flags.add((Flag) currentTile);
                 }
                 try {
@@ -90,7 +89,7 @@ public class Board {
                 }
             }
             GameController.loadRobots(dockPositions);
-            if(flags.size() > 0) assignIdsTo(flags);
+            if (flags.size() > 0) assignIdsTo(flags);
         } catch (IOError | NullPointerException | IOException e) {
             e.printStackTrace();
             loadDefaultMap();
@@ -107,13 +106,13 @@ public class Board {
         }
     }
 
-    private void assignIdsTo(LinkedList<Flag> flags){
+    private void assignIdsTo(LinkedList<Flag> flags) {
         LinkedList<Integer> flagIDs = new LinkedList<>();
-        for(int i = 0; i < flags.size(); i++){
-            flagIDs.add(i+1);
+        for (int i = 0; i < flags.size(); i++) {
+            flagIDs.add(i + 1);
         }
         Collections.shuffle(flagIDs);
-        for(int i = 0; i < flags.size(); i++){
+        for (int i = 0; i < flags.size(); i++) {
             flags.get(i).setId(flagIDs.get(i));
         }
     }

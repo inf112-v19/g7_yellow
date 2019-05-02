@@ -11,7 +11,6 @@ import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.*;
 
 import java.util.LinkedList;
-import java.util.Vector;
 
 public class GameController {
     private final static Board board;
@@ -36,7 +35,7 @@ public class GameController {
         amount = 0;
         dockPositions = positions;
         for (Vector2 v : positions) {
-            if (v != null){
+            if (v != null) {
                 amount++;
             }
         }
@@ -62,29 +61,29 @@ public class GameController {
         }
     }
 
-    public static void respawnAllRobots(){
+    public static void respawnAllRobots() {
         System.out.println(amount);
-        for(int i = 0; i < amount; i++){
-            if(robots[i] != null) {
-                Vector2 rPos = findRobot(i+1);
+        for (int i = 0; i < amount; i++) {
+            if (robots[i] != null) {
+                Vector2 rPos = findRobot(i + 1);
                 try {
                     board.getGrid().removeTile(rPos, robots[i]);
                 } catch (OutsideGridException e) {
                     e.printStackTrace();
                 }
             }
-            respawnRobot(i+1);
+            respawnRobot(i + 1);
         }
     }
 
-    public static void respawnRobot(int id){
+    public static void respawnRobot(int id) {
         Robot r = new Robot(0);
         r.setId(id);
-        robots[id-1] = r;
-        players[id-1].setRobot(r);
+        robots[id - 1] = r;
+        players[id - 1].setRobot(r);
 
         try {
-            board.getGrid().addTile(dockPositions[id-1], r);
+            board.getGrid().addTile(dockPositions[id - 1], r);
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
@@ -92,7 +91,7 @@ public class GameController {
 
     public static void excecuteCards() {
         for (int i = 0; i < players.length; i++) {
-            if(players[i] != null) players[i].executeNextCard();
+            if (players[i] != null) players[i].executeNextCard();
         }
     }
 
@@ -120,11 +119,11 @@ public class GameController {
         return pos;
     }
 
-    public static void quePushRobot(int id, Vector2 oldPos, Vector2 newPos, AbstractFunctionTile t){
-        if(movesToDo[id] == null)
+    public static void quePushRobot(int id, Vector2 oldPos, Vector2 newPos, AbstractFunctionTile t) {
+        if (movesToDo[id] == null)
             movesToDo[id] = new MoveToken(id, oldPos, newPos, t);
         else
-            movesToDo[id].makeDouble(new MoveToken(id,oldPos,newPos,t));
+            movesToDo[id].makeDouble(new MoveToken(id, oldPos, newPos, t));
     }
 
     public static void pushRobot(int pId, int dir, boolean doPushRobot) {
@@ -149,7 +148,8 @@ public class GameController {
         for (IBoardTile t : tilesOnOldPos) {
             if (t instanceof AbstractConveyor) currentConveyorRotation = t.getRotation();
             if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
-                if (((AbstractCollidableTile) t).canMoveOutFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))) break;
+                if (((AbstractCollidableTile) t).canMoveOutFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos)))
+                    break;
                 return;
             }
         }
@@ -166,23 +166,23 @@ public class GameController {
         }
         // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
         // we don't swap places of two robots if they're on opposite conveyors facing each other
-        for (IBoardTile t : tilesOnNewPos){
+        for (IBoardTile t : tilesOnNewPos) {
             if (currentConveyorRotation != 1 && t instanceof AbstractConveyor &&
                     !(t.getRotation() == currentConveyorRotation - 180 ||
                             t.getRotation() == currentConveyorRotation + 180)) foundConveyor = true;
         }
 
-        for (IBoardTile t : tilesOnNewPos){
+        for (IBoardTile t : tilesOnNewPos) {
             try {
-                if (t instanceof AbstractCollidableTile){
-                    if(t instanceof Robot){
-                            if(canPushRobot(oldPos, dir) && doPushRobot){
-                                pushRobot(((Robot) t).getId(), dir, true);
-                                break;
-                            } else if(!doPushRobot && canMoveIntoRobot(newPos, dir)){
-                                foundRobot = true;
-                            } else return;
-                    } else if(((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))){
+                if (t instanceof AbstractCollidableTile) {
+                    if (t instanceof Robot) {
+                        if (canPushRobot(oldPos, dir) && doPushRobot) {
+                            pushRobot(((Robot) t).getId(), dir, true);
+                            break;
+                        } else if (!doPushRobot && canMoveIntoRobot(newPos, dir)) {
+                            foundRobot = true;
+                        } else return;
+                    } else if (((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))) {
                         continue;
                     } else continue;
                 }
@@ -191,7 +191,7 @@ public class GameController {
             }
 
         }
-        if(!foundConveyor && foundRobot) return;
+        if (!foundConveyor && foundRobot) return;
         try {
             board.getGrid().removeTile(oldPos, r);
             board.getGrid().addTile(newPos, r);
@@ -201,18 +201,19 @@ public class GameController {
     }
 
     public static void moveRobot(int pId, int dist) {
-        if(robots[pId -1] == null) return;
+        if (robots[pId - 1] == null) return;
         if (dist > 0) {
             for (int i = 0; i < dist; i++) {
                 pushRobot(pId, robots[pId - 1].getRotation(), true);
             }
         } else if (dist < 0) {
-            pushRobot(pId, robots[pId - 1].getRotation() + 180,true);
+            pushRobot(pId, robots[pId - 1].getRotation() + 180, true);
         }
     }
 
     /**
      * Should only be used by conveyors to move one robot at a time
+     *
      * @param pId
      * @param dir
      * @param doPushRobot
@@ -222,7 +223,7 @@ public class GameController {
     }
 
     public static void rotateRobot(int pId, int rotation) {
-        if(robots[pId-1] != null)
+        if (robots[pId - 1] != null)
             robots[pId - 1].rotate(rotation);
     }
 
@@ -230,34 +231,34 @@ public class GameController {
         robots[pId - 1].destroy();
         Vector2 pos = findRobot(pId);
         try {
-            for(IBoardTile t : board.getGrid().getTiles(pos)){
-                if(t instanceof Robot && ((Robot) t).getId() == pId) board.getGrid().removeTile(pos,t);
+            for (IBoardTile t : board.getGrid().getTiles(pos)) {
+                if (t instanceof Robot && ((Robot) t).getId() == pId) board.getGrid().removeTile(pos, t);
             }
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
-        robots[pId-1] = null;
+        robots[pId - 1] = null;
     }
 
     public static void damageRobot(int pId, int damageAmount) {
-        int currentDamage = robots[pId-1].getDamage();
-        if(currentDamage + damageAmount >= 10) destroyRobot(pId);
-        else robots[pId-1].setDamage(currentDamage+damageAmount);
+        int currentDamage = robots[pId - 1].getDamage();
+        if (currentDamage + damageAmount >= 10) destroyRobot(pId);
+        else robots[pId - 1].setDamage(currentDamage + damageAmount);
     }
 
     public static void repairRobot(int pId, int repairAmount) {
         robots[pId - 1].setDamage(robots[pId - 1].getDamage() > repairAmount ? robots[pId - 1].getDamage() - repairAmount : 0);
     }
 
-    private static boolean canMoveIntoRobot(Vector2 pos, int dir) throws OutsideGridException{
+    private static boolean canMoveIntoRobot(Vector2 pos, int dir) throws OutsideGridException {
         boolean hasConveyor = false;
         LinkedList<IBoardTile> tilesOnPos = board.getGrid().getTiles(pos);
-        for(IBoardTile t : tilesOnPos){
-            if(t instanceof AbstractConveyor) hasConveyor = true;
+        for (IBoardTile t : tilesOnPos) {
+            if (t instanceof AbstractConveyor) hasConveyor = true;
         }
-        for(IBoardTile t : tilesOnPos){
-            if(t instanceof Robot){
-                if(hasConveyor) return canMoveIntoRobot(LogicMethodHelper.findNextPosition(pos, dir), dir);
+        for (IBoardTile t : tilesOnPos) {
+            if (t instanceof Robot) {
+                if (hasConveyor) return canMoveIntoRobot(LogicMethodHelper.findNextPosition(pos, dir), dir);
                 else return false;
             }
         }
@@ -273,27 +274,27 @@ public class GameController {
         LinkedList<IBoardTile> tilesOnNewPos;
         try {
             tilesOnNewPos = board.getGrid().getTiles(nextPos);
-        }catch (ArrayIndexOutOfBoundsException | OutsideGridException e){
+        } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
             return true;
         }
 
-        for(IBoardTile t : tilesOnNewPos){
-            if(t instanceof AbstractCollidableTile){
-                if(!(t instanceof Robot)){
-                    if(!(((AbstractCollidableTile) t).canMoveIntoFrom(dir))) return false;
-                    else if(!((AbstractCollidableTile) t).canMoveOutFrom(dir)) canMoveOut = false;
+        for (IBoardTile t : tilesOnNewPos) {
+            if (t instanceof AbstractCollidableTile) {
+                if (!(t instanceof Robot)) {
+                    if (!(((AbstractCollidableTile) t).canMoveIntoFrom(dir))) return false;
+                    else if (!((AbstractCollidableTile) t).canMoveOutFrom(dir)) canMoveOut = false;
                 } else {
                     foundRobot = true;
                 }
             }
         }
-        if(foundRobot && !canMoveOut) return false;
+        if (foundRobot && !canMoveOut) return false;
         else if (foundRobot) return canPushRobot(nextPos, dir);
         else return true;
     }
 
-    public static void playerOnFlag(int id, int robotId){
-        players[robotId-1].visitedFlag(id);
+    public static void playerOnFlag(int id, int robotId) {
+        players[robotId - 1].visitedFlag(id);
     }
 
     public static void oneStep() throws OutsideGridException {
@@ -301,10 +302,10 @@ public class GameController {
             oneRobotStep(i);
         }
         // This is not optimal, but considering it will at max be 8 moves to do, it should be fine.
-        for(int i = 0; i  < movesToDo.length; i++){
+        for (int i = 0; i < movesToDo.length; i++) {
             for (int j = i + 1; j < movesToDo.length; j++) {
                 if (movesToDo[i] != null && movesToDo[j] != null) {
-                    switch(movesToDo[i].compareTo(movesToDo[j])){
+                    switch (movesToDo[i].compareTo(movesToDo[j])) {
                         case -2:
                             movesToDo[j] = null;
                             break;
@@ -325,15 +326,16 @@ public class GameController {
                             movesToDo[i].removeEndToken();
                             movesToDo[j].removeEndToken();
                             break;
-                        default: continue;
+                        default:
+                            continue;
                     }
                 }
             }
         }
-        for(MoveToken mT : movesToDo){
-            if(mT != null){
-                mT.getTile().execute(mT.getId()+1);
-                if(mT.isDouble()) mT.getSecondTile().execute(mT.getId()+1);
+        for (MoveToken mT : movesToDo) {
+            if (mT != null) {
+                mT.getTile().execute(mT.getId() + 1);
+                if (mT.isDouble()) mT.getSecondTile().execute(mT.getId() + 1);
             }
         }
         movesToDo = new MoveToken[amount];
@@ -345,9 +347,9 @@ public class GameController {
         if (pos == null) return;
         Robot rob = robots[robotID - 1];
         // Check if the robot is dead, if it is, nullify it.
-        if(rob == null) return;
-        if(rob.getDamage() >= 10){
-            robots[robotID -1] = null;
+        if (rob == null) return;
+        if (rob.getDamage() >= 10) {
+            robots[robotID - 1] = null;
             return;
         }
 
@@ -362,9 +364,10 @@ public class GameController {
                     if (t instanceof AbstractLaser) {
                         LaserHelper.propagateLaser(pos, t.getRotation(), robotID, ((AbstractLaser) t).getDamageValue());
                     }
-                    if(t instanceof AbstractConveyor) quePushRobot(robotID-1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
+                    if (t instanceof AbstractConveyor)
+                        quePushRobot(robotID - 1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
                     else ((AbstractFunctionTile) (t)).execute(robotID);
-                } else if (players[robotID - 1].isOnLastProgramCard()){
+                } else if (players[robotID - 1].isOnLastProgramCard()) {
                     ((AbstractFunctionTile) (t)).execute(robotID);
                 }
                 if (t instanceof AbstractBlueConveyor) {
@@ -377,18 +380,20 @@ public class GameController {
 
     /**
      * Only called by Blue conveyors as they move the robot twice
+     *
      * @param robotId
      * @param pos
      * @throws OutsideGridException
      */
-    private static void nextRobotStep(int robotId, Vector2 pos) throws OutsideGridException{
+    private static void nextRobotStep(int robotId, Vector2 pos) throws OutsideGridException {
         Robot rob = robots[robotId - 1];
         var tiles = (board.getGrid().getTiles(pos));
 
         for (IBoardTile t : tiles) {
             if (t instanceof AbstractConveyor) {
                 if (((AbstractConveyor) t).doesTurn(rob.getRotation())) rob.setRotation(t.getRotation());
-                if(t instanceof AbstractBlueConveyor) quePushRobot(robotId-1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
+                if (t instanceof AbstractBlueConveyor)
+                    quePushRobot(robotId - 1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
             }
         }
     }

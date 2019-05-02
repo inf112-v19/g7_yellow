@@ -6,7 +6,7 @@ public class Dock6 extends AbstractDock {
         super(r);
     }
 
-    public int getId(){
+    public int getId() {
         return super.getId() + 6;
     }
 

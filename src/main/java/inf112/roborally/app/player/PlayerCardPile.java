@@ -10,9 +10,9 @@ public class PlayerCardPile<E> extends AbstractCardPile<E> {
     private final int STACK_SIZE = 84;
     private boolean onlyMoveForwatd = true;
 
-    public void initialize(){
-        for(int i = 0; i < 84; i++){
-            if(onlyMoveForwatd) this.add((E) new MoveCard(1, 100));
+    public void initialize() {
+        for (int i = 0; i < 84; i++) {
+            if (onlyMoveForwatd) this.add((E) new MoveCard(1, 100));
             else {
                 if (i < 18) this.add((E) new MoveCard(1, 100));
                 else if (i < 30) this.add((E) new MoveCard(2, 100));

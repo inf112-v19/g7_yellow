@@ -11,7 +11,7 @@ public class BlueConveyor2in1outRight extends AbstractBlueConveyor {
         return 'D';
     }
 
-    public boolean doesTurn(int rotation){
-        return (this.rotation == rotation-90 || this.rotation == rotation+270);
+    public boolean doesTurn(int rotation) {
+        return (this.rotation == rotation - 90 || this.rotation == rotation + 270);
     }
 }

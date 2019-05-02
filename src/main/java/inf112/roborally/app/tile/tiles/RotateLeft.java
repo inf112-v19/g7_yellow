@@ -19,5 +19,7 @@ public class RotateLeft extends AbstractFunctionTile {
     }
 
     @Override
-    public void execute(int robotId) { GameController.rotateRobot(robotId,90); }
+    public void execute(int robotId) {
+        GameController.rotateRobot(robotId, 90);
+    }
 }

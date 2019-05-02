@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
 

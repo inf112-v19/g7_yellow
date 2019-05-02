@@ -8,7 +8,7 @@ public abstract class AbstractDock extends AbstractTile {
         super(r);
     }
 
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 }
