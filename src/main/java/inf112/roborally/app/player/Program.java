@@ -34,8 +34,7 @@ public class Program {
     }
 
     public boolean canAddCard() {
-        if (amount == 5) return false;
-        return true;
+        return amount != 5;
     }
 
     public IProgramCard[] getCardsInProgram() {

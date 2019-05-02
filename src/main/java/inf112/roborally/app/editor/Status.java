@@ -14,13 +14,11 @@ import inf112.roborally.app.main.Main;
 
 public class Status implements Screen {
 
-    private static Stage stage;
-    private static TextArea console;
-    private static String status;
-    private ShapeRenderer sr;
+    private static Stage stage = new Stage();
+    private TextArea console;
+    private static String status = "";
 
     public Status() {
-        sr = new ShapeRenderer();
         stage = new Stage();
 
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
@@ -35,9 +33,10 @@ public class Status implements Screen {
         status = "USE (1-9) on your keyboard to select cards. \n" +
                  "BACKSPACE to reset cards and SPACE to continue";
     }
+
     @Override
     public void show() {
-
+        System.out.println("Not implemented");
     }
 
     @Override
@@ -51,27 +50,27 @@ public class Status implements Screen {
 
     @Override
     public void resize(int i, int i1) {
-
+        System.out.println("Not implemented");
     }
 
     @Override
     public void pause() {
-
+        System.out.println("Not implemented");
     }
 
     @Override
     public void resume() {
-
+        System.out.println("Not implemented");
     }
 
     @Override
     public void hide() {
-
+        System.out.println("Not implemented");
     }
 
     @Override
     public void dispose() {
-
+        System.out.println("Not implemented");
     }
 
     public static void setText(String s) {

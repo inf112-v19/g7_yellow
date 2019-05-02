@@ -7,14 +7,12 @@ import inf112.roborally.app.game.GameController;
 
 public class CardUI {
     private ShapeRenderer render;
-    private SpriteBatch batch;
 
     private final int CARD_HEIGHT = 100;
     private final int CARD_WIDTH = 75;
 
     public CardUI() {
         render = new ShapeRenderer();
-        batch = new SpriteBatch();
     }
 
     public void drawPlayerCards() {
@@ -73,6 +71,8 @@ public class CardUI {
             case("RotateCard 180"):
                 drawFullRotateCard(x, y, first);
                 break;
+                default:
+                    break;
         }
     }
 
