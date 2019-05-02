@@ -20,6 +20,7 @@ public class Board {
     private Grid grid;
     private int width, height;
     private TileFactory tileFactory;
+    private Vector2[] dockPositions = new Vector2[8];
 
     public Board(int width, int height) {
         grid = new Grid(width, height);
@@ -29,8 +30,8 @@ public class Board {
     }
 
     public void loadMap(String map) { //TODO: Clean up code, it's currently awful lol
+        dockPositions = new Vector2[8];
         grid = new Grid(width, height);
-        Vector2[] dockPositions = new Vector2[8];
         InputStream in = null;
         try {
             in = getClass().getResourceAsStream("maps/" + map + ".txt");

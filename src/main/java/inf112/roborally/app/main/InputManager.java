@@ -34,6 +34,9 @@ class InputManager {
                 GameController.oneStep();
             } else if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
                 GameController.oneStep();
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+                // respawn robots
+                GameController.respawnAllRobots();
             }
         }
 
@@ -44,6 +47,6 @@ class InputManager {
 
         // Exeute console input with ENTER
         if (Console.getActive() && Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
-                Console.execute();
+            Console.execute();
     }
 }

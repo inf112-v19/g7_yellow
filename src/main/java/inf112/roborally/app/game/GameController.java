@@ -25,6 +25,7 @@ public class GameController {
     private static Robot[] robots;
     private static Player[] players;
     private static MoveToken[] movesToDo;
+    private static Vector2[] dockPositions;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -32,8 +33,12 @@ public class GameController {
      * @param positions Where to place robots on the map
      */
     public static void loadRobots(Vector2[] positions) {
+        amount = 0;
+        dockPositions = positions;
         for (Vector2 v : positions) {
-            if (v != null) amount++;
+            if (v != null){
+                amount++;
+            }
         }
 
         robots = new Robot[amount];
@@ -54,6 +59,34 @@ public class GameController {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public static void respawnAllRobots(){
+        System.out.println(amount);
+        for(int i = 0; i < amount; i++){
+            if(robots[i] != null) {
+                Vector2 rPos = findRobot(i+1);
+                try {
+                    board.getGrid().removeTile(rPos, robots[i]);
+                } catch (OutsideGridException e) {
+                    e.printStackTrace();
+                }
+            }
+            respawnRobot(i+1);
+        }
+    }
+
+    public static void respawnRobot(int id){
+        Robot r = new Robot(0);
+        r.setId(id);
+        robots[id-1] = r;
+        players[id-1].setRobot(r);
+
+        try {
+            board.getGrid().addTile(dockPositions[id-1], r);
+        } catch (OutsideGridException e) {
+            e.printStackTrace();
         }
     }
 

@@ -35,6 +35,10 @@ public class Player {
         }
     }
 
+    public void setRobot(Robot r){
+        this.robot = r;
+    }
+
     public boolean isOnLastProgramCard(){
         return this.program.peekNextCard()==null;
     }
