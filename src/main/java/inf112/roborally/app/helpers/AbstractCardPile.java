@@ -52,4 +52,8 @@ public class AbstractCardPile<E> implements ICardPile<E> {
             System.out.print(elem.toString() + "  |  ");
         }
     }
+
+    public LinkedList<E> getList() {
+        return list;
+    }
 }

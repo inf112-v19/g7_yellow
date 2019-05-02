@@ -1,6 +1,7 @@
 package inf112.roborally.app.player;
 
 import inf112.roborally.app.card.programcard.IProgramCard;
+import inf112.roborally.app.helpers.AbstractCardPile;
 import inf112.roborally.app.tile.tiles.Robot;
 
 public class Player {
@@ -60,5 +61,9 @@ public class Player {
      */
     public int getId() {
         return this.id;
+    }
+
+    public AbstractCardPile<IProgramCard> getCards() {
+        return program.getCardsInProgram();
     }
 }

@@ -15,7 +15,8 @@ import java.util.LinkedList;
 public class GameController {
 
     private final static Board board;
-    private static int playerTurn = 0;
+    public static int playerTurn = 0;
+    public static int roundTurn = 0;
 
     static {
         board = new Board(Main.GRID_WIDTH, Main.GRID_HEIGHT);
@@ -50,10 +51,19 @@ public class GameController {
     }
 
     public static void executeCard() {
+        if (roundTurn == 0) {
+
+        }
+
         players[playerTurn].executeNextCard();
+
         playerTurn++;
-        if (playerTurn > 7)
+        if (playerTurn > Main.AMOUNT_OF_PLAYERS - 1) {
             playerTurn = 0;
+            roundTurn ++;
+            if (roundTurn > 5)
+                roundTurn = 0;
+        }
     }
 
     public static Board getBoard() {

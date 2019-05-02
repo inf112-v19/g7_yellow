@@ -28,4 +28,8 @@ public class Program {
     public void addCardToProgram(IProgramCard card) {
         cards.add(card);
     }
+
+    public AbstractCardPile<IProgramCard> getCardsInProgram() {
+        return cards;
+    }
 }
