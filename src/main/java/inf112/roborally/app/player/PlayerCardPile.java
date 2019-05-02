@@ -8,7 +8,7 @@ import java.util.Collections;
 
 public class PlayerCardPile<E> extends AbstractCardPile<E> {
     private final int STACK_SIZE = 84;
-    private boolean onlyMoveForwatd = true;
+    private boolean onlyMoveForwatd = false;
 
     public void initialize() {
         for (int i = 0; i < 84; i++) {
