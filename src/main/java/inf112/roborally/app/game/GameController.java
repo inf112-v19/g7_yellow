@@ -2,6 +2,7 @@ package inf112.roborally.app.game;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
+import inf112.roborally.app.editor.Status;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
@@ -52,7 +53,17 @@ public class GameController {
 
     public static void executeCard() {
         if (roundTurn == 0) {
-
+            Status.setText("USE (1-9) on your keyboard to select cards. \n" +
+                    "BACKSPACE to reset cards and SPACE to continue");
+            if (!players[playerTurn].havePickedCards()) {
+                return;
+            }
+            playerTurn++;
+            if (playerTurn > Main.AMOUNT_OF_PLAYERS - 1) {
+                playerTurn = 0;
+                roundTurn++;
+            }
+            return;
         }
 
         players[playerTurn].executeNextCard();
@@ -61,8 +72,12 @@ public class GameController {
         if (playerTurn > Main.AMOUNT_OF_PLAYERS - 1) {
             playerTurn = 0;
             roundTurn ++;
-            if (roundTurn > 5)
+            if (roundTurn > 5) {
                 roundTurn = 0;
+                for (int i = 0; i < Main.AMOUNT_OF_PLAYERS; i++) {
+                    players[i].resetProgram();
+                }
+            }
         }
     }
 

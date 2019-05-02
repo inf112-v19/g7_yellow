@@ -80,7 +80,9 @@ public class MapLayout implements ApplicationListener {
 
         //Render playerUI
         if (Main.gameState == GameState.PLAYING) {
-            cardUI.drawCards();
+            cardUI.drawPlayerCards();
+            if (GameController.roundTurn == 0)
+                cardUI.drawSelectCards();
         }
 
     }

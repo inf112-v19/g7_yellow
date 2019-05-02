@@ -1,35 +1,56 @@
 package inf112.roborally.app.player;
 
 import inf112.roborally.app.card.programcard.IProgramCard;
-import inf112.roborally.app.helpers.AbstractCardPile;
 
 public class Program {
 
     //private int damageToken;
-    private AbstractCardPile<IProgramCard> cards;
+    private IProgramCard[] cards;
+    private int currentCard;
+    private int amount;
 
     public Program() {
-        cards = new AbstractCardPile<>();
+        cards = new IProgramCard[5];
     }
 
     public IProgramCard popNextCard() {
-        return cards.pop();
+        currentCard++;
+        return cards[currentCard - 1];
     }
 
     public IProgramCard peekNextCard() {
-        return cards.peek();
+        if (currentCard == 5) return null;
+        return cards[currentCard];
     }
 
     public void printProgram() {
-        cards.print();
         System.out.println();
     }
 
     public void addCardToProgram(IProgramCard card) {
-        cards.add(card);
+        if (amount == 5) return;
+        cards[amount] = card;
+        amount ++;
     }
 
-    public AbstractCardPile<IProgramCard> getCardsInProgram() {
+    public boolean canAddCard() {
+        if (amount == 5) return false;
+        return true;
+    }
+
+    public IProgramCard[] getCardsInProgram() {
         return cards;
+    }
+
+    public void resetProgram() {
+        amount = 0;
+        currentCard = 0;
+        for (int i = 0; i < 5; i++) {
+            cards[i] = null;
+        }
+    }
+
+    public boolean fullProgram() {
+        return amount == 5;
     }
 }

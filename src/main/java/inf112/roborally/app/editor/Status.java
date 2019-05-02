@@ -16,6 +16,7 @@ public class Status implements Screen {
 
     private static Stage stage;
     private static TextArea console;
+    private static String status;
     private ShapeRenderer sr;
 
     public Status() {
@@ -28,10 +29,11 @@ public class Status implements Screen {
         style.font = font;
         style.fontColor = Color.YELLOW;
         console = new TextArea("Player", style);
-        console.setPosition(15, Main.WINDOW_HEIGHT - 150);
-        console.setSize(Main.WINDOW_WIDTH - 50, 100);
+        console.setPosition(15, Main.WINDOW_HEIGHT - 180);
+        console.setSize(Main.WINDOW_WIDTH - 50, 150);
         stage.addActor(console);
-        Gdx.input.setInputProcessor(stage);
+        status = "USE (1-9) on your keyboard to select cards. \n" +
+                 "BACKSPACE to reset cards and SPACE to continue";
     }
     @Override
     public void show() {
@@ -41,7 +43,8 @@ public class Status implements Screen {
     @Override
     public void render(float v) {
         console.setText("Player " + (GameController.playerTurn + 1) + "'s turn \n" +
-                "Round: " + GameController.roundTurn);
+                "Round: " + GameController.roundTurn + "\n"
+        + status);
         stage.act();
         stage.draw();
     }
@@ -69,5 +72,9 @@ public class Status implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public static void setText(String s) {
+        status = s;
     }
 }

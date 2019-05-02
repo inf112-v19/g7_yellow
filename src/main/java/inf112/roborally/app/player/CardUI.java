@@ -17,28 +17,41 @@ public class CardUI {
         batch = new SpriteBatch();
     }
 
-    public void drawCards() {
-        drawCardGrids();
+    public void drawPlayerCards() {
         int x = 20;
         int y = 20;
         int pId = GameController.playerTurn;
-        for(IProgramCard c : GameController.players[pId].getCards().getList()) {
-            drawOneCard(c, x, y, x == 20);
+        System.out.println("curr: " + pId);
+        for(IProgramCard c : GameController.players[pId].getCards()) {
+            if (c != null)
+                drawOneCard(c, x, y, (((x - 20) / 100)) == GameController.roundTurn - 1);
             x += 100;
         }
-    }
-
-    public void drawCardGrids() {
-        int x = 20;
-        int y = 20;
+        x = 20;
         for (int i = 0; i < 5; i++) {
             drawCardGrid(x, y);
             x += 100;
         }
     }
 
+    public void drawSelectCards() {
+
+        int x = 50;
+        int y = 400;
+        int pId = GameController.playerTurn;
+        for (IProgramCard c : GameController.players[pId].getSelectCards()) {
+            if (c != null)
+                drawOneCard(c, x, y, false);
+            x += 100;
+        }
+        x = 50;
+        for (int i = 0; i < 9; i++) {
+            drawCardGrid(x, y);
+            x += 100;
+        }
+    }
+
     public void drawOneCard(IProgramCard card, int x, int y, boolean first) {
-        System.out.println(card.toString());
         switch(card.toString()) {
             case("MoveCard 1"):
                 drawForwardCard(x, y, first, 1);
