@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
+import inf112.roborally.app.main.Menu;
 
 import java.util.StringTokenizer;
 
@@ -83,8 +84,12 @@ public class Console implements Screen {
             if (active) {
                 clear();
                 stage.setKeyboardFocus(console);
+                Gdx.input.setInputProcessor(stage);
             }
-            if (!active) stage.unfocusAll();
+            if (!active) {
+                stage.unfocusAll();
+                Gdx.input.setInputProcessor(Menu.stage);
+            }
         } catch (NullPointerException e) {
             //Ignore
         }

@@ -16,7 +16,7 @@ import static inf112.roborally.app.editor.Console.clear;
 
 public class Menu implements Screen {
 
-    private static Stage stage;
+    public static Stage stage;
     private ShapeRenderer sr;
     private static boolean active = true;
     private Table table;
@@ -71,7 +71,6 @@ public class Menu implements Screen {
         });
 
         Gdx.input.setInputProcessor(stage);
-
     }
 
 
