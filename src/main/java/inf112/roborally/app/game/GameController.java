@@ -138,7 +138,6 @@ public class GameController {
                         pushRobot(((Robot) t).getId(), dir, true);
                         break;
                     } else if(!doPushRobot && canMoveIntoRobot(newPos, dir)){
-                        System.out.println("can move into");
                         foundRobot = true;
                     } else return;
                 } else if(((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))){
