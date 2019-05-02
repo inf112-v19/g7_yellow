@@ -154,33 +154,24 @@ public class GameController {
             }
         }
 
-        //Get all the tiles on new position, and check for collidable tiles.
-        //If collidable tile is found, act immediately.
-        LinkedList<IBoardTile> tilesOnNewPos = null;
+        // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
+        // we don't swap places of two robots if they're on opposite conveyors facing each other
         try {
-            tilesOnNewPos = board.getGrid().getTiles(newPos);
+            IBoardTile conveyor = board.getGrid().getTile(newPos, "Conveyor");
+            if(conveyor != null){
+                if(conveyor.getRotation() == currentConveyorRotation + 180 ||
+                                conveyor.getRotation() == currentConveyorRotation - 180) foundConveyor = true;
+            }
+            Robot robot = (Robot) board.getGrid().getTile(newPos, "Robot");
+            if(robot != null){
+                if(canPushRobot(oldPos, dir) && doPushRobot)
+                    pushRobot(robot.getId(), dir, true);
+                else if(!doPushRobot && canMoveIntoRobot(newPos,dir)) foundRobot = true;
+            }
         } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
             // If the new position is outside the map then the robot should be destroyed
             destroyRobot(r.getId());
             return;
-        }
-        // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
-        // we don't swap places of two robots if they're on opposite conveyors facing each other
-        for (IBoardTile t : tilesOnNewPos) {
-            if (currentConveyorRotation != 1 && t instanceof AbstractConveyor &&
-                    !(t.getRotation() == currentConveyorRotation - 180 ||
-                            t.getRotation() == currentConveyorRotation + 180)) foundConveyor = true;
-        }
-
-        for (IBoardTile t : tilesOnNewPos) {
-                if (t instanceof Robot) {
-                    if (canPushRobot(oldPos, dir) && doPushRobot) {
-                        pushRobot(((Robot) t).getId(), dir, true);
-                        break;
-                    } else if (!doPushRobot && canMoveIntoRobot(newPos, dir)) {
-                        foundRobot = true;
-                    } else return;
-                }
         }
         if (!foundConveyor && foundRobot) return;
         try {
@@ -223,9 +214,7 @@ public class GameController {
         Vector2 pos = findRobot(pId);
         try {
             Robot r = (Robot) board.getGrid().getTile(pos, "Robot");
-            if(r != null) {
-                if (r.getId() == pId) board.getGrid().removeTile(pos, r);
-            }
+            if (r != null && r.getId() == pId) board.getGrid().removeTile(pos, r);
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
