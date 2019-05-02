@@ -235,6 +235,7 @@ public class GameController {
         if (robots[pId - 1] == null) return;
         if (dist > 0) {
             for (int i = 0; i < dist; i++) {
+                if (robots[pId - 1] == null) return;
                 pushRobot(pId, robots[pId - 1].getRotation(), true);
             }
         } else if (dist < 0) {

@@ -79,7 +79,9 @@ public class CardUI {
     public void drawForwardCard(int x, int y, boolean highighted, int amount) {
         drawCard(x,y, highighted);
         for (int i = 0; i < amount; i++) {
-            drawArrow(i*20 + x + CARD_WIDTH / 2, y + CARD_HEIGHT / 3);
+            if (i == 2)
+                drawArrow( x + (CARD_WIDTH / 2) - i*10, y + CARD_HEIGHT / 3);
+            else drawArrow(i*20 + x + CARD_WIDTH / 2, y + CARD_HEIGHT / 3);
         }
     }
 
