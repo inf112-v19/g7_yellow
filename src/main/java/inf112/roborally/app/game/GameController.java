@@ -65,7 +65,7 @@ public class GameController {
             }
             return;
         }
-
+        Status.setText("SPACE to continue");
         players[playerTurn].executeNextCard();
 
         playerTurn++;

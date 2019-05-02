@@ -21,7 +21,6 @@ public class CardUI {
         int x = 20;
         int y = 20;
         int pId = GameController.playerTurn;
-        System.out.println("curr: " + pId);
         for(IProgramCard c : GameController.players[pId].getCards()) {
             if (c != null)
                 drawOneCard(c, x, y, (((x - 20) / 100)) == GameController.roundTurn - 1);
