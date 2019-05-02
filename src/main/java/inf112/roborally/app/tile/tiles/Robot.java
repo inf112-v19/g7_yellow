@@ -3,7 +3,7 @@ package inf112.roborally.app.tile.tiles;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import inf112.roborally.app.game.GameController;
+import inf112.roborally.app.helpers.LogicMethodHelper;
 import inf112.roborally.app.sprite.SpriteLoader;
 
 /**
@@ -56,20 +56,20 @@ public class Robot extends AbstractCollidableTile {
         return SpriteLoader.fetchSprite(this, id);
     }
 
-    public void setDamage(int damage){
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 
-    public void destroy(){
+    public void destroy() {
         this.damage = 10;
     }
 
-    public int getDamage(){
+    public int getDamage() {
         return this.damage;
     }
 
     public Vector2 push(Vector2 pos, int pushDirection) {
-        return GameController.findNextPosition(pos, pushDirection);
+        return LogicMethodHelper.findNextPosition(pos, pushDirection);
     }
 
     /**

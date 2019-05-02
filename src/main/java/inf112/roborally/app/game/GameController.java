@@ -3,6 +3,7 @@ package inf112.roborally.app.game;
 import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.helpers.LogicMethodHelper;
 import inf112.roborally.app.helpers.MoveToken;
 import inf112.roborally.app.main.Main;
 import inf112.roborally.app.player.Player;
@@ -58,7 +59,7 @@ public class GameController {
 
     public static void excecuteCards() {
         for (int i = 0; i < players.length; i++) {
-            players[i].executeNextCard();
+            if(players[i] != null) players[i].executeNextCard();
         }
     }
 
@@ -93,7 +94,8 @@ public class GameController {
             movesToDo[id].makeDouble(new MoveToken(id,oldPos,newPos,t));
     }
 
-    public static void pushRobot(int pId, int dir, int dist, boolean isConveyor, boolean doPushRobot) throws OutsideGridException {
+    public static void pushRobot(int pId, int dir, boolean doPushRobot) throws OutsideGridException {
+        int currentConveyorRotation = 1;
         boolean foundConveyor = false;
         boolean foundRobot = false;
         //Find robot based on pId input
@@ -112,10 +114,9 @@ public class GameController {
             throw new OutsideGridException(oldPos, "Outside of map!");
         }
         for (IBoardTile t : tilesOnOldPos) {
+            if (t instanceof AbstractConveyor) currentConveyorRotation = t.getRotation();
             if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
-                if (((AbstractCollidableTile) t).canMoveOutFrom(getWorldRotation(oldPos, newPos))) {
-                    break;
-                }
+                if (((AbstractCollidableTile) t).canMoveOutFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))) break;
                 return;
             }
         }
@@ -126,20 +127,21 @@ public class GameController {
         // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
         // we don't swap places of two robots if they're on opposite conveyors facing each other
         for (IBoardTile t : tilesOnNewPos){
-            if(t instanceof AbstractConveyor &&
-                    !(t.getRotation() == r.getRotation() - 180 ||
-                            t.getRotation() == r.getRotation() + 180)) foundConveyor = true;
+            if (currentConveyorRotation != 1 && t instanceof AbstractConveyor &&
+                    !(t.getRotation() == currentConveyorRotation - 180 ||
+                            t.getRotation() == currentConveyorRotation + 180)) foundConveyor = true;
         }
         for (IBoardTile t : tilesOnNewPos){
             if (t instanceof AbstractCollidableTile){
                 if(t instanceof Robot){
                     if(canPushRobot(oldPos, dir) && doPushRobot){
-                        pushRobot(((Robot) t).getId(), dir, dist, false, true);
+                        pushRobot(((Robot) t).getId(), dir, true);
                         break;
-                    } else if(!doPushRobot){
+                    } else if(!doPushRobot && canMoveIntoRobot(newPos, dir)){
+                        System.out.println("can move into");
                         foundRobot = true;
-                    }
-                } else if(((AbstractCollidableTile) t).canMoveIntoFrom(getWorldRotation(oldPos, newPos))){
+                    } else return;
+                } else if(((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos))){
                     continue;
                 } else return;
             }
@@ -153,7 +155,7 @@ public class GameController {
         if (dist > 0) {
             for (int i = 0; i < dist; i++) {
                 try {
-                    pushRobot(pId, robots[pId - 1].getRotation(), 1, false, true);
+                    pushRobot(pId, robots[pId - 1].getRotation(), true);
                 } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
                     System.err.println(e);
                     continue;
@@ -161,7 +163,7 @@ public class GameController {
             }
         } else if (dist < 0) {
             try {
-                pushRobot(pId, robots[pId - 1].getRotation() + 180, 1, false,true);
+                pushRobot(pId, robots[pId - 1].getRotation() + 180,true);
             } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
                 System.err.println(e);
                 return;
@@ -177,7 +179,7 @@ public class GameController {
      */
     public static void moveRobot(int pId, int dir, boolean doPushRobot) {
         try {
-            pushRobot(pId, dir, 1, false, doPushRobot);
+            pushRobot(pId, dir, doPushRobot);
         } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
             System.err.println(e);
         }
@@ -204,11 +206,27 @@ public class GameController {
         robots[pId - 1].setDamage(robots[pId - 1].getDamage() > repairAmount ? robots[pId - 1].getDamage() - repairAmount : 0);
     }
 
+    private static boolean canMoveIntoRobot(Vector2 pos, int dir) throws OutsideGridException{
+        boolean hasConveyor = false;
+        LinkedList<IBoardTile> tilesOnPos = board.getGrid().getTiles(pos);
+        for(IBoardTile t : tilesOnPos){
+            if(t instanceof AbstractConveyor) hasConveyor = true;
+        }
+        for(IBoardTile t : tilesOnPos){
+            if(t instanceof Robot){
+                if(hasConveyor) return canMoveIntoRobot(LogicMethodHelper.findNextPosition(pos, dir), dir);
+                else return false;
+            }
+        }
+        return true;
+    }
+
     private static boolean canPushRobot(Vector2 startPos, int dir) throws OutsideGridException {
         boolean canMoveOut = true;
         boolean foundRobot = false;
+
         //Get position for next tile
-        Vector2 nextPos = findNextPosition(startPos, dir);
+        Vector2 nextPos = LogicMethodHelper.findNextPosition(startPos, dir);
         //Get tiles on next pos
         LinkedList<IBoardTile> tilesOnNewPos = board.getGrid().getTiles(nextPos);
 
@@ -223,19 +241,12 @@ public class GameController {
             }
         }
         if(foundRobot && !canMoveOut) return false;
+        else if (foundRobot) return canPushRobot(nextPos, dir);
         else return true;
     }
 
     public static void playerOnFlag(int id, int robotId){
         players[robotId].visitedFlag(id);
-    }
-
-    public static Vector2 findNextPosition(Vector2 pos, int dir) {
-        var sin = (int) Math.sin(Math.toRadians(dir));
-        var cos = (int) Math.cos(Math.toRadians(dir));
-        var newX = pos.x + cos;
-        var newY = pos.y + sin;
-        return new Vector2(newX, newY);
     }
 
     public static void oneStep() throws OutsideGridException {
@@ -244,7 +255,6 @@ public class GameController {
         }
         // This is not optimal, but considering it will at max be 8 moves to do, it should be fine.
         for(int i = 0; i  < movesToDo.length; i++){
-            if(movesToDo[i] != null) System.out.println(movesToDo[i].getOldPos() + " and " + movesToDo[i].getNewPos());
             for (int j = i + 1; j < movesToDo.length; j++) {
                 if (movesToDo[i] != null && movesToDo[j] != null) {
                     switch(movesToDo[i].compareTo(movesToDo[j])){
@@ -298,13 +308,13 @@ public class GameController {
                     if (t instanceof AbstractLaser) {
                         LaserHelper.propagateLaser(pos, t.getRotation(), robotID, ((AbstractLaser) t).getDamageValue());
                     }
-                    if(t instanceof AbstractConveyor) quePushRobot(robotID-1, pos, findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
+                    if(t instanceof AbstractConveyor) quePushRobot(robotID-1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
                     else ((AbstractFunctionTile) (t)).execute(robotID);
                 } else if (players[robotID - 1].isOnLastProgramCard()){
                     ((AbstractFunctionTile) (t)).execute(robotID);
                 }
                 if (t instanceof AbstractBlueConveyor) {
-                    nextRobotStep(robotID, findNextPosition(pos, t.getRotation()));
+                    nextRobotStep(robotID, LogicMethodHelper.findNextPosition(pos, t.getRotation()));
                 }
 
             }
@@ -318,16 +328,8 @@ public class GameController {
         for (IBoardTile t : tiles) {
             if (t instanceof AbstractConveyor) {
                 if (((AbstractConveyor) t).doesTurn(rob.getRotation())) rob.setRotation(t.getRotation());
-                if(t instanceof AbstractBlueConveyor) quePushRobot(robotId-1, pos, findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
+                if(t instanceof AbstractBlueConveyor) quePushRobot(robotId-1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
             }
         }
-    }
-
-
-    private static int getWorldRotation(Vector2 v1, Vector2 v2) {
-        Vector2 unitVec = new Vector2(v2.x, v2.y).sub(v1);
-        if (unitVec.x != 0) {
-            return (90 - (int) unitVec.x * 90);
-        } else return (180 - (int) unitVec.y * 90);
     }
 }
