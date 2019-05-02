@@ -23,6 +23,9 @@ blir det vanskelig å få et godt produktt innen en gitt tidsfrist.
 rotere slik at de som har kodet minst skulle få skrive mer kode og motsatt. Her er innser vi at vi at vi har vært alt for dårlige, og vi hadde rett og slett 
 ikke tid til at de som har programmert mest ikke skulle gjøre en del arbeid på siste iterasjon da vi allerede ligger langt bak og trenger alle mann til pumpene.
 
+
+* Alle våre referater ligger i [**meeting minutes**](https://github.com/inf112-v19/YellowBots/tree/master/Meeting%20minutes). 
+
 **Retrospektiv**
 * *Hva justerte vi underveis, og hvorfor? Ble det bedre?*
 Den første store justeringen vi hadde underveis var at testing skulle være et område vi skulle være gode på. Det ble veldig mye bedre, nesten så bra at det tok vekk 
@@ -51,19 +54,48 @@ Det er spesielt Git, codacy og trello som vi har brukt og tilegnet oss mest kunn
 
 
 # Deloppgave 2: Krav
+Alt som er beskrevet her er skrevet før innleveringsfristen, så det meste vil bli ferdigstilt etter dette er skrevet. 
 
+* *Kunne spille en hel runde*: Denne kommer vi til å bli ferdig med når vi får løst hvordan man skal velge ut 5 kort. 
+Valgene vi står mellom er og enten la spilleren velge kort, hvis spiller da velger feil så kan vi lage en reset-knapp
+som gjør at man får velge på nytt. Eller så tenker vi at hvis du ombestemmer deg og ikke vil ha det kortet kan du klikke på det igjen 
+for at den skal "unmarkes".
 
+* *Man må kunne vinne spillet ved å plukke opp siste flagg*: Vi har flaggene. Vi må bare finne en måte å prioritere flaggene på, slik
+at man må ha plukket de opp i riktig rekkefølge for å vinne spillet. 
 
+* *Det skal være lasere på brettet*: Vi har lasere på brettet. Vi har hatt litt problemer med at hvis to står i laseren, så skal den som er 
+"nærmest" laseren, være den som tar damage. Dette er typiske bugs som nå skal være fikset. 
 
+* *Det skal være hull på brettet*: * Det skal være hull på brettet: Vi har hull på brettet og hvis man havner i et hull, kommer man seg ikke videre. I teorien
+ skal man i teorien dø. 
+ 
+* *Skademekanismer*: Dette er et punkt vi håper vi skal klare, vi må først bare få fikset grafikken på kortene slik at ting som skjer i utførelse er riktig.
+Vi har slik at man tar skade, så det eneste vi mangler er egentlig at man skal få færre kort hvis man tar skade. Noe som skal gå ganske greit.
 
+* *Spillmekanismer for å skyte andre spillere innen rekkevidde med laser som peker rett frem*: Dette er et punkt vi ikke har prioritert sånn voldsomt enda, men 
+som vi mener skal være ganske greit å implementere raskt. Derfor venter vi med dette punktet til vi har blitt ferdig med de viktigere punktene.
+Forhåpentligvis har vi tid til å implementere dette og. 
 
+* *fungerende samlebånd*: Samlebåndene våre funker slik de skal.  
 
+* *game over etter 3 tapte liv*: Dette punktet blir vi forhåpentligvis ferdig med når vi har muligheten til å spille en hel runde knirkefritt. 
 
+* *Multiplayer over LAN*: Her har gruppa hatt lange diskusjoner, siden dette er MVP og multiplayer i praksis er veldig kult, har vi besluttet for at 
+vi ikke kommer til å oppfylle dette kravet da vi har mer enn nok med å få et velfungerende spill. Det ville vært dumt å ha et ufullstendig spill på multiplayer. 
 
+* *power down*: Dette er et punkt vi også må ta for oss etter vi har mulighet til å spille en hel runde. Vi tror implementasjonen skal være ganske grei, 
+så får vi satse på at vi klarer å få det til på kort tid. 
 
+* *Samlebånd i dobbelt tempo*: Denne er vi ferdig med, og nå funker de også tilnærmet perfekt. Vi slet litt med bugs hvis det var to stykker på samme 
+ bånd osv, men dette skal være fikset. 
 
+* *Spille mot AI*: Dette er noe vi bør klare å få til siden det ikke er spesifisert hvor smart AI skal være. Det ville også vært et pluss for 
+oss, siden vi ikke kommer til å ha multiplayer-feature. 
 
-
+**Valgfrie krav som vi har implementert**
+* *Lage og generere egene brett*: Vi har en mapeditor som skal gjøre det mulig å lage og generere egene brett. Målet vårt var også
+at man skulle kunne slå sammen to brett til et større, men der oppdaget vi fort at vi hadde tatt vann over hodet. Så vi valgte å holde igjen der. 
 
 
 
@@ -72,11 +104,6 @@ Det er spesielt Git, codacy og trello som vi har brukt og tilegnet oss mest kunn
 1. *Kompleksitet*: Noen av metodene kan være litt komplisert å sette seg inn i, noe som kan karakteriseres som et svakhetstegn. 
 2. Enkelte av klassene er ekstremt store. Et eksempel er [```GameController```](https://github.com/inf112-v19/YellowBots/blob/master/src/main/java/inf112/roborally/app/game/GameController.java)
 3. Vi har en del bugs på collisions. Når roboter skal dyttes og kræsje etc. skjer ikke det vi vil skal skje. 
-4.
-5.
-
-
-
 
 
 For instrukser til bygging av prosjektet se [GitHub-Readme](https://github.com/inf112-v19/YellowBots#how-to-buildcompile). 
