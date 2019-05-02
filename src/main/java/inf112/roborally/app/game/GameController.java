@@ -157,17 +157,8 @@ public class GameController {
         // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
         // we don't swap places of two robots if they're on opposite conveyors facing each other
         try {
-            IBoardTile conveyor = board.getGrid().getTile(newPos, "Conveyor");
-            if (conveyor != null) {
-                if (conveyor.getRotation() == currentConveyorRotation + 180 ||
-                        conveyor.getRotation() == currentConveyorRotation - 180) foundConveyor = true;
-            }
-            Robot robot = (Robot) board.getGrid().getTile(newPos, "Robot");
-            if (robot != null) {
-                if (canPushRobot(oldPos, dir) && doPushRobot)
-                    pushRobot(robot.getId(), dir, true);
-                else if (!doPushRobot && canMoveIntoRobot(newPos, dir)) foundRobot = true;
-            }
+            foundConveyor = isFoundConveyor(currentConveyorRotation, newPos);
+            foundRobot = isFoundRobot(dir, doPushRobot, foundRobot, oldPos, newPos);
         } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
             // If the new position is outside the map then the robot should be destroyed
             destroyRobot(r.getId());
@@ -180,6 +171,20 @@ public class GameController {
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
+    }
+
+    private static boolean isFoundRobot(int dir, boolean doPushRobot, boolean foundRobot, Vector2 oldPos, Vector2 newPos) throws OutsideGridException {
+        Robot robot = (Robot) board.getGrid().getTile(newPos, "Robot");
+        if (robot != null) {
+            if (canPushRobot(oldPos, dir) && doPushRobot) pushRobot(robot.getId(), dir, true);
+            foundRobot = (!doPushRobot && canMoveIntoRobot(newPos, dir));
+        }
+        return foundRobot;
+    }
+
+    private static boolean isFoundConveyor(int currentConveyorRotation, Vector2 newPos) throws OutsideGridException {
+        IBoardTile conveyor = board.getGrid().getTile(newPos, "Conveyor");
+        return (conveyor != null) && (conveyor.getRotation() == currentConveyorRotation + 180 || conveyor.getRotation() == currentConveyorRotation - 180);
     }
 
     public static void moveRobot(int pId, int dist) {
