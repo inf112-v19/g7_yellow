@@ -61,7 +61,6 @@ public class MapLayout implements ApplicationListener {
         if(Main.gameState != GameState.MENU) {
             //just a simple grid
             renderer.drawGrid();
-
             //drawing the board
             try {
                 renderer.drawBoard();
