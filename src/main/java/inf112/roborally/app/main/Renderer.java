@@ -1,5 +1,6 @@
 package inf112.roborally.app.main;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -9,6 +10,7 @@ import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
+import inf112.roborally.app.tile.tiles.Flag;
 
 import java.util.*;
 
@@ -44,7 +46,30 @@ public class Renderer {
                     s.setPosition((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2) * Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());
-                    s.draw(batch);
+                    if(t instanceof Flag){
+                        switch (((Flag) t).getId()){
+                            case 1: s.setColor(Color.RED);
+                                break;
+                            case 2: s.setColor(Color.GREEN);
+                                break;
+                            case 3: s.setColor(Color.BLUE);
+                                break;
+                            case 4: s.setColor(Color.YELLOW);
+                                break;
+                            case 5: s.setColor(Color.CYAN);
+                                break;
+                            case 6: s.setColor(Color.MAGENTA);
+                                break;
+                            case 7: s.setColor(Color.GRAY);
+                                break;
+                            case 8: s.setColor(Color.BLACK);
+                                break;
+                            default: s.setColor(Color.WHITE);
+                        }
+                        s.draw(batch);
+                        batch.setColor(Color.WHITE);
+                    } else
+                        s.draw(batch);
                 }
             }
         }
