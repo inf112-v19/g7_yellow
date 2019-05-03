@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import inf112.roborally.app.game.GameController;
+import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
 
 public class Status implements Screen {
@@ -39,17 +40,19 @@ public class Status implements Screen {
 
     @Override
     public void render(float v) {
-        int turn = GameController.playerTurn+1;
-        String robotData = null;
-        if(GameController.getDamage(turn) > -1) robotData = "(Current damage = " + GameController.getDamage(turn);
-        if(GameController.getRespawns(turn) > -1 && robotData != null) robotData += ", Respawns = " + GameController.getRespawns(turn) + ")";
-        else if (GameController.getRespawns(turn) > -1 && GameController.getRespawns(turn) < 3) robotData = "(Respawns = " + GameController.getRespawns(turn) + ")";
-        else robotData = "(DEAD)";
-        console.setText("Player " + turn + "'s turn. \t" + robotData + "\n" +
-                "Round: " + GameController.roundTurn + "\n"
-        + status);
-        stage.act();
-        stage.draw();
+        if(Main.gameState == GameState.PLAYING) {
+            int turn = GameController.playerTurn+1;
+            String robotData = null;
+            if(GameController.getDamage(turn) > -1) robotData = "(Current damage = " + GameController.getDamage(turn);
+            if(GameController.getRespawns(turn) > -1 && robotData != null) robotData += ", Respawns = " + GameController.getRespawns(turn) + ")";
+            else if (GameController.getRespawns(turn) > -1 && GameController.getRespawns(turn) < 3) robotData = "(Respawns = " + GameController.getRespawns(turn) + ")";
+            else robotData = "(DEAD)";
+            console.setText("Player " + turn + "'s turn. \t" + robotData + "\n" +
+                    "Round: " + GameController.roundTurn + "\n"
+            + status);
+            stage.act();
+            stage.draw();
+        }
     }
 
     @Override
