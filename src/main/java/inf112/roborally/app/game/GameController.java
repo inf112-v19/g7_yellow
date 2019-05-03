@@ -114,7 +114,8 @@ public class GameController {
 
         playerTurn++;
         if (playerTurn > amount - 1) {
-            playerTurn = 1;
+            playerTurn = 0;
+            roundTurn++;
             try {
                 oneStep();
             } catch (OutsideGridException e) {
