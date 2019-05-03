@@ -19,7 +19,7 @@ public class EditorTest {
     @Test
     public void testOpenEditor() {
         assertEquals(Main.gameState, GameState.PLAYING);
-        editorInput.enterEditorMode(null);
+        EditorInput.enterEditorMode(null);
         assertEquals(Main.gameState, GameState.EDITOR);
     }
 
@@ -27,6 +27,6 @@ public class EditorTest {
     public void testLoadMapFromEditor() throws OutsideGridException {
         EditorInput.loadMap("map1");
         assertEquals(board.getGrid().getTiles(new Vector2(0, 0)).get(0).getClass()
-                , new Floor(90).getClass());
+                , Floor.class);
     }
 }
