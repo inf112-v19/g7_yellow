@@ -20,6 +20,8 @@ import java.util.LinkedList;
  */
 public class Robot extends AbstractCollidableTile {
 
+    private boolean isPoweredDown = false;
+
     private int shotDamage = 1;
 
     private int id;
@@ -73,6 +75,14 @@ public class Robot extends AbstractCollidableTile {
 
     public int getDamage() {
         return this.damage;
+    }
+
+    public boolean isPoweredDown(){
+        return this.isPoweredDown;
+    }
+
+    public void setPoweredDown(boolean value){
+        this.isPoweredDown = value;
     }
 
     public Vector2 push(Vector2 pos, int pushDirection) {

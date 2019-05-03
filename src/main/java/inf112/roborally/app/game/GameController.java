@@ -32,6 +32,8 @@ public class GameController {
     private static Vector2[] dockPositions;
     public static Player[] players;
     private static int[] respawns;
+    private static boolean[] powerDownQue;
+    private static boolean[] toPowerDown;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -48,11 +50,15 @@ public class GameController {
         }
 
         respawns = new int[amount];
+        toPowerDown = new boolean[amount];
+        powerDownQue = new boolean[amount];
         robots = new Robot[amount];
         players = new Player[amount];
         movesToDo = new MoveToken[amount];
         for (int i = 0; i < amount; i++) {
             if (positions[i] != null) {
+                toPowerDown[i] = false;
+                powerDownQue[i] = false;
                 respawns[i] = 0;
                 Robot r = new Robot(0);
                 r.setId(i + 1);
@@ -68,6 +74,37 @@ public class GameController {
                 }
             }
         }
+    }
+
+    public static void resetQues(){
+        for(int i = 0; i < amount; i++){
+            powerDownQue[i] = false;
+            toPowerDown[i] = false;
+        }
+    }
+
+    public static void powerOnRobots(){
+        for(int i = 0; i < amount; i++){
+            if(robots[i] == null) continue;
+            robots[i].setPoweredDown(false);
+        }
+    }
+
+    public static void quePowerDown(int id){
+        if(robots[id-1] == null) return;
+        powerDownQue[id-1] = true;
+    }
+
+    public static void powerDownRobots(){
+        for(int i = 0; i < amount; i++)
+            if(toPowerDown[i] == true)
+                powerDown(i+1);
+    }
+
+    public static void powerDown(int id){
+        if(robots[id-1] == null) return;
+        robots[id-1].setPoweredDown(true);
+        robots[id-1].setDamage(0);
     }
 
     public static int getRespawns(int id){
@@ -173,7 +210,9 @@ public class GameController {
                 e.printStackTrace();
             }
             if (roundTurn > 5) {
+                resetQues();
                 respawnDeadRobots();
+                powerOnRobots();
                 roundTurn = 0;
                 for (int i = 0; i < amount; i++)
                     if(players[i] != null)
@@ -285,10 +324,13 @@ public class GameController {
         if (dist > 0)
             for (int i = 0; i < dist; i++) {
                 if (robots[pId - 1] == null) return;
+                if(robots[pId-1].isPoweredDown()) return;
                 pushRobot(pId, robots[pId - 1].getRotation(), true);
             }
-        else if (dist < 0)
+        else if (dist < 0) {
+            if (robots[pId - 1].isPoweredDown()) return;
             pushRobot(pId, robots[pId - 1].getRotation() + 180, true);
+        }
     }
 
     /**
@@ -303,7 +345,10 @@ public class GameController {
     }
 
     public static void rotateRobot(int pId, int rotation) {
-        if (robots[pId - 1] != null) robots[pId - 1].rotate(rotation);
+        if (robots[pId - 1] != null){
+            if(robots[pId-1].isPoweredDown()) return;
+            robots[pId - 1].rotate(rotation);
+        }
     }
 
     public static void destroyRobot(int pId) {
@@ -378,6 +423,8 @@ public class GameController {
     }
 
     public static void oneStep() throws OutsideGridException {
+        powerDownRobots();
+        toPowerDown = powerDownQue;
         makeAllRobotsShoot();
         for (int i = 1; i <= robots.length; i++)
             oneRobotStep(i);
@@ -432,6 +479,9 @@ public class GameController {
             robots[robotID - 1] = null;
             return;
         }
+
+        System.out.println(rob.isPoweredDown());
+        if(rob.isPoweredDown()) return;
 
         var tiles = (board.getGrid().getTiles(pos));
 
