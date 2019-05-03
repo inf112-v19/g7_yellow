@@ -86,7 +86,9 @@ public class Console implements Screen {
             }
             if (!active) {
                 stage.unfocusAll();
-                Gdx.input.setInputProcessor(Menu.stage);
+                if(Main.gameState != GameState.PLAYING) {
+                    Gdx.input.setInputProcessor(Menu.stage);
+                }
             }
         } catch (NullPointerException e) {
             //Ignore
