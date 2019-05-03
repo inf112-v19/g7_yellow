@@ -35,6 +35,11 @@ public class Player {
         drawNineCards();
     }
 
+    public void resetCards() {
+        cardPile = new PlayerCardPile<>();
+        cardPile.initialize();
+    }
+
     public void drawNineCards() {
         for (int i = 0; i < 9; i++) {
             selectCards[i] = cardPile.pop();
@@ -90,10 +95,6 @@ public class Player {
         program.resetProgram();
     }
 
-    public int getPriorityOfNextCard() {
-        return program.peekNextCard().getPriority();
-    }
-
     public IProgramCard executeNextCard() {
         if (program.peekNextCard() == null) return null;
         IProgramCard nextCard = program.popNextCard();
@@ -110,7 +111,7 @@ public class Player {
 
     public void visitedFlag(int id) {
         if (id == this.flagNumber + 1) flagNumber = id;
-        if (flagNumber == 4) {
+        if (flagNumber == 3) {
             Status.setText("PLAYER" + this.id + " WON!");
             GameController.gameOver = true;
         }
