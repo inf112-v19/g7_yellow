@@ -31,6 +31,7 @@ public class GameController {
     private static MoveToken[] movesToDo;
     private static Vector2[] dockPositions;
     public static Player[] players;
+    private static int[] respawns;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -46,11 +47,13 @@ public class GameController {
             }
         }
 
+        respawns = new int[amount];
         robots = new Robot[amount];
         players = new Player[amount];
         movesToDo = new MoveToken[amount];
-        for (int i = 0; i < positions.length; i++) {
+        for (int i = 0; i < amount; i++) {
             if (positions[i] != null) {
+                respawns[i] = 0;
                 Robot r = new Robot(0);
                 r.setId(i + 1);
                 robots[i] = r;
@@ -82,11 +85,13 @@ public class GameController {
     }
 
     public static void respawnRobot(int id) {
+        if(respawns[id-1] >= 3) return;
         Robot r = new Robot(0);
         r.setId(id);
         robots[id - 1] = r;
         players[id - 1].setRobot(r);
         damageRobot(id, 2);
+        respawns[id-1]++;
 
         try {
             board.getGrid().addTile(dockPositions[id - 1], r);
@@ -149,6 +154,7 @@ public class GameController {
                 e.printStackTrace();
             }
             if (roundTurn > 5) {
+                makeAllRobotsShoot();
                 respawnDeadRobots();
                 roundTurn = 0;
                 for (int i = 0; i < amount; i++)
@@ -405,7 +411,6 @@ public class GameController {
             robots[robotID - 1] = null;
             return;
         }
-        rob.shoot(pos);
 
         var tiles = (board.getGrid().getTiles(pos));
 
@@ -448,5 +453,16 @@ public class GameController {
                 if (t instanceof AbstractBlueConveyor)
                     quePushRobot(robotId - 1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
             }
+    }
+
+    private static void makeAllRobotsShoot(){
+        for(int i = 0; i < amount; i++)
+            if(robots[i] != null)
+                makeRobotShoot(i+1);
+    }
+
+    private static void makeRobotShoot(int robotId){
+        Vector2 pos = findRobot(robotId);
+        robots[robotId-1].shoot(pos);
     }
 }
