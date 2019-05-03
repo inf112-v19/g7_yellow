@@ -52,7 +52,6 @@ public class LaserHelper {
             return -1;
         }
         for (IBoardTile t : tiles) {
-
             int tileRot = t.getRotation();
             if (t instanceof Robot) rId = ((Robot) t).getId();
             if (t instanceof AbstractLaser && !(t instanceof AbstractLaserStart) && tileRot == rotation) hasNext = true;
@@ -73,7 +72,9 @@ public class LaserHelper {
         while (it.hasNext()) {
             DamageToken dT = (DamageToken) it.next();
             System.out.println("Robot " + dT.getId() + " takes " + dT.getDamage() + " damage.");
-            damageRobot(dT.getId(), dT.getDamage());
+            if(dT.getId() == -1){
+                System.err.println("Couldn't find the robot to damage");
+            } else damageRobot(dT.getId(), dT.getDamage());
             it.remove();
         }
     }
