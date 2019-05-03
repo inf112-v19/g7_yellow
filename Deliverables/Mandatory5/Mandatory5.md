@@ -117,6 +117,8 @@ at man skulle kunne slå sammen to brett til et større, men der oppdaget vi for
 4. Vi har prøvd å muliggjøre en tydelig god og enkel Jar fil. Det er brukt masse tid for at denne skal fungere som forventet
 men den ble nedprioritet da den ikke har gitt noe utbytte på andre innleveringer. Det er dermed bugs ved å lagre nye maps
 fra editor dersom du kjører med jar fil.
+5. En del problemer med tester har oppstått. Etter hvert som vi har lagt til ny funksjonalitet, har vi måtte kommentere ut en del tester,
+spesielt blant Tiles.
 
 For instrukser til bygging av prosjektet se [GitHub-Readme](https://github.com/inf112-v19/YellowBots#how-to-buildcompile). 
 *Obs: krever Java 11*
