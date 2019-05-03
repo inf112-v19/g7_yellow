@@ -18,7 +18,7 @@ public class EditorTest {
 
     @Test
     public void testOpenEditor() {
-        assertEquals(Main.gameState, GameState.PLAYING);
+        assertEquals(Main.gameState, GameState.MENU);
         EditorInput.enterEditorMode(null);
         assertEquals(Main.gameState, GameState.EDITOR);
     }

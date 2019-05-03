@@ -27,6 +27,7 @@ public class MapLayout implements ApplicationListener {
     private InputManager inputManager;
     private EditorInput editorInput;
     private Console console;
+    private Menu menu;
     private Status status;
 
     public MapLayout() {
@@ -44,6 +45,7 @@ public class MapLayout implements ApplicationListener {
         cardUI = new CardUI();
         new SpriteLoader();
         console = new Console();
+        menu = new Menu();
         status = new Status();
     }
 
@@ -65,14 +67,16 @@ public class MapLayout implements ApplicationListener {
         Gdx.gl.glClearColor(0F, 0F, 0F, 0F);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //just a simple grid
-        renderer.drawGrid();
 
-        //drawing the board
-        try {
-            renderer.drawBoard();
-        } catch (OutsideGridException e) {
-            e.printStackTrace();
+        if(Main.gameState != GameState.MENU) {
+            //just a simple grid
+            renderer.drawGrid();
+            //drawing the board
+            try {
+                renderer.drawBoard();
+            } catch (OutsideGridException e) {
+                e.printStackTrace();
+            }
         }
 
         //Draw editor UI if in editor mode
@@ -80,6 +84,7 @@ public class MapLayout implements ApplicationListener {
             renderer.drawEditorUI();
 
         console.render(1);
+        menu.render(1);
         status.render(1);
 
         //Render playerUI

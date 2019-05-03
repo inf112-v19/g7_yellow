@@ -96,7 +96,6 @@ public class Player {
         if (program.peekNextCard() == null) return null;
         IProgramCard nextCard = program.popNextCard();
         nextCard.excecute(robot.getId());
-        program.printProgram();
         return nextCard;
     }
 
