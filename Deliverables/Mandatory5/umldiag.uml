@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>inf112.roborally.app</OriginalElement>
+  <nodes>
+    <node x="250.88650831228946" y="297.0">inf112.roborally.app.main.Menu</node>
+    <node x="56.0" y="297.0">inf112.roborally.app.player</node>
+    <node x="536.5706076388889" y="0.0">inf112.roborally.app.tile.IBoardTile</node>
+    <node x="279.2927583122895" y="525.0">inf112.roborally.app.main.MapLayout</node>
+    <node x="424.6052372685187" y="416.0">inf112.roborally.app.main.Renderer</node>
+    <node x="213.01082491582474" y="416.0">inf112.roborally.app.editor.Console</node>
+    <node x="205.60416666666674" y="624.0">inf112.roborally.app.main.Main</node>
+    <node x="373.070462962963" y="188.0">inf112.roborally.app.editor.EditorInput</node>
+    <node x="587.4431818181819" y="743.0">inf112.roborally.app.board.Board</node>
+    <node x="158.35416666666674" y="852.0">inf112.roborally.app.game.GameController</node>
+    <node x="684.7870554503369" y="99.0">inf112.roborally.app.board.Grid</node>
+    <node x="195.784622790404" y="99.0">inf112.roborally.app.main.GameState</node>
+    <node x="558.7870554503369" y="99.0">inf112.roborally.app.tile.TileFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="inf112.roborally.app.main.MapLayout" target="inf112.roborally.app.main.Menu">
+      <point x="0.0" y="-14.5" />
+      <point x="333.2927583122895" y="505.0" />
+      <point x="331.2324158249156" y="505.0" />
+      <point x="331.2324158249156" y="386.0" />
+      <point x="320.0115083122895" y="386.0" />
+      <point x="29.625" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.board.Grid" target="inf112.roborally.app.tile.IBoardTile">
+      <point x="-17.5" y="-14.5" />
+      <point x="702.2870554503369" y="69.0" />
+      <point x="609.5150520833333" y="69.0" />
+      <point x="22.44444444444443" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.MapLayout" target="inf112.roborally.app.player">
+      <point x="-39.27272727272725" y="-14.5" />
+      <point x="294.02003103956224" y="485.0" />
+      <point x="145.6365083122895" y="485.0" />
+      <point x="145.6365083122895" y="396.0" />
+      <point x="148.5" y="396.0" />
+      <point x="37.0" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.EditorInput" target="inf112.roborally.app.main.GameState">
+      <point x="-42.80000000000001" y="-14.5" />
+      <point x="383.77046296296305" y="148.0" />
+      <point x="292.034622790404" y="148.0" />
+      <point x="43.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.board.Board" target="inf112.roborally.app.board.Grid">
+      <point x="14.363636363636346" y="-14.5" />
+      <point x="641.3068181818182" y="693.0" />
+      <point x="721.3522727272727" y="693.0" />
+      <point x="721.3522727272727" y="168.0" />
+      <point x="711.0370554503369" y="168.0" />
+      <point x="-8.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Renderer" target="inf112.roborally.app.editor.EditorInput">
+      <point x="-11.874999999999972" y="-14.5" />
+      <point x="460.2302372685187" y="277.0" />
+      <point x="446.632962962963" y="277.0" />
+      <point x="20.0625" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.Console" target="inf112.roborally.app.main.Menu">
+      <point x="30.33333333333337" y="-14.5" />
+      <point x="288.8441582491581" y="396.0" />
+      <point x="280.5115083122895" y="396.0" />
+      <point x="-9.875" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.board.Board" target="inf112.roborally.app.tile.IBoardTile">
+      <point x="35.90909090909088" y="-14.5" />
+      <point x="662.8522727272727" y="723.0" />
+      <point x="765.2870554503369" y="723.0" />
+      <point x="765.2870554503369" y="49.0" />
+      <point x="631.9594965277778" y="49.0" />
+      <point x="44.888888888888886" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Renderer" target="inf112.roborally.app.main.Main">
+      <point x="0.0" y="14.5" />
+      <point x="472.1052372685187" y="505.0" />
+      <point x="478.9176136363637" y="505.0" />
+      <point x="478.9176136363637" y="604.0" />
+      <point x="275.91666666666674" y="604.0" />
+      <point x="32.8125" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.EditorInput" target="inf112.roborally.app.main.Main">
+      <point x="6.6875" y="14.5" />
+      <point x="433.257962962963" y="277.0" />
+      <point x="414.10523726851864" y="277.0" />
+      <point x="414.10523726851864" y="594.0" />
+      <point x="266.54166666666674" y="594.0" />
+      <point x="23.4375" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.game.GameController" target="inf112.roborally.app.tile.IBoardTile">
+      <point x="-60.0" y="-14.5" />
+      <point x="164.35416666666674" y="832.0" />
+      <point x="15.5" y="832.0" />
+      <point x="15.5" y="49.0" />
+      <point x="542.18171875" y="49.0" />
+      <point x="-44.888888888888886" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Main" target="inf112.roborally.app.main.GameState">
+      <point x="-32.8125" y="-14.5" />
+      <point x="210.29166666666674" y="604.0" />
+      <point x="177.50000000000006" y="604.0" />
+      <point x="177.50000000000006" y="158.0" />
+      <point x="204.534622790404" y="158.0" />
+      <point x="-43.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.EditorInput" target="inf112.roborally.app.board.Board">
+      <point x="33.4375" y="14.5" />
+      <point x="460.007962962963" y="267.0" />
+      <point x="530.1052372685187" y="267.0" />
+      <point x="530.1052372685187" y="693.0" />
+      <point x="612.5795454545455" y="693.0" />
+      <point x="-14.363636363636374" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.MapLayout" target="inf112.roborally.app.game.GameController">
+      <point x="36.0" y="14.5" />
+      <point x="369.2927583122895" y="584.0" />
+      <point x="377.47159090909093" y="584.0" />
+      <point x="377.47159090909093" y="792.0" />
+      <point x="236.35416666666674" y="792.0" />
+      <point x="12.0" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.player" target="inf112.roborally.app.player">
+      <point x="-49.333333333333314" y="14.5" />
+      <point x="62.166666666666686" y="346.0" />
+      <point x="36.0" y="346.0" />
+      <point x="36.0" y="318.75" />
+      <point x="-55.5" y="7.25" />
+    </edge>
+    <edge source="inf112.roborally.app.main.MapLayout" target="inf112.roborally.app.main.Renderer">
+      <point x="49.09090909090912" y="-14.5" />
+      <point x="382.3836674031986" y="505.0" />
+      <point x="453.1052372685187" y="505.0" />
+      <point x="-19.0" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.board.Board" target="inf112.roborally.app.game.GameController">
+      <point x="29.625" y="14.5" />
+      <point x="656.5681818181819" y="832.0" />
+      <point x="284.35416666666674" y="832.0" />
+      <point x="60.0" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.EditorInput" target="inf112.roborally.app.tile.TileFactory">
+      <point x="21.399999999999977" y="-14.5" />
+      <point x="447.970462962963" y="158.0" />
+      <point x="572.0370554503369" y="158.0" />
+      <point x="-39.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.tile.TileFactory" target="inf112.roborally.app.tile.IBoardTile">
+      <point x="-26.5" y="-14.5" />
+      <point x="585.2870554503369" y="79.0" />
+      <point x="587.0706076388889" y="79.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.MapLayout" target="inf112.roborally.app.editor.Console">
+      <point x="-19.636363636363626" y="-14.5" />
+      <point x="313.65639467592587" y="465.0" />
+      <point x="288.8441582491581" y="465.0" />
+      <point x="30.33333333333337" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Menu" target="inf112.roborally.app.main.Main">
+      <point x="-29.625" y="14.5" />
+      <point x="260.7615083122895" y="396.0" />
+      <point x="202.51082491582474" y="396.0" />
+      <point x="202.51082491582474" y="584.0" />
+      <point x="229.04166666666674" y="584.0" />
+      <point x="-14.0625" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Menu" target="inf112.roborally.app.editor.EditorInput">
+      <point x="19.75" y="-14.5" />
+      <point x="310.1365083122895" y="247.0" />
+      <point x="393.132962962963" y="247.0" />
+      <point x="-33.4375" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Main" target="inf112.roborally.app.main.MapLayout">
+      <point x="4.6875" y="-14.5" />
+      <point x="247.79166666666674" y="574.0" />
+      <point x="297.2927583122895" y="574.0" />
+      <point x="-36.0" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.game.GameController" target="inf112.roborally.app.player">
+      <point x="-12.0" y="-14.5" />
+      <point x="212.35416666666674" y="792.0" />
+      <point x="123.75757575757575" y="792.0" />
+      <point x="12.333333333333371" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.Console" target="inf112.roborally.app.editor.EditorInput">
+      <point x="0.0" y="-14.5" />
+      <point x="258.51082491582474" y="386.0" />
+      <point x="238.659622790404" y="386.0" />
+      <point x="238.659622790404" y="237.0" />
+      <point x="379.757962962963" y="237.0" />
+      <point x="-46.8125" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Renderer" target="inf112.roborally.app.tile.IBoardTile">
+      <point x="11.875000000000028" y="-14.5" />
+      <point x="483.98023726851875" y="386.0" />
+      <point x="548.2870554503369" y="386.0" />
+      <point x="548.2870554503369" y="79.0" />
+      <point x="575.8483854166666" y="79.0" />
+      <point x="-11.222222222222229" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.EditorInput" target="inf112.roborally.app.tile.IBoardTile">
+      <point x="-21.399999999999977" y="-14.5" />
+      <point x="405.17046296296303" y="168.0" />
+      <point x="394.1887894570707" y="168.0" />
+      <point x="394.1887894570707" y="59.0" />
+      <point x="553.4039409722222" y="59.0" />
+      <point x="-33.66666666666666" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.player" target="inf112.roborally.app.game.GameController">
+      <point x="0.0" y="14.5" />
+      <point x="111.5" y="396.0" />
+      <point x="100.64879787457932" y="396.0" />
+      <point x="100.64879787457932" y="802.0" />
+      <point x="200.35416666666674" y="802.0" />
+      <point x="-24.0" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.board.Board" target="inf112.roborally.app.main.Main">
+      <point x="-35.90909090909091" y="-14.5" />
+      <point x="591.034090909091" y="723.0" />
+      <point x="261.85416666666674" y="723.0" />
+      <point x="18.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Menu" target="inf112.roborally.app.main.GameState">
+      <point x="-19.75" y="-14.5" />
+      <point x="270.6365083122895" y="168.0" />
+      <point x="257.034622790404" y="168.0" />
+      <point x="8.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Renderer" target="inf112.roborally.app.player">
+      <point x="-35.62499999999997" y="-14.5" />
+      <point x="436.48023726851875" y="376.0" />
+      <point x="160.83333333333331" y="376.0" />
+      <point x="49.333333333333314" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.game.GameController" target="inf112.roborally.app.board.Board">
+      <point x="36.0" y="-14.5" />
+      <point x="260.35416666666674" y="812.0" />
+      <point x="617.0681818181819" y="812.0" />
+      <point x="-9.875" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.MapLayout" target="inf112.roborally.app.main.GameState">
+      <point x="9.818181818181813" y="-14.5" />
+      <point x="343.11094013047125" y="465.0" />
+      <point x="362.570462962963" y="465.0" />
+      <point x="362.570462962963" y="158.0" />
+      <point x="274.534622790404" y="158.0" />
+      <point x="26.25" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.EditorInput" target="inf112.roborally.app.board.Grid">
+      <point x="42.80000000000001" y="-14.5" />
+      <point x="469.3704629629631" y="168.0" />
+      <point x="693.5370554503369" y="168.0" />
+      <point x="-26.25" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.Console" target="inf112.roborally.app.main.Main">
+      <point x="-30.333333333333314" y="14.5" />
+      <point x="228.17749158249143" y="505.0" />
+      <point x="238.41666666666674" y="505.0" />
+      <point x="-4.6875" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.board.Board" target="inf112.roborally.app.tile.TileFactory">
+      <point x="7.181818181818187" y="-14.5" />
+      <point x="634.125" y="723.0" />
+      <point x="635.908552188552" y="723.0" />
+      <point x="635.908552188552" y="158.0" />
+      <point x="651.5370554503369" y="158.0" />
+      <point x="39.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.MapLayout" target="inf112.roborally.app.editor.EditorInput">
+      <point x="19.636363636363626" y="-14.5" />
+      <point x="352.9291219486531" y="475.0" />
+      <point x="373.13582491582474" y="475.0" />
+      <point x="373.13582491582474" y="257.0" />
+      <point x="406.507962962963" y="257.0" />
+      <point x="-20.0625" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.editor.Console" target="inf112.roborally.app.main.GameState">
+      <point x="-30.333333333333314" y="-14.5" />
+      <point x="227.659622790404" y="168.0" />
+      <point x="239.534622790404" y="168.0" />
+      <point x="-8.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.game.GameController" target="inf112.roborally.app.main.Main">
+      <point x="0.0" y="-14.5" />
+      <point x="-18.75" y="14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.MapLayout" target="inf112.roborally.app.main.Main">
+      <point x="0.0" y="14.5" />
+      <point x="333.2927583122895" y="584.0" />
+      <point x="257.16666666666674" y="584.0" />
+      <point x="14.0625" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Renderer" target="inf112.roborally.app.board.Board">
+      <point x="38.0" y="14.5" />
+      <point x="510.1052372685187" y="505.0" />
+      <point x="505.2863720538721" y="505.0" />
+      <point x="505.2863720538721" y="703.0" />
+      <point x="605.3977272727274" y="703.0" />
+      <point x="-21.545454545454533" y="-14.5" />
+    </edge>
+    <edge source="inf112.roborally.app.main.Renderer" target="inf112.roborally.app.tile.TileFactory">
+      <point x="35.62500000000003" y="-14.5" />
+      <point x="507.73023726851875" y="396.0" />
+      <point x="613.5363720538722" y="396.0" />
+      <point x="613.5363720538722" y="158.0" />
+      <point x="598.5370554503369" y="158.0" />
+      <point x="-13.25" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="908.5" y="449.5" />
+  <SelectedNodes>
+    <node>inf112.roborally.app.player</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
