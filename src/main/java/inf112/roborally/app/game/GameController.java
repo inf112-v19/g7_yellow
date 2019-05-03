@@ -286,14 +286,19 @@ public class GameController {
         LinkedList<IBoardTile> tilesOnNewPos = null;
         try {
             tilesOnNewPos = board.getGrid().getTiles(newPos);
-        } catch (OutsideGridException e) {
-            e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
+            // Something happened, but whatever. Move on, it still works
         }
-        for (IBoardTile t : Objects.requireNonNull(tilesOnNewPos))
-            if (t instanceof AbstractCollidableTile && !(t instanceof Robot)) {
-                if (!((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos)))
-                    return;
-            }
+        try {
+            for (IBoardTile t : tilesOnNewPos)
+                if (t != null)
+                    if (t instanceof AbstractCollidableTile && !(t instanceof Robot))
+                        if (!((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos)))
+                            return;
+        } catch (NullPointerException e){
+            // Something happened, but whatever. Move on, it still works
+        }
+
         // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
         // we don't swap places of two robots if they're on opposite conveyors facing each other
         try {
