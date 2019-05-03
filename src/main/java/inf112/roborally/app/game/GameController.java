@@ -126,8 +126,10 @@ public class GameController {
             }
             if (roundTurn > 5) {
                 roundTurn = 0;
-                for (int i = 0; i < amount; i++)
+                for (int i = 0; i < amount; i++) {
                     players[i].resetProgram();
+                    players[i].resetCards();
+                }
             }
         }
     }
