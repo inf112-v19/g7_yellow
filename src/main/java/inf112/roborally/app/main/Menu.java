@@ -30,7 +30,7 @@ public class Menu implements Screen {
         table.setFillParent(true);
 
         //shows lines
-        //table.setDebug(true);
+        table.setDebug(true);
         stage.addActor(table);
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         Label.LabelStyle labelStyle = new Label.LabelStyle();
@@ -56,11 +56,11 @@ public class Menu implements Screen {
         //adds buttons to table
         table.add(rr).center().size(600, 300);
         table.row().padBottom(10);
-        table.add(playbutton).height(0).height(100);
+        table.add(playbutton).height(0).height(100).width(150);
         table.row().padBottom(10);
-        table.add(editorbutton).height(0).height(100);
+        table.add(editorbutton).height(0).height(100).width(150);
         table.row();
-        table.add(exitbutton).height(0).height(100);
+        table.add(exitbutton).height(0).height(100).width(150);
 
         playbutton.addListener(new ChangeListener() {
             @Override
