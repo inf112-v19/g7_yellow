@@ -84,7 +84,8 @@ public class Menu implements Screen {
         exitbutton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                Gdx.app.exit();
+                if(Main.gameState == GameState.MENU)
+                    Gdx.app.exit();
             }
         });
 
