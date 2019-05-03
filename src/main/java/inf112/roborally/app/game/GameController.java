@@ -215,9 +215,10 @@ public class GameController {
                 respawnDeadRobots();
                 powerOnRobots();
                 roundTurn = 0;
-                for (int i = 0; i < amount; i++)
-                    if(players[i] != null)
-                        players[i].resetProgram();
+                for (int i = 0; i < amount; i++) {
+                    players[i].resetProgram();
+                    players[i].resetCards();
+                }
             }
         }
     }

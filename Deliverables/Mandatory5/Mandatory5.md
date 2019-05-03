@@ -35,10 +35,15 @@ skulle sette seg inn i alt av kode når vi trengte mest mulig effektivitet. Vi p
 Det ble jo selvfølgelig bedre enn det var, vi skulle vært enda flinkere, da hadde vi nok ikke vært i den posisjonen vi er i nå. 
 
 * *Hva har fungert best, og hvorfor? (Hva er vi mest fornøyd med)*
-Det som har fungert best er utvilsomt dynamikken og kommunikasjonen innad i gruppen. Vi er veldig fornøyde med hvordan vi har blitt en sammensveiset gruppe i løpet av de siste månedene. 
-Hvis noen fra gruppen har hatt noen spørsmål eller trengt hjelp, har alltid noen på gruppen stilt opp og tatt seg tid til å hjelpe. Det har også
-vært veldig godt at kjemien har vært så bra, for da slipper man å gå rundt og grue seg til møtene med gruppa osv. En annen ting som fungerte veldig bra var når vi endret
-fokuset vårt til testing og samtlige i gruppa skrev tester som bare det, og en periode så lå vi vel rundt 55% coverage. 
+    * Det som har fungert best er utvilsomt dynamikken og kommunikasjonen innad i gruppen. Vi er veldig fornøyde med hvordan vi har blitt en sammensveiset gruppe i løpet av de siste månedene. 
+    Hvis noen fra gruppen har hatt noen spørsmål eller trengt hjelp, har alltid noen på gruppen stilt opp og tatt seg tid til å hjelpe. Det har også
+    vært veldig godt at kjemien har vært så bra, for da slipper man å gå rundt og grue seg til møtene med gruppa osv. En annen ting som fungerte veldig bra var når vi endret
+    fokuset vårt til testing og samtlige i gruppa skrev tester som bare det, og en periode så lå vi vel rundt 55% coverage.
+
+    * Byggerutiner og automatiske verktøy krevde mye arbeid i starten av prosjektet. Det var tungvindt og noe ble desverre stått ubrukt, men likevel
+    viste det seg at disse verktøyene reddet oss flere ganger, og nå i siste innspurt ser vi hvor mye disse verktøyene har bidratt til å holde
+    koden "up to standards". Det er helt klart at slike verktøy kan opptre masete; irriterende; tidkrevende, men vi er sikkre på at
+    koden bak resultatet er noe å være stolte av.   
 
 * *Hvis vi skulle fortsatt med prosjektet, hva ville vi justert?* 
 Vi ville absolutt ha **økt** arbeidsmengde og arbeidsinnsatsen betraktelig. På grunn av dårlige arbeidsmengde har vi stort sett hele prosjektet følt at vi har vært bakpå, 
@@ -128,3 +133,23 @@ Under **"Compatible OS"** i README, kan man lese hvordan prosjektet skal funke p
 ## Tilleggsinformasjon 
 Vi har støtt på flere utfordringer på veien. Disse utfordringene legger vi til i issues på wikien vår, slik at vi kan "lære
 av våre feil og andres". Disse finner man her: [Issues](https://github.com/inf112-v19/YellowBots/wiki/Issues)
+
+## Skryt hvor det hører hjemme
+Mye av denne innleveringen er refleksjoner og unskyldninger, så her kommer noen av våre stoltere deler. Vi har mer, mye mer, men her er noe.
+
+### "Jeg gidder ikke å lage en ***** .txt fil til"
+Å lage nye maps for å teste var et tediøst arbeid som ingen ønsket å ta, og vi viste at vi var nødt å lage de "skikkelige" mapsene også.
+Heldigvis ble en løsning fort presentert når Daniel introduserte sin map-editor og developer-console. Dette har i ettertid spart oss
+for masse tediøst og tregt arbeid.
+
+### "Du kommer ikke til Mars uten minst ett romskip"
+En gikk raskt lei alle objektene i tiles mappen, og ønsket bedre metoder for å jobbe med dem og legge til nye. 4 timer senere kunne Oskar presentere
+et monster av en [TilesFactory](https://github.com/inf112-v19/YellowBots/blob/master/src/main/java/inf112/roborally/app/tile/TileFactory.java)
+som helt dynamisk laster inn alle nye tiles objekter.
+
+"Boys, I might have overdone this: ```HashMap<Character, Class<? extends IBoardTile>> hashmapCopy = new HashMap<>();```"
+
+### "Jeg kan prøve, men jeg er usikker"
+Spillet trengte en meny, desverre var det ingen som hadde noen erfaring med dette, og det ble vurdert nedprioritert da implementasjon
+viste seg å være svert vanskelig grunnet oppsett. Likevel tok noen på seg oppgaven. Etter nesten to uker med eksperimentering 
+hadde Erik funnet en løsning, og med flere øyne på saken kom en profesjonell start-meny inn før fristen.
