@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import inf112.roborally.app.editor.EditorInput;
+import inf112.roborally.app.game.GameController;
 
 import static inf112.roborally.app.editor.Console.clear;
 
@@ -65,29 +67,39 @@ public class Menu implements Screen {
         playbutton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                Main.gameState = GameState.PLAYING;
+                if(Main.gameState == GameState.MENU) {
+                    Main.gameState = GameState.PLAYING;
+                    Gdx.input.setInputProcessor(null);
+                }
             }
         });
 
         editorbutton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Main.gameState = GameState.EDITOR;
+                if(Main.gameState == GameState.MENU) {
+                    Main.gameState = GameState.EDITOR;
+                    Gdx.input.setInputProcessor(null);
+                    EditorInput.enterEditorMode(null);
+                }
             }
         });
 
         exitbutton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                Gdx.app.exit();
+                if(Main.gameState == GameState.MENU)
+                    Gdx.app.exit();
             }
         });
+
 
         Gdx.input.setInputProcessor(stage);
 
     }
 
     public static void openMenu() {
+        Gdx.input.setInputProcessor(stage);
         active = true;
     }
 
