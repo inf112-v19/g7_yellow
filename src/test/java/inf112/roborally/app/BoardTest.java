@@ -57,6 +57,6 @@ public class BoardTest {
     public void testLoadMap1Works() throws OutsideGridException {
         board.loadMap("map1");
         assertEquals(board.getGrid().getTiles(new Vector2(0, 0)).get(0).getClass(),
-                new Floor(90).getClass());
+                Floor.class);
     }
 }

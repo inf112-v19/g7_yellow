@@ -19,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class FileLocationHelperTest {
 
+    public static final int OLD_JAR_EXPECTED_CLASS_FILES = 57;
+
     @Test
     public void testIsJar() throws MalformedURLException {
         assertFalse(isJar(new URL("file:/home/YOLO/IdeaProjects/RoboRally/target/classes/inf112/roborally/app/tile/tiles/")));
@@ -30,7 +32,7 @@ public class FileLocationHelperTest {
         var url = this.getClass().getResource("old-jar-for-testing.jar");
         System.out.println(url);
         var result = getJarFileList(url, ".*\\.class");
-        assertEquals(57, result.size());
+        assertEquals(OLD_JAR_EXPECTED_CLASS_FILES, result.size());
         result.forEach(x -> assertTrue(x.matches(".*\\.class")));
     }
 }
