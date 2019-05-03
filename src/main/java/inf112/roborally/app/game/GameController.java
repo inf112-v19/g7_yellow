@@ -476,7 +476,6 @@ public class GameController {
             return;
         }
 
-        System.out.println(rob.isPoweredDown());
         if(rob.isPoweredDown()) return;
 
         var tiles = (board.getGrid().getTiles(pos));
