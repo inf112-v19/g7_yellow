@@ -23,7 +23,7 @@ public class Status implements Screen {
     public Status() {
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
         BitmapFont font = new BitmapFont();
-        font.getData().setScale(2f);
+        font.getData().setScale(1f);
         style.font = font;
         style.fontColor = Color.YELLOW;
         console = new TextArea("Player", style);
