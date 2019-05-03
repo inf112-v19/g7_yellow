@@ -19,16 +19,14 @@ import static inf112.roborally.app.editor.Console.clear;
 
 public class Menu implements Screen {
 
-    public static Stage stage;
+    public static Stage stage = new Stage();
 
     private static boolean active = true;
-    private Table table;
-    private BitmapFont font;
 
     public Menu() {
 
-        stage = new Stage();
-        table = new Table();
+
+        Table table = new Table();
         table.setFillParent(true);
 
         //shows lines
@@ -37,7 +35,7 @@ public class Menu implements Screen {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         new Button.ButtonStyle();
-        font = new BitmapFont();
+        BitmapFont font = new BitmapFont();
         font.getData().setScale(2);
         style.font = font;
         style.fontColor = Color.RED;
@@ -56,7 +54,7 @@ public class Menu implements Screen {
         ImageButton exitbutton = new ImageButton(new TextureRegionDrawable(new TextureRegion(exit)));
 
         //adds buttons to table
-        table.add(rr).center().size(600,300);
+        table.add(rr).center().size(600, 300);
         table.row().padBottom(10);
         table.add(playbutton).height(0).height(100);
         table.row().padBottom(10);
@@ -89,10 +87,13 @@ public class Menu implements Screen {
 
     }
 
+    public static void openMenu() {
+        active = true;
+    }
 
     @Override
     public void render(float v) {
-        if(active && Main.gameState == GameState.MENU){
+        if (active && Main.gameState == GameState.MENU) {
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             stage.act();
             stage.draw();
@@ -100,38 +101,33 @@ public class Menu implements Screen {
         }
     }
 
-
-    public static void openMenu() {
-       active = true;
-    }
-
     @Override
     public void resize(int i, int i1) {
-
+        // As of now does nothing :)
     }
 
     @Override
     public void pause() {
-
+        // As of now does nothing :)
     }
 
     @Override
     public void resume() {
-
+        // As of now does nothing :)
     }
 
     @Override
     public void hide() {
-
+        // As of now does nothing :)
     }
 
     @Override
     public void dispose() {
-
+        // As of now does nothing :)
     }
 
     @Override
     public void show() {
-
+        // As of now does nothing :)
     }
 }

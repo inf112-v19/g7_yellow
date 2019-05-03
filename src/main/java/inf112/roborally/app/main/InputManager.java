@@ -84,11 +84,9 @@ class InputManager {
                 Console.execute();
 
         //Enter Menu
-        if(Main.gameState != GameState.MENU){
-            if(Gdx.input.isKeyJustPressed(Input.Keys.M)){
+        if(Main.gameState != GameState.MENU && Gdx.input.isKeyJustPressed(Input.Keys.M)){
                 Main.gameState = GameState.MENU;
                 Menu.openMenu();
-            }
         }
     }
 }
