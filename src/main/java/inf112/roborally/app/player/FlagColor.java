@@ -1,12 +1,11 @@
 package inf112.roborally.app.player;
 
-import inf112.roborally.app.tile.tiles.Flag;
 
-import java.awt.*;
+import com.badlogic.gdx.graphics.Color;
 
 public enum FlagColor {
     RED(Color.RED),
-    BLUE(Color.blue),
+    BLUE(Color.BLUE),
     GREEN(Color.GREEN),
     YELLOW(Color.YELLOW);
 
@@ -16,10 +15,11 @@ public enum FlagColor {
         color = c;
     }
 
-    public Color getColor(int flagId) {
-        for (int i = 0; i < FlagColor.values().length; i++) {
-            return FlagColor.values()[i].color;
-        }
-        return Color.WHITE;
+    public static Color getColor(int flagId) {
+        return FlagColor.values()[flagId].color;
+    }
+    public static String getColorName(int flagId) {
+        if (flagId > FlagColor.values().length - 1) return "";
+        return FlagColor.values()[flagId].toString();
     }
 }

@@ -7,6 +7,7 @@ import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.helpers.LogicMethodHelper;
 import inf112.roborally.app.helpers.MoveToken;
 import inf112.roborally.app.main.Main;
+import inf112.roborally.app.player.FlagColor;
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.*;
@@ -96,6 +97,7 @@ public class GameController {
     }
 
     public static void executeCard() {
+        System.out.println(players[0].currentFlag());
         if (roundTurn == 0) {
             Status.setText("USE (1-9) on your keyboard to select cards. \n" +
                     "BACKSPACE to reset cards and SPACE to continue");
@@ -106,6 +108,7 @@ public class GameController {
             if (playerTurn > amount - 1) {
                 playerTurn = 0;
                 roundTurn++;
+
             }
             return;
         }
@@ -323,8 +326,8 @@ public class GameController {
         players[robotId - 1].visitedFlag(id);
     }
 
-    public static int currentFlag (int id) {
-        return players[id - 1].currentFlag();
+    public static String currentFlag (int id) {
+        return FlagColor.getColorName(players[id - 1].currentFlag());
     }
 
     public static void oneStep() throws OutsideGridException {

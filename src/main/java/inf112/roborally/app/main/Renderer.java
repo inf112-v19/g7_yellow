@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.player.FlagColor;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
 import inf112.roborally.app.tile.tiles.Flag;
@@ -47,25 +48,7 @@ public class Renderer {
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());
                     if(t instanceof Flag){
-                        switch (((Flag) t).getId()){
-                            case 1: s.setColor(Color.RED);
-                                break;
-                            case 2: s.setColor(Color.GREEN);
-                                break;
-                            case 3: s.setColor(Color.BLUE);
-                                break;
-                            case 4: s.setColor(Color.YELLOW);
-                                break;
-                            case 5: s.setColor(Color.CYAN);
-                                break;
-                            case 6: s.setColor(Color.MAGENTA);
-                                break;
-                            case 7: s.setColor(Color.GRAY);
-                                break;
-                            case 8: s.setColor(Color.BLACK);
-                                break;
-                            default: s.setColor(Color.WHITE);
-                        }
+                        s.setColor(FlagColor.getColor((((Flag) t).getId())-1))  ;
                         s.draw(batch);
                         batch.setColor(Color.WHITE);
                     } else
