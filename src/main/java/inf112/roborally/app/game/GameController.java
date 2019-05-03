@@ -154,7 +154,6 @@ public class GameController {
                 e.printStackTrace();
             }
             if (roundTurn > 5) {
-                makeAllRobotsShoot();
                 respawnDeadRobots();
                 roundTurn = 0;
                 for (int i = 0; i < amount; i++)
@@ -358,6 +357,7 @@ public class GameController {
     }
 
     public static void oneStep() throws OutsideGridException {
+        makeAllRobotsShoot();
         for (int i = 1; i <= robots.length; i++)
             oneRobotStep(i);
         // This is not optimal, but considering it will at max be 8 moves to do, it should be fine.
