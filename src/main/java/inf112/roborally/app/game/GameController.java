@@ -11,6 +11,7 @@ import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.*;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -252,7 +253,7 @@ public class GameController {
             movesToDo[id].makeDouble(new MoveToken(id, oldPos, newPos, t));
     }
 
-    public static void pushRobot(int pId, int dir, boolean doPushRobot) {
+    public static void pushRobot(int pId, int dir, boolean doPushRobot, boolean forced) {
         int currentConveyorRotation = 1;
         boolean foundRobot;
         boolean foundConveyor;
@@ -304,7 +305,7 @@ public class GameController {
         var list = board.getGrid().getTiles(newPos);
         for (IBoardTile t : list)
             if (t instanceof Robot)
-                if (canPushRobot(oldPos, dir) && doPushRobot) pushRobot(((Robot) t).getId(), dir, true);
+                if (canPushRobot(oldPos, dir) && doPushRobot) pushRobot(((Robot) t).getId(), dir, true, false);
                 else if (!found)
                     found = (!doPushRobot && !canMoveIntoRobot(newPos, dir));
         return found;
@@ -325,11 +326,11 @@ public class GameController {
             for (int i = 0; i < dist; i++) {
                 if (robots[pId - 1] == null) return;
                 if(robots[pId-1].isPoweredDown()) return;
-                pushRobot(pId, robots[pId - 1].getRotation(), true);
+                pushRobot(pId, robots[pId - 1].getRotation(), true, false);
             }
         else if (dist < 0) {
             if (robots[pId - 1].isPoweredDown()) return;
-            pushRobot(pId, robots[pId - 1].getRotation() + 180, true);
+            pushRobot(pId, robots[pId - 1].getRotation() + 180, true, false);
         }
     }
 
@@ -340,8 +341,8 @@ public class GameController {
      * @param dir
      * @param doPushRobot
      */
-    public static void moveRobot(int pId, int dir, boolean doPushRobot) {
-        pushRobot(pId, dir, doPushRobot);
+    public static void moveRobot(int pId, int dir, boolean doPushRobot, boolean forced) {
+        pushRobot(pId, dir, doPushRobot, forced);
     }
 
     public static void rotateRobot(int pId, int rotation) {
@@ -423,8 +424,8 @@ public class GameController {
     }
 
     public static void oneStep() throws OutsideGridException {
-        powerDownRobots();
         toPowerDown = powerDownQue;
+        powerDownRobots();
         makeAllRobotsShoot();
         for (int i = 1; i <= robots.length; i++)
             oneRobotStep(i);

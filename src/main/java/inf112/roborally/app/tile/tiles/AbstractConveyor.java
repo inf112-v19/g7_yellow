@@ -17,7 +17,7 @@ public abstract class AbstractConveyor extends AbstractFunctionTile {
 
     @Override
     public void execute(int RobotId) {
-        GameController.moveRobot(RobotId, this.getRotation(), false);
+        GameController.moveRobot(RobotId, this.getRotation(), false, true);
     }
 
     @Override
