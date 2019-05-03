@@ -86,6 +86,7 @@ public class GameController {
         r.setId(id);
         robots[id - 1] = r;
         players[id - 1].setRobot(r);
+        damageRobot(id, 2);
 
         try {
             board.getGrid().addTile(dockPositions[id - 1], r);
