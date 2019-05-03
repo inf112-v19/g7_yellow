@@ -67,17 +67,21 @@ public class Menu implements Screen {
         playbutton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
-                Main.gameState = GameState.PLAYING;
-                Gdx.input.setInputProcessor(null);
+                if(Main.gameState == GameState.MENU) {
+                    Main.gameState = GameState.PLAYING;
+                    Gdx.input.setInputProcessor(null);
+                }
             }
         });
 
         editorbutton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Main.gameState = GameState.EDITOR;
-                Gdx.input.setInputProcessor(null);
-                EditorInput.enterEditorMode(null);
+                if(Main.gameState == GameState.MENU) {
+                    Main.gameState = GameState.EDITOR;
+                    Gdx.input.setInputProcessor(null);
+                    EditorInput.enterEditorMode(null);
+                }
             }
         });
 
