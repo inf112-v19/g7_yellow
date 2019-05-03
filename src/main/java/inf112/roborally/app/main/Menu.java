@@ -30,7 +30,7 @@ public class Menu implements Screen {
         table.setFillParent(true);
 
         //shows lines
-        table.setDebug(true);
+        //table.setDebug(true);
         stage.addActor(table);
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         Label.LabelStyle labelStyle = new Label.LabelStyle();
