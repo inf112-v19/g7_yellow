@@ -1,10 +1,15 @@
 package inf112.roborally.app.tile.tiles;
 
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.helpers.LogicMethodHelper;
 import inf112.roborally.app.sprite.SpriteLoader;
+import inf112.roborally.app.tile.IBoardTile;
+
+import java.util.LinkedList;
 
 /**
  * The tile class for the robot
@@ -14,6 +19,8 @@ import inf112.roborally.app.sprite.SpriteLoader;
  * @since 07.02.19
  */
 public class Robot extends AbstractCollidableTile {
+
+    private int shotDamage = 1;
 
     private int id;
 
@@ -81,8 +88,8 @@ public class Robot extends AbstractCollidableTile {
         this.rotation = Math.floorMod(this.rotation + rotation, 360);
     }
 
-    /**
-     * Push the player
-     * @param rotation Given "direction" to push the player in
-     */
+    public void shoot(Vector2 pos){
+        GameController.shootFromRobot(pos, this.rotation, this.shotDamage);
+    }
+
 }

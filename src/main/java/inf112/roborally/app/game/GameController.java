@@ -94,6 +94,25 @@ public class GameController {
         }
     }
 
+    public static void shootFromRobot(Vector2 Startpos, int dir, int damage){
+        int damageRobot = -1;
+        Vector2 nextPos = LogicMethodHelper.findNextPosition(Startpos, dir);
+        LinkedList<IBoardTile> tiles = null;
+        try {
+            tiles = board.getGrid().getTiles(nextPos);
+        } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
+            // Shot went outside the map, to be expected.
+            return;
+        }
+        for(IBoardTile t : tiles){
+            if(t instanceof Robot) damageRobot = ((Robot) t).getId();
+        }
+        if(damageRobot > -1){
+            damageRobot(damageRobot, damage);
+            return;
+        } else shootFromRobot(nextPos, dir, damage);
+    }
+
     public static void executeCard() {
         if (roundTurn == 0) {
             Status.setText("USE (1-9) on your keyboard to select cards. \n" +
@@ -376,6 +395,7 @@ public class GameController {
             robots[robotID - 1] = null;
             return;
         }
+        rob.shoot(pos);
 
         var tiles = (board.getGrid().getTiles(pos));
 
