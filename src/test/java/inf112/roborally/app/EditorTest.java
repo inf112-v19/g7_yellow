@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EditorTest {
 
     private Board board = new Board(12, 12);
+    private EditorInput editorInput = new EditorInput(board);
 
     @Test
     public void testOpenEditor() {
