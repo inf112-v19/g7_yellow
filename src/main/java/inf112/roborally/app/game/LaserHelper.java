@@ -52,14 +52,15 @@ public class LaserHelper {
             return -1;
         }
         for (IBoardTile t : tiles) {
+
             int tileRot = t.getRotation();
             if (t instanceof Robot) rId = ((Robot) t).getId();
-            if (((t instanceof Wall && (tileRot == rotation || tileRot == rotation - 180)) || t instanceof CornerWall)) {
+            if (t instanceof AbstractLaser && !(t instanceof AbstractLaserStart) && tileRot == rotation) hasNext = true;
+            else if (t instanceof AbstractLaserStart && tileRot == rotation) started = true;
+            else if (((t instanceof Wall && (tileRot == rotation || tileRot == rotation - 180)) || t instanceof CornerWall)) {
                 hitWall = true;
                 continue;
-            } else if (t instanceof AbstractLaser && !(t instanceof AbstractLaserStart) && tileRot == rotation) {
-                hasNext = true;
-            } else if (t instanceof AbstractLaserStart && tileRot == rotation) started = true;
+            }
         }
         Vector2 nextPos = backwards ? LogicMethodHelper.findNextPosition(pos, rotation - 180) : LogicMethodHelper.findNextPosition(pos, rotation);
         if (started) return rId;
