@@ -1,5 +1,6 @@
 package inf112.roborally.app.editor;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -22,7 +23,7 @@ public class Status implements Screen {
     public Status() {
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
         BitmapFont font = new BitmapFont();
-        font.getData().setScale(2f);
+        font.getData().setScale(1f);
         style.font = font;
         style.fontColor = Color.YELLOW;
         console = new TextArea("Player", style);
@@ -38,7 +39,13 @@ public class Status implements Screen {
 
     @Override
     public void render(float v) {
-        console.setText("Player " + (GameController.playerTurn + 1) + "'s turn \n" +
+        int turn = GameController.playerTurn+1;
+        String robotData = null;
+        if(GameController.getDamage(turn) > -1) robotData = "(Current damage = " + GameController.getDamage(turn);
+        if(GameController.getRespawns(turn) > -1 && robotData != null) robotData += ", Respawns = " + GameController.getRespawns(turn) + ")";
+        else if (GameController.getRespawns(turn) > -1 && GameController.getRespawns(turn) < 3) robotData = "(Respawns = " + GameController.getRespawns(turn) + ")";
+        else robotData = "(DEAD)";
+        console.setText("Player " + turn + "'s turn. \t" + robotData + "\n" +
                 "Round: " + GameController.roundTurn + "\n"
         + status);
         stage.act();

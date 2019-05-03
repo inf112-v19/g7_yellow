@@ -70,14 +70,30 @@ public class GameController {
         }
     }
 
+    public static int getRespawns(int id){
+        try {
+            return respawns[id - 1];
+        } catch (NullPointerException e){
+            return -1;
+        }
+    }
+
+    public static int getDamage(int id){
+        try {
+            return robots[id - 1].getDamage();
+        } catch (NullPointerException e){
+            return -1;
+        }
+    }
+
     public static void respawnAllRobots() {
         for (int i = 0; i < amount; i++) {
             if (robots[i] != null) {
                 Vector2 rPos = findRobot(i + 1);
                 try {
                     board.getGrid().removeTile(rPos, robots[i]);
-                } catch (OutsideGridException e) {
-                    e.printStackTrace();
+                } catch (NullPointerException | OutsideGridException e) {
+                    System.err.println("Tried to remove dead robot");
                 }
             }
             respawnRobot(i + 1);
@@ -85,7 +101,10 @@ public class GameController {
     }
 
     public static void respawnRobot(int id) {
-        if(respawns[id-1] >= 3) return;
+        if(respawns[id-1] >= 3){
+            players[id-1].isPermaDead = true;
+            return;
+        }
         Robot r = new Robot(0);
         r.setId(id);
         robots[id - 1] = r;
@@ -157,7 +176,8 @@ public class GameController {
                 respawnDeadRobots();
                 roundTurn = 0;
                 for (int i = 0; i < amount; i++)
-                    players[i].resetProgram();
+                    if(players[i] != null)
+                        players[i].resetProgram();
             }
         }
     }
@@ -202,6 +222,7 @@ public class GameController {
 
         //Find the old and new position of the robot
         Vector2 oldPos = findRobot(r);
+        if(oldPos == null) return;
         Vector2 newPos = r.push(oldPos, dir);
 
         //Get all the tiles on old position, and check for collidable tiles.
@@ -463,6 +484,7 @@ public class GameController {
 
     private static void makeRobotShoot(int robotId){
         Vector2 pos = findRobot(robotId);
-        robots[robotId-1].shoot(pos);
+        if(robots[robotId-1] != null && pos != null)
+            robots[robotId-1].shoot(pos);
     }
 }

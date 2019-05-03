@@ -4,10 +4,14 @@ import inf112.roborally.app.card.programcard.IProgramCard;
 import inf112.roborally.app.tile.tiles.Robot;
 
 public class Player {
-
+    public boolean isPermaDead = false;
     private int id;
     private Robot robot;
     private int flagNumber = 0;
+
+    public boolean isDead() {
+        return this.robot == null;
+    }
 
     //Each player has their own stack of cards
     private PlayerCardPile<IProgramCard> cardPile;
