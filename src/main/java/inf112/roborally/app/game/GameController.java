@@ -323,6 +323,10 @@ public class GameController {
         players[robotId - 1].visitedFlag(id);
     }
 
+    public static int currentFlag (int id) {
+        return players[id - 1].currentFlag();
+    }
+
     public static void oneStep() throws OutsideGridException {
         for (int i = 1; i <= robots.length; i++)
             oneRobotStep(i);
