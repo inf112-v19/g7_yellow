@@ -7,6 +7,7 @@ import inf112.roborally.app.exceptions.OutsideGridException;
 import inf112.roborally.app.helpers.LogicMethodHelper;
 import inf112.roborally.app.helpers.MoveToken;
 import inf112.roborally.app.main.Main;
+import inf112.roborally.app.player.FlagColor;
 import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.*;
@@ -20,6 +21,7 @@ public class GameController {
     public static final int MAX_DAMAGE = 10;
     public static int playerTurn = 0;
     public static int roundTurn = 0;
+    public static boolean gameOver = false;
 
     static {
         board = new Board(Main.GRID_WIDTH, Main.GRID_HEIGHT);
@@ -95,6 +97,7 @@ public class GameController {
     }
 
     public static void executeCard() {
+        if (gameOver) return;
         if (roundTurn == 0) {
             Status.setText("USE (1-9) on your keyboard to select cards. \n" +
                     "BACKSPACE to reset cards and SPACE to continue");
@@ -105,6 +108,7 @@ public class GameController {
             if (playerTurn > amount - 1) {
                 playerTurn = 0;
                 roundTurn++;
+
             }
             return;
         }
@@ -320,6 +324,10 @@ public class GameController {
 
     public static void playerOnFlag(int id, int robotId) {
         players[robotId - 1].visitedFlag(id);
+    }
+
+    public static String currentFlag (int id) {
+        return FlagColor.getColorName(players[id - 1].currentFlag());
     }
 
     public static void oneStep() throws OutsideGridException {

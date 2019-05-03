@@ -54,12 +54,12 @@ public class LaserHelper {
         for (IBoardTile t : tiles) {
             int tileRot = t.getRotation();
             if (t instanceof Robot) rId = ((Robot) t).getId();
-            if (((t instanceof Wall && (tileRot == rotation || tileRot == rotation - 180)) || t instanceof CornerWall)) {
+            if (t instanceof AbstractLaser && !(t instanceof AbstractLaserStart) && tileRot == rotation) hasNext = true;
+            else if (t instanceof AbstractLaserStart && tileRot == rotation) started = true;
+            else if (((t instanceof Wall && (tileRot == rotation || tileRot == rotation - 180)) || t instanceof CornerWall)) {
                 hitWall = true;
                 continue;
-            } else if (t instanceof AbstractLaser && !(t instanceof AbstractLaserStart) && tileRot == rotation) {
-                hasNext = true;
-            } else if (t instanceof AbstractLaserStart && tileRot == rotation) started = true;
+            }
         }
         Vector2 nextPos = backwards ? LogicMethodHelper.findNextPosition(pos, rotation - 180) : LogicMethodHelper.findNextPosition(pos, rotation);
         if (started) return rId;
@@ -72,7 +72,9 @@ public class LaserHelper {
         while (it.hasNext()) {
             DamageToken dT = (DamageToken) it.next();
             System.out.println("Robot " + dT.getId() + " takes " + dT.getDamage() + " damage.");
-            damageRobot(dT.getId(), dT.getDamage());
+            if(dT.getId() == -1){
+                System.err.println("Couldn't find the robot to damage");
+            } else damageRobot(dT.getId(), dT.getDamage());
             it.remove();
         }
     }
