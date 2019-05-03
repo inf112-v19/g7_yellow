@@ -1,5 +1,6 @@
 package inf112.roborally.app.main;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -7,8 +8,10 @@ import com.badlogic.gdx.math.Vector2;
 import inf112.roborally.app.board.Board;
 import inf112.roborally.app.editor.EditorInput;
 import inf112.roborally.app.exceptions.OutsideGridException;
+import inf112.roborally.app.player.FlagColor;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.TileFactory;
+import inf112.roborally.app.tile.tiles.Flag;
 
 import java.util.*;
 
@@ -44,7 +47,12 @@ public class Renderer {
                     s.setPosition((x + (Main.SIDE_MARGIN / 2)) * Main.TILE_SIZE, (y + Main.TOP_MARGIN / 2) * Main.TILE_SIZE);
                     s.setOriginCenter(); //Rotate tiles around center
                     s.setRotation(t.getRotation());
-                    s.draw(batch);
+                    if(t instanceof Flag){
+                        s.setColor(FlagColor.getColor((((Flag) t).getId())-1))  ;
+                        s.draw(batch);
+                        batch.setColor(Color.WHITE);
+                    } else
+                        s.draw(batch);
                 }
             }
         }

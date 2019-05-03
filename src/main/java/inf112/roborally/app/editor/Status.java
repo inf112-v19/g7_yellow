@@ -39,13 +39,12 @@ public class Status implements Screen {
 
     @Override
     public void render(float v) {
-        if(Main.gameState == GameState.PLAYING) {
-            console.setText("Player " + (GameController.playerTurn + 1) + "'s turn \n" +
-                    "Round: " + GameController.roundTurn + "\n"
-                    + status);
-            stage.act();
-            stage.draw();
-        }
+        console.setText("Player " + (GameController.playerTurn + 1) + "'s turn \n" +
+                "Round: " + GameController.roundTurn + "\n" +
+                "Flag: " + GameController.currentFlag(GameController.playerTurn+1) + "\n"
+        + status);
+        stage.act();
+        stage.draw();
     }
 
     @Override

@@ -1,6 +1,8 @@
 package inf112.roborally.app.player;
 
 import inf112.roborally.app.card.programcard.IProgramCard;
+import inf112.roborally.app.editor.Status;
+import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.tile.tiles.Robot;
 
 public class Player {
@@ -31,6 +33,11 @@ public class Player {
 
         //addCardsToProgram();
         drawNineCards();
+    }
+
+    public void resetCards() {
+        cardPile = new PlayerCardPile<>();
+        cardPile.initialize();
     }
 
     public void drawNineCards() {
@@ -88,10 +95,6 @@ public class Player {
         program.resetProgram();
     }
 
-    public int getPriorityOfNextCard() {
-        return program.peekNextCard().getPriority();
-    }
-
     public IProgramCard executeNextCard() {
         if (program.peekNextCard() == null) return null;
         IProgramCard nextCard = program.popNextCard();
@@ -108,6 +111,10 @@ public class Player {
 
     public void visitedFlag(int id) {
         if (id == this.flagNumber + 1) flagNumber = id;
+        if (flagNumber == 3) {
+            Status.setText("PLAYER" + this.id + " WON!");
+            GameController.gameOver = true;
+        }
     }
 
     public int currentFlag() {
