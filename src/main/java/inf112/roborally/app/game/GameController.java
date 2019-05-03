@@ -95,6 +95,14 @@ public class GameController {
         }
     }
 
+    public static void respawnDeadRobots(){
+        for(int i = 0; i < amount; i++){
+            if(robots[i] == null){
+                respawnRobot(i+1);
+            }
+        }
+    }
+
     public static void shootFromRobot(Vector2 Startpos, int dir, int damage){
         int damageRobot = -1;
         Vector2 nextPos = LogicMethodHelper.findNextPosition(Startpos, dir);
@@ -141,6 +149,7 @@ public class GameController {
                 e.printStackTrace();
             }
             if (roundTurn > 5) {
+                respawnDeadRobots();
                 roundTurn = 0;
                 for (int i = 0; i < amount; i++)
                     players[i].resetProgram();
