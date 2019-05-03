@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import inf112.roborally.app.game.GameController;
+import inf112.roborally.app.main.GameState;
 import inf112.roborally.app.main.Main;
 
 public class Status implements Screen {
@@ -22,7 +23,7 @@ public class Status implements Screen {
     public Status() {
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
         BitmapFont font = new BitmapFont();
-        font.getData().setScale(2f);
+        font.getData().setScale(1f);
         style.font = font;
         style.fontColor = Color.YELLOW;
         console = new TextArea("Player", style);
@@ -38,11 +39,13 @@ public class Status implements Screen {
 
     @Override
     public void render(float v) {
-        console.setText("Player " + (GameController.playerTurn + 1) + "'s turn \n" +
-                "Round: " + GameController.roundTurn + "\n"
-        + status);
-        stage.act();
-        stage.draw();
+        if(Main.gameState == GameState.PLAYING) {
+            console.setText("Player " + (GameController.playerTurn + 1) + "'s turn \n" +
+                    "Round: " + GameController.roundTurn + "\n"
+                    + status);
+            stage.act();
+            stage.draw();
+        }
     }
 
     @Override
