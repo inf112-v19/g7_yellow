@@ -21,6 +21,7 @@ public class GameController {
     public static final int MAX_DAMAGE = 10;
     public static int playerTurn = 0;
     public static int roundTurn = 0;
+    public static boolean gameOver = false;
 
     static {
         board = new Board(Main.GRID_WIDTH, Main.GRID_HEIGHT);
@@ -97,7 +98,7 @@ public class GameController {
     }
 
     public static void executeCard() {
-        System.out.println(players[0].currentFlag());
+        if (gameOver) return;
         if (roundTurn == 0) {
             Status.setText("USE (1-9) on your keyboard to select cards. \n" +
                     "BACKSPACE to reset cards and SPACE to continue");

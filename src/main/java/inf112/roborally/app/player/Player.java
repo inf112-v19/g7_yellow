@@ -1,6 +1,8 @@
 package inf112.roborally.app.player;
 
 import inf112.roborally.app.card.programcard.IProgramCard;
+import inf112.roborally.app.editor.Status;
+import inf112.roborally.app.game.GameController;
 import inf112.roborally.app.tile.tiles.Robot;
 
 public class Player {
@@ -109,6 +111,10 @@ public class Player {
 
     public void visitedFlag(int id) {
         if (id == this.flagNumber + 1) flagNumber = id;
+        if (flagNumber == 4) {
+            Status.setText("PLAYER" + this.id + " WON!");
+            GameController.gameOver = true;
+        }
     }
 
     public int currentFlag() {
