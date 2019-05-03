@@ -2,9 +2,9 @@
 
 # Deloppgave 1: Prosjekt og prosjektstruktur 
 * Vi har jo nå jobbet sammen som gruppe over lengere tid, og da er det klart man får erfaringer som blir viktig kunnskap
-for videre utvikling. Blant annet har vi erfart at det og jobbe som gruppe på et så stort prosjekt kan være spennende, 
-utfordrende og frustrerende. Teamet er samstemt på at vi fortsatt ligger ganske langt bak, det man hadde sett for seg på 
-ønsket tidspunkt. Mye av dette skyldes rett og slett at vi som team har vært dårlig på å gjøre ting hjemme og ikke bare når vi har gruppe. 
+for videre utvikling. Blant annet har vi erfart at det å jobbe som gruppe på et så stort prosjekt kan være spennende, 
+utfordrende og frustrerende. Teamet er samstemt på at vi fortsatt ligger ganske langt bak det man hadde sett for seg på 
+nåværende tidspunkt. Mye av dette skyldes rett og slett at vi som team har vært dårlig på å gjøre ting hjemme og ikke bare når vi har gruppe. 
 Dette er en viktig erfaring som vi tar med oss videre, at  et slikt prosjekt krever en stor arbeidsinnsats av samtlige i teamet. Når det ikke skjer
 blir det vanskelig å få et godt produktt innen en gitt tidsfrist. 
 
@@ -15,11 +15,11 @@ blir det vanskelig å få et godt produktt innen en gitt tidsfrist.
   
  
 * Kommunikasjonen i gruppen fungerer veldig bra. Vi bruker fortsatt *slack* til å avtale møter, diskutere småting og søke 
-  hjelp om det er noe vi lurer på. Men det meste av kommunikasjon mellom gruppen skjer i gruppetimer og når gruppen har avtalt
-  og møtes. Da har vi muligheten til å parprogrammere, men vi kan også snakke med alle andre på gruppa om ting vi gjør. 
+  hjelp om det er noe vi lurer på. Likevel forekommer det meste av kommunikasjon mellom gruppen i gruppetimer, og når gruppen har avtalt
+  andre møter. Da har vi muligheten til å parprogrammere, men vi kan også snakke med alle andre på gruppa om ting vi gjør. 
   Det er naturligvis enklere å få hjelp fra resten av gruppa når man er samlet og kan utveksle erfaringer og kunnskap. 
 
-* Når det kommer til rotering av arbeidsoppgaver, burde vi gjort en veldig mye bedre jobb. Vi var veldig innstilt på at til siste iterasjon, skulle vi 
+* Når det kommer til rotering av arbeidsoppgaver, kunne vi gjort en bedre jobb. Vi var veldig innstilt på at til siste iterasjon, skulle vi 
 rotere slik at de som har kodet minst skulle få skrive mer kode og motsatt. Her er innser vi at vi at vi har vært alt for dårlige, og vi hadde rett og slett 
 ikke tid til at de som har programmert mest ikke skulle gjøre en del arbeid på siste iterasjon da vi allerede ligger langt bak og trenger alle mann til pumpene.
 
@@ -35,7 +35,7 @@ skulle sette seg inn i alt av kode når vi trengte mest mulig effektivitet. Vi p
 Det ble jo selvfølgelig bedre enn det var, vi skulle vært enda flinkere, da hadde vi nok ikke vært i den posisjonen vi er i nå. 
 
 * *Hva har fungert best, og hvorfor? (Hva er vi mest fornøyd med)*
-Det som har fungert bset har vært dynamikken og kommunikasjonen innad i gruppa. Vi er veldig fornøyde med hvordan vi har blitt en sammensveiset gruppe i løpet av de siste månedene. 
+Det som har fungert best er utvilsomt dynamikken og kommunikasjonen innad i gruppen. Vi er veldig fornøyde med hvordan vi har blitt en sammensveiset gruppe i løpet av de siste månedene. 
 Hvis noen fra gruppen har hatt noen spørsmål eller trengt hjelp, har alltid noen på gruppen stilt opp og tatt seg tid til å hjelpe. Det har også
 vært veldig godt at kjemien har vært så bra, for da slipper man å gå rundt og grue seg til møtene med gruppa osv. En annen ting som fungerte veldig bra var når vi endret
 fokuset vårt til testing og samtlige i gruppa skrev tester som bare det, og en periode så lå vi vel rundt 55% coverage. 
@@ -43,14 +43,19 @@ fokuset vårt til testing og samtlige i gruppa skrev tester som bare det, og en 
 * *Hvis vi skulle fortsatt med prosjektet, hva ville vi justert?* 
 Vi ville absolutt ha **økt** arbeidsmengde og arbeidsinnsatsen betraktelig. På grunn av dårlige arbeidsmengde har vi stort sett hele prosjektet følt at vi har vært bakpå, 
 noe man selvfølgelig skulle unngått. Skulle vi fortsatt på prosjektet ville det også vært nødvendig at flere på gruppen hadde bidratt mer på kodingen. Dette fordi at 
-at folk ser forskjellige kodeløsninger, og selvom noen har programmert mindre enn andre på prosjektet, kan det hende at de har bedre løsninger på enkelte problemer. 
-Generelt sett, så måtte vi ha blitt flinkere på å fordele arbeidsoppgaver og faktiskt forsikre oss om at de blir gjort skikkelig, da dette har vært litt svakt til tider. 
+at folk ser forskjellige kodeløsninger, og selvom noen har programmert mindre enn andre på prosjektet, kan det hende at de har bedre løsninger på enkelte problemer.
+
+* Et annet problem som vi ser i retrospekt er at å så mange ulike verktøy er vanskelig dersom de ikke viser seg hele tiden. Både bygge-server og
+codacy ble "glemt", men når vi fikk dem inn i pull-request var de ikke like lette å overse. Desverre fant vi aldri en god løsning på trello,
+noe flere føler har vanskeliggjort oppgavefordeling som da ofte ble gitt til tech-lead i gruppetimer. Her burde vi helt klart
+bruke et bedre verktøy som github sin egne løsning.    
 
 * *Hva er det viktigste vi har lært?*
-Det viktigste vi har lært er at når man først havner bakpå, er det ekstremt vanskelig og ikke ligge bakpå resten av prosjektet også. Men kanskje den viktigste erfaringen
-vi sitter igjen med er at vi nå har erfart hvordan det er å jobbe med et så stort prosjekt i team. Dette er erfaringer som de fleste av oss  kommer til å dra
-ekstremt nytte av når vi skal ut i arbeidslivet. Vi har også lært oss å bruke viktige verktøy og hjelpemidler som kan være ekstremt nyttig å ha med seg videre.
-Det er spesielt Git, codacy og trello som vi har brukt og tilegnet oss mest kunnskap om. 
+Det tydeligste vi har lært er at når man først havner bakpå, er det ekstremt vanskelig å ta seg innigjenn. Men kanskje den viktigste erfaringen
+vi sitter igjen med er at vi nå har erfart hvordan det er å jobbe med et så stort prosjekt i team. Dette er erfaringer som de fleste av oss kommer til å dra
+stor nytte av når vi skal ut i arbeidslivet. Vi har også lært oss å bruke viktige verktøy og hjelpemidler som kan være ekstremt nyttig å ha med seg videre.
+Det er spesielt verktøy for versjonskontroll, statisk-kodeanalyse, bygg/test-server, og oppgavefordeling. Vi har igjennom prosjektet blitt kjent med "Git,
+github, trello, codacy, snyk, maven, jenkins" 
 
 
 # Deloppgave 2: Krav
@@ -104,7 +109,9 @@ at man skulle kunne slå sammen to brett til et større, men der oppdaget vi for
 1. *Kompleksitet*: Noen av metodene kan være litt komplisert å sette seg inn i, noe som kan karakteriseres som et svakhetstegn. 
 2. Enkelte av klassene er ekstremt store. Et eksempel er [```GameController```](https://github.com/inf112-v19/YellowBots/blob/master/src/main/java/inf112/roborally/app/game/GameController.java)
 3. Vi har en del bugs på collisions. Når roboter skal dyttes og kræsje etc. skjer ikke det vi vil skal skje. 
-
+4. Vi har prøvd å muliggjøre en tydelig god og enkel Jar fil. Det er brukt masse tid for at denne skal fungere som forventet
+men den ble nedprioritet da den ikke har gitt noe utbytte på andre innleveringer. Det er dermed bugs ved å lagre nye maps
+fra editor dersom du kjører med jar fil.
 
 For instrukser til bygging av prosjektet se [GitHub-Readme](https://github.com/inf112-v19/YellowBots#how-to-buildcompile). 
 *Obs: krever Java 11*
@@ -120,4 +127,4 @@ Under **"Compatible OS"** i README, kan man lese hvordan prosjektet skal funke p
 
 ## Tilleggsinformasjon 
 Vi har støtt på flere utfordringer på veien. Disse utfordringene legger vi til i issues på wikien vår, slik at vi kan "lære
-av våre feil" og kanskje andre kan se hvordan vi har løst enkelte problemer. Disse finner man her: [Issues](https://github.com/inf112-v19/YellowBots/wiki/Issues)
+av våre feil og andres". Disse finner man her: [Issues](https://github.com/inf112-v19/YellowBots/wiki/Issues)

@@ -48,7 +48,8 @@ public class Status implements Screen {
             else if (GameController.getRespawns(turn) > -1 && GameController.getRespawns(turn) < 3) robotData = "(Respawns = " + GameController.getRespawns(turn) + ")";
             else robotData = "(DEAD)";
             console.setText("Player " + turn + "'s turn. \t" + robotData + "\n" +
-                    "Round: " + GameController.roundTurn + "\n"
+                    "Round: " + GameController.roundTurn + "\n"+
+                    "Flag: " + GameController.currentFlag(GameController.playerTurn+1) + "\n"
             + status);
             stage.act();
             stage.draw();
