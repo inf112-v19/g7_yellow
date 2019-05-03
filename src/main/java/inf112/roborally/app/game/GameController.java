@@ -12,6 +12,7 @@ import inf112.roborally.app.player.Player;
 import inf112.roborally.app.tile.IBoardTile;
 import inf112.roborally.app.tile.tiles.*;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -33,6 +34,8 @@ public class GameController {
     private static MoveToken[] movesToDo;
     private static Vector2[] dockPositions;
     public static Player[] players;
+    private static int[] respawns;
+    private static boolean[] toPowerDown;
 
     /**
      * Load robots onto map. Doesn't use spawn positions yet (docking stations)
@@ -48,11 +51,15 @@ public class GameController {
             }
         }
 
+        respawns = new int[amount];
+        toPowerDown = new boolean[amount];
         robots = new Robot[amount];
         players = new Player[amount];
         movesToDo = new MoveToken[amount];
-        for (int i = 0; i < positions.length; i++) {
+        for (int i = 0; i < amount; i++) {
             if (positions[i] != null) {
+                toPowerDown[i] = false;
+                respawns[i] = 0;
                 Robot r = new Robot(0);
                 r.setId(i + 1);
                 robots[i] = r;
@@ -69,14 +76,60 @@ public class GameController {
         }
     }
 
+    public static void resetQues(){
+        for(int i = 0; i < amount; i++){
+            toPowerDown[i] = false;
+        }
+    }
+
+    public static void powerOnRobots(){
+        for(int i = 0; i < amount; i++){
+            if(robots[i] == null) continue;
+            robots[i].setPoweredDown(false);
+        }
+    }
+
+    public static void quePowerDown(int id){
+        if(robots[id-1] == null) return;
+        toPowerDown[id-1] = true;
+    }
+
+    public static void powerDownRobots(){
+        for(int i = 0; i < amount; i++)
+            if(toPowerDown[i] == true)
+                powerDown(i+1);
+    }
+
+    public static void powerDown(int id){
+        if(robots[id-1] == null) return;
+        robots[id-1].setPoweredDown(true);
+        robots[id-1].setDamage(0);
+    }
+
+    public static int getRespawns(int id){
+        try {
+            return respawns[id - 1];
+        } catch (NullPointerException e){
+            return -1;
+        }
+    }
+
+    public static int getDamage(int id){
+        try {
+            return robots[id - 1].getDamage();
+        } catch (NullPointerException e){
+            return -1;
+        }
+    }
+
     public static void respawnAllRobots() {
         for (int i = 0; i < amount; i++) {
             if (robots[i] != null) {
                 Vector2 rPos = findRobot(i + 1);
                 try {
                     board.getGrid().removeTile(rPos, robots[i]);
-                } catch (OutsideGridException e) {
-                    e.printStackTrace();
+                } catch (NullPointerException | OutsideGridException e) {
+                    System.err.println("Tried to remove dead robot");
                 }
             }
             respawnRobot(i + 1);
@@ -84,16 +137,49 @@ public class GameController {
     }
 
     public static void respawnRobot(int id) {
+        if(respawns[id-1] >= 3){
+            players[id-1].isPermaDead = true;
+            return;
+        }
         Robot r = new Robot(0);
         r.setId(id);
         robots[id - 1] = r;
         players[id - 1].setRobot(r);
+        damageRobot(id, 2);
+        respawns[id-1]++;
 
         try {
             board.getGrid().addTile(dockPositions[id - 1], r);
         } catch (OutsideGridException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void respawnDeadRobots(){
+        for(int i = 0; i < amount; i++){
+            if(robots[i] == null){
+                respawnRobot(i+1);
+            }
+        }
+    }
+
+    public static void shootFromRobot(Vector2 Startpos, int dir, int damage){
+        int damageRobot = -1;
+        Vector2 nextPos = LogicMethodHelper.findNextPosition(Startpos, dir);
+        LinkedList<IBoardTile> tiles = null;
+        try {
+            tiles = board.getGrid().getTiles(nextPos);
+        } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
+            // Shot went outside the map, to be expected.
+            return;
+        }
+        for(IBoardTile t : tiles){
+            if(t instanceof Robot) damageRobot = ((Robot) t).getId();
+        }
+        if(damageRobot > -1){
+            damageRobot(damageRobot, damage);
+            return;
+        } else shootFromRobot(nextPos, dir, damage);
     }
 
     public static void executeCard() {
@@ -125,6 +211,9 @@ public class GameController {
                 e.printStackTrace();
             }
             if (roundTurn > 5) {
+                resetQues();
+                respawnDeadRobots();
+                powerOnRobots();
                 roundTurn = 0;
                 for (int i = 0; i < amount; i++) {
                     players[i].resetProgram();
@@ -165,7 +254,7 @@ public class GameController {
             movesToDo[id].makeDouble(new MoveToken(id, oldPos, newPos, t));
     }
 
-    public static void pushRobot(int pId, int dir, boolean doPushRobot) {
+    public static void pushRobot(int pId, int dir, boolean doPushRobot, boolean forced) {
         int currentConveyorRotation = 1;
         boolean foundRobot;
         boolean foundConveyor;
@@ -174,6 +263,7 @@ public class GameController {
 
         //Find the old and new position of the robot
         Vector2 oldPos = findRobot(r);
+        if(oldPos == null) return;
         Vector2 newPos = r.push(oldPos, dir);
 
         //Get all the tiles on old position, and check for collidable tiles.
@@ -191,6 +281,23 @@ public class GameController {
                     break;
                 return;
             }
+
+
+        LinkedList<IBoardTile> tilesOnNewPos = null;
+        try {
+            tilesOnNewPos = board.getGrid().getTiles(newPos);
+        } catch (ArrayIndexOutOfBoundsException | OutsideGridException e) {
+            // Something happened, but whatever. Move on, it still works
+        }
+        try {
+            for (IBoardTile t : tilesOnNewPos)
+                if (t != null)
+                    if (t instanceof AbstractCollidableTile && !(t instanceof Robot))
+                        if (!((AbstractCollidableTile) t).canMoveIntoFrom(LogicMethodHelper.getWorldRotation(oldPos, newPos)))
+                            return;
+        } catch (NullPointerException e){
+            // Something happened, but whatever. Move on, it still works
+        }
 
         // Checking if the next tile has a conveyor facing any other direction than reverse in order to make sure
         // we don't swap places of two robots if they're on opposite conveyors facing each other
@@ -216,7 +323,7 @@ public class GameController {
         var list = board.getGrid().getTiles(newPos);
         for (IBoardTile t : list)
             if (t instanceof Robot)
-                if (canPushRobot(oldPos, dir) && doPushRobot) pushRobot(((Robot) t).getId(), dir, true);
+                if (canPushRobot(oldPos, dir) && doPushRobot) pushRobot(((Robot) t).getId(), dir, true, false);
                 else if (!found)
                     found = (!doPushRobot && !canMoveIntoRobot(newPos, dir));
         return found;
@@ -236,10 +343,13 @@ public class GameController {
         if (dist > 0)
             for (int i = 0; i < dist; i++) {
                 if (robots[pId - 1] == null) return;
-                pushRobot(pId, robots[pId - 1].getRotation(), true);
+                if(robots[pId-1].isPoweredDown()) return;
+                pushRobot(pId, robots[pId - 1].getRotation(), true, false);
             }
-        else if (dist < 0)
-            pushRobot(pId, robots[pId - 1].getRotation() + 180, true);
+        else if (dist < 0) {
+            if (robots[pId - 1].isPoweredDown()) return;
+            pushRobot(pId, robots[pId - 1].getRotation() + 180, true, false);
+        }
     }
 
     /**
@@ -249,12 +359,15 @@ public class GameController {
      * @param dir
      * @param doPushRobot
      */
-    public static void moveRobot(int pId, int dir, boolean doPushRobot) {
-        pushRobot(pId, dir, doPushRobot);
+    public static void moveRobot(int pId, int dir, boolean doPushRobot, boolean forced) {
+        pushRobot(pId, dir, doPushRobot, forced);
     }
 
     public static void rotateRobot(int pId, int rotation) {
-        if (robots[pId - 1] != null) robots[pId - 1].rotate(rotation);
+        if (robots[pId - 1] != null){
+            if(robots[pId-1].isPoweredDown()) return;
+            robots[pId - 1].rotate(rotation);
+        }
     }
 
     public static void destroyRobot(int pId) {
@@ -333,6 +446,8 @@ public class GameController {
     }
 
     public static void oneStep() throws OutsideGridException {
+        powerDownRobots();
+        makeAllRobotsShoot();
         for (int i = 1; i <= robots.length; i++)
             oneRobotStep(i);
         // This is not optimal, but considering it will at max be 8 moves to do, it should be fine.
@@ -387,6 +502,8 @@ public class GameController {
             return;
         }
 
+        if(rob.isPoweredDown()) return;
+
         var tiles = (board.getGrid().getTiles(pos));
 
         for (IBoardTile t : tiles) {
@@ -428,5 +545,17 @@ public class GameController {
                 if (t instanceof AbstractBlueConveyor)
                     quePushRobot(robotId - 1, pos, LogicMethodHelper.findNextPosition(pos, t.getRotation()), (AbstractFunctionTile) t);
             }
+    }
+
+    private static void makeAllRobotsShoot(){
+        for(int i = 0; i < amount; i++)
+            if(robots[i] != null)
+                makeRobotShoot(i+1);
+    }
+
+    private static void makeRobotShoot(int robotId){
+        Vector2 pos = findRobot(robotId);
+        if(robots[robotId-1] != null && pos != null)
+            robots[robotId-1].shoot(pos);
     }
 }

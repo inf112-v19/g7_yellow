@@ -1,5 +1,6 @@
 package inf112.roborally.app.editor;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -39,12 +40,20 @@ public class Status implements Screen {
 
     @Override
     public void render(float v) {
-        console.setText("Player " + (GameController.playerTurn + 1) + "'s turn \n" +
-                "Round: " + GameController.roundTurn + "\n" +
-                "Flag: " + GameController.currentFlag(GameController.playerTurn+1) + "\n"
-        + status);
-        stage.act();
-        stage.draw();
+        if(Main.gameState == GameState.PLAYING) {
+            int turn = GameController.playerTurn+1;
+            String robotData = null;
+            if(GameController.getDamage(turn) > -1) robotData = "(Current damage = " + GameController.getDamage(turn);
+            if(GameController.getRespawns(turn) > -1 && robotData != null) robotData += ", Respawns = " + GameController.getRespawns(turn) + ")";
+            else if (GameController.getRespawns(turn) > -1 && GameController.getRespawns(turn) < 3) robotData = "(Respawns = " + GameController.getRespawns(turn) + ")";
+            else robotData = "(DEAD)";
+            console.setText("Player " + turn + "'s turn. \t" + robotData + "\n" +
+                    "Round: " + GameController.roundTurn + "\n"+
+                    "Flag: " + GameController.currentFlag(GameController.playerTurn+1) + "\n"
+            + status);
+            stage.act();
+            stage.draw();
+        }
     }
 
     @Override

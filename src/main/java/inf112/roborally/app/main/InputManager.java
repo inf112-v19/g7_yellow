@@ -17,6 +17,10 @@ class InputManager {
     protected void checkForInput() throws OutsideGridException {
         if (!Console.getActive()) {
             if (Main.gameState == GameState.PLAYING) {
+                if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+                    System.out.println("Trying to power down");
+                    GameController.quePowerDown(GameController.playerTurn+1);
+                }
                 if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                     GameController.executeCard();
                 }
