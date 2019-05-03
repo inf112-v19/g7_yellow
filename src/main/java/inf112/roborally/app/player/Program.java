@@ -22,14 +22,10 @@ public class Program {
         return cards[currentCard];
     }
 
-    public void printProgram() {
-        System.out.println();
-    }
-
     public void addCardToProgram(IProgramCard card) {
         if (amount == 5) return;
         cards[amount] = card;
-        amount ++;
+        amount++;
     }
 
     public boolean canAddCard() {

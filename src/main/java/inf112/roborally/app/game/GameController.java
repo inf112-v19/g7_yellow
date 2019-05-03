@@ -70,7 +70,6 @@ public class GameController {
     }
 
     public static void respawnAllRobots() {
-        System.out.println(amount);
         for (int i = 0; i < amount; i++) {
             if (robots[i] != null) {
                 Vector2 rPos = findRobot(i + 1);
