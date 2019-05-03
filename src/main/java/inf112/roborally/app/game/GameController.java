@@ -33,7 +33,6 @@ public class GameController {
     private static Vector2[] dockPositions;
     public static Player[] players;
     private static int[] respawns;
-    private static boolean[] powerDownQue;
     private static boolean[] toPowerDown;
 
     /**
@@ -52,14 +51,12 @@ public class GameController {
 
         respawns = new int[amount];
         toPowerDown = new boolean[amount];
-        powerDownQue = new boolean[amount];
         robots = new Robot[amount];
         players = new Player[amount];
         movesToDo = new MoveToken[amount];
         for (int i = 0; i < amount; i++) {
             if (positions[i] != null) {
                 toPowerDown[i] = false;
-                powerDownQue[i] = false;
                 respawns[i] = 0;
                 Robot r = new Robot(0);
                 r.setId(i + 1);
@@ -79,7 +76,6 @@ public class GameController {
 
     public static void resetQues(){
         for(int i = 0; i < amount; i++){
-            powerDownQue[i] = false;
             toPowerDown[i] = false;
         }
     }
@@ -93,7 +89,7 @@ public class GameController {
 
     public static void quePowerDown(int id){
         if(robots[id-1] == null) return;
-        powerDownQue[id-1] = true;
+        toPowerDown[id-1] = true;
     }
 
     public static void powerDownRobots(){
@@ -424,7 +420,6 @@ public class GameController {
     }
 
     public static void oneStep() throws OutsideGridException {
-        toPowerDown = powerDownQue;
         powerDownRobots();
         makeAllRobotsShoot();
         for (int i = 1; i <= robots.length; i++)
