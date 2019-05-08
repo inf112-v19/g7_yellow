@@ -20,6 +20,8 @@ Note:
     - They're probably right
 - Don't rush it
     - Even if it's super fun
+- You cant get to mars without at-least one spaceship
+    - But do you really need to get there? 
   
 ---?image=https://images.wallpaperscraft.com/image/stars_art_fire_background_116856_2560x1600.jpg
 
