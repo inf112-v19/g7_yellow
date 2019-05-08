@@ -18,6 +18,7 @@ Note:
 - Too many disconnected tools is bad
 - LISTEN to your TOOLS
     - They're probably right
+    - You're probably not
 - Don't rush it
     - Even if it's super fun
 - You cant get to mars without at-least one spaceship
@@ -34,6 +35,7 @@ Note:
 ### What would we change?
 Note:
 - Nothing, we're perfect
+- Or maybe this bgr.image
 - Although probably not write a single semicolon more than needed
     - Build-server, could as well be fictive
         - Static code analysis
