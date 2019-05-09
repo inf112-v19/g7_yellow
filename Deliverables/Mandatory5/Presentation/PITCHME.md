@@ -35,8 +35,8 @@ Note:
 ---?image=http://www.4usky.com/data/out/34/164289939-fire-wallpapers.jpg
 
 ### What would we change?
+#### Nothing, we're perfect
 Note:
-- Nothing, we're perfect
 - Or maybe this bgr.image
 - And please no libgdx
 - Although probably not write a single semicolon more than needed
