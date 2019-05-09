@@ -32,7 +32,7 @@ Note:
 Note:
     - None
 
----?image=http://www.4usky.com/data/out/34/164289939-fire-wallpapers.jpg
+---?image=http://www.4usky.com/data/out/34/164289665-fire-wallpapers.jpg
 
 ### What would we change?
 #### Nothing, we're perfect
