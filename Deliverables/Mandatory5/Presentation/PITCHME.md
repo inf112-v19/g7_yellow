@@ -14,6 +14,8 @@ Note:
 - Importance of 
     - code reviews
     - Documentation
+    - Build and "deploy"
+    - Integration and Unit testing
 - Work better as a group
 - Too many disconnected tools is bad
 - LISTEN to your TOOLS
@@ -28,7 +30,7 @@ Note:
 
 ### DEMO
 Note:
-- 
+    - None
 
 ---?image=http://www.4usky.com/data/out/34/164289939-fire-wallpapers.jpg
 
@@ -36,6 +38,7 @@ Note:
 Note:
 - Nothing, we're perfect
 - Or maybe this bgr.image
+- And please no libgdx
 - Although probably not write a single semicolon more than needed
     - Build-server, could as well be fictive
         - Static code analysis
